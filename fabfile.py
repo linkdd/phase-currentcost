@@ -7,9 +7,6 @@
 """
 
 from fabric.api import local
-import time
-from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler
 
 
 OPTIONS = {
@@ -22,27 +19,6 @@ OPTIONS = {
     "PYTHON_FILE": "*.py src/*.py tests/*.py",
     "BIN": "data_generator.py"
 }
-
-class MyHandler(FileSystemEventHandler):
-    def on_modified(self, event):
-        validate()
-
-def watch():
-    """
-        Watch current project and launch validate task for each modification.
-    """
-    event_handler = MyHandler()
-    observer = Observer()
-    observer.schedule(event_handler, path='.', recursive=True)
-    observer.start()
-
-    try:
-        print('Currently watching recursively this folder !')
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        observer.stop()
-    observer.join()
 
 
 def test():
