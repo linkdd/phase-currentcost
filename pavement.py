@@ -137,6 +137,15 @@ def stat():
 
 
 @task
+def bundle():
+    """
+        Freeze dependencies for deployment
+    """
+    sh("pip freeze > REQUIREMENTS.txt")
+    sh("pip bundle data-generator.pybundle -r REQUIREMENTS.txt")
+
+
+@task
 def watch():
     """
         Watch current folder and start code inspection for each change.
