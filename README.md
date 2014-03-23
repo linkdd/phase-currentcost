@@ -4,6 +4,12 @@ pyCurrentCost
 
 Functional test with fixtures to simulate CurrentCost on port COM and waited for currentCost to send messages.
 
+Dependencies
+============
+
+Installation
+============
+
 Usage
 =====
 
@@ -12,14 +18,21 @@ Usage
 
     Options:
         -h, --help                      Show this help message and exit.
-        -m PORT, --mq-port=PORT         Socket port to publish to MQ.
+        -m PORT, --mq-port=PORT         Socket port to publish to 0MQ.
         -v NAME, --variable-name=NAME   Name of the variable.
         -t TTY, --tty-name=TTY          TTY port to connect to current cost.
         -v, --verbose                   Activate verbose mode.
 
-Example: 
+Examples: 
+
+To see the current consumption on Current cost (or redirect stdout to a file to keep a log) use:
+
+    currentcost --variable-name=test --tty-name=/dev/currentcost -v
+
+To redirect Current Cost message to 0MQ and connect one or several others processes to use this message use:   
 
     currentcost --variable-name=test --mq-port=5001 --tty-name=/dev/currentcost -v
+
 
 Development process
 ===================
