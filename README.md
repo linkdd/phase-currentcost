@@ -7,8 +7,8 @@ Functionnal test with fixtures to simulate CurrentCost on port COM and waited fo
 Usage
 =====
 
-    $ plugwise_util -h
-    Usage: plugwise_util [options]
+    $ currentcost -h
+    Usage: currentcost [options]
 
     Options:
         -h, --help                      Show this help message and exit.
