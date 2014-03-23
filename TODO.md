@@ -4,11 +4,11 @@ TODO
 Release v1.0.0
 --------------
 
-Objectives::
+Objectives:
     
 Launch a current cost program on command line that read data from a current cost simulator
 
-Tasks::
+Tasks:
 
 * Write test plan
 * Write features (functional test)
@@ -23,6 +23,8 @@ Tasks::
 * Develop method that convert XML message to network message + error case  + unit test
 * Write objectives and test case for messaging module
 * Develop script that integrate all this part 
+
+Need:
 
 * Develop current cost simulator (simple version, should be a specific project in the future)
 
