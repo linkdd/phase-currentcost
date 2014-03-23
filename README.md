@@ -26,7 +26,7 @@ Development process
 
 In this project, we will try to use the best practices of the development.
 
-* *Scenario based design* 
+* **Scenario based design** 
     * Take a paper and write what you code should do and how it should do using a story.
 * *Document driven-design*
     * Take a minute and update documentation
