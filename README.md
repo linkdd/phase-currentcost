@@ -14,11 +14,11 @@ Functionnal test with fixtures to simulate CurrentCost on port COM and waited fo
 
 ## Workflow
 
-    * N1: Start service
-        * E1: Le service ne se lance pas. Envoi d'un message d'erreur sur le réseau et enregistrement de l'erreur dans un fichier de log.
-    * N2: Arguments analysis
-        * E2: Missing argument. Return an error and log it
-        * E3: Bad value for an argument. Return and error and log it
-    * N3: Connexion to current cost
-        * E4: Unable to connect to current cost. Log error and return to step N3.
-    * N4: 
+* N1: Start service
+    * E1: Le service ne se lance pas. Envoi d'un message d'erreur sur le réseau et enregistrement de l'erreur dans un fichier de log.
+* N2: Arguments analysis
+    * E2: Missing argument. Return an error and log it
+    * E3: Bad value for an argument. Return and error and log it
+* N3: Connexion to current cost
+    * E4: Unable to connect to current cost. Log error and return to step N3.
+* N4: 
