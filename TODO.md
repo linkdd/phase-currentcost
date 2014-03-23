@@ -1,15 +1,19 @@
+====
 TODO
 ====
 
 Release v1.0.0
---------------
+==============
 
-Objectives:
+Objectives
+----------
     
 Launch a current cost program on command line that read data from a current cost simulator
 
-Tasks:
+Tasks
+-----
 
+* Write usage of this script in README.md
 * Write test plan
 * Write features (functional test)
 * Develop code to test features (functional test)
@@ -24,7 +28,8 @@ Tasks:
 * Write objectives and test case for messaging module
 * Develop script that integrate all this part 
 
-Need:
+Need
+----
 
 * Develop current cost simulator (simple version, should be a specific project in the future)
 

@@ -1,0 +1,8 @@
+pyCurrentCost (v0.1.3) unstable; urgency=low
+
+* Project creation
+* Paver configuration
+* Improve documentation
+* Prepare development 
+
+-- Pierre Leray <pierreleray64@gmail.com>  2014-03-23 15:30:00

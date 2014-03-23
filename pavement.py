@@ -13,8 +13,8 @@ from paver.easy import options, Bunch, task, needs, sh, path
 options(
     setup=dict(
         name="pyCurrentCost",
-        version="0.1.0",
-        description="Python build tool",
+        version="0.1.3",
+        description="Python script to collect data from current cost 128 EnviR",
         author="Pierre Leray",
         author_email="pierreleray64@gmail.com",
         packages=["currentcost"],
