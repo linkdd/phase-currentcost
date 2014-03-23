@@ -13,8 +13,8 @@ from paver.easy import options, Bunch, task, needs, sh, path
 options(
     setup=dict(
         name="pyCurrentCost",
-        version="0.1.4",
-        description="Python script to collect data from current cost 128 EnviR",
+        version="0.1.5",
+        description="Python script to collect data from current cost EnviR",
         author="Pierre Leray",
         author_email="pierreleray64@gmail.com",
         packages=["currentcost"],
@@ -82,7 +82,7 @@ def test():
     sh("nosetests --cover-erase --with-coverage --cover-html\
         --cover-package=%s --cover-min-percentage=90 --cover-html-dir=%s" % (
         options.package, options.cover_folder))
-    #sh("behave")
+    sh("behave")
 
 
 @task

@@ -13,9 +13,6 @@ Launch a current cost program on command line that read data from a current cost
 Tasks
 -----
 
-* Write usage of this script in README.md
-* Write test plan
-* Write features (functional test)
 * Develop code to test features (functional test)
 * Write objectives and test case for argument parser
 * Develop method that parse argument + verify error case + unit test

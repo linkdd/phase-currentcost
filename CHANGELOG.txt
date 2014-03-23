@@ -1,8 +1,16 @@
+pyCurrentCost (v0.1.5) unstable; urgency=low
+
+* Write usage on README.md
+* Write test plan on README.md
+* Write features 
+
+-- Pierre Leray <pierreleray64@gmail.com>  2014-03-24 00:00:00
+
 pyCurrentCost (v0.1.4) unstable; urgency=low
 
 * Improve TODO.md 
 
--- Pierre Leray <pierreleray64@gmail.com>  2014-03-23 15:30:00
+-- Pierre Leray <pierreleray64@gmail.com>  2014-03-23 17:30:00
 
 pyCurrentCost (v0.1.3) unstable; urgency=low
 
