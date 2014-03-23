@@ -1,11 +1,28 @@
 TODO
 ====
 
-Version 1
----------
+Release v1.0.0
+--------------
 
-* Define XML message send by current cost.
-* Write a program that take XML message put in into a dict add a timestamp and
-* This program could be able to be launch several time (in command line with parameter or config file in parameter)
+Objectives::
+    
+Launch a current cost program on command line that read data from a current cost simulator
 
+Tasks::
+
+* Write test plan
+* Write features (functional test)
+* Develop code to test features (functional test)
+* Write objectives and test case for argument parser
+* Develop method that parse argument + verify error case + unit test
+* Write objectives and test case for current cost connection
+* Develop method that connect to current cost + error case + unit test
+* Write objectives and test case for message waited
+* Develop method that waited for message to current cost + error case + unit test
+* Write objectives and test case for message convertion and send over the network (look at express for tis part)
+* Develop method that convert XML message to network message + error case  + unit test
+* Write objectives and test case for messaging module
+* Develop script that integrate all this part 
+
+* Develop current cost simulator (simple version, should be a specific project in the future)
 

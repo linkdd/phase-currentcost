@@ -48,7 +48,11 @@ Functionnal test with fixtures to simulate CurrentCost on port COM and waited fo
     * E7: Problem during message sending. Retry and log this error.
 * N8: Message sent over the network. Return to step N4.
 
-### Alternative case
+### Alternative cases
 
 * A1: USB port disconected. Log this error, send an error message over the network and retry to reconnect to the USB port. If USB port reconnected, return to step N2.
 * A2: Receive a message that ask for shutdown the service. Log this demand and properly close this program. (to be defined)
+
+## Test plan
+
+Look at features/currentcost.feature
