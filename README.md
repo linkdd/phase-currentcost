@@ -17,7 +17,9 @@ Usage
         -t TTY, --tty-name=TTY          TTY port to connect to current cost.
         -v, --verbose                   Activate verbose mode.
 
-Example: currentcost --variable-name=test --mq-port=5001 --tty-name=currentcost 
+Example: 
+
+    currentcost --variable-name=test --mq-port=5001 --tty-name=currentcost 
 
 Development process
 ===================
