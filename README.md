@@ -28,19 +28,19 @@ In this project, we will try to use the best practices of the development.
 
 * **Scenario based design** 
     * Take a paper and write what you code should do and how it should do using a story.
-* *Document driven-design*
+* **Document driven-design**
     * Take a minute and update documentation
     * Then define a clear release road map 
     * Update README.md, CHANGELOG.txt, TODO.md
-* *Behavior driven development*
+* **Behavior driven development**
     * Add one functional test
-* *Test driven development*
+* **Test driven development**
     * Add unit test while you don't pass functional test
     * Develop function has you don't pass unit test
-* *Code version*
+* **Code version**
     * Commit after each new implemented function
     * Create a release after each validation of functional test
-* *Refactoring*
+* **Refactoring**
     * Refactor code to improve readability, avoid code redundancy, speed compute time
     * Return to BDD part.
 
