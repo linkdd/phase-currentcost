@@ -4,11 +4,17 @@ pyCurrentCost
 
 Functional test with fixtures to simulate CurrentCost on port COM and waited for currentCost to send messages.
 
+TO BE COMPLETED (goals of the project)
+
 Dependencies
 ============
 
+TO BE COMPLETED
+
 Installation
 ============
+
+TO BE COMPLETED
 
 Usage
 =====
@@ -37,6 +43,9 @@ To redirect Current Cost message to 0MQ and connect one or several others proces
 Development process
 ===================
 
+Philosophy
+----------
+
 In this project, we will try to use the best practices of the development.
 
 * **Scenario based design** 
@@ -56,6 +65,11 @@ In this project, we will try to use the best practices of the development.
 * **Refactoring**
     * Refactor code to improve readability, avoid code redundancy, speed compute time
     * Return to BDD part.
+
+Setup environment
+-----------------
+
+TO BE COMPLETED
 
 Work flow
 =========
