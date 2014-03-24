@@ -6,9 +6,10 @@
     Paver tasker script for pyCurrentCost.
 """
 
-from paver.easy import options, Bunch, task, needs, sh, path
+#from paver.easy import options, Bunch, task, needs, sh, path
+from paver.easy import *
 #import paver.doctools
-#from paver.setuputils import setup
+from paver.setuputils import setup
 
 options(
     setup=dict(
@@ -49,6 +50,13 @@ options(
 
     files="*.py currentcost/*.py tests/*.py",
 )
+
+
+@task
+@needs('generate_setup', 'minilib', 'setuptools.command.sdist')
+def sdist():
+    """Overrides sdist to make sure that our setup.py is generated."""
+    pass
 
 
 @task

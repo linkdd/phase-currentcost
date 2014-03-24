@@ -3,7 +3,7 @@ Feature: Current Cost data collection
     I want to see my current cost information about my consumption,
     in order to reduce my energy consumption
 
-    Scenario Outline: Missing argument
+    Scenario: Missing argument
         When we launch currentcost script without important argument
         Then we should see an error message on screen and in log
 

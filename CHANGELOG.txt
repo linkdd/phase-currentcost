@@ -1,3 +1,9 @@
+pyCurrentCost (v0.1.6) unstable; urgency=low
+
+* Write code to test features
+
+-- Pierre Leray <pierreleray64@gmail.com>  2014-03-24 23:30:00
+
 pyCurrentCost (v0.1.5) unstable; urgency=low
 
 * Write usage on README.md

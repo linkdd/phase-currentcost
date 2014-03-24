@@ -13,7 +13,9 @@ Launch a current cost program on command line that read data from a current cost
 Tasks
 -----
 
-* Develop code to test features (functional test)
+* Fix sdist method in paver
+* Study Paver and setuptools to create a develop installed version in virtualenv to test script as $> currentcost and use it in behave file.
+* Create error global variable script to share Error
 * Write objectives and test case for argument parser
 * Develop method that parse argument + verify error case + unit test
 * Write objectives and test case for current cost connection
@@ -23,7 +25,7 @@ Tasks
 * Write objectives and test case for message convertion and send over the network (look at express for tis part)
 * Develop method that convert XML message to network message + error case  + unit test
 * Write objectives and test case for messaging module
-* Develop script that integrate all this part 
+* Develop and test script that integrate all this part 
 
 Need
 ----
