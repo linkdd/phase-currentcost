@@ -49,16 +49,16 @@ Philosophy
 In this project, we will try to use the best practices of the development.
 
 * **Scenario based design** 
-    * Take a paper and write what you code should do and how it should do using a story.
+    * Take a paper and write what you code should do and how it should do using a story. (DESCRIBE MORE)
 * **Document driven-design**
-    * Take a minute and update documentation
-    * Then define a clear release road map 
-    * Update README.md, CHANGELOG.txt, TODO.md
+    * Take a minute and update documentation before coding (global documentation, code comment, test comment).
+    * Always keep a clear release road map. Update it if needed. 
+    * Update README.md, CHANGELOG.txt, TODO.md as soon as possible.
 * **Behavior driven development**
-    * Add one functional test
+    * Add one functional test.
 * **Test driven development**
-    * Add unit test while you don't pass functional test
-    * Develop function has you don't pass unit test
+    * Add one unit test while you don't pass this functional test
+    * Develop function while you don't pass this unit test
 * **Code version**
     * Commit after each new implemented function
     * Create a release after each validation of functional test
