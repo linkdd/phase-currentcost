@@ -2,7 +2,47 @@
 <body>
 <div>
 <h1>Report</h1>
-<p>73 statements analysed.</p><div>
+<p>86 statements analysed.</p><div>
+<h2>Raw metrics</h2>
+<table>
+<tr class="header">
+<th>type</th>
+<th>number</th>
+<th>%</th>
+<th>previous</th>
+<th>difference</th>
+</tr>
+<tr class="even">
+<td>code</td>
+<td>137</td>
+<td>42.02</td>
+<td>137</td>
+<td>=</td>
+</tr>
+<tr class="odd">
+<td>docstring</td>
+<td>95</td>
+<td>29.14</td>
+<td>95</td>
+<td>=</td>
+</tr>
+<tr class="even">
+<td>comment</td>
+<td>17</td>
+<td>5.21</td>
+<td>17</td>
+<td>=</td>
+</tr>
+<tr class="odd">
+<td>empty</td>
+<td>77</td>
+<td>23.62</td>
+<td>77</td>
+<td>=</td>
+</tr>
+</table>
+</div>
+<div>
 <h2>External dependencies</h2>
 <pre>currentcost 
   \-messaging 
@@ -10,14 +50,43 @@
 fabric 
   \-api 
     \-local (fabfile)
+os 
+  \-path 
+    \-exists (setup)
 paver 
   \-easy 
-    \-Bunch (pavement)
-    \-needs (pavement)
-    \-options (pavement)
-    \-path (pavement)
-    \-sh (pavement)
-    \-task (pavement)</pre></div>
+  | \-Bunch (pavement)
+  | \-needs (pavement)
+  | \-options (pavement)
+  | \-path (pavement)
+  | \-sh (pavement)
+  | \-task (pavement)
+  \-setuputils 
+  | \-setup (pavement)
+  \-tasks (setup)</pre></div>
+<div>
+<h2>Duplication</h2>
+<table>
+<tr class="header">
+<th>&#160;</th>
+<th>now</th>
+<th>previous</th>
+<th>difference</th>
+</tr>
+<tr class="even">
+<th>nb duplicated lines</th>
+<td>0</td>
+<td>0</td>
+<td>=</td>
+</tr>
+<tr class="odd">
+<th>percent duplicated lines</th>
+<td>0.000</td>
+<td>0.000</td>
+<td>=</td>
+</tr>
+</table>
+</div>
 <div>
 <h2>Messages by category</h2>
 <table>
@@ -70,69 +139,6 @@ paver
 <h2>Global evaluation</h2>
 Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)</div>
 <div>
-<h2>Duplication</h2>
-<table>
-<tr class="header">
-<th>&#160;</th>
-<th>now</th>
-<th>previous</th>
-<th>difference</th>
-</tr>
-<tr class="even">
-<th>nb duplicated lines</th>
-<td>0</td>
-<td>0</td>
-<td>=</td>
-</tr>
-<tr class="odd">
-<th>percent duplicated lines</th>
-<td>0.000</td>
-<td>0.000</td>
-<td>=</td>
-</tr>
-</table>
-</div>
-<div>
-<h2>Raw metrics</h2>
-<table>
-<tr class="header">
-<th>type</th>
-<th>number</th>
-<th>%</th>
-<th>previous</th>
-<th>difference</th>
-</tr>
-<tr class="even">
-<td>code</td>
-<td>128</td>
-<td>40.76</td>
-<td>128</td>
-<td>=</td>
-</tr>
-<tr class="odd">
-<td>docstring</td>
-<td>91</td>
-<td>28.98</td>
-<td>91</td>
-<td>=</td>
-</tr>
-<tr class="even">
-<td>comment</td>
-<td>18</td>
-<td>5.73</td>
-<td>18</td>
-<td>=</td>
-</tr>
-<tr class="odd">
-<td>empty</td>
-<td>77</td>
-<td>24.52</td>
-<td>77</td>
-<td>=</td>
-</tr>
-</table>
-</div>
-<div>
 <h2>Statistics by type</h2>
 <table>
 <tr class="header">
@@ -145,8 +151,8 @@ Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)</div>
 </tr>
 <tr class="even">
 <td>module</td>
-<td>6</td>
-<td>6</td>
+<td>7</td>
+<td>7</td>
 <td>=</td>
 <td>100.00</td>
 <td>0.00</td>
@@ -169,8 +175,8 @@ Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)</div>
 </tr>
 <tr class="odd">
 <td>function</td>
-<td>22</td>
-<td>22</td>
+<td>23</td>
+<td>23</td>
 <td>=</td>
 <td>100.00</td>
 <td>0.00</td>

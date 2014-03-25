@@ -6,28 +6,23 @@
     Paver tasker script for pyCurrentCost.
 """
 
-#from paver.easy import options, Bunch, task, needs, sh, path
-from paver.easy import *
-#import paver.doctools
+from paver.easy import options, Bunch, task, needs, sh, path
+#from paver.easy import *
 from paver.setuputils import setup
 
-options(
-    setup=dict(
-        name="pyCurrentCost",
-        version="0.1.5",
-        description="Python script to collect data from current cost EnviR",
-        author="Pierre Leray",
-        author_email="pierreleray64@gmail.com",
-        packages=["currentcost"],
-        install_requires=[],
-        test_suite="nose.collector",
-        zip_safe=False,
-        entry_points="""
-            [console_scripts]
-            paver = paver.command:main
-        """,
-    ),
+setup(
+    name="pyCurrentCost",
+    version="0.1.8",
+    description="Python script to collect data from current cost EnviR",
+    author="Pierre Leray",
+    author_email="pierreleray64@gmail.com",
+    packages=["currentcost"],
+    scripts=['bin/currentcost'],
+    install_requires=[],
+    zip_safe=False,
+)
 
+options(
     sphinx=Bunch(
         builddir="build",
         sourcedir="source"
@@ -53,10 +48,12 @@ options(
 
 
 @task
-@needs('generate_setup', 'minilib', 'setuptools.command.sdist')
+@needs(["html", "distutils.command.sdist"])
 def sdist():
-    """Overrides sdist to make sure that our setup.py is generated."""
-    pass
+    """
+        Generate docs and source distribution.
+    """
+    sh('paver develop')
 
 
 @task
@@ -76,10 +73,10 @@ def validate():
     """
         Validate implementation.
     """
+    sdist()
     lint()
     test()
     stat()
-    html()
 
 
 @task
@@ -159,7 +156,7 @@ def watch():
         Watch current folder and start code inspection for each change.
     """
     sh("watchmedo shell-command \
-        --patterns='*.py;*md' \
+        --patterns='*.py;*md;' \
         --recursive \
         --command='clear && paver validate' \
         .")

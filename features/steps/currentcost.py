@@ -15,9 +15,9 @@ def script_without_parameter(context):
     """
         Launch currentcost script without important argument.
     """
-    context.script_response_any = subprocess.check_output(["python", "currentcost.py"])
-    context.script_response_tty = subprocess.check_output(["python", "currentcost.py", "--variable-name", "TEST"])
-    context.script_response_var_name = subprocess.check_output(["python", "currentcost.py"])
+    context.script_response_any = subprocess.check_output(["currentcost"])
+    context.script_response_tty = subprocess.check_output(["currentcost", "--variable-name", "TEST"])
+    context.script_response_var_name = subprocess.check_output(["currentcost", "--tty-name", "/dev/currentcost"])
 
 
 @then(u'we should see an error message on screen and in log')

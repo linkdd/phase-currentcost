@@ -13,8 +13,8 @@ Launch a current cost program on command line that read data from a current cost
 Tasks
 -----
 
-* Fix sdist method in paver
-* Study Paver and setuptools to create a develop installed version in virtualenv to test script as $> currentcost and use it in behave file.
+* Fix paver watch problem (stop watch, don't take into account bin/currentcost)
+* Automatically increment version at each Ctrl-s
 * Create error global variable script to share Error
 * Write objectives and test case for argument parser
 * Develop method that parse argument + verify error case + unit test

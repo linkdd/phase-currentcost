@@ -69,10 +69,20 @@ In this project, we will try to use the best practices of the development.
 Setup environment
 -----------------
 
-TO BE COMPLETED
+**IDEA: Explain virtualenv and virtualenvwrapper**
+**IDEA: Create a init script that ask several question and bootstrap project (plug-in)**
+**IDEA: generate_setup to use sdist command**
+**IDEA: test new plugin creation on TimeSeriesLogger**
+**IDEA: move pyCurrentCost.py outside of phase**
+**IDEA: phase in development should provide init script to init and register new plugin**
+
+
+**TO BE COMPLETED**
 
 Work flow
 =========
+
+**TO BE MOVED**
 
 Nominal case
 ------------
@@ -99,5 +109,9 @@ Alternative cases
 
 Test plan
 =========
+
+**TO BE MOVED**
+
+**IDEA: Link to features/currentcost.feature**
 
 Look at features/currentcost.feature
