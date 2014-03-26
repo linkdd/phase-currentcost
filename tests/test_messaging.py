@@ -8,7 +8,7 @@
 """
 
 import unittest
-from src.messaging import sendMessage
+from currentcost.messaging import send_message
 
 
 class TestMessaging(unittest.TestCase):
@@ -21,4 +21,4 @@ class TestMessaging(unittest.TestCase):
         """
             Test add function for generator class.
         """
-        self.assertEqual(sendMessage("re", "er"), True)
+        self.assertEqual(send_message("re", "er"), True)

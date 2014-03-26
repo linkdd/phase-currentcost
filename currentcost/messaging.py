@@ -6,8 +6,11 @@
     Method that send message over the network.
 """
 
-def sendMessage(topic, message):
+
+def send_message(topic, message):
     """
         Method that send a message with a topic.
     """
+    print topic
+    print message
     return True
