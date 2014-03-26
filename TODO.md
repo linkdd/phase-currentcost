@@ -8,16 +8,13 @@ Release v1.0.0
 Objectives
 ----------
     
-Launch a current cost program on command line that read data from a current cost simulator
+Launch a current cost program on command line that read data from a current cost and send message over the network.
 
 Tasks
 -----
 
-* Fix paver watch problem (stop watch, don't take into account bin/currentcost)
+* Fix paver watch problem (stop watch, don't take into account bin/currentcost) (try to use with fabric)
 * Automatically increment version at each Ctrl-s
-* Create error global variable script to share Error
-* Write objectives and test case for argument parser
-* Develop method that parse argument + verify error case + unit test
 * Write objectives and test case for current cost connection
 * Develop method that connect to current cost + error case + unit test
 * Write objectives and test case for message waited

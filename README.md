@@ -20,24 +20,30 @@ Usage
 =====
 
     $ currentcost -h
-    Usage: currentcost [options]
+    usage: currentcost [-h] [-p PORT] [-v] variable_name tty
 
-    Options:
-        -h, --help                      Show this help message and exit.
-        -m PORT, --mq-port=PORT         Socket port to publish to 0MQ.
-        -v NAME, --variable-name=NAME   Name of the variable.
-        -t TTY, --tty-name=TTY          TTY port to connect to current cost.
-        -v, --verbose                   Activate verbose mode.
+    positional arguments:
+      variable_name         name of the variable
+      tty                   tty port to connect to current cost
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -p PORT, --port PORT  socket port to publish to 0MQ
+      -v, --verbose         activate verbose mode
 
 Examples: 
 
 To see the current consumption on Current cost (or redirect stdout to a file to keep a log) use:
 
-    currentcost --variable-name=test --tty-name=/dev/currentcost -v
+    currentcost test /dev/currentcost -v
 
 To redirect Current Cost message to 0MQ and connect one or several others processes to use this message use:   
 
-    currentcost --variable-name=test --mq-port=5001 --tty-name=/dev/currentcost -v
+    currentcost test /dev/currentcost --port=5001
+
+To redirect Current Cost message to 0MQ and see display in console:   
+
+    currentcost test /dev/currentcost --port=5001 -v
 
 
 Development process
@@ -69,12 +75,12 @@ In this project, we will try to use the best practices of the development.
 Setup environment
 -----------------
 
-**IDEA: Explain virtualenv and virtualenvwrapper**
-**IDEA: Create a init script that ask several question and bootstrap project (plug-in)**
-**IDEA: generate_setup to use sdist command**
-**IDEA: test new plugin creation on TimeSeriesLogger**
-**IDEA: move pyCurrentCost.py outside of phase**
-**IDEA: phase in development should provide init script to init and register new plugin**
+* **IDEA: Explain virtualenv and virtualenvwrapper**
+* **IDEA: Create a init script that ask several question and bootstrap project (plug-in)**
+* **IDEA: generate_setup to use sdist command**
+* **IDEA: test new plugin creation on TimeSeriesLogger**
+* **IDEA: move pyCurrentCost.py outside of phase**
+* **IDEA: phase in development should provide init script to init and register new plugin**
 
 
 **TO BE COMPLETED**

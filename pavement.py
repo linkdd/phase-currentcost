@@ -10,14 +10,17 @@ from paver.easy import options, Bunch, task, needs, sh, path
 #from paver.easy import *
 from paver.setuputils import setup
 
+PACKAGE = "currentcost"
+
 setup(
     name="pyCurrentCost",
-    version="0.1.8",
+    version="0.2.0",
     description="Python script to collect data from current cost EnviR",
     author="Pierre Leray",
     author_email="pierreleray64@gmail.com",
+    url="https://github.com/liogen/pyCurrentCost",
     packages=["currentcost"],
-    scripts=['bin/currentcost'],
+    scripts=["bin/currentcost"],
     install_requires=[],
     zip_safe=False,
 )
@@ -28,9 +31,7 @@ options(
         sourcedir="source"
     ),
 
-    bin="currentcost.py",
-
-    package="currentcost",
+    bin=PACKAGE,
 
     test_package="tests",
 
@@ -38,12 +39,14 @@ options(
 
     stats_file="report/stats/index.html",
 
+    pylint_file=".pylintrc",
+
     cover_folder="report/cover",
 
     #files="*.py currentcost/*.py currentcost/*/*.py tests/*.py tests/*/*.py"
     #    "features/steps/*.py",
 
-    files="*.py currentcost/*.py tests/*.py",
+    files="*.py %s/*.py tests/*.py bin/%s" % (PACKAGE, PACKAGE),
 )
 
 
@@ -63,9 +66,18 @@ def html():
         Build Paver"s documentation and install it into paver/docs.
     """
     builtdocs = path("docs") / options.sphinx.builddir / "html"
-    destdir = path(options.package) / "docs"
+    destdir = path(PACKAGE) / "docs"
     destdir.rmtree()
     builtdocs.move(destdir)
+
+
+@task
+def build():
+    """
+        Validate implementation.
+    """
+    validate()
+    sdist()
 
 
 @task
@@ -73,7 +85,6 @@ def validate():
     """
         Validate implementation.
     """
-    sdist()
     lint()
     test()
     stat()
@@ -86,7 +97,7 @@ def test():
     """
     sh("nosetests --cover-erase --with-coverage --cover-html\
         --cover-package=%s --cover-min-percentage=90 --cover-html-dir=%s" % (
-        options.package, options.cover_folder))
+        PACKAGE, options.cover_folder))
     sh("behave")
 
 
@@ -95,7 +106,8 @@ def pylint():
     """
         Pylint task
     """
-    sh("pylint %s -f html > %s" % (options.files, options.stats_file))
+    sh("pylint %s -f html --rcfile=%s > %s" % (
+        options.files, options.pylint_file, options.stats_file))
 
 
 @task
@@ -158,5 +170,5 @@ def watch():
     sh("watchmedo shell-command \
         --patterns='*.py;*md;' \
         --recursive \
-        --command='clear && paver validate' \
+        --command='clear && paver build' \
         .")

@@ -1,3 +1,25 @@
+pyCurrentCost (v0.2.0) unstable; urgency=low
+
+* Write objectives and test case for argument parser
+* Develop method that parse argument + verify error case + unit test
+* Pass parser functional test
+
+-- Pierre Leray <pierreleray64@gmail.com>  2014-03-26 15:30:00
+
+pyCurrentCost (v0.1.10) unstable; urgency=low
+
+* Add logger
+* Add first version of argument parsing
+* Improve README.md
+
+-- Pierre Leray <pierreleray64@gmail.com>  2014-03-26 11:00:00
+
+pyCurrentCost (v0.1.9) unstable; urgency=low
+
+* Create error global variable script to share Error
+
+-- Pierre Leray <pierreleray64@gmail.com>  2014-03-26 11:00:00
+
 pyCurrentCost (v0.1.8) unstable; urgency=low
 
 * Test global install on virtualenv
