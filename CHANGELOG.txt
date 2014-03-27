@@ -1,3 +1,10 @@
+pyCurrentCost (v0.2.1) unstable; urgency=low
+
+* Add function to test bad parameter for -p option
+* Add function to test current cost unreachability
+
+-- Pierre Leray <pierreleray64@gmail.com>  2014-03-27 23:20:00
+
 pyCurrentCost (v0.2.0) unstable; urgency=low
 
 * Write objectives and test case for argument parser
