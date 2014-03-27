@@ -42,7 +42,7 @@ def script_without_parameter(context):
         context.cmds_response.append((response, exception))
 
 
-@then(u'we should see an error message on screen and in log')
+@then(u'we should see an error message on screen')
 def error_message_script_without_parameter(context):
     """
         Except that subprocess raise an exception.
@@ -51,3 +51,46 @@ def error_message_script_without_parameter(context):
         print("Response: %s %s" % (cmdr[0], cmdr[1]))
         assert cmdr[0] is None
         assert cmdr[1] is not None
+
+@when(u'we launch currentcost script with a bad value for an argument')
+def script_with_bad_value(context):
+    """
+        Launch currentcost script with bad value for -p argument.
+    """
+    assert False
+
+@then(u'we should see an error message on screen for -p argument')
+def error_message_script_with_bad_value(context):
+    """
+        Except that subprocess raise an exception.
+    """
+    assert False
+
+@given(u'current cost is unreachable')
+def given_currentcost_unreachable(context):
+    """
+        Select a bad TTY port to simulate currentcost unreachability.
+    """
+    assert False
+
+@when(u'we launch currentcost script')
+def when_launch_currentcost_script(context):
+    """
+        Launch currentcost script with wrong tty with -p active
+    """
+    assert False
+
+@then(u'we should receive a message saying that current cost is unreachable')
+def receive_message_unreachable(context):
+    """
+        Expect a message saying that currentcost is unreachable on 0MQ.
+    """
+    assert False
+
+
+@then(u'we should see this error in log')
+def detect_unreachability_log(context):
+    """
+        We should see currentcost unreachability in log file.
+    """
+    assert False

@@ -5,16 +5,16 @@ Feature: Current Cost data collection
 
     Scenario: Missing argument
         When we launch currentcost script without important argument
-        Then we should see an error message on screen and in log
+        Then we should see an error message on screen
 
-    Scenario Outline: Bad argument value
+    Scenario: Bad argument value
         When we launch currentcost script with a bad value for an argument
-        Then we should see an error message on screen and in log
+        Then we should see an error message on screen for -p argument
 
-    Scenario Outline: Problem with current cost connexion
+    Scenario: Problem with current cost connexion
         Given current cost is unreachable
         When we launch currentcost script
-        Then we should receive a message over the network saying that current cost is unreachable
+        Then we should receive a message saying that current cost is unreachable
         And we should see this error in log
 
     Scenario Outline: Problem with current cost disconnection
