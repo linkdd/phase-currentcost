@@ -22,7 +22,10 @@ Tasks
 * Write objectives and test case for message convertion and send over the network (look at express for tis part)
 * Develop method that convert XML message to network message + error case  + unit test
 * Write objectives and test case for messaging module
-* Develop and test script that integrate all this part 
+* Develop and test script that integrate all this part
+* Generate proper documenation
+* Complete dosctrings using https://github.com/claws/txCurrentCost/blob/master/txcurrentcost/monitor.py example
+* Migrate changelog.txt to Changelog.md with markdown support
 
 Need
 ----

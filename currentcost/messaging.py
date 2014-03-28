@@ -6,6 +6,11 @@
     Method that send message over the network.
 """
 
+# logging is the most used python logger
+import logging
+
+LOGGER = logging.getLogger("currentcost")
+
 
 def send_message(topic, message):
     """
@@ -13,4 +18,12 @@ def send_message(topic, message):
     """
     print topic
     print message
+    return True
+
+
+def send_error(topic, message):
+    """
+        Method that send a message with a topic.
+    """
+    LOGGER.error(message)
     return True

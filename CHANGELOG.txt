@@ -1,3 +1,17 @@
+pyCurrentCost (v0.2.3) unstable; urgency=low
+
+* Add method to send error message over the network
+* Test log error
+
+-- Pierre Leray <pierreleray64@gmail.com>  2014-03-28 16:30:00
+
+pyCurrentCost (v0.2.2) unstable; urgency=low
+
+* Add logging message during init of program
+* Add functional test to return error when wrong -p parameter value
+
+-- Pierre Leray <pierreleray64@gmail.com>  2014-03-28 11:00:00
+
 pyCurrentCost (v0.2.1) unstable; urgency=low
 
 * Add function to test bad parameter for -p option

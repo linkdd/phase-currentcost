@@ -12,10 +12,9 @@ Feature: Current Cost data collection
         Then we should see an error message on screen for -p argument
 
     Scenario: Problem with current cost connexion
-        Given current cost is unreachable
-        When we launch currentcost script
-        Then we should receive a message saying that current cost is unreachable
-        And we should see this error in log
+        When we launch currentcost script with unreachable current cost device
+        Then we should see this error in log
+        And we should receive a message saying that current cost is unreachable
 
     Scenario Outline: Problem with current cost disconnection
         Given current cost is disconnected
