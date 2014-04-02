@@ -14,7 +14,7 @@ PACKAGE = "currentcost"
 
 setup(
     name="pyCurrentCost",
-    version="0.2.0",
+    version="0.3.0",
     description="Python script to collect data from current cost EnviR",
     author="Pierre Leray",
     author_email="pierreleray64@gmail.com",
@@ -43,10 +43,8 @@ options(
 
     cover_folder="report/cover",
 
-    #files="*.py currentcost/*.py currentcost/*/*.py tests/*.py tests/*/*.py"
-    #    "features/steps/*.py",
-
-    files="*.py %s/*.py tests/*.py bin/%s" % (PACKAGE, PACKAGE),
+    files="*.py %s/*.py %s/*/*.py tests/*.py features/steps/*.py" % (
+        PACKAGE, PACKAGE),
 )
 
 

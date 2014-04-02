@@ -44,10 +44,10 @@
     <BODY>
     
     
-    <P>Source files: 8</P>
-        <a href = "javascript:unhide('files');">Click here to show/hide file names</a><div id="files" class="hidden"><P><B>Source files:</B><BR>fabfile.py, <BR>pavement.py, <BR>setup.py, <BR>currentcost/__init__.py, <BR>currentcost/messaging.py, <BR>tests/__init__.py, <BR>tests/test_messaging.py, <BR>bin/currentcost</P></div>
-        <P>Clones detected: 1</P>
-        <P>12 of 115 lines are duplicates (10.43%) </P>
+    <P>Source files: 13</P>
+        <a href = "javascript:unhide('files');">Click here to show/hide file names</a><div id="files" class="hidden"><P><B>Source files:</B><BR>fabfile.py, <BR>pavement.py, <BR>receive.py, <BR>send.py, <BR>setup.py, <BR>currentcost/__init__.py, <BR>currentcost/messaging.py, <BR>currentcost/utils/__init__.py, <BR>currentcost/utils/argument_parser.py, <BR>currentcost/utils/error.py, <BR>tests/__init__.py, <BR>tests/test_messaging.py, <BR>features/steps/currentcost_steps.py</P></div>
+        <P>Clones detected: 3</P>
+        <P>36 of 224 lines are duplicates (16.07%) </P>
 <P>
 <B>Parameters<BR> </B>
 clustering_threshold = 10<BR>
@@ -58,16 +58,35 @@ clusterize_using_hash = False<BR>
 clusterize_using_dcup = False<BR>
 </P> 
         
-    <B>Time elapsed</B><BR>Construction of AST : 0.06 seconds<BR>
+    <B>Time elapsed</B><BR>Construction of AST : 0.14 seconds<BR>
 Building statement hash : 0.00 seconds<BR>
-Building patterns : 0.05 seconds<BR>
-Marking similar statements : 0.07 seconds<BR>
+Building patterns : 0.12 seconds<BR>
+Marking similar statements : 0.09 seconds<BR>
 Finding similar sequences of statements : 0.01 seconds<BR>
-Refining candidates : 0.04 seconds<BR>
- Total time: 0.23<BR>
- Started at: Wed Mar 26 15:38:38 2014<BR>
- Finished at: Wed Mar 26 15:38:38 2014
-    <P><B>Clone # 1</B><BR>Distance between two fragments = 4 <BR>Clone size = 6<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "pavement.py"<BR>The first line is 148</TD><TD></TD><TD>Source file "fabfile.py"<BR>The first line is 71</TD></TR><TR>
+Refining candidates : 0.10 seconds<BR>
+ Total time: 0.47<BR>
+ Started at: Thu Apr  3 00:03:53 2014<BR>
+ Finished at: Thu Apr  3 00:03:54 2014
+    <P><B>Clone # 1</B><BR>Distance between two fragments = 4 <BR>Clone size = 7<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 105</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 84</TD></TR><TR>
+<TD>
+def <span style="color: rgb(255, 0, 0);">error_message_script_with_bad_value</span>(context):<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;check_response_script(context.commands_response)</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+def <span style="color: rgb(255, 0, 0);">error_message_script_without_parameter</span>(context):<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;check_response_script(context.commands_response)</TD>
+</TR>
+<TR>
+<TD>
+def <span style="color: rgb(255, 0, 0);">when_launch_script_with_unreachable</span>(context):<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;commands = [('%s %s %s %s %s') % ((BIN, VAR_NAME, <span style="color: rgb(255, 0, 0);">BAD_TTY_PORT</span>, MQ_PARAMETER_NAME, <span style="color: rgb(255, 0, 0);">MQ_PORT</span>))]<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;context.commands_response = launch_script(commands)</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+def <span style="color: rgb(255, 0, 0);">when_launch_script_with_bad_value</span>(context):<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;commands = [('%s %s %s %s %s') % ((BIN, VAR_NAME, <span style="color: rgb(255, 0, 0);">TTY_PORT</span>, MQ_PARAMETER_NAME, <span style="color: rgb(255, 0, 0);">BAD_MQ_PORT</span>))]<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;context.commands_response = launch_script(commands)</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 2</B><BR>Distance between two fragments = 4 <BR>Clone size = 6<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "pavement.py"<BR>The first line is 146</TD><TD></TD><TD>Source file "fabfile.py"<BR>The first line is 71</TD></TR><TR>
 <TD>
 def <span style="color: rgb(255, 0, 0);">stat</span>():<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(255, 0, 0);">clonedigger</span>()<BR>
@@ -86,6 +105,31 @@ def bundle():<BR>
 def bundle():<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(255, 0, 0);">local</span>('pip freeze > REQUIREMENTS.txt')<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(255, 0, 0);">local</span>('pip bundle data-generator.pybundle -r REQUIREMENTS.txt')</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 3</B><BR>Distance between two fragments = 1 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "receive.py"<BR>The first line is 5</TD><TD></TD><TD>Source file "send.py"<BR>The first line is 7</TD></TR><TR>
+<TD>
+credentials = pika.PlainCredentials('admin', 'password')</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+credentials = pika.PlainCredentials('admin', 'password')</TD>
+</TR>
+<TR>
+<TD>
+connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost', credentials=credentials))</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost', credentials=credentials))</TD>
+</TR>
+<TR>
+<TD>
+channel = connection.channel()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+channel = connection.channel()</TD>
+</TR>
+<TR>
+<TD>
+channel.queue_declare(queue=<span style="color: rgb(255, 0, 0);">'hello'</span>)</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+channel.queue_declare(queue=<span style="color: rgb(255, 0, 0);">'error'</span>)</TD>
 </TR>
 </TABLE> </P> <HR>
     

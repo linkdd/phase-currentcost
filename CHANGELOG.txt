@@ -1,3 +1,33 @@
+pyCurrentCost (v0.3.0) unstable; urgency=low
+
+* Write objectives and test case for current cost connection
+* Develop method that connect to current cost + error case + unit test
+* Integration with RabbitMQ
+* Write objectives and test case for messaging module
+
+-- Pierre Leray <pierreleray64@gmail.com>  2014-04-02 00:00:00
+
+pyCurrentCost (v0.2.3) unstable; urgency=low
+
+* Add method to send error message over the network
+* Test log error
+
+-- Pierre Leray <pierreleray64@gmail.com>  2014-03-28 16:30:00
+
+pyCurrentCost (v0.2.2) unstable; urgency=low
+
+* Add logging message during init of program
+* Add functional test to return error when wrong -p parameter value
+
+-- Pierre Leray <pierreleray64@gmail.com>  2014-03-28 11:00:00
+
+pyCurrentCost (v0.2.1) unstable; urgency=low
+
+* Add function to test bad parameter for -p option
+* Add function to test current cost unreachability
+
+-- Pierre Leray <pierreleray64@gmail.com>  2014-03-27 23:20:00
+
 pyCurrentCost (v0.2.0) unstable; urgency=low
 
 * Write objectives and test case for argument parser

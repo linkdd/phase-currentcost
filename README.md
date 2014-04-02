@@ -2,6 +2,9 @@
 pyCurrentCost
 =============
 
+/!\ This application is not functional right now. Please wait for v1.0.0 /!\
+============================================================================
+
 Functional test with fixtures to simulate CurrentCost on port COM and waited for currentCost to send messages.
 
 TO BE COMPLETED (goals of the project)
