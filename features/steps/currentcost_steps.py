@@ -12,6 +12,7 @@ from behave import when, then  # pylint: disable-msg=E0611
 import subprocess
 from subprocess import CalledProcessError
 from currentcost.utils import error
+import pika
 
 BIN = "currentcost"
 VAR_NAME = "TEST"
@@ -21,6 +22,17 @@ MQ_PARAMETER_NAME = "-p"
 MQ_PORT = 15001
 BAD_MQ_PORT = "ertyu"
 LOG_FILE = "logs/currentcost.log"
+TTY_ERROR_MESSAGE = "None"
+CREDENTIALS = pika.PlainCredentials("admin", "password")
+CONNECTION = pika.BlockingConnection(
+    pika.ConnectionParameters(host='localhost', credentials=CREDENTIALS))
+
+
+def callback(ch, method, properties, body):
+    print("Callback => %s" % body)
+    assert body == error.TTY_CONNECTION_PROBLEM % (
+        VAR_NAME, BAD_TTY_PORT)
+    CONNECTION.close()
 
 
 def check_response_script(commands_response):
@@ -129,4 +141,10 @@ def receive_message_unreachable(context):
     """
         Expect a message saying that currentcost is unreachable on 0MQ.
     """
-    assert False
+    channel = CONNECTION.channel()
+    channel.queue_declare(queue='error')
+    try:
+        channel.basic_consume(callback, queue='error', no_ack=True)
+        channel.start_consuming()
+    except pika.exceptions.ConnectionClosed:
+        pass

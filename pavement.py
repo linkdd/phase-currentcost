@@ -14,7 +14,7 @@ PACKAGE = "currentcost"
 
 setup(
     name="pyCurrentCost",
-    version="0.2.2",
+    version="0.3.0",
     description="Python script to collect data from current cost EnviR",
     author="Pierre Leray",
     author_email="pierreleray64@gmail.com",

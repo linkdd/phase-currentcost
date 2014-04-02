@@ -1,3 +1,12 @@
+pyCurrentCost (v0.3.0) unstable; urgency=low
+
+* Write objectives and test case for current cost connection
+* Develop method that connect to current cost + error case + unit test
+* Integration with RabbitMQ
+* Write objectives and test case for messaging module
+
+-- Pierre Leray <pierreleray64@gmail.com>  2014-04-02 00:00:00
+
 pyCurrentCost (v0.2.3) unstable; urgency=low
 
 * Add method to send error message over the network

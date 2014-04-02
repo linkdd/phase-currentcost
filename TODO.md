@@ -14,14 +14,12 @@ Tasks
 -----
 
 * Fix paver watch problem (stop watch, don't take into account bin/currentcost) (try to use with fabric)
-* Automatically increment version at each Ctrl-s
-* Write objectives and test case for current cost connection
-* Develop method that connect to current cost + error case + unit test
+* Retry currentcost connection if USB port is disconnected (wait 5 seconds)
+* Find a way to launch subprocess in an non blocking way (in a thread, and kill it after test)
 * Write objectives and test case for message waited
 * Develop method that waited for message to current cost + error case + unit test
 * Write objectives and test case for message convertion and send over the network (look at express for tis part)
 * Develop method that convert XML message to network message + error case  + unit test
-* Write objectives and test case for messaging module
 * Develop and test script that integrate all this part
 * Generate proper documenation
 * Complete dosctrings using https://github.com/claws/txCurrentCost/blob/master/txcurrentcost/monitor.py example
