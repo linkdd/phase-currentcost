@@ -15,7 +15,7 @@ Tasks application
 
 * Add timeout to currentcost readlines
 * Change error_utils to a more accurate name
-* Retry currentcost connection if USB port is not reachable (wait 5 seconds)
+* Test retry currentcost connection if USB port is not reachable (wait 5 seconds)
 * Validate XML message from currentcost
 * Write objectives and test case for message waited
 * Develop method that waited for message to current cost + error case + unit test
@@ -24,11 +24,11 @@ Tasks application
 * Develop and test script that integrate all this part
 * Generate proper documenation
 * Complete dosctrings using https://github.com/claws/txCurrentCost/blob/master/txcurrentcost/monitor.py example
-* Migrate changelog.txt to Changelog.md with markdown support
 
 Tasks building development environment
 --------------------------------------
 
+* Integrate code on travis
 * Fix paver watch problem (stop watch, don't take into account bin/currentcost) (try to use with fabric)
 * Launch a server web in a subprocess.Popen
 * Launch watch task in a subprocess.Popen
