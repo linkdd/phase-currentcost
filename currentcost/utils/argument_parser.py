@@ -10,6 +10,7 @@ import argparse
 
 PARSER = argparse.ArgumentParser()
 PARSER.add_argument("variable_name", help="name of the variable")
+PARSER.add_argument("site_name", help="name of the location of the variable")
 PARSER.add_argument("tty", help="tty port to connect to current cost")
 PARSER.add_argument("-v", "--verbose", help="activate verbose mode",
                     action="store_true")
@@ -22,4 +23,4 @@ def argument_parser():
         return argument with their value.
     """
     args = PARSER.parse_args()
-    return args.variable_name, args.tty, args.verbose
+    return args.variable_name, args.site_name, args.tty, args.verbose

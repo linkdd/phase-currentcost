@@ -18,7 +18,8 @@ import shlex
 
 
 BIN = "currentcost"
-VAR_NAME = "TEST"
+VAR_NAME = "TEST_electric_meter"
+SITE_NAME = "TEST_liogen_home"
 TTY_PORT = "/dev/currentcost"
 BAD_TTY_PORT = "/dev/currentcost9876"
 LOG_FILE = "logs/currentcost.log"
@@ -34,7 +35,7 @@ def callback(channel, method, properties, body):
     """
     print("Callback => %s" % body)
     assert body == error_utils.TTY_CONNECTION_PROBLEM % (
-        VAR_NAME, BAD_TTY_PORT)
+        VAR_NAME, SITE_NAME, BAD_TTY_PORT)
     CONNECTION.close()
 
 
@@ -81,6 +82,9 @@ def when_launch_without_parameter(context):
     commands = [
         ("%s" % BIN),
         ("%s %s" % (BIN, VAR_NAME)),
+        ("%s %s" % (BIN, SITE_NAME)),
+        ("%s %s %s" % (BIN, VAR_NAME, SITE_NAME)),
+        ("%s %s %s" % (BIN, SITE_NAME, TTY_PORT)),
         ("%s %s" % (BIN, TTY_PORT))
     ]
 
@@ -100,10 +104,7 @@ def when_launch_with_unreachable(context):
     """
         Launch currentcost script with wrong tty with -p active
     """
-    #commands = [("%s %s %s" % (BIN, VAR_NAME, BAD_TTY_PORT))]
-    #context.commands_response = launch_script(commands)
-
-    commands = "%s %s %s" % (BIN, VAR_NAME, BAD_TTY_PORT)
+    commands = "%s %s %s %s" % (BIN, VAR_NAME, SITE_NAME, BAD_TTY_PORT)
     context.process = subprocess.Popen(shlex.split(commands))
 
 
@@ -118,7 +119,7 @@ def detect_unreachability_log(context):
     last_log_file = lines[-1].replace("\n", "").replace("\"", "")
     last_log_file = " ".join(last_log_file.split(" ")[7:])
     assert last_log_file == error_utils.TTY_CONNECTION_PROBLEM % (
-        VAR_NAME, BAD_TTY_PORT)
+        VAR_NAME, SITE_NAME, BAD_TTY_PORT)
 
 
 @then(u'we should receive a message saying that current cost is unreachable')

@@ -1,3 +1,19 @@
+pyCurrentCost (v0.3.4) unstable; urgency=low
+--------------------------------------------
+
+* Add serial tty read
+* Update setup.py
+* Retrieve and print CurrentCost message
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-04 16:00:00
+
+pyCurrentCost (v0.3.3) unstable; urgency=low
+--------------------------------------------
+
+* Add site_name script parameter
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-04 15:15:00
+
 pyCurrentCost (v0.3.2) unstable; urgency=low
 --------------------------------------------
 

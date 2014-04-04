@@ -29,6 +29,7 @@ Usage
 
     positional arguments:
       variable_name         name of the variable
+      site_name             name of the location of the variable
       tty                   tty port to connect to current cost
 
     optional arguments:
@@ -39,7 +40,11 @@ Examples:
 
 To see the current consumption on Current cost (or redirect stdout to a file to keep a log) use:
 
-    currentcost test /dev/currentcost -v
+    currentcost myvariable mysite /dev/currentcost -v
+
+More explicit name:
+
+    currentcost electric_meter liogen_home /dev/currentcost -v
 
 
 Development process

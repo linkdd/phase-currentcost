@@ -13,7 +13,10 @@ Launch a current cost program on command line that read data from a current cost
 Tasks application
 -----------------
 
+* Add timeout to currentcost readlines
+* Change error_utils to a more accurate name
 * Retry currentcost connection if USB port is not reachable (wait 5 seconds)
+* Validate XML message from currentcost
 * Write objectives and test case for message waited
 * Develop method that waited for message to current cost + error case + unit test
 * Write objectives and test case for message convertion and send over the network (look at express for tis part)

@@ -8,20 +8,32 @@
 
 from paver.easy import options, Bunch, task, needs, sh, path
 #from paver.easy import *
-from paver.setuputils import setup
+from paver.setuputils import setup, find_packages
+import sys
+
+VERSION = '0.3.4'
+
+INSTALL_REQS = []
+
+if sys.version_info < (3, 0):
+    INSTALL_REQS.append('pyserial >= 2.5')
+else:
+    INSTALL_REQS.append('pyserial-py3k')
 
 PACKAGE = "currentcost"
 
 setup(
     name="pyCurrentCost",
-    version="0.3.2",
+    version=VERSION,
     description="Python script to collect data from current cost EnviR",
+    long_description=open('README.md').read(),
     author="Pierre Leray",
     author_email="pierreleray64@gmail.com",
     url="https://github.com/liogen/pyCurrentCost",
-    packages=["currentcost"],
+    license='LICENSE',
+    packages=find_packages(),
     scripts=["bin/currentcost"],
-    install_requires=[],
+    install_requires=INSTALL_REQS,
     zip_safe=False,
 )
 

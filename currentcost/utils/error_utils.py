@@ -8,12 +8,11 @@
 
 ERROR = "error"
 
-ERROR_TOO_FEW_ARGUMENTS = "usage: currentcost [-h] [-p PORT] [-v]" \
-    " variable_name tty\ncurrentcost: error: too few arguments"
+TTY_CONNECTION_PROBLEM = "CurrentCost %s in %s: TTY connection problem: %s " \
+    "is unreachable. Retry connection in 5 seconds."
 
-ERROR_BAD_VALUE_ARGUMENTS = "usage: currentcost [-h] [-p PORT] [-v]" \
-    " variable_name tty\ncurrentcost: error: argument -p/--port: " \
-    "invalid int value: '%s'"
+TTY_TRYING_CONNECTION = "CurrentCost %s in %s: Trying to connect to %s."
 
-TTY_CONNECTION_PROBLEM = "CurrentCost %s: TTY connection problem: %s " \
-    "is unreachable"
+TTY_CONNECTION_SUCCESS = "CurrentCost %s in %s: Success connection to %s."
+
+TTY_DISCONNECTED = "CurrentCost %s in %s: TTY port %s disconnected."
