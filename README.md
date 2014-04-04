@@ -14,6 +14,8 @@ Dependencies
 
 TO BE COMPLETED
 
+ * rabbitMQ
+
 Installation
 ============
 
@@ -23,7 +25,7 @@ Usage
 =====
 
     $ currentcost -h
-    usage: currentcost [-h] [-p PORT] [-v] variable_name tty
+    usage: currentcost [-h] [-v] variable_name tty
 
     positional arguments:
       variable_name         name of the variable
@@ -31,7 +33,6 @@ Usage
 
     optional arguments:
       -h, --help            show this help message and exit
-      -p PORT, --port PORT  socket port to publish to 0MQ
       -v, --verbose         activate verbose mode
 
 Examples: 
@@ -39,14 +40,6 @@ Examples:
 To see the current consumption on Current cost (or redirect stdout to a file to keep a log) use:
 
     currentcost test /dev/currentcost -v
-
-To redirect Current Cost message to 0MQ and connect one or several others processes to use this message use:   
-
-    currentcost test /dev/currentcost --port=5001
-
-To redirect Current Cost message to 0MQ and see display in console:   
-
-    currentcost test /dev/currentcost --port=5001 -v
 
 
 Development process

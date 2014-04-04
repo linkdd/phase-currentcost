@@ -7,10 +7,6 @@ Feature: Current Cost data collection
         When we launch currentcost script without important argument
         Then we should see an error message on screen
 
-    Scenario: Bad argument value
-        When we launch currentcost script with a bad value for an argument
-        Then we should see an error message on screen for -p argument
-
     Scenario: Problem with current cost connexion
         When we launch currentcost script with unreachable current cost device
         Then we should see this error in log

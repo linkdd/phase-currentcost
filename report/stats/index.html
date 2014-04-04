@@ -2,7 +2,128 @@
 <body>
 <div>
 <h1>Report</h1>
-<p>198 statements analysed.</p><div>
+<p>171 statements analysed.</p><div>
+<h2>Raw metrics</h2>
+<table>
+<tr class="header">
+<th>type</th>
+<th>number</th>
+<th>%</th>
+<th>previous</th>
+<th>difference</th>
+</tr>
+<tr class="even">
+<td>code</td>
+<td>240</td>
+<td>44.86</td>
+<td>240</td>
+<td>=</td>
+</tr>
+<tr class="odd">
+<td>docstring</td>
+<td>150</td>
+<td>28.04</td>
+<td>150</td>
+<td>=</td>
+</tr>
+<tr class="even">
+<td>comment</td>
+<td>29</td>
+<td>5.42</td>
+<td>29</td>
+<td>=</td>
+</tr>
+<tr class="odd">
+<td>empty</td>
+<td>116</td>
+<td>21.68</td>
+<td>116</td>
+<td>=</td>
+</tr>
+</table>
+</div>
+<div>
+<h2>External dependencies</h2>
+<pre>behave 
+  \-then (currentcost_steps)
+  \-when (currentcost_steps)
+currentcost 
+  \-utils 
+    \-error_utils (currentcost_steps)
+fabric 
+  \-api 
+    \-local (fabfile)
+os 
+  \-path 
+    \-exists (setup)
+paver 
+  \-easy 
+  | \-Bunch (pavement)
+  | \-needs (pavement)
+  | \-options (pavement)
+  | \-path (pavement)
+  | \-sh (pavement)
+  | \-task (pavement)
+  \-setuputils 
+  | \-setup (pavement)
+  \-tasks (setup)
+pika (currentcost.messaging,currentcost_steps)</pre></div>
+<div>
+<h2>Messages by category</h2>
+<table>
+<tr class="header">
+<th>type</th>
+<th>number</th>
+<th>previous</th>
+<th>difference</th>
+</tr>
+<tr class="even">
+<td>convention</td>
+<td>0</td>
+<td>0</td>
+<td>=</td>
+</tr>
+<tr class="odd">
+<td>refactor</td>
+<td>0</td>
+<td>0</td>
+<td>=</td>
+</tr>
+<tr class="even">
+<td>warning</td>
+<td>0</td>
+<td>0</td>
+<td>=</td>
+</tr>
+<tr class="odd">
+<td>error</td>
+<td>0</td>
+<td>0</td>
+<td>=</td>
+</tr>
+</table>
+</div>
+<div>
+<h2>Messages</h2>
+<table>
+<tr class="header">
+<th>message id</th>
+<th>occurrences</th>
+</tr>
+<tr class="even">
+<td>locally-disabled</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>deprecated-pragma</td>
+<td>3</td>
+</tr>
+</table>
+</div>
+<div>
+<h2>Global evaluation</h2>
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)</div>
+<div>
 <h2>Duplication</h2>
 <table>
 <tr class="header">
@@ -26,162 +147,6 @@
 </table>
 </div>
 <div>
-<h2>Messages by category</h2>
-<table>
-<tr class="header">
-<th>type</th>
-<th>number</th>
-<th>previous</th>
-<th>difference</th>
-</tr>
-<tr class="even">
-<td>convention</td>
-<td>22</td>
-<td>21</td>
-<td>+1.00</td>
-</tr>
-<tr class="odd">
-<td>refactor</td>
-<td>0</td>
-<td>0</td>
-<td>=</td>
-</tr>
-<tr class="even">
-<td>warning</td>
-<td>3</td>
-<td>3</td>
-<td>=</td>
-</tr>
-<tr class="odd">
-<td>error</td>
-<td>0</td>
-<td>0</td>
-<td>=</td>
-</tr>
-</table>
-</div>
-<div>
-<h2>% errors / warnings by module</h2>
-<table>
-<tr class="header">
-<th>module</th>
-<th>error</th>
-<th>warning</th>
-<th>refactor</th>
-<th>convention</th>
-</tr>
-<tr class="even">
-<td>receive</td>
-<td>0.00</td>
-<td>100.00</td>
-<td>0.00</td>
-<td>27.27</td>
-</tr>
-</table>
-</div>
-<div>
-<h2>Messages</h2>
-<table>
-<tr class="header">
-<th>message id</th>
-<th>occurrences</th>
-</tr>
-<tr class="even">
-<td>invalid-name</td>
-<td>16</td>
-</tr>
-<tr class="odd">
-<td>missing-docstring</td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td>unused-argument</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td>locally-disabled</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td>deprecated-pragma</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td>superfluous-parens</td>
-<td>2</td>
-</tr>
-</table>
-</div>
-<div>
-<h2>Global evaluation</h2>
-Your code has been rated at 8.74/10 (previous run: 8.78/10, -0.04)</div>
-<div>
-<h2>External dependencies</h2>
-<pre>behave 
-  \-then (currentcost_steps)
-  \-when (currentcost_steps)
-currentcost 
-  \-utils 
-    \-error (currentcost_steps)
-fabric 
-  \-api 
-    \-local (fabfile)
-os 
-  \-path 
-    \-exists (setup)
-paver 
-  \-easy 
-  | \-Bunch (pavement)
-  | \-needs (pavement)
-  | \-options (pavement)
-  | \-path (pavement)
-  | \-sh (pavement)
-  | \-task (pavement)
-  \-setuputils 
-  | \-setup (pavement)
-  \-tasks (setup)
-pika (receive,currentcost.messaging,currentcost_steps,send)</pre></div>
-<div>
-<h2>Raw metrics</h2>
-<table>
-<tr class="header">
-<th>type</th>
-<th>number</th>
-<th>%</th>
-<th>previous</th>
-<th>difference</th>
-</tr>
-<tr class="even">
-<td>code</td>
-<td>281</td>
-<td>48.62</td>
-<td>280</td>
-<td>+1.00</td>
-</tr>
-<tr class="odd">
-<td>docstring</td>
-<td>151</td>
-<td>26.12</td>
-<td>151</td>
-<td>=</td>
-</tr>
-<tr class="even">
-<td>comment</td>
-<td>29</td>
-<td>5.02</td>
-<td>29</td>
-<td>=</td>
-</tr>
-<tr class="odd">
-<td>empty</td>
-<td>117</td>
-<td>20.24</td>
-<td>117</td>
-<td>=</td>
-</tr>
-</table>
-</div>
-<div>
 <h2>Statistics by type</h2>
 <table>
 <tr class="header">
@@ -194,10 +159,10 @@ pika (receive,currentcost.messaging,currentcost_steps,send)</pre></div>
 </tr>
 <tr class="even">
 <td>module</td>
-<td>13</td>
-<td>13</td>
+<td>11</td>
+<td>11</td>
 <td>=</td>
-<td>84.62</td>
+<td>100.00</td>
 <td>0.00</td>
 </tr>
 <tr class="odd">
@@ -218,11 +183,11 @@ pika (receive,currentcost.messaging,currentcost_steps,send)</pre></div>
 </tr>
 <tr class="odd">
 <td>function</td>
-<td>37</td>
-<td>37</td>
+<td>35</td>
+<td>35</td>
 <td>=</td>
-<td>94.59</td>
-<td>13.51</td>
+<td>100.00</td>
+<td>0.00</td>
 </tr>
 </table>
 </div>
@@ -236,118 +201,6 @@ pika (receive,currentcost.messaging,currentcost_steps,send)</pre></div>
 <th>line</th>
 <th>col_offset</th>
 <th>message</th>
-</tr>
-<tr class="even">
-<td>convention</td>
-<td>receive</td>
-<td>&#160;</td>
-<td>1</td>
-<td>0</td>
-<td>Missing module docstring</td>
-</tr>
-<tr class="odd">
-<td>convention</td>
-<td>receive</td>
-<td>&#160;</td>
-<td>5</td>
-<td>0</td>
-<td>Invalid constant name "credentials"</td>
-</tr>
-<tr class="even">
-<td>convention</td>
-<td>receive</td>
-<td>&#160;</td>
-<td>6</td>
-<td>0</td>
-<td>Invalid constant name "connection"</td>
-</tr>
-<tr class="odd">
-<td>convention</td>
-<td>receive</td>
-<td>&#160;</td>
-<td>8</td>
-<td>0</td>
-<td>Invalid constant name "channel"</td>
-</tr>
-<tr class="even">
-<td>convention</td>
-<td>receive</td>
-<td>callback</td>
-<td>15</td>
-<td>0</td>
-<td>Invalid argument name "ch"</td>
-</tr>
-<tr class="odd">
-<td>convention</td>
-<td>receive</td>
-<td>callback</td>
-<td>15</td>
-<td>0</td>
-<td>Missing function docstring</td>
-</tr>
-<tr class="even">
-<td>warning</td>
-<td>receive</td>
-<td>callback</td>
-<td>15</td>
-<td>13</td>
-<td>Unused argument 'ch'</td>
-</tr>
-<tr class="odd">
-<td>warning</td>
-<td>receive</td>
-<td>callback</td>
-<td>15</td>
-<td>17</td>
-<td>Unused argument 'method'</td>
-</tr>
-<tr class="even">
-<td>warning</td>
-<td>receive</td>
-<td>callback</td>
-<td>15</td>
-<td>25</td>
-<td>Unused argument 'properties'</td>
-</tr>
-<tr class="odd">
-<td>convention</td>
-<td>send</td>
-<td>&#160;</td>
-<td>1</td>
-<td>0</td>
-<td>Missing module docstring</td>
-</tr>
-<tr class="even">
-<td>convention</td>
-<td>send</td>
-<td>&#160;</td>
-<td>7</td>
-<td>0</td>
-<td>Invalid constant name "credentials"</td>
-</tr>
-<tr class="odd">
-<td>convention</td>
-<td>send</td>
-<td>&#160;</td>
-<td>8</td>
-<td>0</td>
-<td>Invalid constant name "connection"</td>
-</tr>
-<tr class="even">
-<td>convention</td>
-<td>send</td>
-<td>&#160;</td>
-<td>10</td>
-<td>0</td>
-<td>Invalid constant name "channel"</td>
-</tr>
-<tr class="odd">
-<td>convention</td>
-<td>currentcost.utils.argument_parser</td>
-<td>&#160;</td>
-<td>11</td>
-<td>0</td>
-<td>Invalid constant name "parser"</td>
 </tr>
 <tr class="even">
 <td>info</td>
@@ -385,7 +238,7 @@ pika (receive,currentcost.messaging,currentcost_steps,send)</pre></div>
 <td>info</td>
 <td>currentcost_steps</td>
 <td>&#160;</td>
-<td>11</td>
+<td>12</td>
 <td>0</td>
 <td>Deprecated pragma "pylint:disable-msg" or "pylint:enable-msg"</td>
 </tr>
@@ -393,97 +246,9 @@ pika (receive,currentcost.messaging,currentcost_steps,send)</pre></div>
 <td>info</td>
 <td>currentcost_steps</td>
 <td>&#160;</td>
-<td>11</td>
+<td>12</td>
 <td>0</td>
 <td>Deprecated pragma "pylint:disable-msg" or "pylint:enable-msg"</td>
-</tr>
-<tr class="even">
-<td>convention</td>
-<td>currentcost_steps</td>
-<td>&#160;</td>
-<td>32</td>
-<td>0</td>
-<td>Unnecessary parens after u'print' keyword</td>
-</tr>
-<tr class="odd">
-<td>convention</td>
-<td>currentcost_steps</td>
-<td>&#160;</td>
-<td>43</td>
-<td>0</td>
-<td>Unnecessary parens after u'print' keyword</td>
-</tr>
-<tr class="even">
-<td>convention</td>
-<td>currentcost_steps</td>
-<td>callback</td>
-<td>31</td>
-<td>0</td>
-<td>Invalid argument name "ch"</td>
-</tr>
-<tr class="odd">
-<td>convention</td>
-<td>currentcost_steps</td>
-<td>callback</td>
-<td>31</td>
-<td>0</td>
-<td>Missing function docstring</td>
-</tr>
-<tr class="even">
-<td>convention</td>
-<td>currentcost_steps</td>
-<td>launch_script</td>
-<td>61</td>
-<td>35</td>
-<td>Invalid variable name "e"</td>
-</tr>
-<tr class="odd">
-<td>convention</td>
-<td>currentcost_steps</td>
-<td>when_launch_script_without_parameter</td>
-<td>70</td>
-<td>0</td>
-<td>Invalid function name "when_launch_script_without_parameter"</td>
-</tr>
-<tr class="even">
-<td>convention</td>
-<td>currentcost_steps</td>
-<td>error_message_script_without_parameter</td>
-<td>84</td>
-<td>0</td>
-<td>Invalid function name "error_message_script_without_parameter"</td>
-</tr>
-<tr class="odd">
-<td>convention</td>
-<td>currentcost_steps</td>
-<td>when_launch_script_with_bad_value</td>
-<td>92</td>
-<td>0</td>
-<td>Invalid function name "when_launch_script_with_bad_value"</td>
-</tr>
-<tr class="even">
-<td>convention</td>
-<td>currentcost_steps</td>
-<td>error_message_script_with_bad_value</td>
-<td>105</td>
-<td>0</td>
-<td>Invalid function name "error_message_script_with_bad_value"</td>
-</tr>
-<tr class="odd">
-<td>convention</td>
-<td>currentcost_steps</td>
-<td>when_launch_script_with_unreachable</td>
-<td>113</td>
-<td>0</td>
-<td>Invalid function name "when_launch_script_with_unreachable"</td>
-</tr>
-<tr class="even">
-<td>convention</td>
-<td>currentcost_steps</td>
-<td>detect_unreachability_log</td>
-<td>130</td>
-<td>4</td>
-<td>Invalid variable name "f"</td>
 </tr>
 </table>
 </div>

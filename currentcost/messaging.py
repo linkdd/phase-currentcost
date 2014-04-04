@@ -34,4 +34,3 @@ def send_error(topic, message):
     channel = CONNECTION.channel()
     channel.queue_declare(queue=topic)
     channel.basic_publish(exchange='', routing_key=topic, body=message)
-    CONNECTION.close()
