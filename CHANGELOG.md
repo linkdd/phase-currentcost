@@ -1,3 +1,18 @@
+pyCurrentCost (v0.3.5) unstable; urgency=low
+--------------------------------------------
+
+* Change currentcost script api
+* Put log file into parameter
+* Put username and password of RabbitMQ into parameter
+* Parameter strategies is:
+    * default log is /opt/phase/currentcost.log
+    * default rabbitMQ username is 'admin'
+    * default rabbitMQ password id 'password'
+    * default tty port is /dev/currentcost
+    * all of this parameter are optional and could be over-writted, (except for log)
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-06 21:20:00
+
 pyCurrentCost (v0.3.4) unstable; urgency=low
 --------------------------------------------
 

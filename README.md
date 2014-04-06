@@ -25,26 +25,43 @@ Usage
 =====
 
     $ currentcost -h
-    usage: currentcost [-h] [-v] variable_name tty
+    usage: currentcost [-h] [-t TTY_PORT] [-r RABBITMQ_CREDENTIAL] [-v]
+                   variable_name site_name
 
     positional arguments:
       variable_name         name of the variable
       site_name             name of the location of the variable
-      tty                   tty port to connect to current cost
 
     optional arguments:
       -h, --help            show this help message and exit
+      -t TTY_PORT, --tty-port TTY_PORT
+                            tty port to connect to current cost
+      -r RABBITMQ_CREDENTIAL, --rabbitMQ-credential RABBITMQ_CREDENTIAL
+                            credential for rabbitMQ. By default, RabbitMQ is
+                            deactivated. To activate it you have to give your
+                            credential. Format: username:password.
       -v, --verbose         activate verbose mode
+
+By default:
+
+    * We don't print anything. All is stored in log file. To activate verbose mode you have to pass -v argument.
+    * We are looking for default tty port located in /dev/currentcost. You can over-write it if you want using --tty-port argument.
+    * RabbitMQ is not activated. To activate it you have to add your credential to currentcost script. To give your credential to currentcost script, use --rabbitMQ-credential argument.
+    * If RabbitMQ is not activated, we display currentcost message in stdout. Else we send it over the network. 
 
 Examples: 
 
 To see the current consumption on Current cost (or redirect stdout to a file to keep a log) use:
 
-    currentcost myvariable mysite /dev/currentcost -v
+    currentcost myvariable mysite
 
 More explicit name:
 
-    currentcost electric_meter liogen_home /dev/currentcost -v
+    currentcost electric_meter liogen_home --tty-port /dev/currentcost
+
+With rabbitMQ message:
+
+    currentcost electric_meter liogen_home --tty-port /dev/currentcost --rabbitMQ-credential admin:password -v
 
 
 Development process

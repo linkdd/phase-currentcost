@@ -14,24 +14,22 @@ Tasks application
 -----------------
 
 * Main file:
-    * Put log file into parameter
-    * Put username and password of RabbitMQ into parameter
-    * Parameter strategies is:
-        * default log is /var/log/phase/currentcost.log
-        * default rabbitMQ username is 'admin'
-        * default rabbitMQ password id 'password'
-        * default tty port is /dev/currentcost
-        * all of this parameter are optional and could be over-writted
+    * Test application with bad rabbitMQ username and password
 
 * Message file:
     * Create a class for RabbitMQ messages
+    * If support of RabbitMQ is not activated, we print message on stdout
     * Put username and password of RabbitMQ into parameter
     * Add unit test for this class
     * Add test for: rabbitMQ is not started, rabbitMQ is disconnected during currentcost is running
     * This exception is raised when we stop RabbitMQ during currentcost script is running =>AttributeError: 'BlockingConnection' object has no attribute 'disconnect'
     * This exception is raised when we try to connect to RabbitMQ and RabbitMQ is disconnected => pika.exceptions.AMQPConnectionError: 1
+    * Add test in case or wrong username/password in RabbitMQ
 
 * Project:
+    * Modify installation to perform custom installation following this advice http://stackoverflow.com/questions/15853058/run-custom-task-when-call-pip-install
+    * Move log.conf and currentcost.log in /opt/phase/
+    * After installation modification, change log configuration place.
     * Test application with RabbitMQ disconnected (find a way to automatize this)
     * Refactor architecture of this project (Think what should be a class, what should be a method, ...)
     * Work on deployment (look at pip install, pip freeze, pip bundle, pip wheel)

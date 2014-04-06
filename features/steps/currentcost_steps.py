@@ -20,8 +20,11 @@ import shlex
 BIN = "currentcost"
 VAR_NAME = "TEST_electric_meter"
 SITE_NAME = "TEST_liogen_home"
+ARGUMENT_TTY_PORT = "--tty-port"
 TTY_PORT = "/dev/currentcost"
 BAD_TTY_PORT = "/dev/currentcost9876"
+ARGUMENT_MQ_CREDENTIAL = "--rabbitMQ-credential"
+MQ_CREDENTIAL = "admin:password"
 LOG_FILE = "logs/currentcost.log"
 TTY_ERROR_MESSAGE = "None"
 CREDENTIALS = pika.PlainCredentials("admin", "password")
@@ -83,8 +86,6 @@ def when_launch_without_parameter(context):
         ("%s" % BIN),
         ("%s %s" % (BIN, VAR_NAME)),
         ("%s %s" % (BIN, SITE_NAME)),
-        ("%s %s %s" % (BIN, VAR_NAME, SITE_NAME)),
-        ("%s %s %s" % (BIN, SITE_NAME, TTY_PORT)),
         ("%s %s" % (BIN, TTY_PORT))
     ]
 
@@ -104,7 +105,9 @@ def when_launch_with_unreachable(context):
     """
         Launch currentcost script with wrong tty with -p active
     """
-    commands = "%s %s %s %s" % (BIN, VAR_NAME, SITE_NAME, BAD_TTY_PORT)
+    commands = "%s %s %s %s %s %s %s" % (
+        BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, BAD_TTY_PORT,
+        ARGUMENT_MQ_CREDENTIAL, MQ_CREDENTIAL)
     context.process = subprocess.Popen(shlex.split(commands))
 
 
