@@ -44,7 +44,6 @@ Usage
 
 By default:
 
-    * We don't print anything. All is stored in log file. To activate verbose mode you have to pass -v argument.
     * We are looking for default tty port located in /dev/currentcost. You can over-write it if you want using --tty-port argument.
     * RabbitMQ is not activated. To activate it you have to add your credential to currentcost script. To give your credential to currentcost script, use --rabbitMQ-credential argument.
     * If RabbitMQ is not activated, we display currentcost message in stdout. Else we send it over the network. 
@@ -55,11 +54,11 @@ To see the current consumption on Current cost (or redirect stdout to a file to 
 
     currentcost myvariable mysite
 
-More explicit name:
+More explicit name and choose Current Cost USB port connection:
 
     currentcost electric_meter liogen_home --tty-port /dev/currentcost
 
-With rabbitMQ message:
+With rabbitMQ message over the network:
 
     currentcost electric_meter liogen_home --tty-port /dev/currentcost --rabbitMQ-credential admin:password -v
 

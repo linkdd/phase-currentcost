@@ -6,6 +6,8 @@
     Global error shared across this project.
 """
 
+TOPIC = "currentcost"
+
 ERROR = "error"
 
 TTY_CONNECTION_PROBLEM = "CurrentCost %s in %s: TTY connection problem: %s " \

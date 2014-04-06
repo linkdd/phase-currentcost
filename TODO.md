@@ -13,20 +13,16 @@ Launch a current cost program on command line, read data from a current cost and
 Tasks application
 -----------------
 
-* Main file:
-    * Test application with bad rabbitMQ username and password
-
 * Message file:
-    * Create a class for RabbitMQ messages
-    * If support of RabbitMQ is not activated, we print message on stdout
-    * Put username and password of RabbitMQ into parameter
+    
     * Add unit test for this class
-    * Add test for: rabbitMQ is not started, rabbitMQ is disconnected during currentcost is running
+    * Add func test in case or wrong username/password in RabbitMQ
+    * Add func test for: rabbitMQ is not started, rabbitMQ is disconnected during currentcost is running
     * This exception is raised when we stop RabbitMQ during currentcost script is running =>AttributeError: 'BlockingConnection' object has no attribute 'disconnect'
     * This exception is raised when we try to connect to RabbitMQ and RabbitMQ is disconnected => pika.exceptions.AMQPConnectionError: 1
-    * Add test in case or wrong username/password in RabbitMQ
 
 * Project:
+    * Detail process to start in development mode
     * Modify installation to perform custom installation following this advice http://stackoverflow.com/questions/15853058/run-custom-task-when-call-pip-install
     * Move log.conf and currentcost.log in /opt/phase/
     * After installation modification, change log configuration place.

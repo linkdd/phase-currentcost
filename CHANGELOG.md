@@ -1,3 +1,12 @@
+pyCurrentCost (v0.3.6) unstable; urgency=low
+--------------------------------------------
+
+* Create a class for RabbitMQ messages
+* If support of RabbitMQ is not activated, we print message on stdout
+* Put username and password of RabbitMQ into parameter
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-06 22:00:00
+
 pyCurrentCost (v0.3.5) unstable; urgency=low
 --------------------------------------------
 

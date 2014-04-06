@@ -2,7 +2,74 @@
 <body>
 <div>
 <h1>Report</h1>
-<p>183 statements analysed.</p><div>
+<p>186 statements analysed.</p><div>
+<h2>Raw metrics</h2>
+<table>
+<tr class="header">
+<th>type</th>
+<th>number</th>
+<th>%</th>
+<th>previous</th>
+<th>difference</th>
+</tr>
+<tr class="even">
+<td>code</td>
+<td>273</td>
+<td>48.15</td>
+<td>272</td>
+<td>+1.00</td>
+</tr>
+<tr class="odd">
+<td>docstring</td>
+<td>153</td>
+<td>26.98</td>
+<td>153</td>
+<td>=</td>
+</tr>
+<tr class="even">
+<td>comment</td>
+<td>26</td>
+<td>4.59</td>
+<td>27</td>
+<td>-1.00</td>
+</tr>
+<tr class="odd">
+<td>empty</td>
+<td>115</td>
+<td>20.28</td>
+<td>115</td>
+<td>=</td>
+</tr>
+</table>
+</div>
+<div>
+<h2>External dependencies</h2>
+<pre>behave 
+  \-then (currentcost_steps)
+  \-when (currentcost_steps)
+currentcost 
+  \-utils 
+    \-error_utils (currentcost_steps)
+fabric 
+  \-api 
+    \-local (fabfile)
+os 
+  \-path 
+    \-exists (setup)
+paver 
+  \-easy 
+  | \-Bunch (pavement)
+  | \-needs (pavement)
+  | \-options (pavement)
+  | \-path (pavement)
+  | \-sh (pavement)
+  | \-task (pavement)
+  \-setuputils 
+  | \-find_packages (pavement)
+  | \-setup (pavement)
+  \-tasks (setup)
+pika (currentcost.rabbitmq_messager,currentcost_steps)</pre></div>
+<div>
 <h2>Messages by category</h2>
 <table>
 <tr class="header">
@@ -14,13 +81,13 @@
 <tr class="even">
 <td>convention</td>
 <td>0</td>
-<td>0</td>
-<td>=</td>
+<td>1</td>
+<td>-1.00</td>
 </tr>
 <tr class="odd">
 <td>refactor</td>
-<td>0</td>
-<td>0</td>
+<td>1</td>
+<td>1</td>
 <td>=</td>
 </tr>
 <tr class="even">
@@ -52,78 +119,15 @@
 <td>deprecated-pragma</td>
 <td>3</td>
 </tr>
+<tr class="even">
+<td>too-few-public-methods</td>
+<td>1</td>
+</tr>
 </table>
 </div>
 <div>
 <h2>Global evaluation</h2>
-Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)</div>
-<div>
-<h2>External dependencies</h2>
-<pre>behave 
-  \-then (currentcost_steps)
-  \-when (currentcost_steps)
-currentcost 
-  \-utils 
-    \-error_utils (currentcost_steps)
-fabric 
-  \-api 
-    \-local (fabfile)
-os 
-  \-path 
-    \-exists (setup)
-paver 
-  \-easy 
-  | \-Bunch (pavement)
-  | \-needs (pavement)
-  | \-options (pavement)
-  | \-path (pavement)
-  | \-sh (pavement)
-  | \-task (pavement)
-  \-setuputils 
-  | \-find_packages (pavement)
-  | \-setup (pavement)
-  \-tasks (setup)
-pika (currentcost.messaging,currentcost_steps)</pre></div>
-<div>
-<h2>Raw metrics</h2>
-<table>
-<tr class="header">
-<th>type</th>
-<th>number</th>
-<th>%</th>
-<th>previous</th>
-<th>difference</th>
-</tr>
-<tr class="even">
-<td>code</td>
-<td>264</td>
-<td>47.65</td>
-<td>267</td>
-<td>-3.00</td>
-</tr>
-<tr class="odd">
-<td>docstring</td>
-<td>148</td>
-<td>26.71</td>
-<td>148</td>
-<td>=</td>
-</tr>
-<tr class="even">
-<td>comment</td>
-<td>27</td>
-<td>4.87</td>
-<td>27</td>
-<td>=</td>
-</tr>
-<tr class="odd">
-<td>empty</td>
-<td>115</td>
-<td>20.76</td>
-<td>115</td>
-<td>=</td>
-</tr>
-</table>
-</div>
+Your code has been rated at 9.95/10 (previous run: 9.89/10, +0.05)</div>
 <div>
 <h2>Duplication</h2>
 <table>
@@ -168,24 +172,24 @@ pika (currentcost.messaging,currentcost_steps)</pre></div>
 </tr>
 <tr class="odd">
 <td>class</td>
-<td>1</td>
-<td>1</td>
+<td>2</td>
+<td>2</td>
 <td>=</td>
 <td>100.00</td>
 <td>0.00</td>
 </tr>
 <tr class="even">
 <td>method</td>
-<td>2</td>
-<td>2</td>
+<td>4</td>
+<td>4</td>
 <td>=</td>
 <td>100.00</td>
 <td>0.00</td>
 </tr>
 <tr class="odd">
 <td>function</td>
-<td>35</td>
-<td>35</td>
+<td>33</td>
+<td>33</td>
 <td>=</td>
 <td>100.00</td>
 <td>0.00</td>
@@ -204,6 +208,14 @@ pika (currentcost.messaging,currentcost_steps)</pre></div>
 <th>message</th>
 </tr>
 <tr class="even">
+<td>refactor</td>
+<td>currentcost.rabbitmq_messager</td>
+<td>RabbitMQMessager</td>
+<td>14</td>
+<td>0</td>
+<td>Too few public methods (1/2)</td>
+</tr>
+<tr class="odd">
 <td>info</td>
 <td>tests.test_messaging</td>
 <td>&#160;</td>
@@ -211,7 +223,7 @@ pika (currentcost.messaging,currentcost_steps)</pre></div>
 <td>0</td>
 <td>Locally disabling R0904</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>info</td>
 <td>currentcost_steps</td>
 <td>&#160;</td>
@@ -219,7 +231,7 @@ pika (currentcost.messaging,currentcost_steps)</pre></div>
 <td>0</td>
 <td>Locally disabling W0613</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>info</td>
 <td>currentcost_steps</td>
 <td>&#160;</td>
@@ -227,7 +239,7 @@ pika (currentcost.messaging,currentcost_steps)</pre></div>
 <td>0</td>
 <td>Deprecated pragma "pylint:disable-msg" or "pylint:enable-msg"</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>info</td>
 <td>currentcost_steps</td>
 <td>&#160;</td>
@@ -235,7 +247,7 @@ pika (currentcost.messaging,currentcost_steps)</pre></div>
 <td>0</td>
 <td>Locally disabling E0611</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>info</td>
 <td>currentcost_steps</td>
 <td>&#160;</td>
@@ -243,7 +255,7 @@ pika (currentcost.messaging,currentcost_steps)</pre></div>
 <td>0</td>
 <td>Deprecated pragma "pylint:disable-msg" or "pylint:enable-msg"</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>info</td>
 <td>currentcost_steps</td>
 <td>&#160;</td>
