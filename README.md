@@ -50,17 +50,17 @@ By default:
 
 Examples: 
 
-To see the current consumption on Current cost (or redirect stdout to a file to keep a log) use:
-
-    currentcost myvariable mysite
-
-More explicit name and choose Current Cost USB port connection:
+To see the current consumption on Current cost on stdout use:
 
     currentcost electric_meter liogen_home --tty-port /dev/currentcost
+
+**IDEA: PUT CONSOLE OUTPUT AS AN EXAMPLE**
 
 With rabbitMQ message over the network:
 
     currentcost electric_meter liogen_home --tty-port /dev/currentcost --rabbitMQ-credential admin:password -v
+
+**IDEA: PUT CONSOLE OUTPUT AS AN EXAMPLE**
 
 
 Development process
