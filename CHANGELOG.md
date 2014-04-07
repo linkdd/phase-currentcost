@@ -1,3 +1,19 @@
+pyCurrentCost (v0.4.1) unstable; urgency=low
+--------------------------------------------
+
+* Add date to currentcost message.
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-07 16:25:00
+
+pyCurrentCost (v0.4.0) unstable; urgency=low
+--------------------------------------------
+
+* Make a difference between credential error and host error
+* Add func test in case of non activation of RabbitMQ
+* Add func test in case or wrong username/password in RabbitMQ
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-07 16:10:00
+
 pyCurrentCost (v0.3.9) unstable; urgency=low
 --------------------------------------------
 

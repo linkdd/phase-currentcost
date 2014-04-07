@@ -35,6 +35,11 @@ class RabbitMQMessager(object):
                         credentials=pika.PlainCredentials(username, password)))
                 self.channel = self.connection.channel()
             except pika.exceptions.ConnectionClosed:
+                # Credential error
+                self.logger.error(error_utils.RABBIT_MQ_CREDENTIAL_PROBLEM % (
+                    username, password, host))
+            except pika.exceptions.AMQPConnectionError:
+                # Host error
                 self.logger.error(error_utils.RABBIT_MQ_CONNECTION_PROBLEM % (
                     username, password, host))
 

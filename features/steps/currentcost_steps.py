@@ -26,11 +26,13 @@ TTY_PORT = "/dev/currentcost"
 BAD_TTY_PORT = "/dev/currentcost9876"
 ARGUMENT_MQ_CREDENTIAL = "--rabbitMQ-credential"
 MQ_CREDENTIAL = "admin:password"
+BAD_MQ_CREDENTIAL = "admzfzein:paszeasword"
+MQ_HOST = "localhost"
 LOG_FILE = "logs/currentcost.log"
 TTY_ERROR_MESSAGE = "None"
 CREDENTIALS = pika.PlainCredentials("admin", "password")
 CONNECTION = pika.BlockingConnection(
-    pika.ConnectionParameters(host='localhost', credentials=CREDENTIALS))
+    pika.ConnectionParameters(host=MQ_HOST, credentials=CREDENTIALS))
 
 
 def callback(channel, method, properties, body):
@@ -101,20 +103,38 @@ def error_script_without_parameter(context):
     check_response_script(context.commands_response)
 
 
-@when(u'we launch currentcost script with unreachable current cost device')
+@when(u'we start currentcost with bad port without rabbitmq')
 def when_launch_with_unreachable(context):
     """
         Launch currentcost script with wrong tty with -p active
     """
-    commands = "%s %s %s %s %s %s %s" % (
-        BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, BAD_TTY_PORT,
-        ARGUMENT_MQ_CREDENTIAL, MQ_CREDENTIAL)
-    process = subprocess.Popen(shlex.split(commands))
-    sleep(2)
+    commands = "%s %s %s %s %s" % (
+        BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, BAD_TTY_PORT)
+    process = subprocess.Popen(
+        shlex.split(commands),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE)
+    sleep(5)
     process.terminate()
 
 
-@then(u'we should see this error in log')
+@when(u'we start currentcost with bad port and bad rabbitmq credential')
+def launch_ccunreach_badrmq(context):
+    """
+        Launch unreachable currentcost with bad rabbitmq credential
+    """
+    commands = "%s %s %s %s %s %s %s" % (
+        BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, BAD_TTY_PORT,
+        ARGUMENT_MQ_CREDENTIAL, BAD_MQ_CREDENTIAL)
+    process = subprocess.Popen(
+        shlex.split(commands),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE)
+    sleep(5)
+    process.terminate()
+
+
+@then(u'we should see currentcost is unreachable in log')
 def detect_unreachability_log(context):
     """
         We should see currentcost unreachability in log file.
@@ -123,9 +143,44 @@ def detect_unreachability_log(context):
     lines = log_file.readlines()
     log_file.close()
     last_log_file = lines[-1].replace("\n", "").replace("\"", "")
-    last_log_file = " ".join(last_log_file.split(" ")[7:])
-    assert last_log_file == error_utils.TTY_CONNECTION_PROBLEM % (
+    last_log_file = " ".join(last_log_file.split(" ")[9:])
+    error = error_utils.TTY_CONNECTION_PROBLEM % (
         VAR_NAME, SITE_NAME, BAD_TTY_PORT)
+    print("Last line => %s" % last_log_file)
+    print("Expect => %s" % error)
+    assert last_log_file == error
+
+
+@then(u'we should see rabbitmq error in log')
+def detect_rabbitmqerror_log(context):
+    """
+        We should see currentcost unreachability in log file.
+    """
+    log_file = open(LOG_FILE, "r")
+    lines = log_file.readlines()
+    log_file.close()
+    last_log_file = lines[-2].replace("\n", "").replace("\"", "")
+    last_log_file = " ".join(last_log_file.split(" ")[9:])
+    error = error_utils.RABBIT_MQ_CREDENTIAL_PROBLEM % (
+        BAD_MQ_CREDENTIAL.split(":")[0],
+        BAD_MQ_CREDENTIAL.split(":")[1],
+        MQ_HOST)
+    print("Last line => %s" % last_log_file)
+    print("Expect => %s" % error)
+    assert last_log_file == error
+
+
+@when(u'we start currentcost with bad port with rabbitmq')
+def launch_ccunreach_withoutrmq(context):
+    """
+        Launch currentcost script with wrong tty with -p active
+    """
+    commands = "%s %s %s %s %s %s %s" % (
+        BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, BAD_TTY_PORT,
+        ARGUMENT_MQ_CREDENTIAL, MQ_CREDENTIAL)
+    process = subprocess.Popen(shlex.split(commands))
+    sleep(1)
+    process.terminate()
 
 
 @then(u'we should receive a message saying that current cost is unreachable')

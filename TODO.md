@@ -9,13 +9,6 @@ Launch a current cost program on command line, read data from a current cost and
 Tasks
 -----
 
-* Message file:
-    * Add func test in case or wrong username/password in RabbitMQ
-    * Add func test for: rabbitMQ is not started, rabbitMQ is disconnected during currentcost is running
-    * This exception is raised when we stop RabbitMQ during currentcost script is running =>AttributeError: 'BlockingConnection' object has no attribute 'disconnect'
-    * This exception is raised when we try to connect to RabbitMQ and RabbitMQ is disconnected => pika.exceptions.AMQPConnectionError: 1
-    * Test application with RabbitMQ disconnected (find a way to automatize this)
-
 * CurrentCost connection:
     * Add timeout to currentcost readlines
     * Validate XML message from currentcost
@@ -47,4 +40,10 @@ Tasks
         * Fix paver watch problem (stop watch, don't take into account bin/currentcost) (try to use with fabric)
         * Launch a server web in a subprocess.Popen
         * Launch watch task in a subprocess.Popen
-        * Listen for a terminating command to quit properly two previous subprocesses    
+        * Listen for a terminating command to quit properly two previous subprocesses
+
+* Message file:
+    * Add func test for: rabbitMQ is not started, rabbitMQ is disconnected during currentcost is running
+    * This exception is raised when we stop RabbitMQ during currentcost script is running =>AttributeError: 'BlockingConnection' object has no attribute 'disconnect'
+    * This exception is raised when we try to connect to RabbitMQ and RabbitMQ is disconnected => pika.exceptions.AMQPConnectionError: 1
+    * Test application with RabbitMQ disconnected (find a way to automatize this)  

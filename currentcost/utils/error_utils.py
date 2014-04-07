@@ -6,18 +6,21 @@
     Global error shared across this project.
 """
 
-TOPIC = "currentcost"
+TOPIC = u"currentcost"
 
-ERROR = "error"
+ERROR = u"error"
 
-TTY_CONNECTION_PROBLEM = "CurrentCost %s in %s: TTY connection problem: %s \
+TTY_CONNECTION_PROBLEM = u"CurrentCost %s in %s: TTY connection problem: %s \
 is unreachable. Retry connection in 5 seconds."
 
-TTY_TRYING_CONNECTION = "CurrentCost %s in %s: Trying to connect to %s."
+TTY_TRYING_CONNECTION = u"CurrentCost %s in %s: Trying to connect to %s."
 
-TTY_CONNECTION_SUCCESS = "CurrentCost %s in %s: Success connection to %s."
+TTY_CONNECTION_SUCCESS = u"CurrentCost %s in %s: Success connection to %s."
 
-TTY_DISCONNECTED = "CurrentCost %s in %s: TTY port %s disconnected."
+TTY_DISCONNECTED = u"CurrentCost %s in %s: TTY port %s disconnected."
 
-RABBIT_MQ_CONNECTION_PROBLEM = "Problem trying to connect to RabbitMQ with \
+RABBIT_MQ_CONNECTION_PROBLEM = u"Problem trying to connect to RabbitMQ with \
+this configuration: username: %s, password: %s, host: %s"
+
+RABBIT_MQ_CREDENTIAL_PROBLEM = u"Problem bad RabbitMQ credential with \
 this configuration: username: %s, password: %s, host: %s"
