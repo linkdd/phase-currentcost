@@ -44,9 +44,9 @@ Usage
 
 By default:
 
-    * We are looking for default tty port located in /dev/currentcost. You can over-write it if you want using --tty-port argument.
-    * RabbitMQ is not activated. To activate it you have to add your credential to currentcost script. To give your credential to currentcost script, use --rabbitMQ-credential argument.
-    * If RabbitMQ is not activated, we display currentcost message in stdout. Else we send it over the network. 
+* We are looking for default tty port located in /dev/currentcost. You can over-write it if you want using --tty-port argument.
+* RabbitMQ is not activated. To activate it you have to add your credential to currentcost script. To give your credential to currentcost script, use --rabbitMQ-credential argument.
+* If RabbitMQ is not activated, we display currentcost message in stdout. Else we send it over the network. 
 
 Examples: 
 
