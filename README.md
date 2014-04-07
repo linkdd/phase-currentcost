@@ -14,6 +14,8 @@ Dependencies
 
 TO BE COMPLETED
 
+ * rabbitMQ
+
 Installation
 ============
 
@@ -23,30 +25,42 @@ Usage
 =====
 
     $ currentcost -h
-    usage: currentcost [-h] [-p PORT] [-v] variable_name tty
+    usage: currentcost [-h] [-t TTY_PORT] [-r RABBITMQ_CREDENTIAL] [-v]
+                   variable_name site_name
 
     positional arguments:
       variable_name         name of the variable
-      tty                   tty port to connect to current cost
+      site_name             name of the location of the variable
 
     optional arguments:
       -h, --help            show this help message and exit
-      -p PORT, --port PORT  socket port to publish to 0MQ
+      -t TTY_PORT, --tty-port TTY_PORT
+                            tty port to connect to current cost
+      -r RABBITMQ_CREDENTIAL, --rabbitMQ-credential RABBITMQ_CREDENTIAL
+                            credential for rabbitMQ. By default, RabbitMQ is
+                            deactivated. To activate it you have to give your
+                            credential. Format: username:password.
       -v, --verbose         activate verbose mode
+
+By default:
+
+* We are looking for default tty port located in /dev/currentcost. You can over-write it if you want using --tty-port argument.
+* RabbitMQ is not activated. To activate it you have to add your credential to currentcost script. To give your credential to currentcost script, use --rabbitMQ-credential argument.
+* If RabbitMQ is not activated, we display currentcost message in stdout. Else we send it over the network. 
 
 Examples: 
 
-To see the current consumption on Current cost (or redirect stdout to a file to keep a log) use:
+To see the current consumption on Current cost on stdout use:
 
-    currentcost test /dev/currentcost -v
+    currentcost electric_meter liogen_home --tty-port /dev/currentcost
 
-To redirect Current Cost message to 0MQ and connect one or several others processes to use this message use:   
+**IDEA: PUT CONSOLE OUTPUT AS AN EXAMPLE**
 
-    currentcost test /dev/currentcost --port=5001
+With rabbitMQ message over the network:
 
-To redirect Current Cost message to 0MQ and see display in console:   
+    currentcost electric_meter liogen_home --tty-port /dev/currentcost --rabbitMQ-credential admin:password -v
 
-    currentcost test /dev/currentcost --port=5001 -v
+**IDEA: PUT CONSOLE OUTPUT AS AN EXAMPLE**
 
 
 Development process

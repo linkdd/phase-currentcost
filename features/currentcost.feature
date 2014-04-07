@@ -7,13 +7,18 @@ Feature: Current Cost data collection
         When we launch currentcost script without important argument
         Then we should see an error message on screen
 
-    Scenario: Bad argument value
-        When we launch currentcost script with a bad value for an argument
-        Then we should see an error message on screen for -p argument
+    Scenario: Problem with current cost connexion without RabbitMQ
+        When we start currentcost with bad port without rabbitmq
+        Then we should see currentcost is unreachable in log
 
-    Scenario: Problem with current cost connexion
-        When we launch currentcost script with unreachable current cost device
-        Then we should see this error in log
+    Scenario: Problem with RabbitMQ credential
+        When we start currentcost with bad port and bad rabbitmq credential
+        Then we should see currentcost is unreachable in log
+        And we should see rabbitmq error in log
+
+    Scenario: Problem with current cost connexion with RabbitMQ
+        When we start currentcost with bad port with rabbitmq
+        Then we should see currentcost is unreachable in log
         And we should receive a message saying that current cost is unreachable
 
     Scenario Outline: Problem with current cost disconnection
