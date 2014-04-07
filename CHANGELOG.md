@@ -1,3 +1,12 @@
+pyCurrentCost (v0.3.7) unstable; urgency=low
+--------------------------------------------
+
+* Add unit test to rabbitmq_messager.py
+* Fix error in with non terminating process in currentcost_steps.py
+* Add new RabbitMQ error
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-07 11:20:00
+
 pyCurrentCost (v0.3.6) unstable; urgency=low
 --------------------------------------------
 

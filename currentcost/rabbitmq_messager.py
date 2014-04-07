@@ -6,9 +6,10 @@
     Method that send message over the network.
 """
 
-from __future__ import print_function
 import logging
 import pika
+import sys
+from currentcost.utils import error_utils
 
 
 class RabbitMQMessager(object):
@@ -24,17 +25,20 @@ class RabbitMQMessager(object):
             Init RabbitMQ.
         """
         self.logger = logging.getLogger("currentcost.pika")
+        self.channel = None
 
         if username is not None and password is not None:
-            self.connection = pika.BlockingConnection(
-                pika.ConnectionParameters(
-                    host=host,
-                    credentials=pika.PlainCredentials(username, password)))
-            self.channel = self.connection.channel()
-        else:
-            self.channel = None
+            try:
+                self.connection = pika.BlockingConnection(
+                    pika.ConnectionParameters(
+                        host=host,
+                        credentials=pika.PlainCredentials(username, password)))
+                self.channel = self.connection.channel()
+            except pika.exceptions.ConnectionClosed:
+                self.logger.error(error_utils.RABBIT_MQ_CONNECTION_PROBLEM % (
+                    username, password, host))
 
-    def send(self, topic, message):
+    def send(self, topic, message, out=sys.stdout):
         """
             Method that send a message with a topic.
         """
@@ -44,4 +48,5 @@ class RabbitMQMessager(object):
             self.channel.basic_publish(
                 exchange='', routing_key=topic, body=message)
         else:
-            print(message)
+#           Print on terminal
+            out.write(message)

@@ -46,8 +46,8 @@
     
     <P>Source files: 12</P>
         <a href = "javascript:unhide('files');">Click here to show/hide file names</a><div id="files" class="hidden"><P><B>Source files:</B><BR>fabfile.py, <BR>pavement.py, <BR>setup.py, <BR>currentcost/__init__.py, <BR>currentcost/rabbitmq_messager.py, <BR>bin/currentcost, <BR>currentcost/utils/__init__.py, <BR>currentcost/utils/argument_parser.py, <BR>currentcost/utils/error_utils.py, <BR>tests/__init__.py, <BR>tests/test_messaging.py, <BR>features/steps/currentcost_steps.py</P></div>
-        <P>Clones detected: 1</P>
-        <P>12 of 285 lines are duplicates (4.21%) </P>
+        <P>Clones detected: 3</P>
+        <P>39 of 330 lines are duplicates (11.82%) </P>
 <P>
 <B>Parameters<BR> </B>
 clustering_threshold = 10<BR>
@@ -58,16 +58,35 @@ clusterize_using_hash = False<BR>
 clusterize_using_dcup = False<BR>
 </P> 
         
-    <B>Time elapsed</B><BR>Construction of AST : 0.13 seconds<BR>
+    <B>Time elapsed</B><BR>Construction of AST : 0.18 seconds<BR>
 Building statement hash : 0.00 seconds<BR>
-Building patterns : 0.11 seconds<BR>
-Marking similar statements : 0.10 seconds<BR>
-Finding similar sequences of statements : 0.02 seconds<BR>
-Refining candidates : 0.20 seconds<BR>
- Total time: 0.57<BR>
- Started at: Sun Apr  6 22:07:23 2014<BR>
- Finished at: Sun Apr  6 22:07:24 2014
-    <P><B>Clone # 1</B><BR>Distance between two fragments = 4 <BR>Clone size = 6<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "pavement.py"<BR>The first line is 158</TD><TD></TD><TD>Source file "fabfile.py"<BR>The first line is 71</TD></TR><TR>
+Building patterns : 0.21 seconds<BR>
+Marking similar statements : 0.19 seconds<BR>
+Finding similar sequences of statements : 0.06 seconds<BR>
+Refining candidates : 0.58 seconds<BR>
+ Total time: 1.21<BR>
+ Started at: Mon Apr  7 11:15:20 2014<BR>
+ Finished at: Mon Apr  7 11:15:21 2014
+    <P><B>Clone # 1</B><BR>Distance between two fragments = 3 <BR>Clone size = 10<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "tests/test_messaging.py"<BR>The first line is 61</TD><TD></TD><TD>Source file "tests/test_messaging.py"<BR>The first line is 72</TD></TR><TR>
+<TD>
+def <span style="color: rgb(255, 0, 0);">test_without_credential</span>(self):<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;messager = RabbitMQMessager(<span style="color: rgb(255, 0, 0);">None</span>, <span style="color: rgb(255, 0, 0);">None</span>, VALID_HOST)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;self.assertEqual(messager.channel, <span style="color: rgb(255, 0, 0);">None</span>)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;out = StringIO()<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;messager.send(TOPIC, MESSAGE, out)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;output = out.getvalue().strip()<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;self.assertEqual(output, MESSAGE)</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+def <span style="color: rgb(255, 0, 0);">test_bad_credential</span>(self):<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;messager = RabbitMQMessager(<span style="color: rgb(255, 0, 0);">INVALID_USERNAME</span>, <span style="color: rgb(255, 0, 0);">INVALID_PASSWORD</span>, VALID_HOST)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;self.assertEqual(messager.channel, <span style="color: rgb(255, 0, 0);">None</span>)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;out = StringIO()<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;messager.send(TOPIC, MESSAGE, out)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;output = out.getvalue().strip()<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;self.assertEqual(output, MESSAGE)</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 2</B><BR>Distance between two fragments = 4 <BR>Clone size = 6<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "pavement.py"<BR>The first line is 158</TD><TD></TD><TD>Source file "fabfile.py"<BR>The first line is 71</TD></TR><TR>
 <TD>
 def <span style="color: rgb(255, 0, 0);">stat</span>():<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(255, 0, 0);">clonedigger</span>()<BR>
@@ -86,6 +105,21 @@ def bundle():<BR>
 def bundle():<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(255, 0, 0);">local</span>('pip freeze > REQUIREMENTS.txt')<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(255, 0, 0);">local</span>('pip bundle data-generator.pybundle -r REQUIREMENTS.txt')</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 3</B><BR>Distance between two fragments = 4 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 138</TD><TD></TD><TD>Source file "tests/test_messaging.py"<BR>The first line is 95</TD></TR><TR>
+<TD>
+try:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.basic_consume(<span style="color: rgb(255, 0, 0);">callback</span>, queue=<span style="color: rgb(255, 0, 0);">error_utils.ERROR</span>, no_ack=True)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.start_consuming()<BR>
+except pika.exceptions.ConnectionClosed:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;pass</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+try:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.basic_consume(<span style="color: rgb(255, 0, 0);">self.callback</span>, queue=<span style="color: rgb(255, 0, 0);">TOPIC</span>, no_ack=True)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.start_consuming()<BR>
+except pika.exceptions.ConnectionClosed:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;pass</TD>
 </TR>
 </TABLE> </P> <HR>
     

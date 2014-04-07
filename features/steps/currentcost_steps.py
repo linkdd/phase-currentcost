@@ -15,6 +15,7 @@ from subprocess import CalledProcessError
 from currentcost.utils import error_utils
 import pika
 import shlex
+from time import sleep
 
 
 BIN = "currentcost"
@@ -108,7 +109,9 @@ def when_launch_with_unreachable(context):
     commands = "%s %s %s %s %s %s %s" % (
         BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, BAD_TTY_PORT,
         ARGUMENT_MQ_CREDENTIAL, MQ_CREDENTIAL)
-    context.process = subprocess.Popen(shlex.split(commands))
+    process = subprocess.Popen(shlex.split(commands))
+    sleep(2)
+    process.terminate()
 
 
 @then(u'we should see this error in log')
@@ -137,4 +140,3 @@ def receive_message_unreachable(context):
         channel.start_consuming()
     except pika.exceptions.ConnectionClosed:
         pass
-    context.process.terminate()

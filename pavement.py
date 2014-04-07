@@ -11,7 +11,7 @@ from paver.easy import options, Bunch, task, needs, sh, path
 from paver.setuputils import setup, find_packages
 import sys
 
-VERSION = '0.3.5'
+VERSION = '0.3.7'
 
 INSTALL_REQS = []
 
