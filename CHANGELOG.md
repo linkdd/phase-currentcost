@@ -1,3 +1,10 @@
+pyCurrentCost (v0.3.9) unstable; urgency=low
+--------------------------------------------
+
+* Fix print problem in stdout
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-07 11:45:00
+
 pyCurrentCost (v0.3.8) unstable; urgency=low
 --------------------------------------------
 

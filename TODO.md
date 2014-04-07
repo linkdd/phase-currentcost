@@ -28,6 +28,7 @@ Tasks
 
 * Project:
     * Architecture:
+        * Create log util file to add init and activate verbose mode on it
         * Move log.conf and currentcost.log in /opt/phase/
         * Refactor architecture of this project (Think what should be a class, what should be a method, ...)
         * Change error_utils to a more accurate name

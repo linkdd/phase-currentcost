@@ -49,4 +49,4 @@ class RabbitMQMessager(object):
                 exchange='', routing_key=topic, body=message)
         else:
 #           Print on terminal
-            out.write(message)
+            out.write("%s %s" % (message, "\n"))
