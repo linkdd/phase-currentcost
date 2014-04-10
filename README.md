@@ -66,6 +66,8 @@ With rabbitMQ message over the network:
 Development process
 ===================
 
+Install socat
+
 Philosophy
 ----------
 

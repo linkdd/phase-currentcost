@@ -1,3 +1,17 @@
+pyCurrentCost (v0.6.0) unstable; urgency=low
+--------------------------------------------
+
+* Funct test current cost usb disconnected.
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-10 23:50:00
+
+pyCurrentCost (v0.5.0) unstable; urgency=low
+--------------------------------------------
+
+* Funct test current cost disconnected and reach timeout.
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-10 22:20:00
+
 pyCurrentCost (v0.4.1) unstable; urgency=low
 --------------------------------------------
 

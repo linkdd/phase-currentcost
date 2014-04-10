@@ -10,17 +10,19 @@ Tasks
 -----
 
 * CurrentCost connection:
-    * Add timeout to currentcost readlines
+    * Study historic parsing (test with currentcost and in setting hour in currentcost)
+    * Validate XML message studying XML formattage http://code.activestate.com/recipes/52256-check-xml-well-formedness/
+    http://stackoverflow.com/questions/13742538/how-to-validate-xml-using-python-without-third-part-libs
     * Validate XML message from currentcost
     * Write objectives and test case for message waited
     * Develop method that waited for message to current cost + error case + unit test
     * Write objectives and test case for message convertion and send over the network (look at express for tis part)
     * Develop method that convert XML message to network message + error case  + unit test
     * Develop and test script that integrate all this part
-    * Func test retry currentcost connection if USB port is not reachable (wait 5 seconds)
 
 * Project:
     * Architecture:
+        * Fix clone
         * Create log util file to add init and activate verbose mode on it
         * Move log.conf and currentcost.log in /opt/phase/
         * Refactor architecture of this project (Think what should be a class, what should be a method, ...)
@@ -30,10 +32,13 @@ Tasks
         * After installation modification, change log configuration place.
         * Work on deployment (look at pip install, pip freeze, pip bundle, pip wheel)
     * Documentation:
+        * Comment all the code
+        * Add list of message send using RabbitMQ in README (success message, error message, ...)
         * Detail process to start in development mode
         * Generate proper documenation
         * Complete dosctrings using https://github.com/claws/txCurrentCost/blob/master/txcurrentcost/monitor.py example
     * Tests:
+        * Split currentcost_steps.py into several test file
         * Integrate code on travis
         * Develop current cost simulator (simple version, should be a specific project in the future)
     * Development:
@@ -46,4 +51,15 @@ Tasks
     * Add func test for: rabbitMQ is not started, rabbitMQ is disconnected during currentcost is running
     * This exception is raised when we stop RabbitMQ during currentcost script is running =>AttributeError: 'BlockingConnection' object has no attribute 'disconnect'
     * This exception is raised when we try to connect to RabbitMQ and RabbitMQ is disconnected => pika.exceptions.AMQPConnectionError: 1
-    * Test application with RabbitMQ disconnected (find a way to automatize this)  
+    * Test application with RabbitMQ disconnected (find a way to automatize this)
+
+* Blog:
+    * Current Cost and explain this choice comparing to other product
+    * pyCurrentCost and how to use it
+    * RabbitMQ and comparison to 0MQ
+    * pySerial and socat
+    * BDD
+    * TDD
+    * Scenario based design
+    * ...
+

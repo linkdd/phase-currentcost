@@ -19,6 +19,9 @@ TTY_CONNECTION_SUCCESS = u"CurrentCost %s in %s: Success connection to %s."
 
 TTY_DISCONNECTED = u"CurrentCost %s in %s: TTY port %s disconnected."
 
+CURRENTCOST_TIMEOUT = u"CurrentCost %s in %s: Reach timeout. Verify \
+CurrentCost wire connection or wave range"
+
 RABBIT_MQ_CONNECTION_PROBLEM = u"Problem trying to connect to RabbitMQ with \
 this configuration: username: %s, password: %s, host: %s"
 
