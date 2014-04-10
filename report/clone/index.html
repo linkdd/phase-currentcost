@@ -46,8 +46,8 @@
     
     <P>Source files: 12</P>
         <a href = "javascript:unhide('files');">Click here to show/hide file names</a><div id="files" class="hidden"><P><B>Source files:</B><BR>fabfile.py, <BR>pavement.py, <BR>setup.py, <BR>currentcost/__init__.py, <BR>currentcost/rabbitmq_messager.py, <BR>bin/currentcost, <BR>currentcost/utils/__init__.py, <BR>currentcost/utils/argument_parser.py, <BR>currentcost/utils/error_utils.py, <BR>tests/__init__.py, <BR>tests/test_messaging.py, <BR>features/steps/currentcost_steps.py</P></div>
-        <P>Clones detected: 7</P>
-        <P>71 of 375 lines are duplicates (18.93%) </P>
+        <P>Clones detected: 22</P>
+        <P>144 of 476 lines are duplicates (30.25%) </P>
 <P>
 <B>Parameters<BR> </B>
 clustering_threshold = 10<BR>
@@ -58,16 +58,244 @@ clusterize_using_hash = False<BR>
 clusterize_using_dcup = False<BR>
 </P> 
         
-    <B>Time elapsed</B><BR>Construction of AST : 0.18 seconds<BR>
+    <B>Time elapsed</B><BR>Construction of AST : 0.25 seconds<BR>
 Building statement hash : 0.00 seconds<BR>
-Building patterns : 0.30 seconds<BR>
-Marking similar statements : 0.29 seconds<BR>
-Finding similar sequences of statements : 0.03 seconds<BR>
-Refining candidates : 0.39 seconds<BR>
- Total time: 1.19<BR>
- Started at: Mon Apr  7 16:12:14 2014<BR>
- Finished at: Mon Apr  7 16:12:15 2014
-    <P><B>Clone # 1</B><BR>Distance between two fragments = 4 <BR>Clone size = 10<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "tests/test_messaging.py"<BR>The first line is 86</TD><TD></TD><TD>Source file "tests/test_messaging.py"<BR>The first line is 72</TD></TR><TR>
+Building patterns : 0.42 seconds<BR>
+Marking similar statements : 0.36 seconds<BR>
+Finding similar sequences of statements : 0.04 seconds<BR>
+Refining candidates : 1.13 seconds<BR>
+ Total time: 2.20<BR>
+ Started at: Thu Apr 10 23:47:23 2014<BR>
+ Finished at: Thu Apr 10 23:47:24 2014
+    <P><B>Clone # 1</B><BR>Distance between two fragments = 1 <BR>Clone size = 13<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 319</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 244</TD></TR><TR>
+<TD>
+CONNECTION = pika.BlockingConnection(pika.ConnectionParameters(host=MQ_HOST, credentials=CREDENTIALS))</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+CONNECTION = pika.BlockingConnection(pika.ConnectionParameters(host=MQ_HOST, credentials=CREDENTIALS))</TD>
+</TR>
+<TR>
+<TD>
+channel = CONNECTION.channel()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+channel = CONNECTION.channel()</TD>
+</TR>
+<TR>
+<TD>
+channel.queue_declare(queue=error_utils.ERROR)</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+channel.queue_declare(queue=error_utils.ERROR)</TD>
+</TR>
+<TR>
+<TD>
+try:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.basic_consume(<span style="color: rgb(255, 0, 0);">check_cc_unreachable2</span>, queue=error_utils.ERROR, no_ack=True)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.start_consuming()<BR>
+except pika.exceptions.ConnectionClosed:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;pass</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+try:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.basic_consume(<span style="color: rgb(255, 0, 0);">check_cc_disconected</span>, queue=error_utils.ERROR, no_ack=True)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.start_consuming()<BR>
+except pika.exceptions.ConnectionClosed:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;pass</TD>
+</TR>
+<TR>
+<TD>
+context.process.terminate()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+context.process.terminate()</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 2</B><BR>Distance between two fragments = 2 <BR>Clone size = 11<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 335</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 153</TD></TR><TR>
+<TD>
+def <span style="color: rgb(255, 0, 0);">detect_disconnected_log</span>(context):<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;log_file = open(LOG_FILE, 'r')<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;lines = log_file.readlines()<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;log_file.close()<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;last_log_file = lines[-1].replace('\n', '').replace('"', '')<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;last_log_file = ' '.join(last_log_file.split(' ')[9:])<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;error = (error_utils.TTY_CONNECTION_PROBLEM) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);">TTY_PORT</span>))<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;print(('Last line => %s') % (last_log_file))<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;print(('Expect => %s') % (error))<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;assert last_log_file == error</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+def <span style="color: rgb(255, 0, 0);">detect_unreachability_log</span>(context):<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;log_file = open(LOG_FILE, 'r')<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;lines = log_file.readlines()<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;log_file.close()<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;last_log_file = lines[-1].replace('\n', '').replace('"', '')<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;last_log_file = ' '.join(last_log_file.split(' ')[9:])<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;error = (error_utils.TTY_CONNECTION_PROBLEM) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);">BAD_TTY_PORT</span>))<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;print(('Last line => %s') % (last_log_file))<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;print(('Expect => %s') % (error))<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;assert last_log_file == error</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 3</B><BR>Distance between two fragments = 1 <BR>Clone size = 10<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 206</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 321</TD></TR><TR>
+<TD>
+channel = CONNECTION.channel()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+channel = CONNECTION.channel()</TD>
+</TR>
+<TR>
+<TD>
+channel.queue_declare(queue=error_utils.ERROR)</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+channel.queue_declare(queue=error_utils.ERROR)</TD>
+</TR>
+<TR>
+<TD>
+try:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.basic_consume(<span style="color: rgb(255, 0, 0);">check_cc_unreachable</span>, queue=error_utils.ERROR, no_ack=True)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.start_consuming()<BR>
+except pika.exceptions.ConnectionClosed:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;pass</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+try:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.basic_consume(<span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">check_cc_unreachable2</span></span>, queue=error_utils.ERROR, no_ack=True)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.start_consuming()<BR>
+except pika.exceptions.ConnectionClosed:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;pass</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 4</B><BR>Distance between two fragments = 1 <BR>Clone size = 10<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 206</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 246</TD></TR><TR>
+<TD>
+channel = CONNECTION.channel()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+channel = CONNECTION.channel()</TD>
+</TR>
+<TR>
+<TD>
+channel.queue_declare(queue=error_utils.ERROR)</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+channel.queue_declare(queue=error_utils.ERROR)</TD>
+</TR>
+<TR>
+<TD>
+try:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.basic_consume(<span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">check_cc_unreachable</span></span>, queue=error_utils.ERROR, no_ack=True)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.start_consuming()<BR>
+except pika.exceptions.ConnectionClosed:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;pass</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+try:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.basic_consume(<span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">check_cc_disconected</span></span>, queue=error_utils.ERROR, no_ack=True)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.start_consuming()<BR>
+except pika.exceptions.ConnectionClosed:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;pass</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 5</B><BR>Distance between two fragments = 1 <BR>Clone size = 10<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 339</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 294</TD></TR><TR>
+<TD>
+log_file = open(LOG_FILE, 'r')</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+log_file = open(LOG_FILE, 'r')</TD>
+</TR>
+<TR>
+<TD>
+lines = log_file.readlines()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+lines = log_file.readlines()</TD>
+</TR>
+<TR>
+<TD>
+log_file.close()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+log_file.close()</TD>
+</TR>
+<TR>
+<TD>
+last_log_file = lines[-1].replace('\n', '').replace('"', '')</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+last_log_file = lines[-1].replace('\n', '').replace('"', '')</TD>
+</TR>
+<TR>
+<TD>
+last_log_file = ' '.join(last_log_file.split(' ')[9:])</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+last_log_file = ' '.join(last_log_file.split(' ')[9:])</TD>
+</TR>
+<TR>
+<TD>
+error = (error_utils.<span style="color: rgb(255, 0, 0);">TTY_CONNECTION_PROBLEM</span>) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);">TTY_PORT</span>))</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+error = (error_utils.<span style="color: rgb(255, 0, 0);">TTY_CONNECTION_SUCCESS</span>) % ((VAR_NAME, SITE_NAME, TTY_PORT))</TD>
+</TR>
+<TR>
+<TD>
+print(('Last line => %s') % (last_log_file))</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+print(('Last line => %s') % (last_log_file))</TD>
+</TR>
+<TR>
+<TD>
+print(('Expect => %s') % (error))</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+print(('Expect => %s') % (error))</TD>
+</TR>
+<TR>
+<TD>
+assert last_log_file == error</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+assert last_log_file == error</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 6</B><BR>Distance between two fragments = 2 <BR>Clone size = 10<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 294</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 157</TD></TR><TR>
+<TD>
+log_file = open(LOG_FILE, 'r')</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+log_file = open(LOG_FILE, 'r')</TD>
+</TR>
+<TR>
+<TD>
+lines = log_file.readlines()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+lines = log_file.readlines()</TD>
+</TR>
+<TR>
+<TD>
+log_file.close()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+log_file.close()</TD>
+</TR>
+<TR>
+<TD>
+last_log_file = lines[-1].replace('\n', '').replace('"', '')</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+last_log_file = lines[-1].replace('\n', '').replace('"', '')</TD>
+</TR>
+<TR>
+<TD>
+last_log_file = ' '.join(last_log_file.split(' ')[9:])</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+last_log_file = ' '.join(last_log_file.split(' ')[9:])</TD>
+</TR>
+<TR>
+<TD>
+error = (error_utils.<span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">TTY_CONNECTION_SUCCESS</span></span>) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);">TTY_PORT</span>))</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+error = (error_utils.<span style="color: rgb(255, 0, 0);">TTY_CONNECTION_PROBLEM</span>) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">BAD_TTY_PORT</span></span>))</TD>
+</TR>
+<TR>
+<TD>
+print(('Last line => %s') % (last_log_file))</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+print(('Last line => %s') % (last_log_file))</TD>
+</TR>
+<TR>
+<TD>
+print(('Expect => %s') % (error))</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+print(('Expect => %s') % (error))</TD>
+</TR>
+<TR>
+<TD>
+assert last_log_file == error</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+assert last_log_file == error</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 7</B><BR>Distance between two fragments = 4 <BR>Clone size = 10<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "tests/test_messaging.py"<BR>The first line is 86</TD><TD></TD><TD>Source file "tests/test_messaging.py"<BR>The first line is 72</TD></TR><TR>
 <TD>
 def <span style="color: rgb(255, 0, 0);">test_bad_host</span>(self):<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;messager = RabbitMQMessager(<span style="color: rgb(255, 0, 0);">VALID_USERNAME</span>, <span style="color: rgb(255, 0, 0);">VALID_PASSWORD</span>, <span style="color: rgb(255, 0, 0);">INVALID_HOST</span>)<BR>
@@ -86,7 +314,7 @@ def <span style="color: rgb(255, 0, 0);">test_bad_credential</span>(self):<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;self.assertEqual(output, MESSAGE)</TD>
 </TR>
 </TABLE> </P> <HR><BR>
-<P><B>Clone # 2</B><BR>Distance between two fragments = 3 <BR>Clone size = 10<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "tests/test_messaging.py"<BR>The first line is 72</TD><TD></TD><TD>Source file "tests/test_messaging.py"<BR>The first line is 61</TD></TR><TR>
+<P><B>Clone # 8</B><BR>Distance between two fragments = 3 <BR>Clone size = 10<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "tests/test_messaging.py"<BR>The first line is 72</TD><TD></TD><TD>Source file "tests/test_messaging.py"<BR>The first line is 61</TD></TR><TR>
 <TD>
 def <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">test_bad_credential</span></span>(self):<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;messager = RabbitMQMessager(<span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">INVALID_USERNAME</span></span>, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">INVALID_PASSWORD</span></span>, <span style="color: rgb(255, 0, 0);">VALID_HOST</span>)<BR>
@@ -105,7 +333,7 @@ def <span style="color: rgb(255, 0, 0);">test_without_credential</span>(self):<B
 &nbsp;&nbsp;&nbsp;&nbsp;self.assertEqual(output, MESSAGE)</TD>
 </TR>
 </TABLE> </P> <HR><BR>
-<P><B>Clone # 3</B><BR>Distance between two fragments = 4 <BR>Clone size = 10<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "tests/test_messaging.py"<BR>The first line is 86</TD><TD></TD><TD>Source file "tests/test_messaging.py"<BR>The first line is 61</TD></TR><TR>
+<P><B>Clone # 9</B><BR>Distance between two fragments = 4 <BR>Clone size = 10<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "tests/test_messaging.py"<BR>The first line is 86</TD><TD></TD><TD>Source file "tests/test_messaging.py"<BR>The first line is 61</TD></TR><TR>
 <TD>
 def <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">test_bad_host</span></span>(self):<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;messager = RabbitMQMessager(<span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">VALID_USERNAME</span></span>, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">VALID_PASSWORD</span></span>, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">INVALID_HOST</span></span>)<BR>
@@ -124,26 +352,7 @@ def <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">te
 &nbsp;&nbsp;&nbsp;&nbsp;self.assertEqual(output, MESSAGE)</TD>
 </TR>
 </TABLE> </P> <HR><BR>
-<P><B>Clone # 4</B><BR>Distance between two fragments = 0 <BR>Clone size = 6<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 129</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 113</TD></TR><TR>
-<TD>
-process = subprocess.Popen(shlex.split(commands), stdout=subprocess.PIPE, stderr=subprocess.PIPE)</TD>
-<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
-process = subprocess.Popen(shlex.split(commands), stdout=subprocess.PIPE, stderr=subprocess.PIPE)</TD>
-</TR>
-<TR>
-<TD>
-sleep(5)</TD>
-<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
-sleep(5)</TD>
-</TR>
-<TR>
-<TD>
-process.terminate()</TD>
-<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
-process.terminate()</TD>
-</TR>
-</TABLE> </P> <HR><BR>
-<P><B>Clone # 5</B><BR>Distance between two fragments = 4 <BR>Clone size = 6<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "pavement.py"<BR>The first line is 158</TD><TD></TD><TD>Source file "fabfile.py"<BR>The first line is 71</TD></TR><TR>
+<P><B>Clone # 10</B><BR>Distance between two fragments = 4 <BR>Clone size = 6<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "pavement.py"<BR>The first line is 158</TD><TD></TD><TD>Source file "fabfile.py"<BR>The first line is 71</TD></TR><TR>
 <TD>
 def <span style="color: rgb(255, 0, 0);">stat</span>():<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(255, 0, 0);">clonedigger</span>()<BR>
@@ -164,10 +373,29 @@ def bundle():<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(255, 0, 0);">local</span>('pip bundle data-generator.pybundle -r REQUIREMENTS.txt')</TD>
 </TR>
 </TABLE> </P> <HR><BR>
-<P><B>Clone # 6</B><BR>Distance between two fragments = 4 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 193</TD><TD></TD><TD>Source file "tests/test_messaging.py"<BR>The first line is 109</TD></TR><TR>
+<P><B>Clone # 11</B><BR>Distance between two fragments = 0 <BR>Clone size = 6<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 144</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 128</TD></TR><TR>
+<TD>
+process = subprocess.Popen(shlex.split(commands), stdout=subprocess.PIPE, stderr=subprocess.PIPE)</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+process = subprocess.Popen(shlex.split(commands), stdout=subprocess.PIPE, stderr=subprocess.PIPE)</TD>
+</TR>
+<TR>
+<TD>
+sleep(5)</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+sleep(5)</TD>
+</TR>
+<TR>
+<TD>
+process.terminate()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+process.terminate()</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 12</B><BR>Distance between two fragments = 4 <BR>Clone size = 8<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 208</TD><TD></TD><TD>Source file "tests/test_messaging.py"<BR>The first line is 109</TD></TR><TR>
 <TD>
 try:<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;channel.basic_consume(<span style="color: rgb(255, 0, 0);">callback</span>, queue=<span style="color: rgb(255, 0, 0);">error_utils.ERROR</span>, no_ack=True)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.basic_consume(<span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">check_cc_unreachable</span></span></span>, queue=<span style="color: rgb(255, 0, 0);">error_utils.ERROR</span>, no_ack=True)<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;channel.start_consuming()<BR>
 except pika.exceptions.ConnectionClosed:<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;pass</TD>
@@ -179,7 +407,37 @@ except pika.exceptions.ConnectionClosed:<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;pass</TD>
 </TR>
 </TABLE> </P> <HR><BR>
-<P><B>Clone # 7</B><BR>Distance between two fragments = 1 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 159</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 142</TD></TR><TR>
+<P><B>Clone # 13</B><BR>Distance between two fragments = 4 <BR>Clone size = 8<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "tests/test_messaging.py"<BR>The first line is 109</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 323</TD></TR><TR>
+<TD>
+try:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.basic_consume(<span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">self.callback</span></span>, queue=<span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">TOPIC</span></span>, no_ack=True)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.start_consuming()<BR>
+except pika.exceptions.ConnectionClosed:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;pass</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+try:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.basic_consume(<span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">check_cc_unreachable2</span></span></span>, queue=<span style="color: rgb(255, 0, 0);">error_utils.ERROR</span>, no_ack=True)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.start_consuming()<BR>
+except pika.exceptions.ConnectionClosed:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;pass</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 14</B><BR>Distance between two fragments = 4 <BR>Clone size = 8<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "tests/test_messaging.py"<BR>The first line is 109</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 248</TD></TR><TR>
+<TD>
+try:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.basic_consume(<span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">self.callback</span></span></span>, queue=<span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">TOPIC</span></span></span>, no_ack=True)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.start_consuming()<BR>
+except pika.exceptions.ConnectionClosed:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;pass</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+try:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.basic_consume(<span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">check_cc_disconected</span></span></span>, queue=<span style="color: rgb(255, 0, 0);">error_utils.ERROR</span>, no_ack=True)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.start_consuming()<BR>
+except pika.exceptions.ConnectionClosed:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;pass</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 15</B><BR>Distance between two fragments = 0 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 339</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 266</TD></TR><TR>
 <TD>
 log_file = open(LOG_FILE, 'r')</TD>
 <TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
@@ -199,7 +457,193 @@ log_file.close()</TD>
 </TR>
 <TR>
 <TD>
+last_log_file = lines[-1].replace('\n', '').replace('"', '')</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+last_log_file = lines[-1].replace('\n', '').replace('"', '')</TD>
+</TR>
+<TR>
+<TD>
+last_log_file = ' '.join(last_log_file.split(' ')[9:])</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+last_log_file = ' '.join(last_log_file.split(' ')[9:])</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 16</B><BR>Distance between two fragments = 1 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 339</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 174</TD></TR><TR>
+<TD>
+log_file = open(LOG_FILE, 'r')</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+log_file = open(LOG_FILE, 'r')</TD>
+</TR>
+<TR>
+<TD>
+lines = log_file.readlines()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+lines = log_file.readlines()</TD>
+</TR>
+<TR>
+<TD>
+log_file.close()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+log_file.close()</TD>
+</TR>
+<TR>
+<TD>
+last_log_file = lines[-<span style="color: rgb(255, 0, 0);">1</span>].replace('\n', '').replace('"', '')</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
 last_log_file = lines[-<span style="color: rgb(255, 0, 0);">2</span>].replace('\n', '').replace('"', '')</TD>
+</TR>
+<TR>
+<TD>
+last_log_file = ' '.join(last_log_file.split(' ')[9:])</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+last_log_file = ' '.join(last_log_file.split(' ')[9:])</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 17</B><BR>Distance between two fragments = 0 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 294</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 266</TD></TR><TR>
+<TD>
+log_file = open(LOG_FILE, 'r')</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+log_file = open(LOG_FILE, 'r')</TD>
+</TR>
+<TR>
+<TD>
+lines = log_file.readlines()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+lines = log_file.readlines()</TD>
+</TR>
+<TR>
+<TD>
+log_file.close()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+log_file.close()</TD>
+</TR>
+<TR>
+<TD>
+last_log_file = lines[-1].replace('\n', '').replace('"', '')</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+last_log_file = lines[-1].replace('\n', '').replace('"', '')</TD>
+</TR>
+<TR>
+<TD>
+last_log_file = ' '.join(last_log_file.split(' ')[9:])</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+last_log_file = ' '.join(last_log_file.split(' ')[9:])</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 18</B><BR>Distance between two fragments = 1 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 294</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 174</TD></TR><TR>
+<TD>
+log_file = open(LOG_FILE, 'r')</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+log_file = open(LOG_FILE, 'r')</TD>
+</TR>
+<TR>
+<TD>
+lines = log_file.readlines()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+lines = log_file.readlines()</TD>
+</TR>
+<TR>
+<TD>
+log_file.close()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+log_file.close()</TD>
+</TR>
+<TR>
+<TD>
+last_log_file = lines[-<span style="color: rgb(255, 0, 0);">1</span>].replace('\n', '').replace('"', '')</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+last_log_file = lines[-<span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">2</span></span>].replace('\n', '').replace('"', '')</TD>
+</TR>
+<TR>
+<TD>
+last_log_file = ' '.join(last_log_file.split(' ')[9:])</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+last_log_file = ' '.join(last_log_file.split(' ')[9:])</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 19</B><BR>Distance between two fragments = 1 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 266</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 174</TD></TR><TR>
+<TD>
+log_file = open(LOG_FILE, 'r')</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+log_file = open(LOG_FILE, 'r')</TD>
+</TR>
+<TR>
+<TD>
+lines = log_file.readlines()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+lines = log_file.readlines()</TD>
+</TR>
+<TR>
+<TD>
+log_file.close()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+log_file.close()</TD>
+</TR>
+<TR>
+<TD>
+last_log_file = lines[-<span style="color: rgb(255, 0, 0);">1</span>].replace('\n', '').replace('"', '')</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+last_log_file = lines[-<span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">2</span></span></span>].replace('\n', '').replace('"', '')</TD>
+</TR>
+<TR>
+<TD>
+last_log_file = ' '.join(last_log_file.split(' ')[9:])</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+last_log_file = ' '.join(last_log_file.split(' ')[9:])</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 20</B><BR>Distance between two fragments = 0 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 266</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 157</TD></TR><TR>
+<TD>
+log_file = open(LOG_FILE, 'r')</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+log_file = open(LOG_FILE, 'r')</TD>
+</TR>
+<TR>
+<TD>
+lines = log_file.readlines()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+lines = log_file.readlines()</TD>
+</TR>
+<TR>
+<TD>
+log_file.close()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+log_file.close()</TD>
+</TR>
+<TR>
+<TD>
+last_log_file = lines[-<span style="color: rgb(255, 0, 0);">1</span>].replace('\n', '').replace('"', '')</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+last_log_file = lines[-1].replace('\n', '').replace('"', '')</TD>
+</TR>
+<TR>
+<TD>
+last_log_file = ' '.join(last_log_file.split(' ')[9:])</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+last_log_file = ' '.join(last_log_file.split(' ')[9:])</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 21</B><BR>Distance between two fragments = 1 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 174</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 157</TD></TR><TR>
+<TD>
+log_file = open(LOG_FILE, 'r')</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+log_file = open(LOG_FILE, 'r')</TD>
+</TR>
+<TR>
+<TD>
+lines = log_file.readlines()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+lines = log_file.readlines()</TD>
+</TR>
+<TR>
+<TD>
+log_file.close()</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+log_file.close()</TD>
+</TR>
+<TR>
+<TD>
+last_log_file = lines[-<span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">2</span></span></span></span>].replace('\n', '').replace('"', '')</TD>
 <TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
 last_log_file = lines[-<span style="color: rgb(255, 0, 0);">1</span>].replace('\n', '').replace('"', '')</TD>
 </TR>
@@ -208,6 +652,19 @@ last_log_file = lines[-<span style="color: rgb(255, 0, 0);">1</span>].replace('\
 last_log_file = ' '.join(last_log_file.split(' ')[9:])</TD>
 <TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
 last_log_file = ' '.join(last_log_file.split(' ')[9:])</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 22</B><BR>Distance between two fragments = 2 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 40</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 50</TD></TR><TR>
+<TD>
+def <span style="color: rgb(255, 0, 0);">check_cc_unreachable</span>(channel, method, properties, body):<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;print(('check_cc_unreachable => %s') % (body))<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;assert body == (error_utils.TTY_CONNECTION_PROBLEM) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);">BAD_TTY_PORT</span>))<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;CONNECTION.close()</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+def <span style="color: rgb(255, 0, 0);">check_cc_unreachable2</span>(channel, method, properties, body):<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;print(('check_cc_unreachable => %s') % (body))<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;assert body == (error_utils.TTY_CONNECTION_PROBLEM) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);">TTY_PORT</span>))<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;CONNECTION.close()</TD>
 </TR>
 </TABLE> </P> <HR>
     

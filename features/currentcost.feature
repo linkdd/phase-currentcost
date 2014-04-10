@@ -16,29 +16,34 @@ Feature: Current Cost data collection
         Then we should see currentcost is unreachable in log
         And we should see rabbitmq error in log
 
-    Scenario: Problem with current cost connexion with RabbitMQ
+    Scenario: Problem with current cost connexion with RabbitMQ activated
         When we start currentcost with bad port with rabbitmq
         Then we should see currentcost is unreachable in log
         And we should receive a message saying that current cost is unreachable
 
-    Scenario Outline: Problem with current cost disconnection
-        Given current cost is disconnected
-        When we launch currentcost script
-        Then we should receive an error message over the network saying that current cost is disconnected
-        And we should see this error in log
+    Scenario: Current cost disconnected
+        Given current cost does not send any message
+        When we launch currentcost script and reach the timeout limit
+        Then we should get informed that current cost does not send messages
+        And we should see current cost does not send any message in log
+
+    Scenario: Problem with USB port
+        Given current cost is connected and currentcost script is launched
+        When we disconnect USB port
+        Then we should receive a message saying that current cost is disconnected
+        And we should see currentcost is disconnected in log
 
     Scenario Outline: Problem with current cost message
         Given current cost is connected but send incorrect message
         When we launch currentcost script
         Then We should see this error in log
 
-    Scenario Outline: Problem with USB port
-        Given current cost is connected and currentcost script is launched
-        When we disconnect USB port
-        Then we should receive and error message over the network
-        And we should see this error in log
-
-    Scenario Outline: Nominal case
+    Scenario Outline: Nominal case instant consumption
         Given current cost is connected
         When we launch currentcost script
-        Then we should receive a success message over the network
+        Then we should receive instant consumption over the network
+
+    Scenario Outline: Nominal case historical consumption
+        Given current cost is connected
+        When we launch currentcost script
+        Then we should receive historical consumption over the network

@@ -2,7 +2,7 @@
 <body>
 <div>
 <h1>Report</h1>
-<p>269 statements analysed.</p><div>
+<p>343 statements analysed.</p><div>
 <h2>Raw metrics</h2>
 <table>
 <tr class="header">
@@ -14,37 +14,158 @@
 </tr>
 <tr class="even">
 <td>code</td>
-<td>383</td>
-<td>52.90</td>
-<td>383</td>
-<td>=</td>
+<td>485</td>
+<td>55.43</td>
+<td>431</td>
+<td>+54.00</td>
 </tr>
 <tr class="odd">
 <td>docstring</td>
-<td>185</td>
-<td>25.55</td>
-<td>185</td>
-<td>=</td>
+<td>214</td>
+<td>24.46</td>
+<td>198</td>
+<td>+16.00</td>
 </tr>
 <tr class="even">
 <td>comment</td>
-<td>26</td>
-<td>3.59</td>
-<td>26</td>
+<td>25</td>
+<td>2.86</td>
+<td>25</td>
 <td>=</td>
 </tr>
 <tr class="odd">
 <td>empty</td>
-<td>130</td>
-<td>17.96</td>
-<td>130</td>
+<td>151</td>
+<td>17.26</td>
+<td>141</td>
+<td>+10.00</td>
+</tr>
+</table>
+</div>
+<div>
+<h2>Duplication</h2>
+<table>
+<tr class="header">
+<th>&#160;</th>
+<th>now</th>
+<th>previous</th>
+<th>difference</th>
+</tr>
+<tr class="even">
+<th>nb duplicated lines</th>
+<td>0</td>
+<td>0</td>
+<td>=</td>
+</tr>
+<tr class="odd">
+<th>percent duplicated lines</th>
+<td>0.000</td>
+<td>0.000</td>
 <td>=</td>
 </tr>
 </table>
 </div>
 <div>
+<h2>Messages by category</h2>
+<table>
+<tr class="header">
+<th>type</th>
+<th>number</th>
+<th>previous</th>
+<th>difference</th>
+</tr>
+<tr class="even">
+<td>convention</td>
+<td>2</td>
+<td>1</td>
+<td>+1.00</td>
+</tr>
+<tr class="odd">
+<td>refactor</td>
+<td>1</td>
+<td>1</td>
+<td>=</td>
+</tr>
+<tr class="even">
+<td>warning</td>
+<td>5</td>
+<td>4</td>
+<td>+1.00</td>
+</tr>
+<tr class="odd">
+<td>error</td>
+<td>0</td>
+<td>0</td>
+<td>=</td>
+</tr>
+</table>
+</div>
+<div>
+<h2>% errors / warnings by module</h2>
+<table>
+<tr class="header">
+<th>module</th>
+<th>error</th>
+<th>warning</th>
+<th>refactor</th>
+<th>convention</th>
+</tr>
+<tr class="even">
+<td>tests.test_messaging</td>
+<td>0.00</td>
+<td>60.00</td>
+<td>0.00</td>
+<td>0.00</td>
+</tr>
+<tr class="odd">
+<td>currentcost_steps</td>
+<td>0.00</td>
+<td>40.00</td>
+<td>0.00</td>
+<td>100.00</td>
+</tr>
+</table>
+</div>
+<div>
+<h2>Messages</h2>
+<table>
+<tr class="header">
+<th>message id</th>
+<th>occurrences</th>
+</tr>
+<tr class="even">
+<td>unused-argument</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>locally-disabled</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>redefined-outer-name</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>invalid-name</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>deprecated-pragma</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>too-few-public-methods</td>
+<td>1</td>
+</tr>
+</table>
+</div>
+<div>
+<h2>Global evaluation</h2>
+Your code has been rated at 9.77/10 (previous run: 9.80/10, -0.03)</div>
+<div>
 <h2>External dependencies</h2>
 <pre>behave 
+  \-given (currentcost_steps)
   \-then (currentcost_steps)
   \-when (currentcost_steps)
 currentcost 
@@ -71,111 +192,6 @@ paver
   | \-setup (pavement)
   \-tasks (setup)
 pika (tests.test_messaging,currentcost.rabbitmq_messager,currentcost_steps)</pre></div>
-<div>
-<h2>Messages by category</h2>
-<table>
-<tr class="header">
-<th>type</th>
-<th>number</th>
-<th>previous</th>
-<th>difference</th>
-</tr>
-<tr class="even">
-<td>convention</td>
-<td>0</td>
-<td>2</td>
-<td>-2.00</td>
-</tr>
-<tr class="odd">
-<td>refactor</td>
-<td>1</td>
-<td>1</td>
-<td>=</td>
-</tr>
-<tr class="even">
-<td>warning</td>
-<td>3</td>
-<td>3</td>
-<td>=</td>
-</tr>
-<tr class="odd">
-<td>error</td>
-<td>0</td>
-<td>0</td>
-<td>=</td>
-</tr>
-</table>
-</div>
-<div>
-<h2>% errors / warnings by module</h2>
-<table>
-<tr class="header">
-<th>module</th>
-<th>error</th>
-<th>warning</th>
-<th>refactor</th>
-<th>convention</th>
-</tr>
-<tr class="even">
-<td>tests.test_messaging</td>
-<td>0.00</td>
-<td>100.00</td>
-<td>0.00</td>
-<td>0.00</td>
-</tr>
-</table>
-</div>
-<div>
-<h2>Messages</h2>
-<table>
-<tr class="header">
-<th>message id</th>
-<th>occurrences</th>
-</tr>
-<tr class="even">
-<td>unused-argument</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td>locally-disabled</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td>deprecated-pragma</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td>too-few-public-methods</td>
-<td>1</td>
-</tr>
-</table>
-</div>
-<div>
-<h2>Global evaluation</h2>
-Your code has been rated at 9.85/10 (previous run: 9.78/10, +0.07)</div>
-<div>
-<h2>Duplication</h2>
-<table>
-<tr class="header">
-<th>&#160;</th>
-<th>now</th>
-<th>previous</th>
-<th>difference</th>
-</tr>
-<tr class="even">
-<th>nb duplicated lines</th>
-<td>0</td>
-<td>0</td>
-<td>=</td>
-</tr>
-<tr class="odd">
-<th>percent duplicated lines</th>
-<td>0.000</td>
-<td>0.000</td>
-<td>=</td>
-</tr>
-</table>
-</div>
 <div>
 <h2>Statistics by type</h2>
 <table>
@@ -213,9 +229,9 @@ Your code has been rated at 9.85/10 (previous run: 9.78/10, +0.07)</div>
 </tr>
 <tr class="odd">
 <td>function</td>
-<td>36</td>
-<td>36</td>
-<td>=</td>
+<td>45</td>
+<td>40</td>
+<td>+5.00</td>
 <td>100.00</td>
 <td>0.00</td>
 </tr>
@@ -284,7 +300,7 @@ Your code has been rated at 9.85/10 (previous run: 9.78/10, +0.07)</div>
 <td>info</td>
 <td>currentcost_steps</td>
 <td>&#160;</td>
-<td>10</td>
+<td>11</td>
 <td>0</td>
 <td>Deprecated pragma "pylint:disable-msg" or "pylint:enable-msg"</td>
 </tr>
@@ -292,7 +308,7 @@ Your code has been rated at 9.85/10 (previous run: 9.78/10, +0.07)</div>
 <td>info</td>
 <td>currentcost_steps</td>
 <td>&#160;</td>
-<td>10</td>
+<td>11</td>
 <td>0</td>
 <td>Locally disabling E0611</td>
 </tr>
@@ -300,17 +316,41 @@ Your code has been rated at 9.85/10 (previous run: 9.78/10, +0.07)</div>
 <td>info</td>
 <td>currentcost_steps</td>
 <td>&#160;</td>
-<td>12</td>
+<td>11</td>
 <td>0</td>
 <td>Deprecated pragma "pylint:disable-msg" or "pylint:enable-msg"</td>
 </tr>
 <tr class="odd">
-<td>info</td>
+<td>warning</td>
 <td>currentcost_steps</td>
-<td>&#160;</td>
-<td>12</td>
-<td>0</td>
-<td>Deprecated pragma "pylint:disable-msg" or "pylint:enable-msg"</td>
+<td>rmq_no_messages</td>
+<td>244</td>
+<td>4</td>
+<td>Redefining name 'CONNECTION' from outer scope (line 36)</td>
+</tr>
+<tr class="even">
+<td>convention</td>
+<td>currentcost_steps</td>
+<td>rmq_no_messages</td>
+<td>244</td>
+<td>4</td>
+<td>Invalid variable name "CONNECTION"</td>
+</tr>
+<tr class="odd">
+<td>warning</td>
+<td>currentcost_steps</td>
+<td>receive_message_disconnected</td>
+<td>319</td>
+<td>4</td>
+<td>Redefining name 'CONNECTION' from outer scope (line 36)</td>
+</tr>
+<tr class="even">
+<td>convention</td>
+<td>currentcost_steps</td>
+<td>receive_message_disconnected</td>
+<td>319</td>
+<td>4</td>
+<td>Invalid variable name "CONNECTION"</td>
 </tr>
 </table>
 </div>
