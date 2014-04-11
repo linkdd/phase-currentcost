@@ -38,7 +38,7 @@ Feature: Current Cost data collection
         When we launch currentcost script
         Then We should see this error in log
 
-    Scenario Outline: Nominal case instant consumption
+    Scenario: Nominal case instant consumption
         Given current cost is connected
         When we launch currentcost script
         Then we should receive instant consumption over the network

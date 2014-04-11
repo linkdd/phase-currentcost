@@ -15,7 +15,14 @@ from currentcost.utils import error_utils
 import pika
 import shlex
 from time import sleep
+import serial
+import json
+import logging
+import logging.config
 
+DEFAULT_LOG_FILE = "logs/log.conf"
+logging.config.fileConfig(DEFAULT_LOG_FILE)
+LOGGER = logging.getLogger("currentcost")
 
 BIN = "currentcost"
 VAR_NAME = "TEST_electric_meter"
@@ -23,6 +30,7 @@ SITE_NAME = "TEST_liogen_home"
 ARGUMENT_TTY_PORT = "--tty-port"
 TTY_PORT = "tests/tty/currentcost"
 BAD_TTY_PORT = "/dev/currentcost9876"
+TTY_WRITER_PORT = "tests/tty/writer"
 ARGUMENT_MQ_CREDENTIAL = "--rabbitMQ-credential"
 MQ_CREDENTIAL = "admin:password"
 BAD_MQ_CREDENTIAL = "admzfzein:paszeasword"
@@ -32,11 +40,24 @@ TTY_ERROR_MESSAGE = "None"
 CREDENTIALS = pika.PlainCredentials("admin", "password")
 SOCAT = "socat"
 SIMULATED_TTY_PORT = "PTY,link=%s" % TTY_PORT
-SIMULATED_TTY_PORT2 = "PTY,link=tests/tty/writer"
+SIMULATED_TTY_PORT2 = "PTY,link=%s" % TTY_WRITER_PORT
 CONNECTION = pika.BlockingConnection(
     pika.ConnectionParameters(host=MQ_HOST, credentials=CREDENTIALS))
-CURRENTCOST_MESSAGE = "<msg><src>CC128-v1.29</src><dsb>00786</dsb><time>00:31:36</time><tmpr>19.3</tmpr><sensor>0</sensor><id>00077</id><type>1</type><ch1><watts>00405</watts></ch1></msg>"
+CURRENTCOST_MESSAGE = "<msg><src>CC128-v1.29</src><dsb>00786</dsb>\
+<time>00:31:36</time><tmpr>19.3</tmpr><sensor>0</sensor><id>00077</id>\
+<type>1</type><ch1><watts>00405</watts></ch1></msg>"
 
+
+def check_cc_message(channel, method, properties, body):
+    """
+        Callback called when a new message is available.
+    """
+    message = json.loads(body)
+    print("check_cc_message => %s" % message)
+    assert message[u"message"] == CURRENTCOST_MESSAGE
+    assert message[u"siteID"] == SITE_NAME
+    assert message[u"variableID"] == VAR_NAME
+    channel.close()
 
 
 def check_cc_unreachable(channel, method, properties, body):
@@ -46,27 +67,27 @@ def check_cc_unreachable(channel, method, properties, body):
     print("check_cc_unreachable => %s" % body)
     assert body == error_utils.TTY_CONNECTION_PROBLEM % (
         VAR_NAME, SITE_NAME, BAD_TTY_PORT)
-    CONNECTION.close()
+    channel.close()
 
 
-def check_cc_unreachable2(channel, method, properties, body):
+def check_cc_disconnected(channel, method, properties, body):
     """
         Callback called when a new message is available.
     """
-    print("check_cc_unreachable => %s" % body)
+    print("check_cc_disconnected => %s" % body)
     assert body == error_utils.TTY_CONNECTION_PROBLEM % (
         VAR_NAME, SITE_NAME, TTY_PORT)
-    CONNECTION.close()
+    channel.close()
 
 
-def check_cc_disconected(channel, method, properties, body):
+def check_usb_disconnected(channel, method, properties, body):
     """
         Callback called when a new message is available.
     """
-    print("check_cc_disconected => %s" % body)
+    print("check_usb_disconnected => %s" % body)
     assert body == error_utils.CURRENTCOST_TIMEOUT % (
         VAR_NAME, SITE_NAME)
-    CONNECTION.close()
+    channel.close()
 
 
 def check_response_script(commands_response):
@@ -123,7 +144,7 @@ def error_script_without_parameter(context):
 @when(u"we start currentcost with bad port without rabbitmq")
 def when_launch_with_unreachable(context):
     """
-        Launch currentcost script with wrong tty with -p active
+        Launch currentcost script with wrong tty port
     """
     commands = "%s %s %s %s %s" % (
         BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, BAD_TTY_PORT)
@@ -243,13 +264,11 @@ def rmq_no_messages(context):
         Waited on RabbitMQ an error message saying that current cost
         does not send any message.
     """
-    CONNECTION = pika.BlockingConnection(
-        pika.ConnectionParameters(host=MQ_HOST, credentials=CREDENTIALS))
     channel = CONNECTION.channel()
     channel.queue_declare(queue=error_utils.ERROR)
     try:
         channel.basic_consume(
-            check_cc_disconected,
+            check_usb_disconnected,
             queue=error_utils.ERROR,
             no_ack=True)
         channel.start_consuming()
@@ -318,13 +337,11 @@ def receive_message_disconnected(context):
     """
         Expect a message saying that currentcost is unreachable on RabbitMQ.
     """
-    CONNECTION = pika.BlockingConnection(
-        pika.ConnectionParameters(host=MQ_HOST, credentials=CREDENTIALS))
     channel = CONNECTION.channel()
     channel.queue_declare(queue=error_utils.ERROR)
     try:
         channel.basic_consume(
-            check_cc_unreachable2,
+            check_cc_disconnected,
             queue=error_utils.ERROR,
             no_ack=True)
         channel.start_consuming()
@@ -348,3 +365,48 @@ def detect_disconnected_log(context):
     print("Last line => %s" % last_log_file)
     print("Expect => %s" % error)
     assert last_log_file == error
+
+
+@given(u"current cost is connected")
+def cc_connected(context):
+    """
+        Simulate USB port connection with socat.
+    """
+    commands = "%s %s %s" % (SOCAT, SIMULATED_TTY_PORT, SIMULATED_TTY_PORT2)
+    context.socat = subprocess.Popen(shlex.split(commands))
+
+
+@when(u"we launch currentcost script")
+def launch_cc_script(context):
+    """
+        Launch cc script with RabbitMQ activated.
+    """
+    commands = "%s %s %s %s %s %s %s" % (
+        BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, TTY_PORT,
+        ARGUMENT_MQ_CREDENTIAL, MQ_CREDENTIAL)
+    context.process = subprocess.Popen(shlex.split(commands))
+
+    sleep(1)
+    context.ser = serial.Serial(TTY_WRITER_PORT)
+    context.ser.write("%s\n" % CURRENTCOST_MESSAGE)
+
+
+@then(u"we should receive instant consumption over the network")
+def send_receive_message(context):
+    """
+        Send a message on socket and retrieve it on RabbitMQ.
+    """
+    channel = CONNECTION.channel()
+    channel.queue_declare(queue=error_utils.SUCCESS)
+    try:
+        channel.basic_consume(
+            check_cc_message,
+            queue=error_utils.SUCCESS,
+            no_ack=True)
+        channel.start_consuming()
+    except pika.exceptions.ConnectionClosed:
+        pass
+
+    context.ser.close()
+    context.process.terminate()
+    context.socat.terminate()
