@@ -10,15 +10,7 @@ Tasks
 -----
 
 * CurrentCost connection:
-    * Study historic parsing (test with currentcost and in setting hour in currentcost)
-    * Validate XML message studying XML formattage http://code.activestate.com/recipes/52256-check-xml-well-formedness/
-    http://stackoverflow.com/questions/13742538/how-to-validate-xml-using-python-without-third-part-libs
-    * Validate XML message from currentcost
-    * Write objectives and test case for message waited
-    * Develop method that waited for message to current cost + error case + unit test
-    * Write objectives and test case for message convertion and send over the network (look at express for tis part)
-    * Develop method that convert XML message to network message + error case  + unit test
-    * Develop and test script that integrate all this part
+    * Add timezone to data send
 
 * Project:
     * Architecture:

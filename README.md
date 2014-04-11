@@ -9,6 +9,14 @@ Functional test with fixtures to simulate CurrentCost on port COM and waited for
 
 TO BE COMPLETED (goals of the project)
 
+List of features:
+* support usb disconnexion
+* send instant consumption
+* send historical consumption
+* send timeout message
+* send bad formated message eroor
+* To be completed
+
 Dependencies
 ============
 

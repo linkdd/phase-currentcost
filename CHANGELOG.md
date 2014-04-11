@@ -1,3 +1,25 @@
+pyCurrentCost (v0.9.1) stable; urgency=low
+--------------------------------------------
+
+* Test manually currentcost script strength.
+* Fix unicode encoding error.
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-11 19:00:00
+
+pyCurrentCost (v0.9.0) stable; urgency=low
+--------------------------------------------
+
+* Funct test current cost historical consumption message.
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-11 17:30:00
+
+pyCurrentCost (v0.8.0) unstable; urgency=low
+--------------------------------------------
+
+* Funct test current cost incorrect message.
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-11 16:30:00
+
 pyCurrentCost (v0.7.0) unstable; urgency=low
 --------------------------------------------
 

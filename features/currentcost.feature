@@ -33,17 +33,18 @@ Feature: Current Cost data collection
         Then we should receive a message saying that current cost is disconnected
         And we should see currentcost is disconnected in log
 
-    Scenario Outline: Problem with current cost message
-        Given current cost is connected but send incorrect message
-        When we launch currentcost script
-        Then We should see this error in log
+    Scenario: Problem with current cost message
+        Given current cost is connected and script is launched
+        When current cost send incorrect message
+        Then we should get informed that current cost send incorrect message
+        And we should see incorrect message error in log
 
     Scenario: Nominal case instant consumption
-        Given current cost is connected
-        When we launch currentcost script
+        Given current cost is connected and script is launched
+        When current cost send instant consumption
         Then we should receive instant consumption over the network
 
-    Scenario Outline: Nominal case historical consumption
-        Given current cost is connected
-        When we launch currentcost script
+    @slow
+    Scenario: Nominal case historical consumption
+        Given current cost is connected and script is launched
         Then we should receive historical consumption over the network

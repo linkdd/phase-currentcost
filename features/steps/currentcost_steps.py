@@ -19,6 +19,11 @@ import serial
 import json
 import logging
 import logging.config
+from tests.fixtures.history import HISTORY_1, HISTORY_2, HISTORY_3, HISTORY_4
+from tests.fixtures.history import HISTORY_5, HISTORY_6, HISTORY_7, HISTORY_8
+from tests.fixtures.history import HISTORY_9, HISTORY_10, HISTORY_11
+from tests.fixtures.history import HISTORY_12, HISTORY_13
+
 
 DEFAULT_LOG_FILE = "logs/log.conf"
 logging.config.fileConfig(DEFAULT_LOG_FILE)
@@ -46,6 +51,51 @@ CONNECTION = pika.BlockingConnection(
 CURRENTCOST_MESSAGE = "<msg><src>CC128-v1.29</src><dsb>00786</dsb>\
 <time>00:31:36</time><tmpr>19.3</tmpr><sensor>0</sensor><id>00077</id>\
 <type>1</type><ch1><watts>00405</watts></ch1></msg>"
+WRONG_CURRENTCOST_MESSAGE = "<msg><src>ensor>0</sensor><id>00077</id>\
+<type>1</type><ch1><watts>00405</watts></ch1></msg>"
+HISTORYS = (
+    HISTORY_1,
+    HISTORY_2,
+    HISTORY_3,
+    HISTORY_4,
+    HISTORY_5,
+    HISTORY_6,
+    HISTORY_7,
+    HISTORY_8,
+    HISTORY_9,
+    HISTORY_10,
+    HISTORY_11,
+    HISTORY_12,
+    HISTORY_13)
+RECEIVE_HISTORY = []
+
+
+def check_history_message(channel, method, properties, body):
+    """
+        Callback that check historical message sent.
+    """
+    RECEIVE_HISTORY.append(body)
+    LOGGER.info("check_history_message => len %d" % len(RECEIVE_HISTORY))
+
+    index = len(RECEIVE_HISTORY) - 1
+    message = json.loads(body)
+    expected_message = HISTORYS[index]
+
+    assert message[u"message"] == expected_message
+    assert message[u"siteID"] == SITE_NAME
+    assert message[u"variableID"] == VAR_NAME
+
+    channel.close()
+
+
+def check_cc_incorrect(channel, method, properties, body):
+    """
+        Callback that check incorrect message sent.
+    """
+    print("check_cc_incorrect => %s" % body)
+    assert body == error_utils.CURRENTCOST_INCORRECT_MESSAGE % (
+        VAR_NAME, SITE_NAME, WRONG_CURRENTCOST_MESSAGE)
+    channel.close()
 
 
 def check_cc_message(channel, method, properties, body):
@@ -367,25 +417,27 @@ def detect_disconnected_log(context):
     assert last_log_file == error
 
 
-@given(u"current cost is connected")
-def cc_connected(context):
+@given(u"current cost is connected and script is launched")
+def cc_connected_launched(context):
     """
-        Simulate USB port connection with socat.
+        We simulate a socket with socat and launch cc script.
     """
     commands = "%s %s %s" % (SOCAT, SIMULATED_TTY_PORT, SIMULATED_TTY_PORT2)
     context.socat = subprocess.Popen(shlex.split(commands))
 
+    sleep(1)
 
-@when(u"we launch currentcost script")
-def launch_cc_script(context):
-    """
-        Launch cc script with RabbitMQ activated.
-    """
     commands = "%s %s %s %s %s %s %s" % (
         BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, TTY_PORT,
         ARGUMENT_MQ_CREDENTIAL, MQ_CREDENTIAL)
     context.process = subprocess.Popen(shlex.split(commands))
 
+
+@when(u"current cost send instant consumption")
+def send_instant_consumption(context):
+    """
+        Launch cc script with RabbitMQ activated.
+    """
     sleep(1)
     context.ser = serial.Serial(TTY_WRITER_PORT)
     context.ser.write("%s\n" % CURRENTCOST_MESSAGE)
@@ -408,5 +460,84 @@ def send_receive_message(context):
         pass
 
     context.ser.close()
+    context.process.terminate()
+    context.socat.terminate()
+
+
+@when(u"current cost send incorrect message")
+def send_incorrect_message(context):
+    """
+        Send incorrect message over socket.
+    """
+    sleep(1)
+
+    ser = serial.Serial(TTY_WRITER_PORT)
+    ser.write("%s\n" % WRONG_CURRENTCOST_MESSAGE)
+
+    sleep(1)
+
+    ser.close()
+    context.process.terminate()
+    context.socat.terminate()
+
+
+@then(u"we should get informed that current cost send incorrect message")
+def receive_incorrect_message(context):
+    """
+        Receive incorrect message error through RabbitMQ.
+    """
+    channel = CONNECTION.channel()
+    channel.queue_declare(queue=error_utils.ERROR)
+    try:
+        channel.basic_consume(
+            check_cc_incorrect,
+            queue=error_utils.ERROR,
+            no_ack=True)
+        channel.start_consuming()
+    except pika.exceptions.ConnectionClosed:
+        pass
+
+
+@then(u"we should see incorrect message error in log")
+def log_incorrect_message(context):
+    """
+        Verify in log that we see error.
+    """
+    log_file = open(LOG_FILE, "r")
+    lines = log_file.readlines()
+    log_file.close()
+    last_log_file = lines[-1].replace("\n", "").replace("\"", "")
+    last_log_file = " ".join(last_log_file.split(" ")[9:])
+    error = error_utils.CURRENTCOST_INCORRECT_MESSAGE % (
+        VAR_NAME, SITE_NAME, WRONG_CURRENTCOST_MESSAGE)
+    print("Last line => %s" % last_log_file)
+    print("Expect => %s" % error)
+    assert last_log_file == error
+
+
+@then(u"we should receive historical consumption over the network")
+def receive_historical_consumption(context):
+    """
+        Receive historical consumption.
+    """
+
+    sleep(1)
+    ser = serial.Serial(TTY_WRITER_PORT)
+
+    for hist in HISTORYS:
+        ser.write("%s" % hist)
+
+        channel = CONNECTION.channel()
+        channel.queue_declare(queue=error_utils.SUCCESS)
+        try:
+            channel.basic_consume(
+                check_history_message,
+                queue=error_utils.SUCCESS,
+                no_ack=True)
+            channel.start_consuming()
+        except pika.exceptions.ConnectionClosed:
+            pass
+
+    ser.close()
     context.process.terminate()
     context.socat.terminate()
