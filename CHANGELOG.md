@@ -1,3 +1,10 @@
+pyCurrentCost (v0.7.0) unstable; urgency=low
+--------------------------------------------
+
+* Funct test current cost instant consumption message.
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-11 12:30:00
+
 pyCurrentCost (v0.6.0) unstable; urgency=low
 --------------------------------------------
 

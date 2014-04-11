@@ -6,7 +6,7 @@
     Global error shared across this project.
 """
 
-TOPIC = u"currentcost"
+SUCCESS = u"currentcost"
 
 ERROR = u"error"
 
