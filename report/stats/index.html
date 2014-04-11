@@ -2,7 +2,7 @@
 <body>
 <div>
 <h1>Report</h1>
-<p>377 statements analysed.</p><div>
+<p>441 statements analysed.</p><div>
 <h2>Raw metrics</h2>
 <table>
 <tr class="header">
@@ -14,139 +14,34 @@
 </tr>
 <tr class="even">
 <td>code</td>
-<td>527</td>
-<td>56.18</td>
-<td>518</td>
-<td>+9.00</td>
+<td>618</td>
+<td>58.14</td>
+<td>618</td>
+<td>=</td>
 </tr>
 <tr class="odd">
 <td>docstring</td>
-<td>226</td>
-<td>24.09</td>
-<td>226</td>
+<td>244</td>
+<td>22.95</td>
+<td>244</td>
 <td>=</td>
 </tr>
 <tr class="even">
 <td>comment</td>
 <td>25</td>
-<td>2.67</td>
+<td>2.35</td>
 <td>25</td>
 <td>=</td>
 </tr>
 <tr class="odd">
 <td>empty</td>
-<td>160</td>
-<td>17.06</td>
-<td>161</td>
-<td>-1.00</td>
-</tr>
-</table>
-</div>
-<div>
-<h2>Duplication</h2>
-<table>
-<tr class="header">
-<th>&#160;</th>
-<th>now</th>
-<th>previous</th>
-<th>difference</th>
-</tr>
-<tr class="even">
-<th>nb duplicated lines</th>
-<td>0</td>
-<td>0</td>
-<td>=</td>
-</tr>
-<tr class="odd">
-<th>percent duplicated lines</th>
-<td>0.000</td>
-<td>0.000</td>
+<td>176</td>
+<td>16.56</td>
+<td>176</td>
 <td>=</td>
 </tr>
 </table>
 </div>
-<div>
-<h2>Messages by category</h2>
-<table>
-<tr class="header">
-<th>type</th>
-<th>number</th>
-<th>previous</th>
-<th>difference</th>
-</tr>
-<tr class="even">
-<td>convention</td>
-<td>0</td>
-<td>0</td>
-<td>=</td>
-</tr>
-<tr class="odd">
-<td>refactor</td>
-<td>1</td>
-<td>1</td>
-<td>=</td>
-</tr>
-<tr class="even">
-<td>warning</td>
-<td>3</td>
-<td>3</td>
-<td>=</td>
-</tr>
-<tr class="odd">
-<td>error</td>
-<td>0</td>
-<td>0</td>
-<td>=</td>
-</tr>
-</table>
-</div>
-<div>
-<h2>% errors / warnings by module</h2>
-<table>
-<tr class="header">
-<th>module</th>
-<th>error</th>
-<th>warning</th>
-<th>refactor</th>
-<th>convention</th>
-</tr>
-<tr class="even">
-<td>tests.test_messaging</td>
-<td>0.00</td>
-<td>100.00</td>
-<td>0.00</td>
-<td>0.00</td>
-</tr>
-</table>
-</div>
-<div>
-<h2>Messages</h2>
-<table>
-<tr class="header">
-<th>message id</th>
-<th>occurrences</th>
-</tr>
-<tr class="even">
-<td>unused-argument</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td>locally-disabled</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td>deprecated-pragma</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>too-few-public-methods</td>
-<td>1</td>
-</tr>
-</table>
-</div>
-<div>
-<h2>Global evaluation</h2>
-Your code has been rated at 9.89/10 (previous run: 9.89/10, +0.00)</div>
 <div>
 <h2>External dependencies</h2>
 <pre>behave 
@@ -177,7 +72,139 @@ paver
   | \-setup (pavement)
   \-tasks (setup)
 pika (tests.test_messaging,currentcost.rabbitmq_messager,currentcost_steps)
-serial (currentcost_steps)</pre></div>
+serial (currentcost_steps)
+tests 
+  \-fixtures 
+    \-history 
+      \-HISTORY_1 (currentcost_steps)
+      \-HISTORY_10 (currentcost_steps)
+      \-HISTORY_11 (currentcost_steps)
+      \-HISTORY_12 (currentcost_steps)
+      \-HISTORY_13 (currentcost_steps)
+      \-HISTORY_2 (currentcost_steps)
+      \-HISTORY_3 (currentcost_steps)
+      \-HISTORY_4 (currentcost_steps)
+      \-HISTORY_5 (currentcost_steps)
+      \-HISTORY_6 (currentcost_steps)
+      \-HISTORY_7 (currentcost_steps)
+      \-HISTORY_8 (currentcost_steps)
+      \-HISTORY_9 (currentcost_steps)</pre></div>
+<div>
+<h2>Messages by category</h2>
+<table>
+<tr class="header">
+<th>type</th>
+<th>number</th>
+<th>previous</th>
+<th>difference</th>
+</tr>
+<tr class="even">
+<td>convention</td>
+<td>0</td>
+<td>0</td>
+<td>=</td>
+</tr>
+<tr class="odd">
+<td>refactor</td>
+<td>1</td>
+<td>1</td>
+<td>=</td>
+</tr>
+<tr class="even">
+<td>warning</td>
+<td>4</td>
+<td>4</td>
+<td>=</td>
+</tr>
+<tr class="odd">
+<td>error</td>
+<td>0</td>
+<td>0</td>
+<td>=</td>
+</tr>
+</table>
+</div>
+<div>
+<h2>% errors / warnings by module</h2>
+<table>
+<tr class="header">
+<th>module</th>
+<th>error</th>
+<th>warning</th>
+<th>refactor</th>
+<th>convention</th>
+</tr>
+<tr class="even">
+<td>tests.test_messaging</td>
+<td>0.00</td>
+<td>75.00</td>
+<td>0.00</td>
+<td>0.00</td>
+</tr>
+<tr class="odd">
+<td>currentcost_steps</td>
+<td>0.00</td>
+<td>25.00</td>
+<td>0.00</td>
+<td>0.00</td>
+</tr>
+</table>
+</div>
+<div>
+<h2>Messages</h2>
+<table>
+<tr class="header">
+<th>message id</th>
+<th>occurrences</th>
+</tr>
+<tr class="even">
+<td>unused-argument</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>locally-disabled</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>deprecated-pragma</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>too-few-public-methods</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>logging-not-lazy</td>
+<td>1</td>
+</tr>
+</table>
+</div>
+<div>
+<h2>Global evaluation</h2>
+Your code has been rated at 9.89/10 (previous run: 9.89/10, +0.00)</div>
+<div>
+<h2>Duplication</h2>
+<table>
+<tr class="header">
+<th>&#160;</th>
+<th>now</th>
+<th>previous</th>
+<th>difference</th>
+</tr>
+<tr class="even">
+<th>nb duplicated lines</th>
+<td>0</td>
+<td>0</td>
+<td>=</td>
+</tr>
+<tr class="odd">
+<th>percent duplicated lines</th>
+<td>0.000</td>
+<td>0.000</td>
+<td>=</td>
+</tr>
+</table>
+</div>
 <div>
 <h2>Statistics by type</h2>
 <table>
@@ -215,8 +242,8 @@ serial (currentcost_steps)</pre></div>
 </tr>
 <tr class="odd">
 <td>function</td>
-<td>49</td>
-<td>49</td>
+<td>55</td>
+<td>55</td>
 <td>=</td>
 <td>100.00</td>
 <td>0.00</td>
@@ -305,6 +332,14 @@ serial (currentcost_steps)</pre></div>
 <td>11</td>
 <td>0</td>
 <td>Deprecated pragma "pylint:disable-msg" or "pylint:enable-msg"</td>
+</tr>
+<tr class="odd">
+<td>warning</td>
+<td>currentcost_steps</td>
+<td>check_history_message</td>
+<td>78</td>
+<td>4</td>
+<td>Specify string format arguments as logging function parameters</td>
 </tr>
 </table>
 </div>
