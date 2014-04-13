@@ -1,3 +1,10 @@
+pyCurrentCost (v0.9.2) stable; urgency=low
+--------------------------------------------
+
+* Improve TODO.md and define new target.
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-13 20:00:00
+
 pyCurrentCost (v0.9.1) stable; urgency=low
 --------------------------------------------
 
