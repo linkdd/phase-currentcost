@@ -3,7 +3,7 @@
 # -*- Mode: Python; py-indent-offset: 4 -*-
 
 """
-    Paver tasker script for pyCurrentCost.
+    Paver tasker script for phase-currentcost.
 """
 
 from paver.easy import options, Bunch, task, needs, sh, path
@@ -11,7 +11,7 @@ from paver.easy import options, Bunch, task, needs, sh, path
 from paver.setuputils import setup, find_packages
 import sys
 
-VERSION = '0.9.1'
+VERSION = '0.9.2'
 
 INSTALL_REQS = []
 
@@ -23,13 +23,13 @@ else:
 PACKAGE = "currentcost"
 
 setup(
-    name="pyCurrentCost",
+    name="phase-currentcost",
     version=VERSION,
     description="Python script to collect data from current cost EnviR",
     long_description=open('README.md').read(),
     author="Pierre Leray",
     author_email="pierreleray64@gmail.com",
-    url="https://github.com/liogen/pyCurrentCost",
+    url="https://github.com/liogen/phase-currentcost",
     license='LICENSE',
     packages=find_packages(),
     scripts=["bin/currentcost"],
@@ -66,6 +66,7 @@ def sdist():
     """
         Generate docs and source distribution.
     """
+#   Install package in development mode
     sh('paver develop')
 
 

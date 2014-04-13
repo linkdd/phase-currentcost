@@ -1,5 +1,4 @@
-=============
-pyCurrentCost
+phase-currentcost
 =============
 
 /!\ This application is not functional right now. Please wait for v1.0.0 /!\
@@ -106,7 +105,7 @@ Setup environment
 * **IDEA: Create a init script that ask several question and bootstrap project (plug-in)**
 * **IDEA: generate_setup to use sdist command**
 * **IDEA: test new plugin creation on TimeSeriesLogger**
-* **IDEA: move pyCurrentCost.py outside of phase**
+* **IDEA: move phase-currentcost.py outside of phase**
 * **IDEA: phase in development should provide init script to init and register new plugin**
 
 
