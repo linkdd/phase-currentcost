@@ -2,47 +2,7 @@
 <body>
 <div>
 <h1>Report</h1>
-<p>441 statements analysed.</p><div>
-<h2>Raw metrics</h2>
-<table>
-<tr class="header">
-<th>type</th>
-<th>number</th>
-<th>%</th>
-<th>previous</th>
-<th>difference</th>
-</tr>
-<tr class="even">
-<td>code</td>
-<td>618</td>
-<td>58.14</td>
-<td>618</td>
-<td>=</td>
-</tr>
-<tr class="odd">
-<td>docstring</td>
-<td>244</td>
-<td>22.95</td>
-<td>244</td>
-<td>=</td>
-</tr>
-<tr class="even">
-<td>comment</td>
-<td>25</td>
-<td>2.35</td>
-<td>25</td>
-<td>=</td>
-</tr>
-<tr class="odd">
-<td>empty</td>
-<td>176</td>
-<td>16.56</td>
-<td>176</td>
-<td>=</td>
-</tr>
-</table>
-</div>
-<div>
+<p>394 statements analysed.</p><div>
 <h2>External dependencies</h2>
 <pre>behave 
   \-given (currentcost_steps)
@@ -53,6 +13,8 @@ currentcost
   | \-RabbitMQMessager (tests.test_messaging)
   \-utils 
     \-error_utils (currentcost.rabbitmq_messager,currentcost_steps)
+datetime 
+  \-datetime (currentcost.rabbitmq_messager)
 fabric 
   \-api 
     \-local (fabfile)
@@ -90,98 +52,45 @@ tests
       \-HISTORY_8 (currentcost_steps)
       \-HISTORY_9 (currentcost_steps)</pre></div>
 <div>
-<h2>Messages by category</h2>
+<h2>Raw metrics</h2>
 <table>
 <tr class="header">
 <th>type</th>
 <th>number</th>
+<th>%</th>
 <th>previous</th>
 <th>difference</th>
 </tr>
 <tr class="even">
-<td>convention</td>
-<td>0</td>
-<td>0</td>
-<td>=</td>
+<td>code</td>
+<td>551</td>
+<td>53.65</td>
+<td>562</td>
+<td>-11.00</td>
 </tr>
 <tr class="odd">
-<td>refactor</td>
-<td>1</td>
-<td>1</td>
+<td>docstring</td>
+<td>263</td>
+<td>25.61</td>
+<td>263</td>
 <td>=</td>
 </tr>
 <tr class="even">
-<td>warning</td>
-<td>4</td>
-<td>4</td>
+<td>comment</td>
+<td>31</td>
+<td>3.02</td>
+<td>31</td>
 <td>=</td>
 </tr>
 <tr class="odd">
-<td>error</td>
-<td>0</td>
-<td>0</td>
-<td>=</td>
+<td>empty</td>
+<td>182</td>
+<td>17.72</td>
+<td>181</td>
+<td>+1.00</td>
 </tr>
 </table>
 </div>
-<div>
-<h2>% errors / warnings by module</h2>
-<table>
-<tr class="header">
-<th>module</th>
-<th>error</th>
-<th>warning</th>
-<th>refactor</th>
-<th>convention</th>
-</tr>
-<tr class="even">
-<td>tests.test_messaging</td>
-<td>0.00</td>
-<td>75.00</td>
-<td>0.00</td>
-<td>0.00</td>
-</tr>
-<tr class="odd">
-<td>currentcost_steps</td>
-<td>0.00</td>
-<td>25.00</td>
-<td>0.00</td>
-<td>0.00</td>
-</tr>
-</table>
-</div>
-<div>
-<h2>Messages</h2>
-<table>
-<tr class="header">
-<th>message id</th>
-<th>occurrences</th>
-</tr>
-<tr class="even">
-<td>unused-argument</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td>locally-disabled</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td>deprecated-pragma</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>too-few-public-methods</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td>logging-not-lazy</td>
-<td>1</td>
-</tr>
-</table>
-</div>
-<div>
-<h2>Global evaluation</h2>
-Your code has been rated at 9.89/10 (previous run: 9.89/10, +0.00)</div>
 <div>
 <h2>Duplication</h2>
 <table>
@@ -205,6 +114,61 @@ Your code has been rated at 9.89/10 (previous run: 9.89/10, +0.00)</div>
 </tr>
 </table>
 </div>
+<div>
+<h2>Messages by category</h2>
+<table>
+<tr class="header">
+<th>type</th>
+<th>number</th>
+<th>previous</th>
+<th>difference</th>
+</tr>
+<tr class="even">
+<td>convention</td>
+<td>0</td>
+<td>0</td>
+<td>=</td>
+</tr>
+<tr class="odd">
+<td>refactor</td>
+<td>0</td>
+<td>1</td>
+<td>-1.00</td>
+</tr>
+<tr class="even">
+<td>warning</td>
+<td>0</td>
+<td>1</td>
+<td>-1.00</td>
+</tr>
+<tr class="odd">
+<td>error</td>
+<td>0</td>
+<td>0</td>
+<td>=</td>
+</tr>
+</table>
+</div>
+<div>
+<h2>Messages</h2>
+<table>
+<tr class="header">
+<th>message id</th>
+<th>occurrences</th>
+</tr>
+<tr class="even">
+<td>locally-disabled</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>deprecated-pragma</td>
+<td>2</td>
+</tr>
+</table>
+</div>
+<div>
+<h2>Global evaluation</h2>
+Your code has been rated at 10.00/10 (previous run: 9.95/10, +0.05)</div>
 <div>
 <h2>Statistics by type</h2>
 <table>
@@ -234,16 +198,16 @@ Your code has been rated at 9.89/10 (previous run: 9.89/10, +0.00)</div>
 </tr>
 <tr class="even">
 <td>method</td>
-<td>7</td>
-<td>7</td>
+<td>9</td>
+<td>9</td>
 <td>=</td>
 <td>100.00</td>
 <td>0.00</td>
 </tr>
 <tr class="odd">
 <td>function</td>
-<td>55</td>
-<td>55</td>
+<td>57</td>
+<td>57</td>
 <td>=</td>
 <td>100.00</td>
 <td>0.00</td>
@@ -262,44 +226,12 @@ Your code has been rated at 9.89/10 (previous run: 9.89/10, +0.00)</div>
 <th>message</th>
 </tr>
 <tr class="even">
-<td>refactor</td>
-<td>currentcost.rabbitmq_messager</td>
-<td>RabbitMQMessager</td>
-<td>15</td>
-<td>0</td>
-<td>Too few public methods (1/2)</td>
-</tr>
-<tr class="odd">
 <td>info</td>
 <td>tests.test_messaging</td>
 <td>&#160;</td>
 <td>4</td>
 <td>0</td>
 <td>Locally disabling R0904</td>
-</tr>
-<tr class="even">
-<td>warning</td>
-<td>tests.test_messaging</td>
-<td>TestMessaging.callback</td>
-<td>54</td>
-<td>32</td>
-<td>Unused argument 'method'</td>
-</tr>
-<tr class="odd">
-<td>warning</td>
-<td>tests.test_messaging</td>
-<td>TestMessaging.callback</td>
-<td>54</td>
-<td>23</td>
-<td>Unused argument 'channel'</td>
-</tr>
-<tr class="even">
-<td>warning</td>
-<td>tests.test_messaging</td>
-<td>TestMessaging.callback</td>
-<td>54</td>
-<td>40</td>
-<td>Unused argument 'properties'</td>
 </tr>
 <tr class="odd">
 <td>info</td>
@@ -332,14 +264,6 @@ Your code has been rated at 9.89/10 (previous run: 9.89/10, +0.00)</div>
 <td>11</td>
 <td>0</td>
 <td>Deprecated pragma "pylint:disable-msg" or "pylint:enable-msg"</td>
-</tr>
-<tr class="odd">
-<td>warning</td>
-<td>currentcost_steps</td>
-<td>check_history_message</td>
-<td>78</td>
-<td>4</td>
-<td>Specify string format arguments as logging function parameters</td>
 </tr>
 </table>
 </div>

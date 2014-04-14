@@ -68,27 +68,11 @@ def lint():
     pylint()
 
 
-def validate():
-    """
-        Validate implementation (test and lint code)
-    """
-    lint()
-    test()
-
-
-def bundle():
-    """
-        Freeze dependencies for deployment
-    """
-    local("pip freeze > REQUIREMENTS.txt")
-    local("pip bundle data-generator.pybundle -r REQUIREMENTS.txt")
-
-
 def deploy():
     """
         Deploy and install new version of this product.
     """
-    validate()
+    #validate()
     #package()
     #push()
     #install()

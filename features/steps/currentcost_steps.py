@@ -14,7 +14,7 @@ from subprocess import CalledProcessError
 from currentcost.utils import error_utils
 import pika
 import shlex
-from time import sleep
+from time import sleep, tzname
 import serial
 import json
 import logging
@@ -70,31 +70,65 @@ HISTORYS = (
 RECEIVE_HISTORY = []
 
 
+def verify_json_message(body, expected_message):
+    """
+        Verify JSON message value.
+    """
+    message = json.loads(body)
+    assert message[u"message"] == expected_message
+    assert message[u"siteID"] == SITE_NAME
+    assert message[u"variableID"] == VAR_NAME
+    assert message[u"dstTimezone"] == tzname[1]
+    assert message[u"nonDstTimezone"] == tzname[0]
+
+
+def extract_from_log(expected_message, line):
+    """
+        Method that extract expecting line from log and compare
+        to expected_message
+    """
+    log_file = open(LOG_FILE, "r")
+    lines = log_file.readlines()
+    log_file.close()
+    body = lines[line]
+    print("1. => %s" % body)
+    body = " ".join(body.split(" ")[9:])[:-2]
+    print("2. => %s" % body)
+
+    try:
+        verify_json_message(body, expected_message)
+    except ValueError:
+        message = body
+        assert message == expected_message
+
+
+def consume(topic, callback):
+    """
+        Method that wait for a message on RabbitMQ topics channels.
+    """
+    channel = CONNECTION.channel()
+    channel.queue_declare(queue=topic)
+    try:
+        channel.basic_consume(
+            callback,
+            queue=topic,
+            no_ack=True)
+        channel.start_consuming()
+    except pika.exceptions.ConnectionClosed:
+        pass
+
+
 def check_history_message(channel, method, properties, body):
     """
         Callback that check historical message sent.
     """
     RECEIVE_HISTORY.append(body)
-    LOGGER.info("check_history_message => len %d" % len(RECEIVE_HISTORY))
-
+    array_size = "check_history_message => len %d" % len(RECEIVE_HISTORY)
+    LOGGER.info(array_size)
     index = len(RECEIVE_HISTORY) - 1
-    message = json.loads(body)
+
     expected_message = HISTORYS[index]
-
-    assert message[u"message"] == expected_message
-    assert message[u"siteID"] == SITE_NAME
-    assert message[u"variableID"] == VAR_NAME
-
-    channel.close()
-
-
-def check_cc_incorrect(channel, method, properties, body):
-    """
-        Callback that check incorrect message sent.
-    """
-    print("check_cc_incorrect => %s" % body)
-    assert body == error_utils.CURRENTCOST_INCORRECT_MESSAGE % (
-        VAR_NAME, SITE_NAME, WRONG_CURRENTCOST_MESSAGE)
+    verify_json_message(body, expected_message)
     channel.close()
 
 
@@ -102,11 +136,20 @@ def check_cc_message(channel, method, properties, body):
     """
         Callback called when a new message is available.
     """
-    message = json.loads(body)
-    print("check_cc_message => %s" % message)
-    assert message[u"message"] == CURRENTCOST_MESSAGE
-    assert message[u"siteID"] == SITE_NAME
-    assert message[u"variableID"] == VAR_NAME
+    expected_message = CURRENTCOST_MESSAGE
+    verify_json_message(body, expected_message)
+    channel.close()
+
+
+def check_cc_incorrect(channel, method, properties, body):
+    """
+        Callback that check incorrect message sent.
+    """
+    expected_message = error_utils.CC_INCORRECT_MESSAGE % (
+        VAR_NAME,
+        SITE_NAME,
+        WRONG_CURRENTCOST_MESSAGE)
+    verify_json_message(body, expected_message)
     channel.close()
 
 
@@ -114,9 +157,11 @@ def check_cc_unreachable(channel, method, properties, body):
     """
         Callback called when a new message is available.
     """
-    print("check_cc_unreachable => %s" % body)
-    assert body == error_utils.TTY_CONNECTION_PROBLEM % (
-        VAR_NAME, SITE_NAME, BAD_TTY_PORT)
+    expected_message = error_utils.TTY_CONNECTION_PROBLEM % (
+        VAR_NAME,
+        SITE_NAME,
+        BAD_TTY_PORT)
+    verify_json_message(body, expected_message)
     channel.close()
 
 
@@ -124,9 +169,11 @@ def check_cc_disconnected(channel, method, properties, body):
     """
         Callback called when a new message is available.
     """
-    print("check_cc_disconnected => %s" % body)
-    assert body == error_utils.TTY_CONNECTION_PROBLEM % (
-        VAR_NAME, SITE_NAME, TTY_PORT)
+    expected_message = error_utils.TTY_CONNECTION_PROBLEM % (
+        VAR_NAME,
+        SITE_NAME,
+        TTY_PORT)
+    verify_json_message(body, expected_message)
     channel.close()
 
 
@@ -134,9 +181,9 @@ def check_usb_disconnected(channel, method, properties, body):
     """
         Callback called when a new message is available.
     """
-    print("check_usb_disconnected => %s" % body)
-    assert body == error_utils.CURRENTCOST_TIMEOUT % (
+    expected_message = error_utils.CURRENTCOST_TIMEOUT % (
         VAR_NAME, SITE_NAME)
+    verify_json_message(body, expected_message)
     channel.close()
 
 
@@ -198,10 +245,7 @@ def when_launch_with_unreachable(context):
     """
     commands = "%s %s %s %s %s" % (
         BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, BAD_TTY_PORT)
-    process = subprocess.Popen(
-        shlex.split(commands),
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE)
+    process = subprocess.Popen(shlex.split(commands))
     sleep(5)
     process.terminate()
 
@@ -214,10 +258,7 @@ def launch_ccunreach_badrmq(context):
     commands = "%s %s %s %s %s %s %s" % (
         BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, BAD_TTY_PORT,
         ARGUMENT_MQ_CREDENTIAL, BAD_MQ_CREDENTIAL)
-    process = subprocess.Popen(
-        shlex.split(commands),
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE)
+    process = subprocess.Popen(shlex.split(commands))
     sleep(5)
     process.terminate()
 
@@ -227,16 +268,9 @@ def detect_unreachability_log(context):
     """
         We should see currentcost unreachability in log file.
     """
-    log_file = open(LOG_FILE, "r")
-    lines = log_file.readlines()
-    log_file.close()
-    last_log_file = lines[-1].replace("\n", "").replace("\"", "")
-    last_log_file = " ".join(last_log_file.split(" ")[9:])
     error = error_utils.TTY_CONNECTION_PROBLEM % (
         VAR_NAME, SITE_NAME, BAD_TTY_PORT)
-    print("Last line => %s" % last_log_file)
-    print("Expect => %s" % error)
-    assert last_log_file == error
+    extract_from_log(error, -1)
 
 
 @then(u"we should see rabbitmq error in log")
@@ -244,18 +278,11 @@ def detect_rabbitmqerror_log(context):
     """
         We should see currentcost unreachability in log file.
     """
-    log_file = open(LOG_FILE, "r")
-    lines = log_file.readlines()
-    log_file.close()
-    last_log_file = lines[-2].replace("\n", "").replace("\"", "")
-    last_log_file = " ".join(last_log_file.split(" ")[9:])
     error = error_utils.RABBIT_MQ_CREDENTIAL_PROBLEM % (
         BAD_MQ_CREDENTIAL.split(":")[0],
         BAD_MQ_CREDENTIAL.split(":")[1],
         MQ_HOST)
-    print("Last line => %s" % last_log_file)
-    print("Expect => %s" % error)
-    assert last_log_file == error
+    extract_from_log(error, -2)
 
 
 @when(u"we start currentcost with bad port with rabbitmq")
@@ -266,9 +293,8 @@ def launch_ccunreach_withoutrmq(context):
     commands = "%s %s %s %s %s %s %s" % (
         BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, BAD_TTY_PORT,
         ARGUMENT_MQ_CREDENTIAL, MQ_CREDENTIAL)
-    process = subprocess.Popen(shlex.split(commands))
+    context.process = subprocess.Popen(shlex.split(commands))
     sleep(1)
-    process.terminate()
 
 
 @then(u"we should receive a message saying that current cost is unreachable")
@@ -276,16 +302,8 @@ def receive_message_unreachable(context):
     """
         Expect a message saying that currentcost is unreachable on RabbitMQ.
     """
-    channel = CONNECTION.channel()
-    channel.queue_declare(queue=error_utils.ERROR)
-    try:
-        channel.basic_consume(
-            check_cc_unreachable,
-            queue=error_utils.ERROR,
-            no_ack=True)
-        channel.start_consuming()
-    except pika.exceptions.ConnectionClosed:
-        pass
+    context.process.terminate()
+    consume(error_utils.ERROR, check_cc_unreachable)
 
 
 @given(u"current cost does not send any message")
@@ -314,17 +332,7 @@ def rmq_no_messages(context):
         Waited on RabbitMQ an error message saying that current cost
         does not send any message.
     """
-    channel = CONNECTION.channel()
-    channel.queue_declare(queue=error_utils.ERROR)
-    try:
-        channel.basic_consume(
-            check_usb_disconnected,
-            queue=error_utils.ERROR,
-            no_ack=True)
-        channel.start_consuming()
-    except pika.exceptions.ConnectionClosed:
-        pass
-
+    consume(error_utils.ERROR, check_usb_disconnected)
     context.process.terminate()
     context.socat.terminate()
 
@@ -334,16 +342,9 @@ def log_no_messages(context):
     """
         Waited to see in log that current cost does not send any messages.
     """
-    log_file = open(LOG_FILE, "r")
-    lines = log_file.readlines()
-    log_file.close()
-    last_log_file = lines[-1].replace("\n", "").replace("\"", "")
-    last_log_file = " ".join(last_log_file.split(" ")[9:])
     error = error_utils.CURRENTCOST_TIMEOUT % (
         VAR_NAME, SITE_NAME)
-    print("Last line => %s" % last_log_file)
-    print("Expect => %s" % error)
-    assert last_log_file == error
+    extract_from_log(error, -1)
 
 
 @given(u"current cost is connected and currentcost script is launched")
@@ -362,16 +363,9 @@ def cc_launch_correctly(context):
 
     sleep(3)
 
-    log_file = open(LOG_FILE, "r")
-    lines = log_file.readlines()
-    log_file.close()
-    last_log_file = lines[-1].replace("\n", "").replace("\"", "")
-    last_log_file = " ".join(last_log_file.split(" ")[9:])
     error = error_utils.TTY_CONNECTION_SUCCESS % (
         VAR_NAME, SITE_NAME, TTY_PORT)
-    print("Last line => %s" % last_log_file)
-    print("Expect => %s" % error)
-    assert last_log_file == error
+    extract_from_log(error, -1)
 
 
 @when(u"we disconnect USB port")
@@ -387,16 +381,7 @@ def receive_message_disconnected(context):
     """
         Expect a message saying that currentcost is unreachable on RabbitMQ.
     """
-    channel = CONNECTION.channel()
-    channel.queue_declare(queue=error_utils.ERROR)
-    try:
-        channel.basic_consume(
-            check_cc_disconnected,
-            queue=error_utils.ERROR,
-            no_ack=True)
-        channel.start_consuming()
-    except pika.exceptions.ConnectionClosed:
-        pass
+    consume(error_utils.ERROR, check_cc_disconnected)
     context.process.terminate()
 
 
@@ -405,16 +390,9 @@ def detect_disconnected_log(context):
     """
         We should see currentcost unreachability in log file.
     """
-    log_file = open(LOG_FILE, "r")
-    lines = log_file.readlines()
-    log_file.close()
-    last_log_file = lines[-1].replace("\n", "").replace("\"", "")
-    last_log_file = " ".join(last_log_file.split(" ")[9:])
     error = error_utils.TTY_CONNECTION_PROBLEM % (
         VAR_NAME, SITE_NAME, TTY_PORT)
-    print("Last line => %s" % last_log_file)
-    print("Expect => %s" % error)
-    assert last_log_file == error
+    extract_from_log(error, -1)
 
 
 @given(u"current cost is connected and script is launched")
@@ -448,17 +426,7 @@ def send_receive_message(context):
     """
         Send a message on socket and retrieve it on RabbitMQ.
     """
-    channel = CONNECTION.channel()
-    channel.queue_declare(queue=error_utils.SUCCESS)
-    try:
-        channel.basic_consume(
-            check_cc_message,
-            queue=error_utils.SUCCESS,
-            no_ack=True)
-        channel.start_consuming()
-    except pika.exceptions.ConnectionClosed:
-        pass
-
+    consume(error_utils.SUCCESS, check_cc_message)
     context.ser.close()
     context.process.terminate()
     context.socat.terminate()
@@ -486,16 +454,7 @@ def receive_incorrect_message(context):
     """
         Receive incorrect message error through RabbitMQ.
     """
-    channel = CONNECTION.channel()
-    channel.queue_declare(queue=error_utils.ERROR)
-    try:
-        channel.basic_consume(
-            check_cc_incorrect,
-            queue=error_utils.ERROR,
-            no_ack=True)
-        channel.start_consuming()
-    except pika.exceptions.ConnectionClosed:
-        pass
+    consume(error_utils.ERROR, check_cc_incorrect)
 
 
 @then(u"we should see incorrect message error in log")
@@ -503,16 +462,9 @@ def log_incorrect_message(context):
     """
         Verify in log that we see error.
     """
-    log_file = open(LOG_FILE, "r")
-    lines = log_file.readlines()
-    log_file.close()
-    last_log_file = lines[-1].replace("\n", "").replace("\"", "")
-    last_log_file = " ".join(last_log_file.split(" ")[9:])
-    error = error_utils.CURRENTCOST_INCORRECT_MESSAGE % (
+    error = error_utils.CC_INCORRECT_MESSAGE % (
         VAR_NAME, SITE_NAME, WRONG_CURRENTCOST_MESSAGE)
-    print("Last line => %s" % last_log_file)
-    print("Expect => %s" % error)
-    assert last_log_file == error
+    extract_from_log(error, -1)
 
 
 @then(u"we should receive historical consumption over the network")
@@ -527,16 +479,7 @@ def receive_historical_consumption(context):
     for hist in HISTORYS:
         ser.write("%s" % hist)
 
-        channel = CONNECTION.channel()
-        channel.queue_declare(queue=error_utils.SUCCESS)
-        try:
-            channel.basic_consume(
-                check_history_message,
-                queue=error_utils.SUCCESS,
-                no_ack=True)
-            channel.start_consuming()
-        except pika.exceptions.ConnectionClosed:
-            pass
+        consume(error_utils.SUCCESS, check_history_message)
 
     ser.close()
     context.process.terminate()

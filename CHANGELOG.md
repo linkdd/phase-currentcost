@@ -1,4 +1,22 @@
-pyCurrentCost (v0.9.1) stable; urgency=low
+phase-currentcost (v0.9.3) stable; urgency=low
+--------------------------------------------
+
+* Fix pylint error and warning
+* Fix clone
+* Send timezone with data
+* Refactor currentcost script
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-14 17:00:00
+
+phase-currentcost (v0.9.2) stable; urgency=low
+--------------------------------------------
+
+* Improve TODO.md and define new target.
+* Fix rename problem.
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-13 20:00:00
+
+phase-currentcost (v0.9.1) stable; urgency=low
 --------------------------------------------
 
 * Test manually currentcost script strength.
@@ -6,49 +24,49 @@ pyCurrentCost (v0.9.1) stable; urgency=low
 
 Pierre Leray <pierreleray64@gmail.com>  2014-04-11 19:00:00
 
-pyCurrentCost (v0.9.0) stable; urgency=low
+phase-currentcost (v0.9.0) stable; urgency=low
 --------------------------------------------
 
 * Funct test current cost historical consumption message.
 
 Pierre Leray <pierreleray64@gmail.com>  2014-04-11 17:30:00
 
-pyCurrentCost (v0.8.0) unstable; urgency=low
+phase-currentcost (v0.8.0) unstable; urgency=low
 --------------------------------------------
 
 * Funct test current cost incorrect message.
 
 Pierre Leray <pierreleray64@gmail.com>  2014-04-11 16:30:00
 
-pyCurrentCost (v0.7.0) unstable; urgency=low
+phase-currentcost (v0.7.0) unstable; urgency=low
 --------------------------------------------
 
 * Funct test current cost instant consumption message.
 
 Pierre Leray <pierreleray64@gmail.com>  2014-04-11 12:30:00
 
-pyCurrentCost (v0.6.0) unstable; urgency=low
+phase-currentcost (v0.6.0) unstable; urgency=low
 --------------------------------------------
 
 * Funct test current cost usb disconnected.
 
 Pierre Leray <pierreleray64@gmail.com>  2014-04-10 23:50:00
 
-pyCurrentCost (v0.5.0) unstable; urgency=low
+phase-currentcost (v0.5.0) unstable; urgency=low
 --------------------------------------------
 
 * Funct test current cost disconnected and reach timeout.
 
 Pierre Leray <pierreleray64@gmail.com>  2014-04-10 22:20:00
 
-pyCurrentCost (v0.4.1) unstable; urgency=low
+phase-currentcost (v0.4.1) unstable; urgency=low
 --------------------------------------------
 
 * Add date to currentcost message.
 
 Pierre Leray <pierreleray64@gmail.com>  2014-04-07 16:25:00
 
-pyCurrentCost (v0.4.0) unstable; urgency=low
+phase-currentcost (v0.4.0) unstable; urgency=low
 --------------------------------------------
 
 * Make a difference between credential error and host error
@@ -57,21 +75,21 @@ pyCurrentCost (v0.4.0) unstable; urgency=low
 
 Pierre Leray <pierreleray64@gmail.com>  2014-04-07 16:10:00
 
-pyCurrentCost (v0.3.9) unstable; urgency=low
+phase-currentcost (v0.3.9) unstable; urgency=low
 --------------------------------------------
 
 * Fix print problem in stdout
 
 Pierre Leray <pierreleray64@gmail.com>  2014-04-07 11:45:00
 
-pyCurrentCost (v0.3.8) unstable; urgency=low
+phase-currentcost (v0.3.8) unstable; urgency=low
 --------------------------------------------
 
 * Update todo
 
 Pierre Leray <pierreleray64@gmail.com>  2014-04-07 11:25:00
 
-pyCurrentCost (v0.3.7) unstable; urgency=low
+phase-currentcost (v0.3.7) unstable; urgency=low
 --------------------------------------------
 
 * Add unit test to rabbitmq_messager.py
@@ -80,7 +98,7 @@ pyCurrentCost (v0.3.7) unstable; urgency=low
 
 Pierre Leray <pierreleray64@gmail.com>  2014-04-07 11:20:00
 
-pyCurrentCost (v0.3.6) unstable; urgency=low
+phase-currentcost (v0.3.6) unstable; urgency=low
 --------------------------------------------
 
 * Create a class for RabbitMQ messages
@@ -89,7 +107,7 @@ pyCurrentCost (v0.3.6) unstable; urgency=low
 
 Pierre Leray <pierreleray64@gmail.com>  2014-04-06 22:00:00
 
-pyCurrentCost (v0.3.5) unstable; urgency=low
+phase-currentcost (v0.3.5) unstable; urgency=low
 --------------------------------------------
 
 * Change currentcost script api
@@ -104,7 +122,7 @@ pyCurrentCost (v0.3.5) unstable; urgency=low
 
 Pierre Leray <pierreleray64@gmail.com>  2014-04-06 21:20:00
 
-pyCurrentCost (v0.3.4) unstable; urgency=low
+phase-currentcost (v0.3.4) unstable; urgency=low
 --------------------------------------------
 
 * Add serial tty read
@@ -113,28 +131,28 @@ pyCurrentCost (v0.3.4) unstable; urgency=low
 
 Pierre Leray <pierreleray64@gmail.com>  2014-04-04 16:00:00
 
-pyCurrentCost (v0.3.3) unstable; urgency=low
+phase-currentcost (v0.3.3) unstable; urgency=low
 --------------------------------------------
 
 * Add site_name script parameter
 
 Pierre Leray <pierreleray64@gmail.com>  2014-04-04 15:15:00
 
-pyCurrentCost (v0.3.2) unstable; urgency=low
+phase-currentcost (v0.3.2) unstable; urgency=low
 --------------------------------------------
 
 * Launch subprocess with Popen to avoid blocking testing
 
 Pierre Leray <pierreleray64@gmail.com>  2014-04-04 14:50:00
 
-pyCurrentCost (v0.3.1) unstable; urgency=low
+phase-currentcost (v0.3.1) unstable; urgency=low
 --------------------------------------------
 
 * Remove 0MQ port command and code affiliated
 
 Pierre Leray <pierreleray64@gmail.com>  2014-04-04 14:30:00
 
-pyCurrentCost (v0.3.0) unstable; urgency=low
+phase-currentcost (v0.3.0) unstable; urgency=low
 --------------------------------------------
 
 * Write objectives and test case for current cost connection
@@ -144,7 +162,7 @@ pyCurrentCost (v0.3.0) unstable; urgency=low
 
 Pierre Leray <pierreleray64@gmail.com>  2014-04-02 00:00:00
 
-pyCurrentCost (v0.2.3) unstable; urgency=low
+phase-currentcost (v0.2.3) unstable; urgency=low
 --------------------------------------------
 
 * Add method to send error message over the network
@@ -152,7 +170,7 @@ pyCurrentCost (v0.2.3) unstable; urgency=low
 
 Pierre Leray <pierreleray64@gmail.com>  2014-03-28 16:30:00
 
-pyCurrentCost (v0.2.2) unstable; urgency=low
+phase-currentcost (v0.2.2) unstable; urgency=low
 --------------------------------------------
 
 * Add logging message during init of program
@@ -160,7 +178,7 @@ pyCurrentCost (v0.2.2) unstable; urgency=low
 
 Pierre Leray <pierreleray64@gmail.com>  2014-03-28 11:00:00
 
-pyCurrentCost (v0.2.1) unstable; urgency=low
+phase-currentcost (v0.2.1) unstable; urgency=low
 --------------------------------------------
 
 * Add function to test bad parameter for -p option
@@ -168,7 +186,7 @@ pyCurrentCost (v0.2.1) unstable; urgency=low
 
 Pierre Leray <pierreleray64@gmail.com>  2014-03-27 23:20:00
 
-pyCurrentCost (v0.2.0) unstable; urgency=low
+phase-currentcost (v0.2.0) unstable; urgency=low
 --------------------------------------------
 
 * Write objectives and test case for argument parser
@@ -177,7 +195,7 @@ pyCurrentCost (v0.2.0) unstable; urgency=low
 
 Pierre Leray <pierreleray64@gmail.com>  2014-03-26 15:30:00
 
-pyCurrentCost (v0.1.10) unstable; urgency=low
+phase-currentcost (v0.1.10) unstable; urgency=low
 ---------------------------------------------
 
 * Add logger
@@ -186,21 +204,21 @@ pyCurrentCost (v0.1.10) unstable; urgency=low
 
 Pierre Leray <pierreleray64@gmail.com>  2014-03-26 11:00:00
 
-pyCurrentCost (v0.1.9) unstable; urgency=low
+phase-currentcost (v0.1.9) unstable; urgency=low
 --------------------------------------------
 
 * Create error global variable script to share Error
 
 Pierre Leray <pierreleray64@gmail.com>  2014-03-26 11:00:00
 
-pyCurrentCost (v0.1.8) unstable; urgency=low
+phase-currentcost (v0.1.8) unstable; urgency=low
 --------------------------------------------
 
 * Test global install on virtualenv
 
 Pierre Leray <pierreleray64@gmail.com>  2014-03-25 11:45:00
 
-pyCurrentCost (v0.1.7) unstable; urgency=low
+phase-currentcost (v0.1.7) unstable; urgency=low
 --------------------------------------------
 
 * Fix sdist method in paver
@@ -208,14 +226,14 @@ pyCurrentCost (v0.1.7) unstable; urgency=low
 
 Pierre Leray <pierreleray64@gmail.com>  2014-03-25 11:00:00
 
-pyCurrentCost (v0.1.6) unstable; urgency=low
+phase-currentcost (v0.1.6) unstable; urgency=low
 --------------------------------------------
 
 * Write code to test features
 
 Pierre Leray <pierreleray64@gmail.com>  2014-03-24 23:30:00
 
-pyCurrentCost (v0.1.5) unstable; urgency=low
+phase-currentcost (v0.1.5) unstable; urgency=low
 --------------------------------------------
 
 * Write usage on README.md
@@ -224,14 +242,14 @@ pyCurrentCost (v0.1.5) unstable; urgency=low
 
 Pierre Leray <pierreleray64@gmail.com>  2014-03-24 00:00:00
 
-pyCurrentCost (v0.1.4) unstable; urgency=low
+phase-currentcost (v0.1.4) unstable; urgency=low
 --------------------------------------------
 
 * Improve TODO.md 
 
 Pierre Leray <pierreleray64@gmail.com>  2014-03-23 17:30:00
 
-pyCurrentCost (v0.1.3) unstable; urgency=low
+phase-currentcost (v0.1.3) unstable; urgency=low
 --------------------------------------------
 
 * Project creation
