@@ -7,12 +7,15 @@
     Test file for messaging method.
 """
 
+from __future__ import print_function
 import unittest
 from currentcost.rabbitmq_messager import RabbitMQMessager
 from io import StringIO
 import pika
 import logging
 import logging.config
+from time import tzname
+import json
 
 VALID_USERNAME = "admin"
 VALID_PASSWORD = "password"
@@ -22,12 +25,36 @@ INVALID_PASSWORD = "pasZECZCordZE"
 INVALID_HOST = "192.168.5.56"
 TOPIC = "TEST_RABBIT_MQ_MESSAGER"
 MESSAGE = u"It works!"
+SITE_NAME = u"TEST_SITE"
+VAR_NAME = u"TEST_VAR"
 CREDENTIALS = pika.PlainCredentials(VALID_USERNAME, VALID_PASSWORD)
 CONNECTION = pika.BlockingConnection(
     pika.ConnectionParameters(host=VALID_HOST, credentials=CREDENTIALS))
 DEFAULT_LOG_FILE = "logs/log.conf"
 
 logging.config.fileConfig(DEFAULT_LOG_FILE)
+
+
+def validate_stdout(username, password, host, self):
+    """
+        Send a message on stdout and expecting to see it.
+    """
+    messager = RabbitMQMessager(username, password, host)
+    self.assertEqual(messager.channel, None)
+    out = StringIO()
+
+    messager.send(TOPIC, MESSAGE, out)
+    output = out.getvalue().strip()
+    self.assertEqual(output, MESSAGE)
+
+    out2 = StringIO()
+    messager.send_message(TOPIC, SITE_NAME, VAR_NAME, MESSAGE, out2)
+    output2 = json.loads(out2.getvalue().strip())
+    self.assertEqual(output2[u"message"], MESSAGE)
+    self.assertEqual(output2[u"siteID"], SITE_NAME)
+    self.assertEqual(output2[u"variableID"], VAR_NAME)
+    self.assertEqual(output2[u"dstTimezone"], tzname[1])
+    self.assertEqual(output2[u"nonDstTimezone"], tzname[0])
 
 
 class TestMessaging(unittest.TestCase):
@@ -55,47 +82,28 @@ class TestMessaging(unittest.TestCase):
         """
             Callback called when a new message is available.
         """
+        print(method)
+        print(properties)
         self.assertEqual(body, MESSAGE)
-        CONNECTION.close()
+        channel.close()
 
     def test_without_credential(self):
         """
             Test add function for generator class.
         """
-        messager = RabbitMQMessager(None, None, VALID_HOST)
-        self.assertEqual(messager.channel, None)
-        out = StringIO()
-        messager.send(TOPIC, MESSAGE, out)
-        output = out.getvalue().strip()
-        self.assertEqual(output, MESSAGE)
+        validate_stdout(None, None, VALID_HOST, self)
 
     def test_bad_credential(self):
         """
             Test add function for generator class.
         """
-        messager = RabbitMQMessager(
-            INVALID_USERNAME,
-            INVALID_PASSWORD,
-            VALID_HOST)
-        self.assertEqual(messager.channel, None)
-        out = StringIO()
-        messager.send(TOPIC, MESSAGE, out)
-        output = out.getvalue().strip()
-        self.assertEqual(output, MESSAGE)
+        validate_stdout(INVALID_USERNAME, INVALID_PASSWORD, VALID_HOST, self)
 
     def test_bad_host(self):
         """
             Test add function for generator class.
         """
-        messager = RabbitMQMessager(
-            VALID_USERNAME,
-            VALID_PASSWORD,
-            INVALID_HOST)
-        self.assertEqual(messager.channel, None)
-        out = StringIO()
-        messager.send(TOPIC, MESSAGE, out)
-        output = out.getvalue().strip()
-        self.assertEqual(output, MESSAGE)
+        validate_stdout(VALID_USERNAME, VALID_PASSWORD, INVALID_HOST, self)
 
     def test_good_credential(self):
         """
@@ -104,10 +112,4 @@ class TestMessaging(unittest.TestCase):
         messager = RabbitMQMessager(VALID_USERNAME, VALID_PASSWORD, VALID_HOST)
         self.assertNotEqual(messager.channel, None)
         messager.send(TOPIC, MESSAGE)
-        channel = CONNECTION.channel()
-        channel.queue_declare(queue=TOPIC)
-        try:
-            channel.basic_consume(self.callback, queue=TOPIC, no_ack=True)
-            channel.start_consuming()
-        except pika.exceptions.ConnectionClosed:
-            pass
+        messager.consume(TOPIC, self.callback)

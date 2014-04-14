@@ -10,20 +10,17 @@ Schedule
 --------
 
 * For April, 18th 2014:
-    * CurrentCost connection: Add timezone to data send method (verify UTC hour)
     * News: Integrate code on travis
     * News: add parameter to target log.conf path for test (by default it should be /opt/phase/currentcost/log.conf)
     * News: add parameter to create currentcost.log for test (by default it should be /var/log/phase/currentcost.log)
     * News: Update test file accordingly
-    * Refactoring: Fix clone
-    * Refactoring: Fix pylint error and warning
     * Documentation: Comment all the code
-    * Documentation: Add list of message send using RabbitMQ in README (success message, error message, ...)
     * Complete dosctrings using https://github.com/claws/txCurrentCost/blob/master/txcurrentcost/monitor.py example
-    * Generate proper documenation
+    * Generate proper documentaion
+    * Documentation: Add list of message send using RabbitMQ in README (success message, error message, ...)
 
-Tasks
------
+Pending tasks
+-------------
 
 * Message file:
     * Add func test for: rabbitMQ is not started, rabbitMQ is disconnected during currentcost is running

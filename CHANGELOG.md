@@ -1,3 +1,13 @@
+phase-currentcost (v0.9.3) stable; urgency=low
+--------------------------------------------
+
+* Fix pylint error and warning
+* Fix clone
+* Send timezone with data
+* Refactor currentcost script
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-14 17:00:00
+
 phase-currentcost (v0.9.2) stable; urgency=low
 --------------------------------------------
 

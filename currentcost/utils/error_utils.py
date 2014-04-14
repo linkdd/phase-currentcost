@@ -22,7 +22,7 @@ TTY_DISCONNECTED = u"CurrentCost %s in %s: TTY port %s disconnected."
 CURRENTCOST_TIMEOUT = u"CurrentCost %s in %s: Reach timeout. Verify \
 CurrentCost wire connection or wave range"
 
-CURRENTCOST_INCORRECT_MESSAGE = u"CurrentCost %s in %s: Send incorrect\
+CC_INCORRECT_MESSAGE = u"CurrentCost %s in %s: Send incorrect\
  message => %s."
 
 RABBIT_MQ_CONNECTION_PROBLEM = u"Problem trying to connect to RabbitMQ with \
@@ -30,3 +30,5 @@ this configuration: username: %s, password: %s, host: %s"
 
 RABBIT_MQ_CREDENTIAL_PROBLEM = u"Problem bad RabbitMQ credential with \
 this configuration: username: %s, password: %s, host: %s"
+
+CURRENTCOST_UNICODE_ERROR = "Bad message sent from currentcost, invalid ASCII"

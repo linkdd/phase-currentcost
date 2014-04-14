@@ -6,7 +6,7 @@ Feature: Current Cost data collection
     Scenario: Missing argument
         When we launch currentcost script without important argument
         Then we should see an error message on screen
-
+    
     Scenario: Problem with current cost connexion without RabbitMQ
         When we start currentcost with bad port without rabbitmq
         Then we should see currentcost is unreachable in log
