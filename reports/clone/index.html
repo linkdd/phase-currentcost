@@ -47,7 +47,7 @@
     <P>Source files: 12</P>
         <a href = "javascript:unhide('files');">Click here to show/hide file names</a><div id="files" class="hidden"><P><B>Source files:</B><BR>fabfile.py, <BR>pavement.py, <BR>setup.py, <BR>currentcost/__init__.py, <BR>currentcost/rabbitmq_messager.py, <BR>bin/currentcost, <BR>currentcost/utils/__init__.py, <BR>currentcost/utils/argument_parser.py, <BR>currentcost/utils/error_utils.py, <BR>tests/__init__.py, <BR>tests/test_messaging.py, <BR>features/steps/currentcost_steps.py</P></div>
         <P>Clones detected: 5</P>
-        <P>41 of 550 lines are duplicates (7.45%) </P>
+        <P>41 of 545 lines are duplicates (7.52%) </P>
 <P>
 <B>Parameters<BR> </B>
 clustering_threshold = 10<BR>
@@ -58,15 +58,15 @@ clusterize_using_hash = False<BR>
 clusterize_using_dcup = False<BR>
 </P> 
         
-    <B>Time elapsed</B><BR>Construction of AST : 0.31 seconds<BR>
+    <B>Time elapsed</B><BR>Construction of AST : 0.22 seconds<BR>
 Building statement hash : 0.00 seconds<BR>
-Building patterns : 0.40 seconds<BR>
-Marking similar statements : 0.35 seconds<BR>
-Finding similar sequences of statements : 0.09 seconds<BR>
-Refining candidates : 0.96 seconds<BR>
- Total time: 2.11<BR>
- Started at: Tue Apr 15 14:59:59 2014<BR>
- Finished at: Tue Apr 15 15:00:00 2014
+Building patterns : 0.39 seconds<BR>
+Marking similar statements : 0.34 seconds<BR>
+Finding similar sequences of statements : 0.05 seconds<BR>
+Refining candidates : 1.06 seconds<BR>
+ Total time: 2.07<BR>
+ Started at: Tue Apr 15 15:43:13 2014<BR>
+ Finished at: Tue Apr 15 15:43:14 2014
     <P><B>Clone # 1</B><BR>Distance between two fragments = 3 <BR>Clone size = 7<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 156</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 144</TD></TR><TR>
 <TD>
 def <span style="color: rgb(255, 0, 0);">check_cc_unreachable</span>(channel, method, properties, body):<BR>
@@ -106,7 +106,20 @@ def <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">ch
 &nbsp;&nbsp;&nbsp;&nbsp;channel.close()</TD>
 </TR>
 </TABLE> </P> <HR><BR>
-<P><B>Clone # 4</B><BR>Distance between two fragments = 2 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 293</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 359</TD></TR><TR>
+<P><B>Clone # 4</B><BR>Distance between two fragments = 2 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "bin/currentcost"<BR>The first line is 150</TD><TD></TD><TD>Source file "bin/currentcost"<BR>The first line is 144</TD></TR><TR>
+<TD>
+topic = error_utils.ERROR</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+topic = error_utils.ERROR</TD>
+</TR>
+<TR>
+<TD>
+message = (error_utils.CC_INCORRECT_MESSAGE) % ((variable_name, site_name, <span style="color: rgb(255, 0, 0);">error_utils.CURRENTCOST_UNICODE_ERROR</span>))</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+message = (error_utils.CC_INCORRECT_MESSAGE) % ((variable_name, site_name, <span style="color: rgb(255, 0, 0);">data</span>))</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 5</B><BR>Distance between two fragments = 2 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 293</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 359</TD></TR><TR>
 <TD>
 commands = ('%s %s %s %s %s %s %s') % ((BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, <span style="color: rgb(255, 0, 0);">BAD_TTY_PORT</span>, ARGUMENT_MQ_CREDENTIAL, MQ_CREDENTIAL))</TD>
 <TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
@@ -123,19 +136,6 @@ context.process = subprocess.Popen(shlex.split(commands))</TD>
 sleep(<span style="color: rgb(255, 0, 0);">1</span>)</TD>
 <TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
 sleep(<span style="color: rgb(255, 0, 0);">3</span>)</TD>
-</TR>
-</TABLE> </P> <HR><BR>
-<P><B>Clone # 5</B><BR>Distance between two fragments = 2 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "bin/currentcost"<BR>The first line is 150</TD><TD></TD><TD>Source file "bin/currentcost"<BR>The first line is 144</TD></TR><TR>
-<TD>
-topic = error_utils.ERROR</TD>
-<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
-topic = error_utils.ERROR</TD>
-</TR>
-<TR>
-<TD>
-message = (error_utils.CC_INCORRECT_MESSAGE) % ((variable_name, site_name, <span style="color: rgb(255, 0, 0);">error_utils.CURRENTCOST_UNICODE_ERROR</span>))</TD>
-<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
-message = (error_utils.CC_INCORRECT_MESSAGE) % ((variable_name, site_name, <span style="color: rgb(255, 0, 0);">data</span>))</TD>
 </TR>
 </TABLE> </P> <HR>
     

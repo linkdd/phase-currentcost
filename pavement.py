@@ -7,35 +7,8 @@
 """
 
 from paver.easy import options, Bunch, task, needs, sh, path
-#from paver.easy import *
-from paver.setuputils import setup, find_packages
-import sys
-
-VERSION = '0.9.3'
-
-INSTALL_REQS = ['pika']
-
-if sys.version_info < (3, 0):
-    INSTALL_REQS.append('pyserial >= 2.5')
-else:
-    INSTALL_REQS.append('pyserial-py3k')
 
 PACKAGE = "currentcost"
-
-setup(
-    name="phase-currentcost",
-    version=VERSION,
-    description="Python script to collect data from current cost EnviR",
-    long_description=open('README.md').read(),
-    author="Pierre Leray",
-    author_email="pierreleray64@gmail.com",
-    url="https://github.com/liogen/phase-currentcost",
-    license='LICENSE',
-    packages=find_packages(),
-    scripts=["bin/currentcost"],
-    install_requires=INSTALL_REQS,
-    zip_safe=False,
-)
 
 options(
     sphinx=Bunch(
@@ -51,9 +24,9 @@ options(
 
     stats_file="reports/stats/index.html",
 
-    pylint_file=".pylintrc",
-
     cover_folder="reports/cover",
+
+    pylint_file=".pylintrc",
 
     files="*.py %s/*.py bin/%s %s/*/*.py tests/*.py features/steps/*.py" % (
         PACKAGE, PACKAGE, PACKAGE),
