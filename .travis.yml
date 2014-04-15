@@ -5,14 +5,11 @@ python:
   - "3.2"
   - "3.3"
   - "pypy"
+services:
+  - rabbitmq
 before_install:
   - sudo apt-get update
   - sudo apt-get install socat
-  - sudo echo "deb http://www.rabbitmq.com/debian/ testing main" > /etc/apt/sources.list.d/rabbitmq.list
-  - wget http://www.rabbitmq.com/rabbitmq-signing-key-public.asc
-  - sudo apt-key add rabbitmq-signing-key-public.asc
-  - sudo apt-get update
-  - sudo apt-get install rabbitmq-server -y
   - sudo service rabbitmq-server start
   - sudo rabbitmq-plugins enable rabbitmq_management
   - sudo rabbitmqctl add_user admin password
