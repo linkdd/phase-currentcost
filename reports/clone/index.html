@@ -58,15 +58,15 @@ clusterize_using_hash = False<BR>
 clusterize_using_dcup = False<BR>
 </P> 
         
-    <B>Time elapsed</B><BR>Construction of AST : 0.40 seconds<BR>
+    <B>Time elapsed</B><BR>Construction of AST : 0.31 seconds<BR>
 Building statement hash : 0.00 seconds<BR>
-Building patterns : 0.54 seconds<BR>
-Marking similar statements : 0.36 seconds<BR>
-Finding similar sequences of statements : 0.06 seconds<BR>
-Refining candidates : 0.95 seconds<BR>
- Total time: 2.31<BR>
- Started at: Mon Apr 14 17:01:36 2014<BR>
- Finished at: Mon Apr 14 17:01:37 2014
+Building patterns : 0.40 seconds<BR>
+Marking similar statements : 0.35 seconds<BR>
+Finding similar sequences of statements : 0.09 seconds<BR>
+Refining candidates : 0.96 seconds<BR>
+ Total time: 2.11<BR>
+ Started at: Tue Apr 15 14:59:59 2014<BR>
+ Finished at: Tue Apr 15 15:00:00 2014
     <P><B>Clone # 1</B><BR>Distance between two fragments = 3 <BR>Clone size = 7<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 156</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 144</TD></TR><TR>
 <TD>
 def <span style="color: rgb(255, 0, 0);">check_cc_unreachable</span>(channel, method, properties, body):<BR>
@@ -106,20 +106,7 @@ def <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">ch
 &nbsp;&nbsp;&nbsp;&nbsp;channel.close()</TD>
 </TR>
 </TABLE> </P> <HR><BR>
-<P><B>Clone # 4</B><BR>Distance between two fragments = 2 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "bin/currentcost"<BR>The first line is 150</TD><TD></TD><TD>Source file "bin/currentcost"<BR>The first line is 144</TD></TR><TR>
-<TD>
-topic = error_utils.ERROR</TD>
-<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
-topic = error_utils.ERROR</TD>
-</TR>
-<TR>
-<TD>
-message = (error_utils.CC_INCORRECT_MESSAGE) % ((variable_name, site_name, <span style="color: rgb(255, 0, 0);">error_utils.CURRENTCOST_UNICODE_ERROR</span>))</TD>
-<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
-message = (error_utils.CC_INCORRECT_MESSAGE) % ((variable_name, site_name, <span style="color: rgb(255, 0, 0);">data</span>))</TD>
-</TR>
-</TABLE> </P> <HR><BR>
-<P><B>Clone # 5</B><BR>Distance between two fragments = 2 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 293</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 359</TD></TR><TR>
+<P><B>Clone # 4</B><BR>Distance between two fragments = 2 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 293</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 359</TD></TR><TR>
 <TD>
 commands = ('%s %s %s %s %s %s %s') % ((BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, <span style="color: rgb(255, 0, 0);">BAD_TTY_PORT</span>, ARGUMENT_MQ_CREDENTIAL, MQ_CREDENTIAL))</TD>
 <TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
@@ -136,6 +123,19 @@ context.process = subprocess.Popen(shlex.split(commands))</TD>
 sleep(<span style="color: rgb(255, 0, 0);">1</span>)</TD>
 <TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
 sleep(<span style="color: rgb(255, 0, 0);">3</span>)</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 5</B><BR>Distance between two fragments = 2 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "bin/currentcost"<BR>The first line is 150</TD><TD></TD><TD>Source file "bin/currentcost"<BR>The first line is 144</TD></TR><TR>
+<TD>
+topic = error_utils.ERROR</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+topic = error_utils.ERROR</TD>
+</TR>
+<TR>
+<TD>
+message = (error_utils.CC_INCORRECT_MESSAGE) % ((variable_name, site_name, <span style="color: rgb(255, 0, 0);">error_utils.CURRENTCOST_UNICODE_ERROR</span>))</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+message = (error_utils.CC_INCORRECT_MESSAGE) % ((variable_name, site_name, <span style="color: rgb(255, 0, 0);">data</span>))</TD>
 </TR>
 </TABLE> </P> <HR>
     

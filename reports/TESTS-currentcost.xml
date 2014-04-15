@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuite errors="0" failures="0" name="currentcost.Current Cost data collection" skipped="0" tests="9" time="164.575812"><testcase classname="currentcost.Current Cost data collection" name="Missing argument" status="passed" time="0.492676"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Missing argument
+    When we launch currentcost script without important argument ... passed in 0.492s
+    Then we should see an error message on screen ... passed in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+
+Captured stdout:
+Response: Command 'currentcost' returned non-zero exit status 2
+Response: Command 'currentcost TEST_electric_meter' returned non-zero exit status 2
+Response: Command 'currentcost TEST_liogen_home' returned non-zero exit status 2
+Response: Command 'currentcost tests/tty/currentcost' returned non-zero exit status 2
+
+]]>
+</system-out></testcase><testcase classname="currentcost.Current Cost data collection" name="Problem with current cost connexion without RabbitMQ" status="passed" time="5.017298"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Problem with current cost connexion without RabbitMQ
+    When we start currentcost with bad port without rabbitmq ... passed in 5.003s
+    Then we should see currentcost is unreachable in log ... passed in 0.014s
+
+@scenario.end
+--------------------------------------------------------------------------------
+
+Captured stdout:
+1. => "2014-04-15 14:42:23 - rabbitmq_messager.py - send - INFO - {"variableID": "TEST_electric_meter", "dstTimezone": "CEST", "siteID": "TEST_liogen_home", "date": "2014-04-15T12:42:23.524181", "message": "CurrentCost TEST_electric_meter in TEST_liogen_home: TTY connection problem: /dev/currentcost9876 is unreachable. Retry connection in 5 seconds.", "nonDstTimezone": "CET"}"
+
+2. => {"variableID": "TEST_electric_meter", "dstTimezone": "CEST", "siteID": "TEST_liogen_home", "date": "2014-04-15T12:42:23.524181", "message": "CurrentCost TEST_electric_meter in TEST_liogen_home: TTY connection problem: /dev/currentcost9876 is unreachable. Retry connection in 5 seconds.", "nonDstTimezone": "CET"}
+
+]]>
+</system-out></testcase><testcase classname="currentcost.Current Cost data collection" name="Problem with RabbitMQ credential" status="passed" time="5.028477"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Problem with RabbitMQ credential
+    When we start currentcost with bad port and bad rabbitmq credential ... passed in 5.004s
+    Then we should see currentcost is unreachable in log ... passed in 0.015s
+    And we should see rabbitmq error in log ... passed in 0.010s
+
+@scenario.end
+--------------------------------------------------------------------------------
+
+Captured stdout:
+1. => "2014-04-15 14:42:31 - rabbitmq_messager.py - send - INFO - {"variableID": "TEST_electric_meter", "dstTimezone": "CEST", "siteID": "TEST_liogen_home", "date": "2014-04-15T12:42:31.550109", "message": "CurrentCost TEST_electric_meter in TEST_liogen_home: TTY connection problem: /dev/currentcost9876 is unreachable. Retry connection in 5 seconds.", "nonDstTimezone": "CET"}"
+
+2. => {"variableID": "TEST_electric_meter", "dstTimezone": "CEST", "siteID": "TEST_liogen_home", "date": "2014-04-15T12:42:31.550109", "message": "CurrentCost TEST_electric_meter in TEST_liogen_home: TTY connection problem: /dev/currentcost9876 is unreachable. Retry connection in 5 seconds.", "nonDstTimezone": "CET"}
+1. => "2014-04-15 14:42:31 - rabbitmq_messager.py - __init__ - ERROR - Problem bad RabbitMQ credential with this configuration: username: admzfzein, password: paszeasword, host: localhost"
+
+2. => Problem bad RabbitMQ credential with this configuration: username: admzfzein, password: paszeasword, host: localhost
+
+]]>
+</system-out></testcase><testcase classname="currentcost.Current Cost data collection" name="Problem with current cost connexion with RabbitMQ activated" status="passed" time="1.079963"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Problem with current cost connexion with RabbitMQ activated
+    When we start currentcost with bad port with rabbitmq ... passed in 1.003s
+    Then we should see currentcost is unreachable in log ... passed in 0.014s
+    And we should receive a message saying that current cost is unreachable ... passed in 0.063s
+
+@scenario.end
+--------------------------------------------------------------------------------
+
+Captured stdout:
+1. => "2014-04-15 14:42:33 - rabbitmq_messager.py - send - INFO - {"variableID": "TEST_electric_meter", "dstTimezone": "CEST", "siteID": "TEST_liogen_home", "date": "2014-04-15T12:42:33.597303", "message": "CurrentCost TEST_electric_meter in TEST_liogen_home: TTY connection problem: /dev/currentcost9876 is unreachable. Retry connection in 5 seconds.", "nonDstTimezone": "CET"}"
+
+2. => {"variableID": "TEST_electric_meter", "dstTimezone": "CEST", "siteID": "TEST_liogen_home", "date": "2014-04-15T12:42:33.597303", "message": "CurrentCost TEST_electric_meter in TEST_liogen_home: TTY connection problem: /dev/currentcost9876 is unreachable. Retry connection in 5 seconds.", "nonDstTimezone": "CET"}
+
+]]>
+</system-out></testcase><testcase classname="currentcost.Current Cost data collection" name="Current cost disconnected" status="passed" time="10.250754"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Current cost disconnected
+    Given current cost does not send any message ... passed in 0.040s
+    When we launch currentcost script and reach the timeout limit ... passed in 0.004s
+    Then we should get informed that current cost does not send messages ... passed in 10.196s
+    And we should see current cost does not send any message in log ... passed in 0.011s
+
+@scenario.end
+--------------------------------------------------------------------------------
+
+Captured stdout:
+1. => "2014-04-15 14:42:44 - rabbitmq_messager.py - send - INFO - {"variableID": "TEST_electric_meter", "dstTimezone": "CEST", "siteID": "TEST_liogen_home", "date": "2014-04-15T12:42:44.726546", "message": "CurrentCost TEST_electric_meter in TEST_liogen_home: Reach timeout. Verify CurrentCost wire connection or wave range", "nonDstTimezone": "CET"}"
+
+2. => {"variableID": "TEST_electric_meter", "dstTimezone": "CEST", "siteID": "TEST_liogen_home", "date": "2014-04-15T12:42:44.726546", "message": "CurrentCost TEST_electric_meter in TEST_liogen_home: Reach timeout. Verify CurrentCost wire connection or wave range", "nonDstTimezone": "CET"}
+
+]]>
+</system-out></testcase><testcase classname="currentcost.Current Cost data collection" name="Problem with USB port" status="passed" time="3.086004"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Problem with USB port
+    Given current cost is connected and currentcost script is launched ... passed in 3.020s
+    When we disconnect USB port ... passed in 0.000s
+    Then we should receive a message saying that current cost is disconnected ... passed in 0.057s
+    And we should see currentcost is disconnected in log ... passed in 0.008s
+
+@scenario.end
+--------------------------------------------------------------------------------
+
+Captured stdout:
+1. => "2014-04-15 14:42:44 - currentcost - main - INFO - CurrentCost TEST_electric_meter in TEST_liogen_home: Success connection to tests/tty/currentcost."
+
+2. => CurrentCost TEST_electric_meter in TEST_liogen_home: Success connection to tests/tty/currentcost.
+1. => "2014-04-15 14:42:47 - rabbitmq_messager.py - send - INFO - {"variableID": "TEST_electric_meter", "dstTimezone": "CEST", "siteID": "TEST_liogen_home", "date": "2014-04-15T12:42:47.813495", "message": "CurrentCost TEST_electric_meter in TEST_liogen_home: TTY connection problem: tests/tty/currentcost is unreachable. Retry connection in 5 seconds.", "nonDstTimezone": "CET"}"
+
+2. => {"variableID": "TEST_electric_meter", "dstTimezone": "CEST", "siteID": "TEST_liogen_home", "date": "2014-04-15T12:42:47.813495", "message": "CurrentCost TEST_electric_meter in TEST_liogen_home: TTY connection problem: tests/tty/currentcost is unreachable. Retry connection in 5 seconds.", "nonDstTimezone": "CET"}
+
+]]>
+</system-out></testcase><testcase classname="currentcost.Current Cost data collection" name="Problem with current cost message" status="passed" time="3.104727"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Problem with current cost message
+    Given current cost is connected and script is launched ... passed in 1.008s
+    When current cost send incorrect message ... passed in 2.003s
+    Then we should get informed that current cost send incorrect message ... passed in 0.080s
+    And we should see incorrect message error in log ... passed in 0.013s
+
+@scenario.end
+--------------------------------------------------------------------------------
+
+Captured stdout:
+1. => "2014-04-15 14:42:49 - rabbitmq_messager.py - send - INFO - {"variableID": "TEST_electric_meter", "dstTimezone": "CEST", "siteID": "TEST_liogen_home", "date": "2014-04-15T12:42:49.895760", "message": "CurrentCost TEST_electric_meter in TEST_liogen_home: Send incorrect message => <msg><src>ensor>0</sensor><id>00077</id><type>1</type><ch1><watts>00405</watts></ch1></msg>.", "nonDstTimezone": "CET"}"
+
+2. => {"variableID": "TEST_electric_meter", "dstTimezone": "CEST", "siteID": "TEST_liogen_home", "date": "2014-04-15T12:42:49.895760", "message": "CurrentCost TEST_electric_meter in TEST_liogen_home: Send incorrect message => <msg><src>ensor>0</sensor><id>00077</id><type>1</type><ch1><watts>00405</watts></ch1></msg>.", "nonDstTimezone": "CET"}
+
+]]>
+</system-out></testcase><testcase classname="currentcost.Current Cost data collection" name="Nominal case instant consumption" status="passed" time="2.086645"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Nominal case instant consumption
+    Given current cost is connected and script is launched ... passed in 1.009s
+    When current cost send instant consumption ... passed in 1.001s
+    Then we should receive instant consumption over the network ... passed in 0.077s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase><testcase classname="currentcost.Current Cost data collection" name="Nominal case historical consumption" status="passed" time="134.429268"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Nominal case historical consumption
+    Given current cost is connected and script is launched ... passed in 1.012s
+    Then we should receive historical consumption over the network ... passed in 133.418s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase></testsuite>

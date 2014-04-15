@@ -11,9 +11,9 @@ from paver.easy import options, Bunch, task, needs, sh, path
 from paver.setuputils import setup, find_packages
 import sys
 
-VERSION = '0.9.2'
+VERSION = '0.9.3'
 
-INSTALL_REQS = []
+INSTALL_REQS = ['pika']
 
 if sys.version_info < (3, 0):
     INSTALL_REQS.append('pyserial >= 2.5')
@@ -47,13 +47,13 @@ options(
 
     test_package="tests",
 
-    clone_file="report/clone/index.html",
+    clone_file="reports/clone/index.html",
 
-    stats_file="report/stats/index.html",
+    stats_file="reports/stats/index.html",
 
     pylint_file=".pylintrc",
 
-    cover_folder="report/cover",
+    cover_folder="reports/cover",
 
     files="*.py %s/*.py bin/%s %s/*/*.py tests/*.py features/steps/*.py" % (
         PACKAGE, PACKAGE, PACKAGE),
