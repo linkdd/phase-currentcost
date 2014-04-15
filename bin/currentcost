@@ -1,0 +1,172 @@
+#!/usr/bin/python
+# -*- coding: utf8 -*-
+# -*- Mode: Python; py-indent-offset: 4 -*-
+
+"""
+    Main file of pyCurrentCost project.
+
+    workflow:
+        * Parse argument and verify them
+"""
+
+# avoid error using pylint on python 2.7.6
+from __future__ import print_function
+# logging is the most used python logger
+import logging
+# logging.config needed to reed logging config file
+import logging.config
+# argument parser method using argparser
+from currentcost.utils.argument_parser import argument_parser
+from currentcost.utils import error_utils
+from datetime import datetime
+from time import sleep
+from currentcost.rabbitmq_messager import RabbitMQMessager
+import serial
+from xml.etree import ElementTree
+
+#DEFAULT_LOG_FILE = "/opt/phase/currentcost.conf"
+DEFAULT_LOG_FILE = "logs/log.conf"
+DEFAULT_TTY_PORT = "/dev/currentcost"
+HOST = "localhost"
+TIMEOUT_CURRENTCOST = 10
+USB_RETRY = 5
+BAUDS = 57600
+
+LOGGER = logging.getLogger("currentcost")
+
+
+def init_message(variable_name, site_name, tty_port, rabbitMQ_credential):
+    """
+        Create log message starting current cost.
+    """
+    LOGGER.info("Starting current cost application")
+    LOGGER.info("Current time: %s" % datetime.now())
+    LOGGER.info("Variable name: %s" % variable_name)
+    LOGGER.info("Site name: %s" % site_name)
+    LOGGER.info("TTY port: %s" % tty_port)
+
+    if rabbitMQ_credential is not None:
+        LOGGER.info("RabbitMQ message credential: %s" %
+                    rabbitMQ_credential)
+
+
+def active_verbose_mode(verbose):
+    """
+        Active verbose mode.
+    """
+#   If verbose mode is activated
+    if (verbose):
+#       Create an handler to console and display log message
+        ch = logging.StreamHandler()
+        ch.setLevel(logging.INFO)
+#       Add this handler to current logger
+        LOGGER.addHandler(ch)
+
+
+def main():
+    """
+        Main function of this module.
+    """
+#   Init logging file
+    logging.config.fileConfig(DEFAULT_LOG_FILE)
+#   Parse command line argument and format it into according variable
+    args = argument_parser()
+    variable_name = args.variable_name
+    site_name = args.site_name
+    tty_port = args.tty_port
+    rabbitMQ_credential = args.rabbitMQ_credential
+    verbose = args.verbose
+#   Active verbose mode
+    active_verbose_mode(verbose)
+
+#   Initialize ser_connection
+    ser_connection = None
+
+#   Initialiez tty port if not given in argument
+    if tty_port is None:
+        tty_port = DEFAULT_TTY_PORT
+
+    username = None
+    password = None
+
+    if rabbitMQ_credential:
+        username = rabbitMQ_credential.split(":")[0]
+        password = rabbitMQ_credential.split(":")[1]
+
+#   Init log message
+    init_message(variable_name, site_name, tty_port, rabbitMQ_credential)
+
+#   Initialize messaging
+    messager = RabbitMQMessager(
+        username,
+        password,
+        HOST)
+
+#   Main loop
+    while True:
+        try:
+            topic = None
+            message = None
+            if ser_connection is None:
+#               Create tty connection
+                try:
+                    ser_connection = serial.Serial(
+                        tty_port,
+                        BAUDS,
+                        timeout=TIMEOUT_CURRENTCOST)
+                except (serial.serialutil.SerialException, OSError):
+                    messager.send_message(
+                        error_utils.ERROR,
+                        site_name,
+                        variable_name,
+                        error_utils.TTY_CONNECTION_PROBLEM % (
+                            variable_name,
+                            site_name,
+                            tty_port))
+                    sleep(USB_RETRY)
+                else:
+                    LOGGER.info(error_utils.TTY_CONNECTION_SUCCESS % (
+                        variable_name, site_name, tty_port))
+
+            if ser_connection is not None:
+                data = ser_connection.readline()
+                if data == "":
+                    topic = error_utils.ERROR
+                    message = error_utils.CURRENTCOST_TIMEOUT % (
+                        variable_name,
+                        site_name)
+                else:
+                    data = data.replace("\n", "").replace("\r", "")
+                    try:
+                        ElementTree.fromstring(data)
+                    except ElementTree.ParseError:
+                        try:
+                            topic = error_utils.ERROR
+                            message = error_utils.CC_INCORRECT_MESSAGE % (
+                                variable_name,
+                                site_name,
+                                data)
+                        except UnicodeDecodeError:
+                            topic = error_utils.ERROR
+                            message = error_utils.CC_INCORRECT_MESSAGE % (
+                                variable_name,
+                                site_name,
+                                error_utils.CURRENTCOST_UNICODE_ERROR)
+                    else:
+                        topic = error_utils.SUCCESS
+                        message = data
+                messager.send_message(
+                    topic,
+                    site_name,
+                    variable_name,
+                    message)
+        except serial.serialutil.SerialException:
+            ser_connection.close()
+            ser_connection = None
+            LOGGER.info(error_utils.TTY_DISCONNECTED % (
+                variable_name, site_name, tty_port))
+
+
+if __name__ == '__main__':
+#   Launch main method
+    main()
