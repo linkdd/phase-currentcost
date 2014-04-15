@@ -50,11 +50,11 @@ def validate_stdout(username, password, host, self):
     out2 = StringIO()
     messager.send_message(TOPIC, SITE_NAME, VAR_NAME, MESSAGE, out2)
     output2 = json.loads(out2.getvalue().strip())
-    self.assertEqual(output2[u"message"], MESSAGE)
-    self.assertEqual(output2[u"siteID"], SITE_NAME)
-    self.assertEqual(output2[u"variableID"], VAR_NAME)
-    self.assertEqual(output2[u"dstTimezone"], tzname[1])
-    self.assertEqual(output2[u"nonDstTimezone"], tzname[0])
+    self.assertEqual(output2["message"], MESSAGE)
+    self.assertEqual(output2["siteID"], SITE_NAME)
+    self.assertEqual(output2["variableID"], VAR_NAME)
+    self.assertEqual(output2["dstTimezone"], tzname[1])
+    self.assertEqual(output2["nonDstTimezone"], tzname[0])
 
 
 class TestMessaging(unittest.TestCase):

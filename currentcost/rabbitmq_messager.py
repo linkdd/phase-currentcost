@@ -71,10 +71,6 @@ class RabbitMQMessager(object):
             'dstTimezone': tzname[1],
             'nonDstTimezone': tzname[0]
         }
-        # json_encoded = json.dumps(json_message)
-        # print json_encoded
-        # test = json.loads(json_encoded.decode("utf-8"))
-        # print test[u"message"]
         self.send(topic, json.dumps(json_message), out)
 
     def consume(self, topic, callback):
