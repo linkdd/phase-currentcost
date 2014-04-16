@@ -134,22 +134,18 @@
 <p id='n71' class='pln'><a href='#n71'>71</a></p>
 <p id='n72' class='pln'><a href='#n72'>72</a></p>
 <p id='n73' class='pln'><a href='#n73'>73</a></p>
-<p id='n74' class='pln'><a href='#n74'>74</a></p>
+<p id='n74' class='stm run hide_run'><a href='#n74'>74</a></p>
 <p id='n75' class='pln'><a href='#n75'>75</a></p>
-<p id='n76' class='pln'><a href='#n76'>76</a></p>
+<p id='n76' class='stm run hide_run'><a href='#n76'>76</a></p>
 <p id='n77' class='pln'><a href='#n77'>77</a></p>
-<p id='n78' class='stm run hide_run'><a href='#n78'>78</a></p>
+<p id='n78' class='pln'><a href='#n78'>78</a></p>
 <p id='n79' class='pln'><a href='#n79'>79</a></p>
 <p id='n80' class='stm run hide_run'><a href='#n80'>80</a></p>
-<p id='n81' class='pln'><a href='#n81'>81</a></p>
-<p id='n82' class='pln'><a href='#n82'>82</a></p>
-<p id='n83' class='pln'><a href='#n83'>83</a></p>
-<p id='n84' class='stm run hide_run'><a href='#n84'>84</a></p>
-<p id='n85' class='stm run hide_run'><a href='#n85'>85</a></p>
-<p id='n86' class='stm run hide_run'><a href='#n86'>86</a></p>
-<p id='n87' class='stm run hide_run'><a href='#n87'>87</a></p>
-<p id='n88' class='stm mis'><a href='#n88'>88</a></p>
-<p id='n89' class='stm mis'><a href='#n89'>89</a></p>
+<p id='n81' class='stm run hide_run'><a href='#n81'>81</a></p>
+<p id='n82' class='stm run hide_run'><a href='#n82'>82</a></p>
+<p id='n83' class='stm run hide_run'><a href='#n83'>83</a></p>
+<p id='n84' class='stm mis'><a href='#n84'>84</a></p>
+<p id='n85' class='stm mis'><a href='#n85'>85</a></p>
                 
             </td>
             <td class='text' valign='top'>
@@ -226,22 +222,18 @@
 <p id='t71' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='str'>&#39;dstTimezone&#39;</span><span class='op'>:</span> <span class='nam'>tzname</span><span class='op'>[</span><span class='num'>1</span><span class='op'>]</span><span class='op'>,</span><span class='strut'>&nbsp;</span></p>
 <p id='t72' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='str'>&#39;nonDstTimezone&#39;</span><span class='op'>:</span> <span class='nam'>tzname</span><span class='op'>[</span><span class='num'>0</span><span class='op'>]</span><span class='strut'>&nbsp;</span></p>
 <p id='t73' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='op'>}</span><span class='strut'>&nbsp;</span></p>
-<p id='t74' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='com'># json_encoded = json.dumps(json_message)</span><span class='strut'>&nbsp;</span></p>
-<p id='t75' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='com'># print json_encoded</span><span class='strut'>&nbsp;</span></p>
-<p id='t76' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='com'># test = json.loads(json_encoded.decode(&quot;utf-8&quot;))</span><span class='strut'>&nbsp;</span></p>
-<p id='t77' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='com'># print test[u&quot;message&quot;]</span><span class='strut'>&nbsp;</span></p>
-<p id='t78' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>self</span><span class='op'>.</span><span class='nam'>send</span><span class='op'>(</span><span class='nam'>topic</span><span class='op'>,</span> <span class='nam'>json</span><span class='op'>.</span><span class='nam'>dumps</span><span class='op'>(</span><span class='nam'>json_message</span><span class='op'>)</span><span class='op'>,</span> <span class='nam'>out</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
-<p id='t79' class='pln'><span class='strut'>&nbsp;</span></p>
-<p id='t80' class='stm run hide_run'>&nbsp; &nbsp; <span class='key'>def</span> <span class='nam'>consume</span><span class='op'>(</span><span class='nam'>self</span><span class='op'>,</span> <span class='nam'>topic</span><span class='op'>,</span> <span class='nam'>callback</span><span class='op'>)</span><span class='op'>:</span><span class='strut'>&nbsp;</span></p>
-<p id='t81' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='str'>&quot;&quot;&quot;</span><span class='strut'>&nbsp;</span></p>
-<p id='t82' class='pln'><span class='str'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Method that wait for a message on RabbitMQ topics channels.</span><span class='strut'>&nbsp;</span></p>
-<p id='t83' class='pln'><span class='str'>&nbsp; &nbsp; &nbsp; &nbsp; &quot;&quot;&quot;</span><span class='strut'>&nbsp;</span></p>
-<p id='t84' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='key'>try</span><span class='op'>:</span><span class='strut'>&nbsp;</span></p>
-<p id='t85' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>self</span><span class='op'>.</span><span class='nam'>channel</span><span class='op'>.</span><span class='nam'>queue_declare</span><span class='op'>(</span><span class='nam'>queue</span><span class='op'>=</span><span class='nam'>topic</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
-<p id='t86' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>self</span><span class='op'>.</span><span class='nam'>channel</span><span class='op'>.</span><span class='nam'>basic_consume</span><span class='op'>(</span><span class='nam'>callback</span><span class='op'>,</span> <span class='nam'>queue</span><span class='op'>=</span><span class='nam'>topic</span><span class='op'>,</span> <span class='nam'>no_ack</span><span class='op'>=</span><span class='nam'>True</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
-<p id='t87' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>self</span><span class='op'>.</span><span class='nam'>channel</span><span class='op'>.</span><span class='nam'>start_consuming</span><span class='op'>(</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
-<p id='t88' class='stm mis'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='key'>except</span> <span class='nam'>pika</span><span class='op'>.</span><span class='nam'>exceptions</span><span class='op'>.</span><span class='nam'>ConnectionClosed</span><span class='op'>:</span><span class='strut'>&nbsp;</span></p>
-<p id='t89' class='stm mis'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='key'>pass</span><span class='strut'>&nbsp;</span></p>
+<p id='t74' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>self</span><span class='op'>.</span><span class='nam'>send</span><span class='op'>(</span><span class='nam'>topic</span><span class='op'>,</span> <span class='nam'>json</span><span class='op'>.</span><span class='nam'>dumps</span><span class='op'>(</span><span class='nam'>json_message</span><span class='op'>)</span><span class='op'>,</span> <span class='nam'>out</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
+<p id='t75' class='pln'><span class='strut'>&nbsp;</span></p>
+<p id='t76' class='stm run hide_run'>&nbsp; &nbsp; <span class='key'>def</span> <span class='nam'>consume</span><span class='op'>(</span><span class='nam'>self</span><span class='op'>,</span> <span class='nam'>topic</span><span class='op'>,</span> <span class='nam'>callback</span><span class='op'>)</span><span class='op'>:</span><span class='strut'>&nbsp;</span></p>
+<p id='t77' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='str'>&quot;&quot;&quot;</span><span class='strut'>&nbsp;</span></p>
+<p id='t78' class='pln'><span class='str'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Method that wait for a message on RabbitMQ topics channels.</span><span class='strut'>&nbsp;</span></p>
+<p id='t79' class='pln'><span class='str'>&nbsp; &nbsp; &nbsp; &nbsp; &quot;&quot;&quot;</span><span class='strut'>&nbsp;</span></p>
+<p id='t80' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='key'>try</span><span class='op'>:</span><span class='strut'>&nbsp;</span></p>
+<p id='t81' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>self</span><span class='op'>.</span><span class='nam'>channel</span><span class='op'>.</span><span class='nam'>queue_declare</span><span class='op'>(</span><span class='nam'>queue</span><span class='op'>=</span><span class='nam'>topic</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
+<p id='t82' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>self</span><span class='op'>.</span><span class='nam'>channel</span><span class='op'>.</span><span class='nam'>basic_consume</span><span class='op'>(</span><span class='nam'>callback</span><span class='op'>,</span> <span class='nam'>queue</span><span class='op'>=</span><span class='nam'>topic</span><span class='op'>,</span> <span class='nam'>no_ack</span><span class='op'>=</span><span class='nam'>True</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
+<p id='t83' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>self</span><span class='op'>.</span><span class='nam'>channel</span><span class='op'>.</span><span class='nam'>start_consuming</span><span class='op'>(</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
+<p id='t84' class='stm mis'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='key'>except</span> <span class='nam'>pika</span><span class='op'>.</span><span class='nam'>exceptions</span><span class='op'>.</span><span class='nam'>ConnectionClosed</span><span class='op'>:</span><span class='strut'>&nbsp;</span></p>
+<p id='t85' class='stm mis'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='key'>pass</span><span class='strut'>&nbsp;</span></p>
                 
             </td>
         </tr>

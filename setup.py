@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 VERSION = "0.9.3"
 
-INSTALL_REQS = ["pika", "pyserial >= 2.5"]
+INSTALL_REQS = ["pyserial >= 2.5", "pika"]
 
 setup(
     name="phase-currentcost",

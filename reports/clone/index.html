@@ -47,7 +47,7 @@
     <P>Source files: 12</P>
         <a href = "javascript:unhide('files');">Click here to show/hide file names</a><div id="files" class="hidden"><P><B>Source files:</B><BR>fabfile.py, <BR>pavement.py, <BR>setup.py, <BR>currentcost/__init__.py, <BR>currentcost/rabbitmq_messager.py, <BR>bin/currentcost, <BR>currentcost/utils/__init__.py, <BR>currentcost/utils/argument_parser.py, <BR>currentcost/utils/error_utils.py, <BR>tests/__init__.py, <BR>tests/test_messaging.py, <BR>features/steps/currentcost_steps.py</P></div>
         <P>Clones detected: 5</P>
-        <P>41 of 545 lines are duplicates (7.52%) </P>
+        <P>41 of 542 lines are duplicates (7.56%) </P>
 <P>
 <B>Parameters<BR> </B>
 clustering_threshold = 10<BR>
@@ -58,50 +58,50 @@ clusterize_using_hash = False<BR>
 clusterize_using_dcup = False<BR>
 </P> 
         
-    <B>Time elapsed</B><BR>Construction of AST : 0.22 seconds<BR>
+    <B>Time elapsed</B><BR>Construction of AST : 0.30 seconds<BR>
 Building statement hash : 0.00 seconds<BR>
-Building patterns : 0.52 seconds<BR>
-Marking similar statements : 0.39 seconds<BR>
+Building patterns : 0.46 seconds<BR>
+Marking similar statements : 0.35 seconds<BR>
 Finding similar sequences of statements : 0.06 seconds<BR>
-Refining candidates : 0.94 seconds<BR>
- Total time: 2.14<BR>
- Started at: Tue Apr 15 16:52:05 2014<BR>
- Finished at: Tue Apr 15 16:52:07 2014
-    <P><B>Clone # 1</B><BR>Distance between two fragments = 3 <BR>Clone size = 7<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 156</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 144</TD></TR><TR>
+Refining candidates : 0.96 seconds<BR>
+ Total time: 2.13<BR>
+ Started at: Wed Apr 16 11:18:46 2014<BR>
+ Finished at: Wed Apr 16 11:18:48 2014
+    <P><B>Clone # 1</B><BR>Distance between two fragments = 3 <BR>Clone size = 7<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 144</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 156</TD></TR><TR>
 <TD>
-def <span style="color: rgb(255, 0, 0);">check_cc_unreachable</span>(channel, method, properties, body):<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;expected_message = (error_utils.<span style="color: rgb(255, 0, 0);">TTY_CONNECTION_PROBLEM</span>) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);">BAD_TTY_PORT</span>))<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;verify_json_message(body, expected_message)<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;channel.close()</TD>
-<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
 def <span style="color: rgb(255, 0, 0);">check_cc_incorrect</span>(channel, method, properties, body):<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;expected_message = (error_utils.<span style="color: rgb(255, 0, 0);">CC_INCORRECT_MESSAGE</span>) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);">WRONG_CURRENTCOST_MESSAGE</span>))<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;verify_json_message(body, expected_message)<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;channel.close()</TD>
-</TR>
-</TABLE> </P> <HR><BR>
-<P><B>Clone # 2</B><BR>Distance between two fragments = 2 <BR>Clone size = 7<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 168</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 156</TD></TR><TR>
-<TD>
-def <span style="color: rgb(255, 0, 0);">check_cc_disconnected</span>(channel, method, properties, body):<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;expected_message = (error_utils.TTY_CONNECTION_PROBLEM) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);">TTY_PORT</span>))<BR>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+def <span style="color: rgb(255, 0, 0);">check_cc_unreachable</span>(channel, method, properties, body):<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;expected_message = (error_utils.<span style="color: rgb(255, 0, 0);">TTY_CONNECTION_PROBLEM</span>) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);">BAD_TTY_PORT</span>))<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;verify_json_message(body, expected_message)<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;channel.close()</TD>
-<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 2</B><BR>Distance between two fragments = 2 <BR>Clone size = 7<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 156</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 168</TD></TR><TR>
+<TD>
 def <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">check_cc_unreachable</span></span>(channel, method, properties, body):<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;expected_message = (error_utils.<span style="color: rgb(255, 0, 0);">TTY_CONNECTION_PROBLEM</span>) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">BAD_TTY_PORT</span></span>))<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;verify_json_message(body, expected_message)<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;channel.close()</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+def <span style="color: rgb(255, 0, 0);">check_cc_disconnected</span>(channel, method, properties, body):<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;expected_message = (error_utils.TTY_CONNECTION_PROBLEM) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);">TTY_PORT</span>))<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;verify_json_message(body, expected_message)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.close()</TD>
 </TR>
 </TABLE> </P> <HR><BR>
-<P><B>Clone # 3</B><BR>Distance between two fragments = 3 <BR>Clone size = 7<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 168</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 144</TD></TR><TR>
+<P><B>Clone # 3</B><BR>Distance between two fragments = 3 <BR>Clone size = 7<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 144</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 168</TD></TR><TR>
 <TD>
-def <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">check_cc_disconnected</span></span>(channel, method, properties, body):<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;expected_message = (error_utils.<span style="color: rgb(255, 0, 0);">TTY_CONNECTION_PROBLEM</span>) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">TTY_PORT</span></span>))<BR>
+def <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">check_cc_incorrect</span></span>(channel, method, properties, body):<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;expected_message = (error_utils.<span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">CC_INCORRECT_MESSAGE</span></span>) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">WRONG_CURRENTCOST_MESSAGE</span></span>))<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;verify_json_message(body, expected_message)<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;channel.close()</TD>
 <TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
-def <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">check_cc_incorrect</span></span>(channel, method, properties, body):<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;expected_message = (error_utils.<span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">CC_INCORRECT_MESSAGE</span></span>) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">WRONG_CURRENTCOST_MESSAGE</span></span>))<BR>
+def <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">check_cc_disconnected</span></span>(channel, method, properties, body):<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;expected_message = (error_utils.<span style="color: rgb(255, 0, 0);">TTY_CONNECTION_PROBLEM</span>) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">TTY_PORT</span></span>))<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;verify_json_message(body, expected_message)<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;channel.close()</TD>
 </TR>

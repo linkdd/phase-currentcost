@@ -39,6 +39,7 @@ Pending tasks
     * Launch a server web in a subprocess.Popen
     * Launch watch task in a subprocess.Popen
     * Listen for a terminating command to quit properly two previous subprocesses
+    * Support of python 3.2, 3.3, pypy
 
 * Documentation:
     * Detail process to start in development mode

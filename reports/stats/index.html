@@ -2,7 +2,92 @@
 <body>
 <div>
 <h1>Report</h1>
-<p>385 statements analysed.</p><div>
+<p>381 statements analysed.</p><div>
+<h2>Raw metrics</h2>
+<table>
+<tr class="header">
+<th>type</th>
+<th>number</th>
+<th>%</th>
+<th>previous</th>
+<th>difference</th>
+</tr>
+<tr class="even">
+<td>code</td>
+<td>537</td>
+<td>53.27</td>
+<td>542</td>
+<td>-5.00</td>
+</tr>
+<tr class="odd">
+<td>docstring</td>
+<td>263</td>
+<td>26.09</td>
+<td>263</td>
+<td>=</td>
+</tr>
+<tr class="even">
+<td>comment</td>
+<td>28</td>
+<td>2.78</td>
+<td>31</td>
+<td>-3.00</td>
+</tr>
+<tr class="odd">
+<td>empty</td>
+<td>180</td>
+<td>17.86</td>
+<td>181</td>
+<td>-1.00</td>
+</tr>
+</table>
+</div>
+<div>
+<h2>External dependencies</h2>
+<pre>behave 
+  \-given (currentcost_steps)
+  \-then (currentcost_steps)
+  \-when (currentcost_steps)
+currentcost 
+  \-rabbitmq_messager 
+  | \-RabbitMQMessager (tests.test_messaging)
+  \-utils 
+    \-error_utils (currentcost.rabbitmq_messager,currentcost_steps)
+datetime 
+  \-datetime (currentcost.rabbitmq_messager)
+fabric 
+  \-api 
+    \-local (fabfile)
+paver 
+  \-easy 
+    \-Bunch (pavement)
+    \-needs (pavement)
+    \-options (pavement)
+    \-path (pavement)
+    \-sh (pavement)
+    \-task (pavement)
+pika (tests.test_messaging,currentcost.rabbitmq_messager,currentcost_steps)
+serial (currentcost_steps)
+setuptools 
+  \-find_packages (setup)
+  \-setup (setup)
+tests 
+  \-fixtures 
+    \-history 
+      \-HISTORY_1 (currentcost_steps)
+      \-HISTORY_10 (currentcost_steps)
+      \-HISTORY_11 (currentcost_steps)
+      \-HISTORY_12 (currentcost_steps)
+      \-HISTORY_13 (currentcost_steps)
+      \-HISTORY_2 (currentcost_steps)
+      \-HISTORY_3 (currentcost_steps)
+      \-HISTORY_4 (currentcost_steps)
+      \-HISTORY_5 (currentcost_steps)
+      \-HISTORY_6 (currentcost_steps)
+      \-HISTORY_7 (currentcost_steps)
+      \-HISTORY_8 (currentcost_steps)
+      \-HISTORY_9 (currentcost_steps)</pre></div>
+<div>
 <h2>Messages by category</h2>
 <table>
 <tr class="header">
@@ -80,91 +165,6 @@ Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)</div>
 </tr>
 </table>
 </div>
-<div>
-<h2>Raw metrics</h2>
-<table>
-<tr class="header">
-<th>type</th>
-<th>number</th>
-<th>%</th>
-<th>previous</th>
-<th>difference</th>
-</tr>
-<tr class="even">
-<td>code</td>
-<td>542</td>
-<td>53.29</td>
-<td>542</td>
-<td>=</td>
-</tr>
-<tr class="odd">
-<td>docstring</td>
-<td>263</td>
-<td>25.86</td>
-<td>263</td>
-<td>=</td>
-</tr>
-<tr class="even">
-<td>comment</td>
-<td>31</td>
-<td>3.05</td>
-<td>31</td>
-<td>=</td>
-</tr>
-<tr class="odd">
-<td>empty</td>
-<td>181</td>
-<td>17.80</td>
-<td>181</td>
-<td>=</td>
-</tr>
-</table>
-</div>
-<div>
-<h2>External dependencies</h2>
-<pre>behave 
-  \-given (currentcost_steps)
-  \-then (currentcost_steps)
-  \-when (currentcost_steps)
-currentcost 
-  \-rabbitmq_messager 
-  | \-RabbitMQMessager (tests.test_messaging)
-  \-utils 
-    \-error_utils (currentcost.rabbitmq_messager,currentcost_steps)
-datetime 
-  \-datetime (currentcost.rabbitmq_messager)
-fabric 
-  \-api 
-    \-local (fabfile)
-paver 
-  \-easy 
-    \-Bunch (pavement)
-    \-needs (pavement)
-    \-options (pavement)
-    \-path (pavement)
-    \-sh (pavement)
-    \-task (pavement)
-pika (tests.test_messaging,currentcost.rabbitmq_messager,currentcost_steps)
-serial (currentcost_steps)
-setuptools 
-  \-find_packages (setup)
-  \-setup (setup)
-tests 
-  \-fixtures 
-    \-history 
-      \-HISTORY_1 (currentcost_steps)
-      \-HISTORY_10 (currentcost_steps)
-      \-HISTORY_11 (currentcost_steps)
-      \-HISTORY_12 (currentcost_steps)
-      \-HISTORY_13 (currentcost_steps)
-      \-HISTORY_2 (currentcost_steps)
-      \-HISTORY_3 (currentcost_steps)
-      \-HISTORY_4 (currentcost_steps)
-      \-HISTORY_5 (currentcost_steps)
-      \-HISTORY_6 (currentcost_steps)
-      \-HISTORY_7 (currentcost_steps)
-      \-HISTORY_8 (currentcost_steps)
-      \-HISTORY_9 (currentcost_steps)</pre></div>
 <div>
 <h2>Statistics by type</h2>
 <table>
