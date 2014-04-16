@@ -4,7 +4,7 @@
 # pylint: disable=R0904
 
 """
-    Test file for messaging method.
+    Test file for RabbitMQMessager method.
 """
 
 from __future__ import print_function
@@ -57,7 +57,7 @@ def validate_stdout(username, password, host, self):
     self.assertEqual(output2["nonDstTimezone"], tzname[0])
 
 
-class TestMessaging(unittest.TestCase):
+class TestRabbitMQMessager(unittest.TestCase):
 
     """
         All test case for messaging method.

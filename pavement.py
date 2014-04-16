@@ -28,8 +28,8 @@ options(
 
     pylint_file=".pylintrc",
 
-    files="*.py %s/*.py bin/%s %s/*/*.py tests/*.py features/steps/*.py" % (
-        PACKAGE, PACKAGE, PACKAGE),
+    files="*.py %s/*.py bin/%s tests/*.py features/steps/*.py" % (
+        PACKAGE, PACKAGE),
 )
 
 
@@ -80,7 +80,7 @@ def test():
         Launch unit test
     """
     sh("nosetests --cover-erase --with-coverage --cover-html\
-        --cover-package=%s --cover-min-percentage=90 --cover-html-dir=%s" % (
+        --cover-package=%s --cover-min-percentage=70 --cover-html-dir=%s" % (
         PACKAGE, options.cover_folder))
     sh("behave")
 

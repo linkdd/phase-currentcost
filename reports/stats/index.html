@@ -2,46 +2,61 @@
 <body>
 <div>
 <h1>Report</h1>
-<p>381 statements analysed.</p><div>
-<h2>Raw metrics</h2>
+<p>441 statements analysed.</p><div>
+<h2>Messages by category</h2>
 <table>
 <tr class="header">
 <th>type</th>
 <th>number</th>
-<th>%</th>
 <th>previous</th>
 <th>difference</th>
 </tr>
 <tr class="even">
-<td>code</td>
-<td>537</td>
-<td>53.27</td>
-<td>537</td>
+<td>convention</td>
+<td>0</td>
+<td>0</td>
 <td>=</td>
 </tr>
 <tr class="odd">
-<td>docstring</td>
-<td>263</td>
-<td>26.09</td>
-<td>263</td>
+<td>refactor</td>
+<td>0</td>
+<td>0</td>
 <td>=</td>
 </tr>
 <tr class="even">
-<td>comment</td>
-<td>28</td>
-<td>2.78</td>
-<td>28</td>
-<td>=</td>
+<td>warning</td>
+<td>0</td>
+<td>1</td>
+<td>-1.00</td>
 </tr>
 <tr class="odd">
-<td>empty</td>
-<td>180</td>
-<td>17.86</td>
-<td>180</td>
+<td>error</td>
+<td>0</td>
+<td>0</td>
 <td>=</td>
 </tr>
 </table>
 </div>
+<div>
+<h2>Messages</h2>
+<table>
+<tr class="header">
+<th>message id</th>
+<th>occurrences</th>
+</tr>
+<tr class="even">
+<td>locally-disabled</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>deprecated-pragma</td>
+<td>2</td>
+</tr>
+</table>
+</div>
+<div>
+<h2>Global evaluation</h2>
+Your code has been rated at 10.00/10 (previous run: 9.98/10, +0.02)</div>
 <div>
 <h2>Duplication</h2>
 <table>
@@ -66,60 +81,45 @@
 </table>
 </div>
 <div>
-<h2>Messages by category</h2>
+<h2>Raw metrics</h2>
 <table>
 <tr class="header">
 <th>type</th>
 <th>number</th>
+<th>%</th>
 <th>previous</th>
 <th>difference</th>
 </tr>
 <tr class="even">
-<td>convention</td>
-<td>0</td>
-<td>0</td>
+<td>code</td>
+<td>616</td>
+<td>53.38</td>
+<td>616</td>
 <td>=</td>
 </tr>
 <tr class="odd">
-<td>refactor</td>
-<td>0</td>
-<td>0</td>
+<td>docstring</td>
+<td>277</td>
+<td>24.00</td>
+<td>277</td>
 <td>=</td>
 </tr>
 <tr class="even">
-<td>warning</td>
-<td>0</td>
-<td>0</td>
+<td>comment</td>
+<td>51</td>
+<td>4.42</td>
+<td>51</td>
 <td>=</td>
 </tr>
 <tr class="odd">
-<td>error</td>
-<td>0</td>
-<td>0</td>
+<td>empty</td>
+<td>210</td>
+<td>18.20</td>
+<td>210</td>
 <td>=</td>
 </tr>
 </table>
 </div>
-<div>
-<h2>Messages</h2>
-<table>
-<tr class="header">
-<th>message id</th>
-<th>occurrences</th>
-</tr>
-<tr class="even">
-<td>locally-disabled</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td>deprecated-pragma</td>
-<td>2</td>
-</tr>
-</table>
-</div>
-<div>
-<h2>Global evaluation</h2>
-Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)</div>
 <div>
 <h2>External dependencies</h2>
 <pre>behave 
@@ -128,11 +128,19 @@ Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)</div>
   \-when (currentcost_steps)
 currentcost 
   \-rabbitmq_messager 
-  | \-RabbitMQMessager (tests.test_messaging)
+  | \-RabbitMQMessager (tests.test_rabbitmq_messager)
   \-utils 
-    \-error_utils (currentcost.rabbitmq_messager,currentcost_steps)
+    \-CC_INCORRECT_MESSAGE (tests.test_utils,currentcost_steps)
+    \-CURRENTCOST_TIMEOUT (tests.test_utils,currentcost_steps)
+    \-ERROR (tests.test_utils,currentcost_steps)
+    \-RABBIT_MQ_CONNECTION_PROBLEM (currentcost.rabbitmq_messager)
+    \-RABBIT_MQ_CREDENTIAL_PROBLEM (currentcost.rabbitmq_messager,currentcost_steps)
+    \-SUCCESS (tests.test_utils,currentcost_steps)
+    \-TTY_CONNECTION_PROBLEM (currentcost_steps)
+    \-TTY_CONNECTION_SUCCESS (currentcost_steps)
+    \-data_parser (tests.test_utils)
 datetime 
-  \-datetime (currentcost.rabbitmq_messager)
+  \-datetime (currentcost.rabbitmq_messager,currentcost.utils)
 fabric 
   \-api 
     \-local (fabfile)
@@ -144,7 +152,7 @@ paver
     \-path (pavement)
     \-sh (pavement)
     \-task (pavement)
-pika (tests.test_messaging,currentcost.rabbitmq_messager,currentcost_steps)
+pika (tests.test_rabbitmq_messager,currentcost.rabbitmq_messager,currentcost_steps)
 serial (currentcost_steps)
 setuptools 
   \-find_packages (setup)
@@ -178,32 +186,32 @@ tests
 </tr>
 <tr class="even">
 <td>module</td>
-<td>12</td>
-<td>12</td>
+<td>11</td>
+<td>11</td>
 <td>=</td>
 <td>100.00</td>
 <td>0.00</td>
 </tr>
 <tr class="odd">
 <td>class</td>
-<td>2</td>
-<td>2</td>
+<td>3</td>
+<td>3</td>
 <td>=</td>
 <td>100.00</td>
 <td>0.00</td>
 </tr>
 <tr class="even">
 <td>method</td>
-<td>9</td>
-<td>9</td>
+<td>10</td>
+<td>10</td>
 <td>=</td>
 <td>100.00</td>
 <td>0.00</td>
 </tr>
 <tr class="odd">
 <td>function</td>
-<td>57</td>
-<td>57</td>
+<td>60</td>
+<td>60</td>
 <td>=</td>
 <td>100.00</td>
 <td>0.00</td>
@@ -223,7 +231,7 @@ tests
 </tr>
 <tr class="even">
 <td>info</td>
-<td>tests.test_messaging</td>
+<td>tests.test_rabbitmq_messager</td>
 <td>&#160;</td>
 <td>4</td>
 <td>0</td>
@@ -231,19 +239,19 @@ tests
 </tr>
 <tr class="odd">
 <td>info</td>
-<td>currentcost_steps</td>
+<td>tests.test_utils</td>
 <td>&#160;</td>
 <td>4</td>
 <td>0</td>
-<td>Locally disabling W0613</td>
+<td>Locally disabling R0904</td>
 </tr>
 <tr class="even">
 <td>info</td>
 <td>currentcost_steps</td>
 <td>&#160;</td>
-<td>11</td>
+<td>4</td>
 <td>0</td>
-<td>Deprecated pragma "pylint:disable-msg" or "pylint:enable-msg"</td>
+<td>Locally disabling W0613</td>
 </tr>
 <tr class="odd">
 <td>info</td>
@@ -251,9 +259,17 @@ tests
 <td>&#160;</td>
 <td>11</td>
 <td>0</td>
-<td>Locally disabling E0611</td>
+<td>Deprecated pragma "pylint:disable-msg" or "pylint:enable-msg"</td>
 </tr>
 <tr class="even">
+<td>info</td>
+<td>currentcost_steps</td>
+<td>&#160;</td>
+<td>11</td>
+<td>0</td>
+<td>Locally disabling E0611</td>
+</tr>
+<tr class="odd">
 <td>info</td>
 <td>currentcost_steps</td>
 <td>&#160;</td>

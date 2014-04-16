@@ -10,8 +10,6 @@ Schedule
 --------
 
 * For April, 18th 2014:
-    * News: Integrate code on travis
-    * Documentation: Comment all the code
     * Complete dosctrings using https://github.com/claws/txCurrentCost/blob/master/txcurrentcost/monitor.py example
     * Generate proper documentaion
     * Documentation: Add list of message send using RabbitMQ in README (success message, error message, ...)
@@ -35,7 +33,7 @@ Pending tasks
         * Install RabbitMQ
         * Install pip dependencies
     * Work on deployment (look at pip install, pip freeze, pip bundle, pip wheel)
-    * Fix paver watch problem (stop watch, don't take into account bin/currentcost) (try to use with fabric)
+    * Fix paver watch problem (stop watch) (try to use with fabric)
     * Launch a server web in a subprocess.Popen
     * Launch watch task in a subprocess.Popen
     * Listen for a terminating command to quit properly two previous subprocesses
@@ -48,9 +46,7 @@ Pending tasks
     * List all features
 
 * Refactoring:
-    * Create log util file to add init and activate verbose mode on it
-    * Refactor architecture of this project (Think what should be a class, what should be a method, ...)
-    * Change error_utils to a more accurate name
     * Split currentcost_steps.py into several test file
+    * Comment test files
     * Extract messager from this project and create a pip to install it for several phase module
 
