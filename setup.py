@@ -10,7 +10,7 @@ setup(
     name="phase-currentcost",
     version=VERSION,
     description="Python script to collect data from current cost EnviR",
-    long_description=open('README.md').read(),
+    long_description=open('README.rst').read(),
     author="Pierre Leray",
     author_email="pierreleray64@gmail.com",
     url="https://github.com/liogen/phase-currentcost",
