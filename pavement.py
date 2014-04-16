@@ -7,35 +7,8 @@
 """
 
 from paver.easy import options, Bunch, task, needs, sh, path
-#from paver.easy import *
-from paver.setuputils import setup, find_packages
-import sys
-
-VERSION = '0.9.2'
-
-INSTALL_REQS = []
-
-if sys.version_info < (3, 0):
-    INSTALL_REQS.append('pyserial >= 2.5')
-else:
-    INSTALL_REQS.append('pyserial-py3k')
 
 PACKAGE = "currentcost"
-
-setup(
-    name="phase-currentcost",
-    version=VERSION,
-    description="Python script to collect data from current cost EnviR",
-    long_description=open('README.md').read(),
-    author="Pierre Leray",
-    author_email="pierreleray64@gmail.com",
-    url="https://github.com/liogen/phase-currentcost",
-    license='LICENSE',
-    packages=find_packages(),
-    scripts=["bin/currentcost"],
-    install_requires=INSTALL_REQS,
-    zip_safe=False,
-)
 
 options(
     sphinx=Bunch(
@@ -47,16 +20,16 @@ options(
 
     test_package="tests",
 
-    clone_file="report/clone/index.html",
+    clone_file="reports/clone/index.html",
 
-    stats_file="report/stats/index.html",
+    stats_file="reports/stats/index.html",
+
+    cover_folder="reports/cover",
 
     pylint_file=".pylintrc",
 
-    cover_folder="report/cover",
-
-    files="*.py %s/*.py bin/%s %s/*/*.py tests/*.py features/steps/*.py" % (
-        PACKAGE, PACKAGE, PACKAGE),
+    files="*.py %s/*.py bin/%s tests/*.py features/steps/*.py" % (
+        PACKAGE, PACKAGE),
 )
 
 
@@ -107,7 +80,7 @@ def test():
         Launch unit test
     """
     sh("nosetests --cover-erase --with-coverage --cover-html\
-        --cover-package=%s --cover-min-percentage=90 --cover-html-dir=%s" % (
+        --cover-package=%s --cover-min-percentage=70 --cover-html-dir=%s" % (
         PACKAGE, options.cover_folder))
     sh("behave")
 

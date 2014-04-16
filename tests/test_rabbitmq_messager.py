@@ -4,7 +4,7 @@
 # pylint: disable=R0904
 
 """
-    Test file for messaging method.
+    Test file for RabbitMQMessager method.
 """
 
 from __future__ import print_function
@@ -24,9 +24,9 @@ INVALID_USERNAME = "EDzadminZE"
 INVALID_PASSWORD = "pasZECZCordZE"
 INVALID_HOST = "192.168.5.56"
 TOPIC = "TEST_RABBIT_MQ_MESSAGER"
-MESSAGE = u"It works!"
-SITE_NAME = u"TEST_SITE"
-VAR_NAME = u"TEST_VAR"
+MESSAGE = "It works!"
+SITE_NAME = "TEST_SITE"
+VAR_NAME = "TEST_VAR"
 CREDENTIALS = pika.PlainCredentials(VALID_USERNAME, VALID_PASSWORD)
 CONNECTION = pika.BlockingConnection(
     pika.ConnectionParameters(host=VALID_HOST, credentials=CREDENTIALS))
@@ -50,14 +50,14 @@ def validate_stdout(username, password, host, self):
     out2 = StringIO()
     messager.send_message(TOPIC, SITE_NAME, VAR_NAME, MESSAGE, out2)
     output2 = json.loads(out2.getvalue().strip())
-    self.assertEqual(output2[u"message"], MESSAGE)
-    self.assertEqual(output2[u"siteID"], SITE_NAME)
-    self.assertEqual(output2[u"variableID"], VAR_NAME)
-    self.assertEqual(output2[u"dstTimezone"], tzname[1])
-    self.assertEqual(output2[u"nonDstTimezone"], tzname[0])
+    self.assertEqual(output2["message"], MESSAGE)
+    self.assertEqual(output2["siteID"], SITE_NAME)
+    self.assertEqual(output2["variableID"], VAR_NAME)
+    self.assertEqual(output2["dstTimezone"], tzname[1])
+    self.assertEqual(output2["nonDstTimezone"], tzname[0])
 
 
-class TestMessaging(unittest.TestCase):
+class TestRabbitMQMessager(unittest.TestCase):
 
     """
         All test case for messaging method.

@@ -1,0 +1,118 @@
+#!/usr/bin/python
+# -*- coding: utf8 -*-
+# -*- Mode: Python; py-indent-offset: 4 -*-
+
+"""
+    Main file of pyCurrentCost project.
+
+    workflow:
+        * Parse argument and verify them
+"""
+
+from __future__ import print_function
+import logging
+import logging.config
+from currentcost.utils import argument_parser, init_message, verbose_mode
+from currentcost.utils import data_parser, TTY_CONNECTION_PROBLEM, ERROR
+from currentcost.utils import TTY_CONNECTION_SUCCESS, TTY_DISCONNECTED
+from time import sleep
+from currentcost.rabbitmq_messager import RabbitMQMessager
+import serial
+
+# Globals for this file
+#DEFAULT_LOG_FILE = "/opt/phase/currentcost.conf"
+DEFAULT_LOG_FILE = "logs/log.conf"
+DEFAULT_TTY_PORT = "/dev/currentcost"
+HOST = "localhost"
+TIMEOUT_CURRENTCOST = 10
+USB_RETRY = 5
+BAUDS = 57600
+# Initialize logger
+LOGGER = logging.getLogger("currentcost")
+
+
+def main():
+    """
+        Main function of this module.
+    """
+#   Init logging file
+    logging.config.fileConfig(DEFAULT_LOG_FILE)
+#   Parse command line argument and format it into according variable
+    args = argument_parser()
+    variable_name = args.variable_name
+    site_name = args.site_name
+    tty_port = args.tty_port
+    rabbitMQ_credential = args.rabbitMQ_credential
+    verbose = args.verbose
+#   Active verbose mode
+    verbose_mode(verbose)
+#   Initialize ser_connection
+    ser_connection = None
+#   Initialiez tty port if not given in argument
+    if tty_port is None:
+        tty_port = DEFAULT_TTY_PORT
+#   Initialize RabbitMQ credential
+    username = None
+    password = None
+    if rabbitMQ_credential:
+        username = rabbitMQ_credential.split(":")[0]
+        password = rabbitMQ_credential.split(":")[1]
+#   Init log message
+    init_message(variable_name, site_name, tty_port)
+#   Initialize messager
+    messager = RabbitMQMessager(
+        username,
+        password,
+        HOST)
+#   Start the main loop
+    while True:
+        try:
+#           If we are not connected to TTY ort
+            if ser_connection is None:
+                try:
+#                   We create a tty connection
+                    ser_connection = serial.Serial(
+                        tty_port,
+                        BAUDS,
+                        timeout=TIMEOUT_CURRENTCOST)
+                except OSError:
+#                   If tty not exist we send according error an retry in
+#                   a moment
+                    messager.send_message(
+                        ERROR,
+                        site_name,
+                        variable_name,
+                        TTY_CONNECTION_PROBLEM % (
+                            variable_name,
+                            site_name,
+                            tty_port))
+                    sleep(USB_RETRY)
+#               When we are connected, we log this success
+                else:
+                    LOGGER.info(TTY_CONNECTION_SUCCESS % (
+                        variable_name, site_name, tty_port))
+#           If we are connected to TTY port
+            if ser_connection is not None:
+#               We wait for a new message on this socket
+                data = ser_connection.readline()
+#               We parse the result
+                topic, message = data_parser(data, variable_name, site_name)
+#               And send a message
+                messager.send_message(
+                    topic,
+                    site_name,
+                    variable_name,
+                    message)
+#       If during this process, someone deactivate USB connection
+        except serial.serialutil.SerialException:
+#           We reinit serial connection
+            ser_connection.close()
+            ser_connection = None
+#           And we log this error
+            LOGGER.info(TTY_DISCONNECTED % (
+                variable_name, site_name, tty_port))
+
+
+if __name__ == '__main__':
+#   Launch main method
+    main()

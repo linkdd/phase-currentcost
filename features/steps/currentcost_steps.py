@@ -11,7 +11,9 @@ from __future__ import print_function
 from behave import when, then, given  # pylint: disable-msg=E0611
 import subprocess
 from subprocess import CalledProcessError
-from currentcost.utils import error_utils
+from currentcost.utils import CC_INCORRECT_MESSAGE, TTY_CONNECTION_PROBLEM
+from currentcost.utils import CURRENTCOST_TIMEOUT, RABBIT_MQ_CREDENTIAL_PROBLEM
+from currentcost.utils import ERROR, SUCCESS, TTY_CONNECTION_SUCCESS
 import pika
 import shlex
 from time import sleep, tzname
@@ -75,11 +77,11 @@ def verify_json_message(body, expected_message):
         Verify JSON message value.
     """
     message = json.loads(body)
-    assert message[u"message"] == expected_message
-    assert message[u"siteID"] == SITE_NAME
-    assert message[u"variableID"] == VAR_NAME
-    assert message[u"dstTimezone"] == tzname[1]
-    assert message[u"nonDstTimezone"] == tzname[0]
+    assert message["message"] == expected_message
+    assert message["siteID"] == SITE_NAME
+    assert message["variableID"] == VAR_NAME
+    assert message["dstTimezone"] == tzname[1]
+    assert message["nonDstTimezone"] == tzname[0]
 
 
 def extract_from_log(expected_message, line):
@@ -145,7 +147,7 @@ def check_cc_incorrect(channel, method, properties, body):
     """
         Callback that check incorrect message sent.
     """
-    expected_message = error_utils.CC_INCORRECT_MESSAGE % (
+    expected_message = CC_INCORRECT_MESSAGE % (
         VAR_NAME,
         SITE_NAME,
         WRONG_CURRENTCOST_MESSAGE)
@@ -157,7 +159,7 @@ def check_cc_unreachable(channel, method, properties, body):
     """
         Callback called when a new message is available.
     """
-    expected_message = error_utils.TTY_CONNECTION_PROBLEM % (
+    expected_message = TTY_CONNECTION_PROBLEM % (
         VAR_NAME,
         SITE_NAME,
         BAD_TTY_PORT)
@@ -169,7 +171,7 @@ def check_cc_disconnected(channel, method, properties, body):
     """
         Callback called when a new message is available.
     """
-    expected_message = error_utils.TTY_CONNECTION_PROBLEM % (
+    expected_message = TTY_CONNECTION_PROBLEM % (
         VAR_NAME,
         SITE_NAME,
         TTY_PORT)
@@ -181,8 +183,7 @@ def check_usb_disconnected(channel, method, properties, body):
     """
         Callback called when a new message is available.
     """
-    expected_message = error_utils.CURRENTCOST_TIMEOUT % (
-        VAR_NAME, SITE_NAME)
+    expected_message = CURRENTCOST_TIMEOUT % (VAR_NAME, SITE_NAME)
     verify_json_message(body, expected_message)
     channel.close()
 
@@ -215,7 +216,7 @@ def launch_script(commands):
     return commands_response
 
 
-@when(u"we launch currentcost script without important argument")
+@when("we launch currentcost script without important argument")
 def when_launch_without_parameter(context):
     """
         Launch currentcost script without important argument.
@@ -230,7 +231,7 @@ def when_launch_without_parameter(context):
     context.commands_response = launch_script(commands)
 
 
-@then(u"we should see an error message on screen")
+@then("we should see an error message on screen")
 def error_script_without_parameter(context):
     """
         Except that subprocess raise an exception.
@@ -238,7 +239,7 @@ def error_script_without_parameter(context):
     check_response_script(context.commands_response)
 
 
-@when(u"we start currentcost with bad port without rabbitmq")
+@when("we start currentcost with bad port without rabbitmq")
 def when_launch_with_unreachable(context):
     """
         Launch currentcost script with wrong tty port
@@ -250,7 +251,7 @@ def when_launch_with_unreachable(context):
     process.terminate()
 
 
-@when(u"we start currentcost with bad port and bad rabbitmq credential")
+@when("we start currentcost with bad port and bad rabbitmq credential")
 def launch_ccunreach_badrmq(context):
     """
         Launch unreachable currentcost with bad rabbitmq credential
@@ -263,29 +264,29 @@ def launch_ccunreach_badrmq(context):
     process.terminate()
 
 
-@then(u"we should see currentcost is unreachable in log")
+@then("we should see currentcost is unreachable in log")
 def detect_unreachability_log(context):
     """
         We should see currentcost unreachability in log file.
     """
-    error = error_utils.TTY_CONNECTION_PROBLEM % (
+    error = TTY_CONNECTION_PROBLEM % (
         VAR_NAME, SITE_NAME, BAD_TTY_PORT)
     extract_from_log(error, -1)
 
 
-@then(u"we should see rabbitmq error in log")
+@then("we should see rabbitmq error in log")
 def detect_rabbitmqerror_log(context):
     """
         We should see currentcost unreachability in log file.
     """
-    error = error_utils.RABBIT_MQ_CREDENTIAL_PROBLEM % (
+    error = RABBIT_MQ_CREDENTIAL_PROBLEM % (
         BAD_MQ_CREDENTIAL.split(":")[0],
         BAD_MQ_CREDENTIAL.split(":")[1],
         MQ_HOST)
     extract_from_log(error, -2)
 
 
-@when(u"we start currentcost with bad port with rabbitmq")
+@when("we start currentcost with bad port with rabbitmq")
 def launch_ccunreach_withoutrmq(context):
     """
         Launch currentcost script with wrong tty port.
@@ -297,16 +298,16 @@ def launch_ccunreach_withoutrmq(context):
     sleep(1)
 
 
-@then(u"we should receive a message saying that current cost is unreachable")
+@then("we should receive a message saying that current cost is unreachable")
 def receive_message_unreachable(context):
     """
         Expect a message saying that currentcost is unreachable on RabbitMQ.
     """
     context.process.terminate()
-    consume(error_utils.ERROR, check_cc_unreachable)
+    consume(ERROR, check_cc_unreachable)
 
 
-@given(u"current cost does not send any message")
+@given("current cost does not send any message")
 def simulate_cc_disconnected(context):
     """
         Simulate USB port connection with socat.
@@ -315,7 +316,7 @@ def simulate_cc_disconnected(context):
     context.socat = subprocess.Popen(shlex.split(commands))
 
 
-@when(u"we launch currentcost script and reach the timeout limit")
+@when("we launch currentcost script and reach the timeout limit")
 def cc_reach_timeout(context):
     """
         Launch currentcost script.
@@ -326,28 +327,28 @@ def cc_reach_timeout(context):
     context.process = subprocess.Popen(shlex.split(commands))
 
 
-@then(u"we should get informed that current cost does not send messages")
+@then("we should get informed that current cost does not send messages")
 def rmq_no_messages(context):
     """
         Waited on RabbitMQ an error message saying that current cost
         does not send any message.
     """
-    consume(error_utils.ERROR, check_usb_disconnected)
+    consume(ERROR, check_usb_disconnected)
     context.process.terminate()
     context.socat.terminate()
 
 
-@then(u"we should see current cost does not send any message in log")
+@then("we should see current cost does not send any message in log")
 def log_no_messages(context):
     """
         Waited to see in log that current cost does not send any messages.
     """
-    error = error_utils.CURRENTCOST_TIMEOUT % (
+    error = CURRENTCOST_TIMEOUT % (
         VAR_NAME, SITE_NAME)
     extract_from_log(error, -1)
 
 
-@given(u"current cost is connected and currentcost script is launched")
+@given("current cost is connected and currentcost script is launched")
 def cc_launch_correctly(context):
     """
         Current cost tty port is created with socat and we launch currentcost
@@ -363,12 +364,12 @@ def cc_launch_correctly(context):
 
     sleep(3)
 
-    error = error_utils.TTY_CONNECTION_SUCCESS % (
+    error = TTY_CONNECTION_SUCCESS % (
         VAR_NAME, SITE_NAME, TTY_PORT)
     extract_from_log(error, -1)
 
 
-@when(u"we disconnect USB port")
+@when("we disconnect USB port")
 def usb_port_disconnection(context):
     """
         Simulation of an USB port disconnection killing socat process.
@@ -376,26 +377,26 @@ def usb_port_disconnection(context):
     context.socat.terminate()
 
 
-@then(u"we should receive a message saying that current cost is disconnected")
+@then("we should receive a message saying that current cost is disconnected")
 def receive_message_disconnected(context):
     """
         Expect a message saying that currentcost is unreachable on RabbitMQ.
     """
-    consume(error_utils.ERROR, check_cc_disconnected)
+    consume(ERROR, check_cc_disconnected)
     context.process.terminate()
 
 
-@then(u"we should see currentcost is disconnected in log")
+@then("we should see currentcost is disconnected in log")
 def detect_disconnected_log(context):
     """
         We should see currentcost unreachability in log file.
     """
-    error = error_utils.TTY_CONNECTION_PROBLEM % (
+    error = TTY_CONNECTION_PROBLEM % (
         VAR_NAME, SITE_NAME, TTY_PORT)
     extract_from_log(error, -1)
 
 
-@given(u"current cost is connected and script is launched")
+@given("current cost is connected and script is launched")
 def cc_connected_launched(context):
     """
         We simulate a socket with socat and launch cc script.
@@ -411,7 +412,7 @@ def cc_connected_launched(context):
     context.process = subprocess.Popen(shlex.split(commands))
 
 
-@when(u"current cost send instant consumption")
+@when("current cost send instant consumption")
 def send_instant_consumption(context):
     """
         Launch cc script with RabbitMQ activated.
@@ -421,18 +422,18 @@ def send_instant_consumption(context):
     context.ser.write("%s\n" % CURRENTCOST_MESSAGE)
 
 
-@then(u"we should receive instant consumption over the network")
+@then("we should receive instant consumption over the network")
 def send_receive_message(context):
     """
         Send a message on socket and retrieve it on RabbitMQ.
     """
-    consume(error_utils.SUCCESS, check_cc_message)
+    consume(SUCCESS, check_cc_message)
     context.ser.close()
     context.process.terminate()
     context.socat.terminate()
 
 
-@when(u"current cost send incorrect message")
+@when("current cost send incorrect message")
 def send_incorrect_message(context):
     """
         Send incorrect message over socket.
@@ -449,25 +450,25 @@ def send_incorrect_message(context):
     context.socat.terminate()
 
 
-@then(u"we should get informed that current cost send incorrect message")
+@then("we should get informed that current cost send incorrect message")
 def receive_incorrect_message(context):
     """
         Receive incorrect message error through RabbitMQ.
     """
-    consume(error_utils.ERROR, check_cc_incorrect)
+    consume(ERROR, check_cc_incorrect)
 
 
-@then(u"we should see incorrect message error in log")
+@then("we should see incorrect message error in log")
 def log_incorrect_message(context):
     """
         Verify in log that we see error.
     """
-    error = error_utils.CC_INCORRECT_MESSAGE % (
+    error = CC_INCORRECT_MESSAGE % (
         VAR_NAME, SITE_NAME, WRONG_CURRENTCOST_MESSAGE)
     extract_from_log(error, -1)
 
 
-@then(u"we should receive historical consumption over the network")
+@then("we should receive historical consumption over the network")
 def receive_historical_consumption(context):
     """
         Receive historical consumption.
@@ -479,7 +480,7 @@ def receive_historical_consumption(context):
     for hist in HISTORYS:
         ser.write("%s" % hist)
 
-        consume(error_utils.SUCCESS, check_history_message)
+        consume(SUCCESS, check_history_message)
 
     ser.close()
     context.process.terminate()

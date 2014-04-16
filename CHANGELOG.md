@@ -1,3 +1,14 @@
+phase-currentcost (v0.9.4) stable; urgency=low
+--------------------------------------------
+
+* Integration on travis
+* Create log util file to add init and activate verbose mode on it
+* Refactor architecture of this project (Think what should be a class, what should be a method, ...)
+* Change error_utils to a more accurate name
+* Documentation: Comment all the code
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-16 14:30:00
+
 phase-currentcost (v0.9.3) stable; urgency=low
 --------------------------------------------
 

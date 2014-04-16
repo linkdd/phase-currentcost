@@ -1,0 +1,22 @@
+language: python
+python:
+  - "2.7"
+services:
+  - rabbitmq
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install socat
+  - sudo service rabbitmq-server start
+  - sudo rabbitmq-plugins enable rabbitmq_management
+  - sudo rabbitmqctl add_user admin password
+  - sudo rabbitmqctl set_user_tags admin administrator
+  - sudo rabbitmqctl set_permissions -p / admin ".*" ".*" ".*"
+  - sudo rabbitmqctl delete_user guest
+  - sudo service rabbitmq-server restart
+install:
+  - pip install behave nose
+  - python setup.py install
+script:
+  - python --version
+  - nosetests
+  - behave -f progress --junit
