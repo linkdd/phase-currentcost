@@ -2,8 +2,9 @@ phase-currentcost (v0.9.5) stable; urgency=low
 ----------------------------------------------
 
 * Generate proper documentaion
+* Documentation integration on ReadTheDoc
 
-Pierre Leray <pierreleray64@gmail.com>  2014-04-16 22:50:00
+Pierre Leray <pierreleray64@gmail.com>  2014-04-16 23:10:00
 
 phase-currentcost (v0.9.4) stable; urgency=low
 ----------------------------------------------
