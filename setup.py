@@ -2,7 +2,7 @@
 
 from setuptools import setup, find_packages
 
-VERSION = "0.9.3"
+VERSION = "0.9.5"
 
 INSTALL_REQS = ["pyserial >= 2.5", "pika"]
 
