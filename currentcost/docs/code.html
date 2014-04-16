@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Modules &mdash; phase-currentcost 0.9.4 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.9.4',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="phase-currentcost 0.9.4 documentation" href="index.html" />
+    <link rel="next" title="TODO v1.0.0" href="todo.html" />
+    <link rel="prev" title="phase-currentcost" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="todo.html" title="TODO v1.0.0"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="phase-currentcost"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">phase-currentcost 0.9.4 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="modules">
+<h1>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-currentcost.utils">
+<span id="utils"></span><h2>Utils<a class="headerlink" href="#module-currentcost.utils" title="Permalink to this headline">¶</a></h2>
+<p>Globals and function needs for this project.</p>
+<dl class="function">
+<dt id="currentcost.utils.argument_parser">
+<tt class="descclassname">currentcost.utils.</tt><tt class="descname">argument_parser</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/currentcost/utils.html#argument_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.utils.argument_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method that parse argument,
+return an error in case of missing paramter or
+return argument with their value.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="currentcost.utils.data_parser">
+<tt class="descclassname">currentcost.utils.</tt><tt class="descname">data_parser</tt><big>(</big><em>data</em>, <em>variable_name</em>, <em>site_name</em><big>)</big><a class="reference internal" href="_modules/currentcost/utils.html#data_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.utils.data_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Analyse data from currentcost and return according TOPIC and MESSAGE.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="currentcost.utils.init_message">
+<tt class="descclassname">currentcost.utils.</tt><tt class="descname">init_message</tt><big>(</big><em>variable_name</em>, <em>site_name</em>, <em>tty_port</em><big>)</big><a class="reference internal" href="_modules/currentcost/utils.html#init_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.utils.init_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create log message starting current cost.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="currentcost.utils.verbose_mode">
+<tt class="descclassname">currentcost.utils.</tt><tt class="descname">verbose_mode</tt><big>(</big><em>verbose</em><big>)</big><a class="reference internal" href="_modules/currentcost/utils.html#verbose_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.utils.verbose_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Active verbose mode.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-currentcost.rabbitmq_messager">
+<span id="rabbitmq-messager"></span><h2>RabbitMQ_messager<a class="headerlink" href="#module-currentcost.rabbitmq_messager" title="Permalink to this headline">¶</a></h2>
+<p>Method that send message over the network.</p>
+<dl class="class">
+<dt id="currentcost.rabbitmq_messager.RabbitMQMessager">
+<em class="property">class </em><tt class="descclassname">currentcost.rabbitmq_messager.</tt><tt class="descname">RabbitMQMessager</tt><big>(</big><em>username</em>, <em>password</em>, <em>host</em><big>)</big><a class="reference internal" href="_modules/currentcost/rabbitmq_messager.html#RabbitMQMessager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.rabbitmq_messager.RabbitMQMessager" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class send message to RabbitMQ or in stdout following user choice.</p>
+<dl class="method">
+<dt id="currentcost.rabbitmq_messager.RabbitMQMessager.consume">
+<tt class="descname">consume</tt><big>(</big><em>topic</em>, <em>callback</em><big>)</big><a class="reference internal" href="_modules/currentcost/rabbitmq_messager.html#RabbitMQMessager.consume"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.rabbitmq_messager.RabbitMQMessager.consume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method that wait for a message on RabbitMQ topics channels.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="currentcost.rabbitmq_messager.RabbitMQMessager.send">
+<tt class="descname">send</tt><big>(</big><em>topic</em>, <em>message</em>, <em>out=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7f48aebf61e0&gt;</em><big>)</big><a class="reference internal" href="_modules/currentcost/rabbitmq_messager.html#RabbitMQMessager.send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.rabbitmq_messager.RabbitMQMessager.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method that send a message with a topic.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="currentcost.rabbitmq_messager.RabbitMQMessager.send_message">
+<tt class="descname">send_message</tt><big>(</big><em>topic</em>, <em>site_name</em>, <em>var_name</em>, <em>data</em>, <em>out=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7f48aebf61e0&gt;</em><big>)</big><a class="reference internal" href="_modules/currentcost/rabbitmq_messager.html#RabbitMQMessager.send_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.rabbitmq_messager.RabbitMQMessager.send_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format parameter into json string for phase platform.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Modules</a><ul>
+<li><a class="reference internal" href="#module-currentcost.utils">Utils</a></li>
+<li><a class="reference internal" href="#module-currentcost.rabbitmq_messager">RabbitMQ_messager</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">phase-currentcost</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="todo.html"
+                        title="next chapter">TODO v1.0.0</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/code.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="todo.html" title="TODO v1.0.0"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="phase-currentcost"
+             >previous</a> |</li>
+        <li><a href="index.html">phase-currentcost 0.9.4 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Pierre Leray.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

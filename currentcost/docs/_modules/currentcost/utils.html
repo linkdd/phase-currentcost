@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>currentcost.utils &mdash; phase-currentcost 0.9.4 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.9.4',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="phase-currentcost 0.9.4 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">phase-currentcost 0.9.4 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for currentcost.utils</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/python</span>
+<span class="c"># -*- coding: utf8 -*-</span>
+<span class="c"># -*- Mode: Python; py-indent-offset: 4 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Globals and function needs for this project.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">xml.etree</span> <span class="kn">import</span> <span class="n">ElementTree</span>
+
+<span class="c"># Globals declaration for this project</span>
+<span class="n">SUCCESS</span> <span class="o">=</span> <span class="s">&quot;currentcost&quot;</span>
+<span class="n">ERROR</span> <span class="o">=</span> <span class="s">&quot;error&quot;</span>
+<span class="n">TTY_CONNECTION_PROBLEM</span> <span class="o">=</span> <span class="s">&quot;CurrentCost </span><span class="si">%s</span><span class="s"> in </span><span class="si">%s</span><span class="s">: TTY connection problem: </span><span class="si">%s</span><span class="s"> </span><span class="se">\</span>
+<span class="s">is unreachable. Retry connection in 5 seconds.&quot;</span>
+<span class="n">TTY_TRYING_CONNECTION</span> <span class="o">=</span> <span class="s">&quot;CurrentCost </span><span class="si">%s</span><span class="s"> in </span><span class="si">%s</span><span class="s">: Trying to connect to </span><span class="si">%s</span><span class="s">.&quot;</span>
+<span class="n">TTY_CONNECTION_SUCCESS</span> <span class="o">=</span> <span class="s">&quot;CurrentCost </span><span class="si">%s</span><span class="s"> in </span><span class="si">%s</span><span class="s">: Success connection to </span><span class="si">%s</span><span class="s">.&quot;</span>
+<span class="n">TTY_DISCONNECTED</span> <span class="o">=</span> <span class="s">&quot;CurrentCost </span><span class="si">%s</span><span class="s"> in </span><span class="si">%s</span><span class="s">: TTY port </span><span class="si">%s</span><span class="s"> disconnected.&quot;</span>
+<span class="n">CURRENTCOST_TIMEOUT</span> <span class="o">=</span> <span class="s">&quot;CurrentCost </span><span class="si">%s</span><span class="s"> in </span><span class="si">%s</span><span class="s">: Reach timeout. Verify </span><span class="se">\</span>
+<span class="s">CurrentCost wire connection or wave range&quot;</span>
+<span class="n">CC_INCORRECT_MESSAGE</span> <span class="o">=</span> <span class="s">&quot;CurrentCost </span><span class="si">%s</span><span class="s"> in </span><span class="si">%s</span><span class="s">: Send incorrect</span><span class="se">\</span>
+<span class="s"> message =&gt; </span><span class="si">%s</span><span class="s">.&quot;</span>
+<span class="n">RABBIT_MQ_CONNECTION_PROBLEM</span> <span class="o">=</span> <span class="s">&quot;Problem trying to connect to RabbitMQ with </span><span class="se">\</span>
+<span class="s">this configuration: username: </span><span class="si">%s</span><span class="s">, password: </span><span class="si">%s</span><span class="s">, host: </span><span class="si">%s</span><span class="s">&quot;</span>
+<span class="n">RABBIT_MQ_CREDENTIAL_PROBLEM</span> <span class="o">=</span> <span class="s">&quot;Problem bad RabbitMQ credential with </span><span class="se">\</span>
+<span class="s">this configuration: username: </span><span class="si">%s</span><span class="s">, password: </span><span class="si">%s</span><span class="s">, host: </span><span class="si">%s</span><span class="s">&quot;</span>
+<span class="n">CURRENTCOST_UNICODE_ERROR</span> <span class="o">=</span> <span class="s">&quot;Bad message sent from currentcost, invalid ASCII&quot;</span>
+<span class="c"># Logger initialization</span>
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&quot;currentcost&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="argument_parser"><a class="viewcode-back" href="../../code.html#currentcost.utils.argument_parser">[docs]</a><span class="k">def</span> <span class="nf">argument_parser</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method that parse argument,</span>
+<span class="sd">        return an error in case of missing paramter or</span>
+<span class="sd">        return argument with their value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="c">#   Get command line arguments</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+<span class="c">#   Define expected arguments</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;variable_name&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;name of the variable&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;site_name&quot;</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s">&quot;name of the location of the variable&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;-t&quot;</span><span class="p">,</span> <span class="s">&quot;--tty-port&quot;</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s">&quot;tty port to connect to current cost&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;-r&quot;</span><span class="p">,</span> <span class="s">&quot;--rabbitMQ-credential&quot;</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s">&quot;credential for rabbitMQ. By default, RabbitMQ is</span><span class="se">\</span>
+<span class="s">                        deactivated. To activate it you have to give your </span><span class="se">\</span>
+<span class="s">                        credential. Format: username:password.&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&quot;-v&quot;</span><span class="p">,</span> <span class="s">&quot;--verbose&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;activate verbose mode&quot;</span><span class="p">,</span>
+                        <span class="n">action</span><span class="o">=</span><span class="s">&quot;store_true&quot;</span><span class="p">)</span>
+<span class="c">#   Return list of argument passed in command line</span>
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+</div>
+<div class="viewcode-block" id="init_message"><a class="viewcode-back" href="../../code.html#currentcost.utils.init_message">[docs]</a><span class="k">def</span> <span class="nf">init_message</span><span class="p">(</span><span class="n">variable_name</span><span class="p">,</span> <span class="n">site_name</span><span class="p">,</span> <span class="n">tty_port</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create log message starting current cost.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="c">#   Create init message</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s">&quot;Starting current cost application</span><span class="se">\n</span><span class="s">&quot;</span>
+    <span class="n">message</span> <span class="o">+=</span> <span class="s">&quot;Current time: </span><span class="si">%s</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">message</span> <span class="o">+=</span> <span class="s">&quot;Variable name: </span><span class="si">%s</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">variable_name</span>
+    <span class="n">message</span> <span class="o">+=</span> <span class="s">&quot;Site name: </span><span class="si">%s</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">site_name</span>
+    <span class="n">message</span> <span class="o">+=</span> <span class="s">&quot;TTY port: </span><span class="si">%s</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">tty_port</span>
+<span class="c">#   We log this message</span>
+    <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="verbose_mode"><a class="viewcode-back" href="../../code.html#currentcost.utils.verbose_mode">[docs]</a><span class="k">def</span> <span class="nf">verbose_mode</span><span class="p">(</span><span class="n">verbose</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Active verbose mode.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="c">#   If verbose mode is activated</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+<span class="c">#       Create an handler to console and display log message</span>
+        <span class="n">sth</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+        <span class="n">sth</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<span class="c">#       Add this handler to current logger</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">sth</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="data_parser"><a class="viewcode-back" href="../../code.html#currentcost.utils.data_parser">[docs]</a><span class="k">def</span> <span class="nf">data_parser</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">variable_name</span><span class="p">,</span> <span class="n">site_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Analyse data from currentcost and return according TOPIC and MESSAGE.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="c">#   Initialization of variable</span>
+    <span class="n">topic</span> <span class="o">=</span> <span class="n">ERROR</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="c">#   If data is empty, that means we reach a Timeout</span>
+    <span class="k">if</span> <span class="n">data</span> <span class="o">==</span> <span class="s">&quot;&quot;</span><span class="p">:</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">CURRENTCOST_TIMEOUT</span> <span class="o">%</span> <span class="p">(</span><span class="n">variable_name</span><span class="p">,</span> <span class="n">site_name</span><span class="p">)</span>
+<span class="c">#   Else we retrieve a string</span>
+    <span class="k">else</span><span class="p">:</span>
+<span class="c">#       We remove useless end-line and new-line caracteres</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\r</span><span class="s">&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+<span class="c">#           We expect a valid XML</span>
+            <span class="n">ElementTree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">ParseError</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+<span class="c">#               If it&#39;s not a valid XML, we expected it&#39;s a good string</span>
+<span class="c">#               and return an error</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="n">CC_INCORRECT_MESSAGE</span> <span class="o">%</span> <span class="p">(</span>
+                    <span class="n">variable_name</span><span class="p">,</span>
+                    <span class="n">site_name</span><span class="p">,</span>
+                    <span class="n">data</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
+<span class="c">#               If it&#39;s not a good string, we send according message</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="n">CC_INCORRECT_MESSAGE</span> <span class="o">%</span> <span class="p">(</span>
+                    <span class="n">variable_name</span><span class="p">,</span>
+                    <span class="n">site_name</span><span class="p">,</span>
+                    <span class="n">CURRENTCOST_UNICODE_ERROR</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+<span class="c">#           Else, we return our message with according topic</span>
+            <span class="n">topic</span> <span class="o">=</span> <span class="n">SUCCESS</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="n">data</span>
+
+    <span class="k">return</span> <span class="n">topic</span><span class="p">,</span> <span class="n">message</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">phase-currentcost 0.9.4 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Pierre Leray.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
