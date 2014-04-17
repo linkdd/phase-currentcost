@@ -2,8 +2,14 @@
 # -*- coding: utf8 -*-
 # -*- Mode: Python; py-indent-offset: 4 -*-
 
-"""
-    Globals and function needs for this project.
+"""Globals and function needs for this project.
+
+.. module:: utils
+    :platform: Unix
+    :synopsis: This module contains all useful globals and function needed.
+
+.. moduleauthor:: Pierre Leray <pierreleray64@gmail.com>
+
 """
 
 import argparse
@@ -33,10 +39,11 @@ LOGGER = logging.getLogger("currentcost")
 
 
 def argument_parser():
-    """
-        Method that parse argument,
-        return an error in case of missing paramter or
-        return argument with their value.
+    """Method that parse arguments from command line, return an error in
+    case of missing parameter or return arguments with their value.
+
+    :returns:  dict -- Dict containing arguments.
+
     """
 #   Get command line arguments
     parser = argparse.ArgumentParser()
@@ -46,7 +53,7 @@ def argument_parser():
                         help="name of the location of the variable")
     parser.add_argument("-t", "--tty-port",
                         help="tty port to connect to current cost")
-    parser.add_argument("-r", "--rabbitMQ-credential",
+    parser.add_argument("-r", "--rabbitmq-credential",
                         help="credential for rabbitMQ. By default, RabbitMQ is\
                         deactivated. To activate it you have to give your \
                         credential. Format: username:password.")
@@ -57,8 +64,16 @@ def argument_parser():
 
 
 def init_message(variable_name, site_name, tty_port):
-    """
-        Create log message starting current cost.
+    """Create log message starting current cost.
+
+    :param variable_name: Name of the Variable.
+    :type variable_name: str.
+
+    :param site_name: Name of the Site.
+    :type site_name: str.
+
+    :param tty_port: TTY port path.
+    :type tty_port: str.
     """
 #   Create init message
     message = "Starting current cost application\n"
@@ -71,8 +86,10 @@ def init_message(variable_name, site_name, tty_port):
 
 
 def verbose_mode(verbose):
-    """
-        Active verbose mode.
+    """Active verbose mode.
+
+    :param verbose: Boolean if true active verbose mode.
+    :type variable_name: bool.
     """
 #   If verbose mode is activated
     if verbose:
@@ -83,9 +100,20 @@ def verbose_mode(verbose):
         LOGGER.addHandler(sth)
 
 
-def data_parser(data, variable_name, site_name):
-    """
-        Analyse data from currentcost and return according TOPIC and MESSAGE.
+def data_validator(data, variable_name, site_name):
+    """Analyse data from currentcost and return according TOPIC and MESSAGE.
+
+    :param data: XML string that contain data.
+    :type variable_name: str.
+
+    :param variable_name: Name of the Variable.
+    :type variable_name: str.
+
+    :param site_name: Name of the Site.
+    :type site_name: str.
+
+    :returns:  str -- Topic of the message (error or success).
+    :returns:  str -- Message containing error description or data sent by CC.
     """
 #   Initialization of variable
     topic = ERROR

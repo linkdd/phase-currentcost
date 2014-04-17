@@ -2,8 +2,10 @@
 # -*- coding: utf8 -*-
 # -*- Mode: Python; py-indent-offset: 4 -*-
 
-"""
-    Method that send message over the network.
+"""Method that send message on RabbitMQ or display it on stdout.
+
+.. moduleauthor:: Pierre Leray <pierreleray64@gmail.com>
+
 """
 
 import logging
@@ -18,15 +20,21 @@ import json
 
 class RabbitMQMessager(object):
 
-    """
-        This class send message to RabbitMQ or in stdout following user choice.
+    """This class send message to RabbitMQ or in stdout following user choice.
+
     """
 
     def __init__(self, username, password, host):
-        """
-            Constructor.
+        """Constructor.
 
-            Init RabbitMQ.
+            :param username: Name of the RabbitMQ user.
+            :type username: str.
+
+            :param password: Password of the RabbitMQ user.
+            :type password: str.
+
+            :param host: Host target for RabbitMQ.
+            :type host: str.
         """
 #       Logger and channel initialization
         self.logger = logging.getLogger("currentcost.pika")
@@ -52,8 +60,16 @@ class RabbitMQMessager(object):
                     username, password, host))
 
     def send(self, topic, message, out=sys.stdout):
-        """
-            Method that send a message with a topic.
+        """Method that send a message with a topic.
+
+            :param topic: Channel where to send message (RabbitMQ filter).
+            :type topic: str.
+
+            :param message: Message to send to RabbitMQ.
+            :type message: str.
+
+            :param out: Stdout redirection in case of test (default: stdout).
+            :type out: StringIO.
         """
 #       We log message we want to send to keep a trace
         self.logger.info(message)
@@ -68,8 +84,22 @@ class RabbitMQMessager(object):
             out.write("%s %s" % (unicode(message), "\n"))
 
     def send_message(self, topic, site_name, var_name, data, out=sys.stdout):
-        """
-            Format parameter into json string for phase platform.
+        """Format parameter into json string for phase platform.
+
+            :param topic: Channel where to send message (RabbitMQ filter).
+            :type topic: str.
+
+            :param site_name: Name of the site.
+            :type site_name: str.
+
+            :param var_name: Variable name.
+            :type var_name: str.
+
+            :param data: Data send to send.
+            :type data: str.
+
+            :param out: Stdout redirection in case of test (default: stdout).
+            :type out: StringIO.
         """
 #       We create our phase message
         json_message = {
@@ -84,8 +114,13 @@ class RabbitMQMessager(object):
         self.send(topic, json.dumps(json_message), out)
 
     def consume(self, topic, callback):
-        """
-            Method that wait for a message on RabbitMQ topics channels.
+        """Method that wait for a message on RabbitMQ topics channels.
+
+            :param topic: Channel where to send message (RabbitMQ filter).
+            :type topic: str.
+
+            :param callback: Function that compute result of message (async).
+            :type callback: Function.
         """
 #       We try to connect to our channel and wait for a message
         try:

@@ -16,7 +16,7 @@ setup(
     url="https://github.com/liogen/phase-currentcost",
     license='LICENSE',
     packages=find_packages(),
-    scripts=["bin/currentcost"],
+    scripts=["bin/phase-currentcost"],
     install_requires=INSTALL_REQS,
     zip_safe=False,
 )

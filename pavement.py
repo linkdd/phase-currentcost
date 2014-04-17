@@ -28,7 +28,7 @@ options(
 
     pylint_file=".pylintrc",
 
-    files="*.py %s/*.py bin/%s tests/*.py features/steps/*.py" % (
+    files="*.py %s/*.py bin/phase-%s tests/*.py features/steps/*.py" % (
         PACKAGE, PACKAGE),
 )
 

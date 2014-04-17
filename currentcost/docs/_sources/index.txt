@@ -3,17 +3,13 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. include:: ../../README.rst
-
-More
-====
-
 .. toctree::
     :maxdepth: 2
 
+    presentation.rst
     code.rst
     todo.rst
-    changes.rst
+    change.rst
 
 Indices and tables
 ==================

@@ -31,14 +31,14 @@ DEFAULT_LOG_FILE = "logs/log.conf"
 logging.config.fileConfig(DEFAULT_LOG_FILE)
 LOGGER = logging.getLogger("currentcost")
 
-BIN = "currentcost"
+BIN = "phase-currentcost"
 VAR_NAME = "TEST_electric_meter"
 SITE_NAME = "TEST_liogen_home"
 ARGUMENT_TTY_PORT = "--tty-port"
 TTY_PORT = "tests/tty/currentcost"
 BAD_TTY_PORT = "/dev/currentcost9876"
 TTY_WRITER_PORT = "tests/tty/writer"
-ARGUMENT_MQ_CREDENTIAL = "--rabbitMQ-credential"
+ARGUMENT_MQ_CREDENTIAL = "--rabbitmq-credential"
 MQ_CREDENTIAL = "admin:password"
 BAD_MQ_CREDENTIAL = "admzfzein:paszeasword"
 MQ_HOST = "localhost"

@@ -1,1 +1,1 @@
-""" Source module for pyCurrentCost project """
+""" Source module for phase-currentcost project """

@@ -19,23 +19,23 @@ List of features:
  * To be completed
 
 Dependencies
-============
+------------
 
 TO BE COMPLETED
 
  * rabbitMQ
 
 Installation
-============
+------------
 
 TO BE COMPLETED
 
 Usage
-=====
+-----
 
 .. code-block:: bash
 
-    $ currentcost -h
+    $ phase-currentcost -h
     usage: currentcost [-h] [-t TTY_PORT] [-r RABBITMQ_CREDENTIAL] [-v]
                        variable_name site_name
 
@@ -47,7 +47,7 @@ Usage
       -h, --help            show this help message and exit
       -t TTY_PORT, --tty-port TTY_PORT
                             tty port to connect to current cost
-      -r RABBITMQ_CREDENTIAL, --rabbitMQ-credential RABBITMQ_CREDENTIAL
+      -r RABBITMQ_CREDENTIAL, --rabbitmq-credential RABBITMQ_CREDENTIAL
                             credential for rabbitMQ. By default, RabbitMQ is
                             deactivated. To activate it you have to give your
                             credential. Format: username:password.
@@ -56,7 +56,7 @@ Usage
 By default:
 
 * We are looking for default tty port located in /dev/currentcost. You can over-write it if you want using --tty-port argument.
-* RabbitMQ is not activated. To activate it you have to add your credential to currentcost script. To give your credential to currentcost script, use --rabbitMQ-credential argument.
+* RabbitMQ is not activated. To activate it you have to add your credential to phase-currentcost script. To give your credential to currentcost script, use --rabbitMQ-credential argument.
 * If RabbitMQ is not activated, we display currentcost message in stdout. Else we send it over the network. 
 
 Examples: 
@@ -65,7 +65,7 @@ To see the current consumption on Current cost on stdout use:
 
 .. code-block:: bash
     
-    $ currentcost electric_meter liogen_home --tty-port /dev/currentcost
+    $ phase-currentcost electric_meter liogen_home --tty-port /dev/currentcost
 
 **IDEA: PUT CONSOLE OUTPUT AS AN EXAMPLE**
 
@@ -73,18 +73,17 @@ With rabbitMQ message over the network:
 
 .. code-block:: bash
 
-    $ currentcost electric_meter liogen_home --tty-port /dev/currentcost --rabbitMQ-credential admin:password -v
+    $ phase-currentcost electric_meter liogen_home --tty-port /dev/currentcost --rabbitMQ-credential admin:password -v
 
 **IDEA: PUT CONSOLE OUTPUT AS AN EXAMPLE**
 
 
 Development process
-===================
+-------------------
 
 Install socat
 
-Philosophy
-----------
+**Philosophy**
 
 In this project, we will try to use the best practices of the development.
 
@@ -106,8 +105,7 @@ In this project, we will try to use the best practices of the development.
     * Refactor code to improve readability, avoid code redundancy, speed compute time
     * Return to BDD part.
 
-Setup environment
------------------
+**Setup environment**
 
 * **IDEA: Explain virtualenv and virtualenvwrapper**
 * **IDEA: Create a init script that ask several question and bootstrap project (plug-in)**
@@ -120,12 +118,11 @@ Setup environment
 **TO BE COMPLETED**
 
 Work flow
-=========
+---------
 
 **TO BE MOVED**
 
-Nominal case
-------------
+**Nominal case**
 
 * N1: Service started
 * N2: Arguments analysis
@@ -142,13 +139,12 @@ Nominal case
     * E6: Problem during message sending. Retry and log this error.
 * N8: Message sent over the network. Return to step N4.
 
-Alternative cases
------------------
+**Alternative cases**
 
 * A1: USB port disconnected. Log this error, send an error message over the network and retry to reconnect to the USB port. If USB port reconnected, return to step N2.
 
 Test plan
-=========
+---------
 
 **TO BE MOVED**
 
@@ -157,7 +153,7 @@ Test plan
 Look at features/currentcost.feature
 
 License
-=======
+-------
 
 .. include:: ../../LICENSE.rst
 

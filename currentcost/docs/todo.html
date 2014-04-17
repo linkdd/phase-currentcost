@@ -1,56 +1,155 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>TODO v1.0.0 &mdash; phase-currentcost 0.9.4 documentation</title>
-    
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.9.4',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="phase-currentcost 0.9.4 documentation" href="index.html" />
-    <link rel="next" title="CHANGELOG" href="changes.html" />
-    <link rel="prev" title="Modules" href="code.html" /> 
-  </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="changes.html" title="CHANGELOG"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="code.html" title="Modules"
-             accesskey="P">previous</a> |</li>
-        <li><a href="index.html">phase-currentcost 0.9.4 documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>TODO v1.0.0 &mdash; phase-currentcost 0.9.5 documentation</title>
+  
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="phase-currentcost 0.9.5 documentation" href="index.html"/>
+        <link rel="next" title="CHANGELOG" href="change.html"/>
+        <link rel="prev" title="Modules" href="code.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> phase-currentcost</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="presentation.html">phase-currentcost</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="presentation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presentation.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presentation.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presentation.html#development-process">Development process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presentation.html#work-flow">Work flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presentation.html#test-plan">Test plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presentation.html#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="code.html">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.utils">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.rabbitmq_messager">RabbitMQ_messager</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">TODO v1.0.0</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#objectives">Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#schedule">Schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pending-tasks">Pending tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="change.html">CHANGELOG</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-6-stable-urgency-low">phase-currentcost (v0.9.6) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-5-stable-urgency-low">phase-currentcost (v0.9.5) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-4-stable-urgency-low">phase-currentcost (v0.9.4) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-3-stable-urgency-low">phase-currentcost (v0.9.3) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-2-stable-urgency-low">phase-currentcost (v0.9.2) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-1-stable-urgency-low">phase-currentcost (v0.9.1) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-0-stable-urgency-low">phase-currentcost (v0.9.0) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-8-0-unstable-urgency-low">phase-currentcost (v0.8.0) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-7-0-unstable-urgency-low">phase-currentcost (v0.7.0) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-6-0-unstable-urgency-low">phase-currentcost (v0.6.0) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-5-0-unstable-urgency-low">phase-currentcost (v0.5.0) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-4-1-unstable-urgency-low">phase-currentcost (v0.4.1) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-4-0-unstable-urgency-low">phase-currentcost (v0.4.0) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-3-9-unstable-urgency-low">phase-currentcost (v0.3.9) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-3-8-unstable-urgency-low">phase-currentcost (v0.3.8) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-3-7-unstable-urgency-low">phase-currentcost (v0.3.7) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-3-6-unstable-urgency-low">phase-currentcost (v0.3.6) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-3-5-unstable-urgency-low">phase-currentcost (v0.3.5) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-3-4-unstable-urgency-low">phase-currentcost (v0.3.4) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-3-3-unstable-urgency-low">phase-currentcost (v0.3.3) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-3-2-unstable-urgency-low">phase-currentcost (v0.3.2) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-3-1-unstable-urgency-low">phase-currentcost (v0.3.1) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-3-0-unstable-urgency-low">phase-currentcost (v0.3.0) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-2-3-unstable-urgency-low">phase-currentcost (v0.2.3) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-2-2-unstable-urgency-low">phase-currentcost (v0.2.2) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-2-1-unstable-urgency-low">phase-currentcost (v0.2.1) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-2-0-unstable-urgency-low">phase-currentcost (v0.2.0) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-1-10-unstable-urgency-low">phase-currentcost (v0.1.10) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-1-9-unstable-urgency-low">phase-currentcost (v0.1.9) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-1-8-unstable-urgency-low">phase-currentcost (v0.1.8) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-1-7-unstable-urgency-low">phase-currentcost (v0.1.7) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-1-6-unstable-urgency-low">phase-currentcost (v0.1.6) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-1-5-unstable-urgency-low">phase-currentcost (v0.1.5) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-1-4-unstable-urgency-low">phase-currentcost (v0.1.4) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-1-3-unstable-urgency-low">phase-currentcost (v0.1.3) unstable; urgency=low</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">phase-currentcost</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>TODO v1.0.0</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/todo.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
             
   <div class="section" id="todo-v1-0-0">
 <h1>TODO v1.0.0<a class="headerlink" href="#todo-v1-0-0" title="Permalink to this headline">¶</a></h1>
@@ -61,18 +160,15 @@
 <div class="section" id="schedule">
 <h2>Schedule<a class="headerlink" href="#schedule" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><dl class="first docutils">
-<dt>For April, 18th 2014:</dt>
-<dd><ul class="first last simple">
-<li>Complete dosctrings using <a class="reference external" href="https://github.com/claws/txCurrentCost/blob/master/txcurrentcost/monitor.py">https://github.com/claws/txCurrentCost/blob/master/txcurrentcost/monitor.py</a> example</li>
-<li>Generate proper documentaion</li>
+<li><p class="first">For April, 18th 2014:</p>
+<blockquote>
+<div><ul class="simple">
 <li>Documentation: Add list of message send using RabbitMQ in README (success message, error message, ...)</li>
 <li>News: add parameter to target log.conf path for test (by default it should be /opt/phase/currentcost/log.conf)</li>
 <li>News: add parameter to create currentcost.log for test (by default it should be /var/log/phase/currentcost.log)</li>
 <li>News: Update test file accordingly</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 </ul>
 </div>
@@ -148,69 +244,67 @@
 
 
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">TODO v1.0.0</a><ul>
-<li><a class="reference internal" href="#objectives">Objectives</a></li>
-<li><a class="reference internal" href="#schedule">Schedule</a></li>
-<li><a class="reference internal" href="#pending-tasks">Pending tasks</a></li>
-</ul>
-</li>
-</ul>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="change.html" class="btn btn-neutral float-right" title="CHANGELOG"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="code.html" class="btn btn-neutral" title="Modules"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="code.html"
-                        title="previous chapter">Modules</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="changes.html"
-                        title="next chapter">CHANGELOG</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/todo.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Pierre Leray.
     </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="changes.html" title="CHANGELOG"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="code.html" title="Modules"
-             >previous</a> |</li>
-        <li><a href="index.html">phase-currentcost 0.9.4 documentation</a> &raquo;</li> 
-      </ul>
-    </div>
-    <div class="footer">
-        &copy; Copyright 2014, Pierre Leray.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.9.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
 </html>

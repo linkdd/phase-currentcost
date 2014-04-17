@@ -3,7 +3,7 @@
 # -*- Mode: Python; py-indent-offset: 4 -*-
 
 """
-    Main file of pyCurrentCost project.
+    Main file of phase-currencost project.
 
     workflow:
         * Parse argument and verify them
@@ -13,7 +13,7 @@ from __future__ import print_function
 import logging
 import logging.config
 from currentcost.utils import argument_parser, init_message, verbose_mode
-from currentcost.utils import data_parser, TTY_CONNECTION_PROBLEM, ERROR
+from currentcost.utils import data_validator, TTY_CONNECTION_PROBLEM, ERROR
 from currentcost.utils import TTY_CONNECTION_SUCCESS, TTY_DISCONNECTED
 from time import sleep
 from currentcost.rabbitmq_messager import RabbitMQMessager
@@ -42,7 +42,7 @@ def main():
     variable_name = args.variable_name
     site_name = args.site_name
     tty_port = args.tty_port
-    rabbitMQ_credential = args.rabbitMQ_credential
+    rabbitmq_credential = args.rabbitmq_credential
     verbose = args.verbose
 #   Active verbose mode
     verbose_mode(verbose)
@@ -54,9 +54,9 @@ def main():
 #   Initialize RabbitMQ credential
     username = None
     password = None
-    if rabbitMQ_credential:
-        username = rabbitMQ_credential.split(":")[0]
-        password = rabbitMQ_credential.split(":")[1]
+    if rabbitmq_credential:
+        username = rabbitmq_credential.split(":")[0]
+        password = rabbitmq_credential.split(":")[1]
 #   Init log message
     init_message(variable_name, site_name, tty_port)
 #   Initialize messager
@@ -89,14 +89,17 @@ def main():
                     sleep(USB_RETRY)
 #               When we are connected, we log this success
                 else:
-                    LOGGER.info(TTY_CONNECTION_SUCCESS % (
-                        variable_name, site_name, tty_port))
+                    error = TTY_CONNECTION_SUCCESS % (
+                        variable_name,
+                        site_name,
+                        tty_port)
+                    LOGGER.info(error)
 #           If we are connected to TTY port
             if ser_connection is not None:
 #               We wait for a new message on this socket
                 data = ser_connection.readline()
 #               We parse the result
-                topic, message = data_parser(data, variable_name, site_name)
+                topic, message = data_validator(data, variable_name, site_name)
 #               And send a message
                 messager.send_message(
                     topic,
@@ -109,8 +112,11 @@ def main():
             ser_connection.close()
             ser_connection = None
 #           And we log this error
-            LOGGER.info(TTY_DISCONNECTED % (
-                variable_name, site_name, tty_port))
+            error = TTY_DISCONNECTED % (
+                variable_name,
+                site_name,
+                tty_port)
+            LOGGER.info(error)
 
 
 if __name__ == '__main__':

@@ -1,3 +1,11 @@
+phase-currentcost (v0.9.6) stable; urgency=low
+----------------------------------------------
+
+* Change currentcost folder into phase-currencost
+* Complete dosctrings
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-17 15:15:00
+
 phase-currentcost (v0.9.5) stable; urgency=low
 ----------------------------------------------
 
