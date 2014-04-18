@@ -62,6 +62,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#message-send-through-rabbitmq">Message send through RabbitMQ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#development-process">Development process</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#work-flow">Work flow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#test-plan">Test plan</a></li>
@@ -183,8 +184,8 @@
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>phase-currentcost -h
-usage: currentcost <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-t TTY_PORT<span class="o">]</span> <span class="o">[</span>-r RABBITMQ_CREDENTIAL<span class="o">]</span> <span class="o">[</span>-v<span class="o">]</span>
-                   variable_name site_name
+usage: phase-currentcost <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-t TTY_PORT<span class="o">]</span> <span class="o">[</span>-r RABBITMQ_CREDENTIAL<span class="o">]</span> <span class="o">[</span>-v<span class="o">]</span>
+                         variable_name site_name
 
 positional arguments:
   variable_name         name of the variable
@@ -214,10 +215,57 @@ optional arguments:
 </div>
 <p><strong>IDEA: PUT CONSOLE OUTPUT AS AN EXAMPLE</strong></p>
 <p>With rabbitMQ message over the network:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>phase-currentcost electric_meter liogen_home --tty-port /dev/currentcost --rabbitMQ-credential admin:password -v
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>phase-currentcost electric_meter liogen_home --tty-port /dev/currentcost --rabbitmq-credential admin:password -v
 </pre></div>
 </div>
 <p><strong>IDEA: PUT CONSOLE OUTPUT AS AN EXAMPLE</strong></p>
+<p>Structure of a message send</p>
+</div>
+<div class="section" id="message-send-through-rabbitmq">
+<h2>Message send through RabbitMQ<a class="headerlink" href="#message-send-through-rabbitmq" title="Permalink to this headline">¶</a></h2>
+<p>A message is a JSON containing this properties:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>variableID</strong>: name of the variable</li>
+<li><strong>siteID</strong>: Name of the site</li>
+<li><strong>date</strong>: Date in UTC</li>
+<li><strong>dstTimezone</strong>: Timezone with DST</li>
+<li><strong>nonDstTimezone</strong>: Timezone without DST</li>
+<li><strong>message</strong>: Information message</li>
+</ul>
+</div></blockquote>
+<p>Messages list:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="34%" />
+<col width="53%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Channel</th>
+<th class="head">Message</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>error</td>
+<td>utils.TTY_CONNECTION_PROBLEM</td>
+<td>Send when TTY port is not reachable</td>
+</tr>
+<tr class="row-odd"><td>error</td>
+<td>utils.CURRENTCOST_TIMEOUT</td>
+<td>Send when TTY port is connected but reach timeout</td>
+</tr>
+<tr class="row-even"><td>error</td>
+<td>utils.CC_INCORRECT_MESSAGE</td>
+<td>Send when Currentcost send an invalid message</td>
+</tr>
+<tr class="row-odd"><td>currentcost</td>
+<td>CurrentCost XML message</td>
+<td>Send Currentcost XML message</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="development-process">
 <h2>Development process<a class="headerlink" href="#development-process" title="Permalink to this headline">¶</a></h2>

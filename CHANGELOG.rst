@@ -3,8 +3,9 @@ phase-currentcost (v0.9.6) stable; urgency=low
 
 * Change currentcost folder into phase-currencost
 * Complete dosctrings
+* List all message sent to RabbitMQ
 
-Pierre Leray <pierreleray64@gmail.com>  2014-04-17 15:15:00
+Pierre Leray <pierreleray64@gmail.com>  2014-04-18 14:30:00
 
 phase-currentcost (v0.9.5) stable; urgency=low
 ----------------------------------------------

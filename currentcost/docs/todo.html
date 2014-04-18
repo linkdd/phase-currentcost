@@ -62,6 +62,7 @@
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#dependencies">Dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presentation.html#message-send-through-rabbitmq">Message send through RabbitMQ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#development-process">Development process</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#work-flow">Work flow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#test-plan">Test plan</a></li>
@@ -162,11 +163,29 @@
 <ul>
 <li><p class="first">For April, 18th 2014:</p>
 <blockquote>
-<div><ul class="simple">
-<li>Documentation: Add list of message send using RabbitMQ in README (success message, error message, ...)</li>
-<li>News: add parameter to target log.conf path for test (by default it should be /opt/phase/currentcost/log.conf)</li>
-<li>News: add parameter to create currentcost.log for test (by default it should be /var/log/phase/currentcost.log)</li>
-<li>News: Update test file accordingly</li>
+<div><ul>
+<li><p class="first">Documentation: Add list of message send using RabbitMQ in README (success message, error message, ...)</p>
+</li>
+<li><p class="first">News: add parameter to target log.conf path for test (by default it should be /opt/phase/currentcost/log.conf)</p>
+</li>
+<li><p class="first">News: add parameter to create currentcost.log for test (by default it should be /var/log/phase/currentcost.log)</p>
+</li>
+<li><p class="first">News: Update test file accordingly</p>
+</li>
+<li><p class="first">Modify installation to perform custom installation following this advice <a class="reference external" href="http://stackoverflow.com/questions/15853058/run-custom-task-when-call-pip-install">http://stackoverflow.com/questions/15853058/run-custom-task-when-call-pip-install</a></p>
+</li>
+<li><dl class="first docutils">
+<dt>During currentcost installation:</dt>
+<dd><ul class="first last simple">
+<li>Create /opt/phase/currentcost/log.conf and /var/log/phase/currentcost.log files.</li>
+<li>Install RabbitMQ</li>
+<li>Install pip dependencies</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Add production test in behave and launch it only on travis</p>
+</li>
 </ul>
 </div></blockquote>
 </li>
@@ -186,36 +205,17 @@
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>News:</dt>
-<dd><ul class="first last">
-<li><p class="first">Modify installation to perform custom installation following this advice <a class="reference external" href="http://stackoverflow.com/questions/15853058/run-custom-task-when-call-pip-install">http://stackoverflow.com/questions/15853058/run-custom-task-when-call-pip-install</a></p>
-</li>
-<li><dl class="first docutils">
-<dt>During currentcost installation:</dt>
-<dd><ul class="first last simple">
-<li>Create /opt/phase/currentcost/log.conf and /var/log/phase/currentcost.log files.</li>
-<li>Install RabbitMQ</li>
-<li>Install pip dependencies</li>
+<li><p class="first">News:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Work on deployment (look at pip install, pip freeze, pip bundle, pip wheel)</li>
+<li>Fix paver watch problem (stop watch) (try to use with fabric)</li>
+<li>Launch a server web in a subprocess.Popen</li>
+<li>Launch watch task in a subprocess.Popen</li>
+<li>Listen for a terminating command to quit properly two previous subprocesses</li>
+<li>Support of python 3.2, 3.3, pypy</li>
 </ul>
-</dd>
-</dl>
-</li>
-<li><p class="first">Work on deployment (look at pip install, pip freeze, pip bundle, pip wheel)</p>
-</li>
-<li><p class="first">Fix paver watch problem (stop watch) (try to use with fabric)</p>
-</li>
-<li><p class="first">Launch a server web in a subprocess.Popen</p>
-</li>
-<li><p class="first">Launch watch task in a subprocess.Popen</p>
-</li>
-<li><p class="first">Listen for a terminating command to quit properly two previous subprocesses</p>
-</li>
-<li><p class="first">Support of python 3.2, 3.3, pypy</p>
-</li>
-</ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 <li><dl class="first docutils">
 <dt>Documentation:</dt>
@@ -224,6 +224,8 @@
 <li>Describe development process (look at paver main page <a class="reference external" href="http://paver.github.io/paver/">http://paver.github.io/paver/</a>)</li>
 <li>Describe usage process</li>
 <li>List all features</li>
+<li>Write README.rst</li>
+<li>Split README.rst in several file</li>
 </ul>
 </dd>
 </dl>

@@ -44,7 +44,7 @@ Feature: Current Cost data collection
         When current cost send instant consumption
         Then we should receive instant consumption over the network
 
-    @slow
+    @prod
     Scenario: Nominal case historical consumption
         Given current cost is connected and script is launched
         Then we should receive historical consumption over the network

@@ -15,6 +15,12 @@ Schedule
     * News: add parameter to target log.conf path for test (by default it should be /opt/phase/currentcost/log.conf)
     * News: add parameter to create currentcost.log for test (by default it should be /var/log/phase/currentcost.log)
     * News: Update test file accordingly
+    * Modify installation to perform custom installation following this advice http://stackoverflow.com/questions/15853058/run-custom-task-when-call-pip-install
+    * During currentcost installation: 
+        * Create /opt/phase/currentcost/log.conf and /var/log/phase/currentcost.log files.
+        * Install RabbitMQ
+        * Install pip dependencies
+    * Add production test in behave and launch it only on travis
 
 Pending tasks
 -------------
@@ -26,11 +32,7 @@ Pending tasks
     * Test application with RabbitMQ disconnected (find a way to automatize this)
 
 * News:
-    * Modify installation to perform custom installation following this advice http://stackoverflow.com/questions/15853058/run-custom-task-when-call-pip-install
-    * During currentcost installation: 
-        * Create /opt/phase/currentcost/log.conf and /var/log/phase/currentcost.log files.
-        * Install RabbitMQ
-        * Install pip dependencies
+    
     * Work on deployment (look at pip install, pip freeze, pip bundle, pip wheel)
     * Fix paver watch problem (stop watch) (try to use with fabric)
     * Launch a server web in a subprocess.Popen
@@ -43,6 +45,8 @@ Pending tasks
     * Describe development process (look at paver main page http://paver.github.io/paver/)
     * Describe usage process
     * List all features
+    * Write README.rst
+    * Split README.rst in several file
 
 * Refactoring:
     * Split currentcost_steps.py into several test file

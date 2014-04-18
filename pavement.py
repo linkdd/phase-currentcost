@@ -82,7 +82,7 @@ def test():
     sh("nosetests --cover-erase --with-coverage --cover-html\
         --cover-package=%s --cover-min-percentage=70 --cover-html-dir=%s" % (
         PACKAGE, options.cover_folder))
-    sh("behave")
+    sh("behave --tags=-prod")
 
 
 @task

@@ -36,8 +36,8 @@ Usage
 .. code-block:: bash
 
     $ phase-currentcost -h
-    usage: currentcost [-h] [-t TTY_PORT] [-r RABBITMQ_CREDENTIAL] [-v]
-                       variable_name site_name
+    usage: phase-currentcost [-h] [-t TTY_PORT] [-r RABBITMQ_CREDENTIAL] [-v]
+                             variable_name site_name
 
     positional arguments:
       variable_name         name of the variable
@@ -73,10 +73,37 @@ With rabbitMQ message over the network:
 
 .. code-block:: bash
 
-    $ phase-currentcost electric_meter liogen_home --tty-port /dev/currentcost --rabbitMQ-credential admin:password -v
+    $ phase-currentcost electric_meter liogen_home --tty-port /dev/currentcost --rabbitmq-credential admin:password -v
 
 **IDEA: PUT CONSOLE OUTPUT AS AN EXAMPLE**
 
+Structure of a message send 
+
+Message send through RabbitMQ
+-----------------------------
+
+A message is a JSON containing this properties:
+
+  * **variableID**: name of the variable
+  * **siteID**: Name of the site
+  * **date**: Date in UTC
+  * **dstTimezone**: Timezone with DST
+  * **nonDstTimezone**: Timezone without DST
+  * **message**: Information message
+
+Messages list:
+
++-------------+---------------------------------+---------------------------------------------------+ 
+| Channel     | Message                         | Description                                       |
++=============+=================================+===================================================+ 
+| error       | utils.TTY_CONNECTION_PROBLEM    | Send when TTY port is not reachable               |
++-------------+---------------------------------+---------------------------------------------------+
+| error       | utils.CURRENTCOST_TIMEOUT       | Send when TTY port is connected but reach timeout |
++-------------+---------------------------------+---------------------------------------------------+
+| error       | utils.CC_INCORRECT_MESSAGE      | Send when Currentcost send an invalid message     |
++-------------+---------------------------------+---------------------------------------------------+
+| currentcost | CurrentCost XML message         | Send Currentcost XML message                      |
++-------------+---------------------------------+---------------------------------------------------+
 
 Development process
 -------------------
