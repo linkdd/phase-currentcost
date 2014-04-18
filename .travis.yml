@@ -19,4 +19,4 @@ install:
 script:
   - python --version
   - nosetests
-  - behave -f progress --junit
+  - behave
