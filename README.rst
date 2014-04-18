@@ -1,7 +1,15 @@
 phase-currentcost
 =================
 
+Master branch:
+
 .. image:: https://api.travis-ci.org/liogen/phase-currentcost.png?branch=master
+    :target: https://travis-ci.org/liogen/phase-currentcost
+    :alt: Travis CI Build Status
+
+Develop branch:
+
+.. image:: https://api.travis-ci.org/liogen/phase-currentcost.png?branch=develop
     :target: https://travis-ci.org/liogen/phase-currentcost
     :alt: Travis CI Build Status
 
