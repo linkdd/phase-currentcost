@@ -2,71 +2,31 @@
 <body>
 <div>
 <h1>Report</h1>
-<p>497 statements analysed.</p><div>
-<h2>Raw metrics</h2>
-<table>
-<tr class="header">
-<th>type</th>
-<th>number</th>
-<th>%</th>
-<th>previous</th>
-<th>difference</th>
-</tr>
-<tr class="even">
-<td>code</td>
-<td>699</td>
-<td>52.05</td>
-<td>699</td>
-<td>=</td>
-</tr>
-<tr class="odd">
-<td>docstring</td>
-<td>348</td>
-<td>25.91</td>
-<td>348</td>
-<td>=</td>
-</tr>
-<tr class="even">
-<td>comment</td>
-<td>58</td>
-<td>4.32</td>
-<td>58</td>
-<td>=</td>
-</tr>
-<tr class="odd">
-<td>empty</td>
-<td>238</td>
-<td>17.72</td>
-<td>238</td>
-<td>=</td>
-</tr>
-</table>
-</div>
-<div>
+<p>538 statements analysed.</p><div>
 <h2>External dependencies</h2>
 <pre>behave 
   \-given (currentcost_steps)
   \-then (currentcost_steps)
   \-when (currentcost_steps)
 currentcost 
-  \-rabbitmq_messager 
-  | \-RabbitMQMessager (tests.test_rabbitmq_messager,phase-currentcost)
+  \-messager 
+  | \-RabbitMQMessager (tests.test_messager,phase-currentcost)
   \-utils 
     \-CC_INCORRECT_MESSAGE (tests.test_utils,currentcost_steps)
     \-CURRENTCOST_TIMEOUT (tests.test_utils,currentcost_steps)
-    \-ERROR (phase-currentcost,tests.test_utils,currentcost_steps)
-    \-RABBIT_MQ_CONNECTION_PROBLEM (currentcost.rabbitmq_messager)
-    \-RABBIT_MQ_CREDENTIAL_PROBLEM (currentcost.rabbitmq_messager,currentcost_steps)
+    \-ERROR (currentcost.connector,phase-currentcost,tests.test_utils,currentcost_steps)
+    \-RABBIT_MQ_CONNECTION_PROBLEM (currentcost.messager)
+    \-RABBIT_MQ_CREDENTIAL_PROBLEM (currentcost_steps,currentcost.messager)
     \-SUCCESS (tests.test_utils,currentcost_steps)
-    \-TTY_CONNECTION_PROBLEM (phase-currentcost,currentcost_steps)
-    \-TTY_CONNECTION_SUCCESS (phase-currentcost,currentcost_steps)
-    \-TTY_DISCONNECTED (phase-currentcost)
+    \-TTY_CONNECTION_PROBLEM (currentcost.connector,phase-currentcost,currentcost_steps)
+    \-TTY_CONNECTION_SUCCESS (currentcost.connector,phase-currentcost,currentcost_steps)
+    \-TTY_DISCONNECTED (currentcost.connector,phase-currentcost)
     \-argument_parser (phase-currentcost)
-    \-data_validator (phase-currentcost,tests.test_utils)
+    \-data_validator (currentcost.connector,phase-currentcost,tests.test_utils)
     \-init_message (phase-currentcost)
     \-verbose_mode (phase-currentcost)
 datetime 
-  \-datetime (currentcost.rabbitmq_messager,currentcost.utils)
+  \-datetime (currentcost.utils,currentcost.messager)
 fabric 
   \-api 
     \-local (fabfile)
@@ -78,8 +38,8 @@ paver
     \-path (pavement)
     \-sh (pavement)
     \-task (pavement)
-pika (tests.test_rabbitmq_messager,currentcost.rabbitmq_messager,currentcost_steps)
-serial (phase-currentcost,currentcost_steps)
+pika (tests.test_messager,currentcost_steps,currentcost.messager)
+serial (currentcost.connector,phase-currentcost,currentcost_steps)
 setuptools 
   \-find_packages (setup)
   \-setup (setup)
@@ -99,29 +59,6 @@ tests
       \-HISTORY_7 (currentcost_steps)
       \-HISTORY_8 (currentcost_steps)
       \-HISTORY_9 (currentcost_steps)</pre></div>
-<div>
-<h2>Duplication</h2>
-<table>
-<tr class="header">
-<th>&#160;</th>
-<th>now</th>
-<th>previous</th>
-<th>difference</th>
-</tr>
-<tr class="even">
-<th>nb duplicated lines</th>
-<td>0</td>
-<td>0</td>
-<td>=</td>
-</tr>
-<tr class="odd">
-<th>percent duplicated lines</th>
-<td>0.000</td>
-<td>0.000</td>
-<td>=</td>
-</tr>
-</table>
-</div>
 <div>
 <h2>Messages by category</h2>
 <table>
@@ -182,6 +119,69 @@ tests
 <h2>Global evaluation</h2>
 Your code has been rated at 9.98/10 (previous run: 9.98/10, +0.00)</div>
 <div>
+<h2>Raw metrics</h2>
+<table>
+<tr class="header">
+<th>type</th>
+<th>number</th>
+<th>%</th>
+<th>previous</th>
+<th>difference</th>
+</tr>
+<tr class="even">
+<td>code</td>
+<td>760</td>
+<td>51.88</td>
+<td>760</td>
+<td>=</td>
+</tr>
+<tr class="odd">
+<td>docstring</td>
+<td>384</td>
+<td>26.21</td>
+<td>384</td>
+<td>=</td>
+</tr>
+<tr class="even">
+<td>comment</td>
+<td>63</td>
+<td>4.30</td>
+<td>63</td>
+<td>=</td>
+</tr>
+<tr class="odd">
+<td>empty</td>
+<td>258</td>
+<td>17.61</td>
+<td>258</td>
+<td>=</td>
+</tr>
+</table>
+</div>
+<div>
+<h2>Duplication</h2>
+<table>
+<tr class="header">
+<th>&#160;</th>
+<th>now</th>
+<th>previous</th>
+<th>difference</th>
+</tr>
+<tr class="even">
+<th>nb duplicated lines</th>
+<td>0</td>
+<td>0</td>
+<td>=</td>
+</tr>
+<tr class="odd">
+<th>percent duplicated lines</th>
+<td>0.000</td>
+<td>0.000</td>
+<td>=</td>
+</tr>
+</table>
+</div>
+<div>
 <h2>Statistics by type</h2>
 <table>
 <tr class="header">
@@ -194,24 +194,24 @@ Your code has been rated at 9.98/10 (previous run: 9.98/10, +0.00)</div>
 </tr>
 <tr class="even">
 <td>module</td>
-<td>11</td>
-<td>11</td>
+<td>12</td>
+<td>12</td>
 <td>=</td>
 <td>100.00</td>
-<td>9.09</td>
+<td>8.33</td>
 </tr>
 <tr class="odd">
 <td>class</td>
-<td>3</td>
-<td>3</td>
+<td>4</td>
+<td>4</td>
 <td>=</td>
 <td>100.00</td>
 <td>0.00</td>
 </tr>
 <tr class="even">
 <td>method</td>
-<td>10</td>
-<td>10</td>
+<td>14</td>
+<td>14</td>
 <td>=</td>
 <td>100.00</td>
 <td>0.00</td>
@@ -247,7 +247,7 @@ Your code has been rated at 9.98/10 (previous run: 9.98/10, +0.00)</div>
 </tr>
 <tr class="odd">
 <td>info</td>
-<td>tests.test_rabbitmq_messager</td>
+<td>tests.test_messager</td>
 <td>&#160;</td>
 <td>4</td>
 <td>0</td>

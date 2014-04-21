@@ -16,7 +16,7 @@ from currentcost.utils import argument_parser, init_message, verbose_mode
 from currentcost.utils import data_validator, TTY_CONNECTION_PROBLEM, ERROR
 from currentcost.utils import TTY_CONNECTION_SUCCESS, TTY_DISCONNECTED
 from time import sleep
-from currentcost.rabbitmq_messager import RabbitMQMessager
+from currentcost.messager import RabbitMQMessager
 import serial
 
 # Globals for this file

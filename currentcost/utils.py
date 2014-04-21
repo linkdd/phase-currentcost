@@ -27,8 +27,8 @@ TTY_CONNECTION_SUCCESS = "CurrentCost %s in %s: Success connection to %s."
 TTY_DISCONNECTED = "CurrentCost %s in %s: TTY port %s disconnected."
 CURRENTCOST_TIMEOUT = "CurrentCost %s in %s: Reach timeout. Verify \
 CurrentCost wire connection or wave range"
-CC_INCORRECT_MESSAGE = "CurrentCost %s in %s: Send incorrect\
- message => %s."
+CC_INCORRECT_MESSAGE = "CurrentCost %s in %s: Send incorrect \
+message => %s."
 RABBIT_MQ_CONNECTION_PROBLEM = "Problem trying to connect to RabbitMQ with \
 this configuration: username: %s, password: %s, host: %s"
 RABBIT_MQ_CREDENTIAL_PROBLEM = "Problem bad RabbitMQ credential with \
@@ -112,8 +112,8 @@ def data_validator(data, variable_name, site_name):
     :param site_name: Name of the Site.
     :type site_name: str.
 
-    :returns:  str -- Topic of the message (error or success).
-    :returns:  str -- Message containing error description or data sent by CC.
+    :returns:  str -- Topic of the message (error or success) and
+    Message containing error description or data sent by CC.
     """
 #   Initialization of variable
     topic = ERROR
