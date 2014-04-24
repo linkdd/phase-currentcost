@@ -34,23 +34,22 @@ options(
 
 
 @task
-@needs(["sdist"])
+@needs(["html"])
 def upload():
     """
         Upload project on PYPI.
     """
-    sh('python setup.py register upload')
+    sh('python setup.py register sdist upload')
 
 
 @task
 @needs(["html"])
-def sdist():
+def develop():
     """
         Generate docs and source distribution.
     """
-    sh('python setup.py sdist')
 #   Install package in development mode
-#   sh('paver develop')
+    sh('paver develop')
 
 
 @task
