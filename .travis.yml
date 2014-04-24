@@ -13,11 +13,9 @@ before_install:
   - sudo rabbitmqctl set_permissions -p / admin ".*" ".*" ".*"
   - sudo rabbitmqctl delete_user guest
   - sudo service rabbitmq-server restart
-  - sudo chmod 777 /opt
-  - sudo chmod 777 /var/log
 install:
   - pip install behave nose pika pyserial
-  - python setup.py install
+  - sudo pip install phase-currentcost
 script:
   - python --version
   - nosetests
