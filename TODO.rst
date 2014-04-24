@@ -11,16 +11,6 @@ Schedule
 
 * For April, 18th 2014:
     * Create currentcost class
-    * Add two log.conf file, for dev and prod purpose.
-    * Test production and dev mode.
-    * News: add parameter to target log.conf path for test (by default it should be /opt/phase/currentcost/log.conf)
-    * News: add parameter to create currentcost.log for test (by default it should be /var/log/phase/currentcost.log)
-    * News: Update test file accordingly
-    * Modify installation to perform custom installation following this advice http://stackoverflow.com/questions/15853058/run-custom-task-when-call-pip-install
-    * During currentcost installation: 
-        * Create /opt/phase/currentcost/log.conf and /var/log/phase/currentcost.log files.
-        * Install RabbitMQ
-        * Install pip dependencies
     * Add production test in behave and launch it only on travis
 
 Pending tasks

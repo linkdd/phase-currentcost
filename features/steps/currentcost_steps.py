@@ -8,7 +8,7 @@
 """
 
 from __future__ import print_function
-from behave import when, then, given  # pylint: disable-msg=E0611
+from behave import when, then, given  # pylint: disable=E0611
 import subprocess
 from subprocess import CalledProcessError
 from currentcost.utils import CC_INCORRECT_MESSAGE, TTY_CONNECTION_PROBLEM
@@ -42,7 +42,9 @@ ARGUMENT_MQ_CREDENTIAL = "--rabbitmq-credential"
 MQ_CREDENTIAL = "admin:password"
 BAD_MQ_CREDENTIAL = "admzfzein:paszeasword"
 MQ_HOST = "localhost"
-LOG_FILE = "logs/currentcost.log"
+ARGUMENT_LOG_CONF = "--log-conf"
+LOG_CONF = "logs/log.conf"
+LOG_FILE = "logs/phase-currentcost.log"
 TTY_ERROR_MESSAGE = "None"
 CREDENTIALS = pika.PlainCredentials("admin", "password")
 SOCAT = "socat"
@@ -244,8 +246,14 @@ def when_launch_with_unreachable(context):
     """
         Launch currentcost script with wrong tty port
     """
-    commands = "%s %s %s %s %s" % (
-        BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, BAD_TTY_PORT)
+    commands = "%s %s %s %s %s %s %s" % (
+        BIN,
+        VAR_NAME,
+        SITE_NAME,
+        ARGUMENT_TTY_PORT,
+        BAD_TTY_PORT,
+        ARGUMENT_LOG_CONF,
+        LOG_CONF)
     process = subprocess.Popen(shlex.split(commands))
     sleep(5)
     process.terminate()
@@ -256,9 +264,16 @@ def launch_ccunreach_badrmq(context):
     """
         Launch unreachable currentcost with bad rabbitmq credential
     """
-    commands = "%s %s %s %s %s %s %s" % (
-        BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, BAD_TTY_PORT,
-        ARGUMENT_MQ_CREDENTIAL, BAD_MQ_CREDENTIAL)
+    commands = "%s %s %s %s %s %s %s %s %s" % (
+        BIN,
+        VAR_NAME,
+        SITE_NAME,
+        ARGUMENT_TTY_PORT,
+        BAD_TTY_PORT,
+        ARGUMENT_MQ_CREDENTIAL,
+        BAD_MQ_CREDENTIAL,
+        ARGUMENT_LOG_CONF,
+        LOG_CONF)
     process = subprocess.Popen(shlex.split(commands))
     sleep(5)
     process.terminate()
@@ -291,9 +306,16 @@ def launch_ccunreach_withoutrmq(context):
     """
         Launch currentcost script with wrong tty port.
     """
-    commands = "%s %s %s %s %s %s %s" % (
-        BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, BAD_TTY_PORT,
-        ARGUMENT_MQ_CREDENTIAL, MQ_CREDENTIAL)
+    commands = "%s %s %s %s %s %s %s %s %s" % (
+        BIN,
+        VAR_NAME,
+        SITE_NAME,
+        ARGUMENT_TTY_PORT,
+        BAD_TTY_PORT,
+        ARGUMENT_MQ_CREDENTIAL,
+        MQ_CREDENTIAL,
+        ARGUMENT_LOG_CONF,
+        LOG_CONF)
     context.process = subprocess.Popen(shlex.split(commands))
     sleep(1)
 
@@ -321,9 +343,16 @@ def cc_reach_timeout(context):
     """
         Launch currentcost script.
     """
-    commands = "%s %s %s %s %s %s %s" % (
-        BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, TTY_PORT,
-        ARGUMENT_MQ_CREDENTIAL, MQ_CREDENTIAL)
+    commands = "%s %s %s %s %s %s %s %s %s" % (
+        BIN,
+        VAR_NAME,
+        SITE_NAME,
+        ARGUMENT_TTY_PORT,
+        TTY_PORT,
+        ARGUMENT_MQ_CREDENTIAL,
+        MQ_CREDENTIAL,
+        ARGUMENT_LOG_CONF,
+        LOG_CONF)
     context.process = subprocess.Popen(shlex.split(commands))
 
 
@@ -357,9 +386,16 @@ def cc_launch_correctly(context):
     commands = "%s %s %s" % (SOCAT, SIMULATED_TTY_PORT, SIMULATED_TTY_PORT2)
     context.socat = subprocess.Popen(shlex.split(commands))
 
-    commands = "%s %s %s %s %s %s %s" % (
-        BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, TTY_PORT,
-        ARGUMENT_MQ_CREDENTIAL, MQ_CREDENTIAL)
+    commands = "%s %s %s %s %s %s %s %s %s" % (
+        BIN,
+        VAR_NAME,
+        SITE_NAME,
+        ARGUMENT_TTY_PORT,
+        TTY_PORT,
+        ARGUMENT_MQ_CREDENTIAL,
+        MQ_CREDENTIAL,
+        ARGUMENT_LOG_CONF,
+        LOG_CONF)
     context.process = subprocess.Popen(shlex.split(commands))
 
     sleep(3)
@@ -406,9 +442,16 @@ def cc_connected_launched(context):
 
     sleep(1)
 
-    commands = "%s %s %s %s %s %s %s" % (
-        BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, TTY_PORT,
-        ARGUMENT_MQ_CREDENTIAL, MQ_CREDENTIAL)
+    commands = "%s %s %s %s %s %s %s %s %s" % (
+        BIN,
+        VAR_NAME,
+        SITE_NAME,
+        ARGUMENT_TTY_PORT,
+        TTY_PORT,
+        ARGUMENT_MQ_CREDENTIAL,
+        MQ_CREDENTIAL,
+        ARGUMENT_LOG_CONF,
+        LOG_CONF)
     context.process = subprocess.Popen(shlex.split(commands))
 
 

@@ -72,7 +72,7 @@ class RabbitMQMessager(object):
             :type out: StringIO.
         """
 #       We log message we want to send to keep a trace
-        self.logger.info(message)
+        self.logger.error(message)
 #       If channel is available
         if self.channel is not None:
 #           We send a message on this channel

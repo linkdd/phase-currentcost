@@ -57,6 +57,7 @@ def argument_parser():
                         help="credential for rabbitMQ. By default, RabbitMQ is\
                         deactivated. To activate it you have to give your \
                         credential. Format: username:password.")
+    parser.add_argument("-l", "--log-conf", help="path to log configuration")
     parser.add_argument("-v", "--verbose", help="activate verbose mode",
                         action="store_true")
 #   Return list of argument passed in command line

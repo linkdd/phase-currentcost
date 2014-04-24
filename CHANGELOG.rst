@@ -1,3 +1,24 @@
+phase-currentcost (v0.9.8) stable; urgency=low
+----------------------------------------------
+
+* Modify installation to perform custom installation
+* Add two log.conf file, for dev and prod purpose.
+* Test dev mode.
+* News: add parameter to target log.conf path for test (by default it should be /opt/phase/phase-currentcost.conf)
+* News: add parameter to create currentcost.log for test (by default it should be /var/log/phase/phase-currentcost.log)
+* News: Update test file accordingly
+* Modify installation to perform custom installation following this advice http://stackoverflow.com/questions/15853058/run-custom-task-when-call-pip-install
+* Fix installation bug
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-24 22:20:00
+
+phase-currentcost (v0.9.7) stable; urgency=low
+----------------------------------------------
+
+* Working on installation and log configuration
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-24 22:20:00
+
 phase-currentcost (v0.9.6) stable; urgency=low
 ----------------------------------------------
 

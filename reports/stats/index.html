@@ -2,64 +2,7 @@
 <body>
 <div>
 <h1>Report</h1>
-<p>538 statements analysed.</p><div>
-<h2>External dependencies</h2>
-<pre>behave 
-  \-given (currentcost_steps)
-  \-then (currentcost_steps)
-  \-when (currentcost_steps)
-currentcost 
-  \-messager 
-  | \-RabbitMQMessager (tests.test_messager,phase-currentcost)
-  \-utils 
-    \-CC_INCORRECT_MESSAGE (tests.test_utils,currentcost_steps)
-    \-CURRENTCOST_TIMEOUT (tests.test_utils,currentcost_steps)
-    \-ERROR (currentcost.connector,phase-currentcost,tests.test_utils,currentcost_steps)
-    \-RABBIT_MQ_CONNECTION_PROBLEM (currentcost.messager)
-    \-RABBIT_MQ_CREDENTIAL_PROBLEM (currentcost_steps,currentcost.messager)
-    \-SUCCESS (tests.test_utils,currentcost_steps)
-    \-TTY_CONNECTION_PROBLEM (currentcost.connector,phase-currentcost,currentcost_steps)
-    \-TTY_CONNECTION_SUCCESS (currentcost.connector,phase-currentcost,currentcost_steps)
-    \-TTY_DISCONNECTED (currentcost.connector,phase-currentcost)
-    \-argument_parser (phase-currentcost)
-    \-data_validator (currentcost.connector,phase-currentcost,tests.test_utils)
-    \-init_message (phase-currentcost)
-    \-verbose_mode (phase-currentcost)
-datetime 
-  \-datetime (currentcost.utils,currentcost.messager)
-fabric 
-  \-api 
-    \-local (fabfile)
-paver 
-  \-easy 
-    \-Bunch (pavement)
-    \-needs (pavement)
-    \-options (pavement)
-    \-path (pavement)
-    \-sh (pavement)
-    \-task (pavement)
-pika (tests.test_messager,currentcost_steps,currentcost.messager)
-serial (currentcost.connector,phase-currentcost,currentcost_steps)
-setuptools 
-  \-find_packages (setup)
-  \-setup (setup)
-tests 
-  \-fixtures 
-    \-history 
-      \-HISTORY_1 (currentcost_steps)
-      \-HISTORY_10 (currentcost_steps)
-      \-HISTORY_11 (currentcost_steps)
-      \-HISTORY_12 (currentcost_steps)
-      \-HISTORY_13 (currentcost_steps)
-      \-HISTORY_2 (currentcost_steps)
-      \-HISTORY_3 (currentcost_steps)
-      \-HISTORY_4 (currentcost_steps)
-      \-HISTORY_5 (currentcost_steps)
-      \-HISTORY_6 (currentcost_steps)
-      \-HISTORY_7 (currentcost_steps)
-      \-HISTORY_8 (currentcost_steps)
-      \-HISTORY_9 (currentcost_steps)</pre></div>
-<div>
+<p>559 statements analysed.</p><div>
 <h2>Messages by category</h2>
 <table>
 <tr class="header">
@@ -70,8 +13,8 @@ tests
 </tr>
 <tr class="even">
 <td>convention</td>
-<td>1</td>
-<td>1</td>
+<td>0</td>
+<td>0</td>
 <td>=</td>
 </tr>
 <tr class="odd">
@@ -103,21 +46,73 @@ tests
 </tr>
 <tr class="even">
 <td>locally-disabled</td>
-<td>4</td>
-</tr>
-<tr class="odd">
-<td>deprecated-pragma</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>invalid-name</td>
-<td>1</td>
+<td>6</td>
 </tr>
 </table>
 </div>
 <div>
 <h2>Global evaluation</h2>
-Your code has been rated at 9.98/10 (previous run: 9.98/10, +0.00)</div>
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)</div>
+<div>
+<h2>External dependencies</h2>
+<pre>behave 
+  \-given (currentcost_steps)
+  \-then (currentcost_steps)
+  \-when (currentcost_steps)
+currentcost 
+  \-messager 
+  | \-RabbitMQMessager (tests.test_messager,phase-currentcost)
+  \-utils 
+    \-CC_INCORRECT_MESSAGE (tests.test_utils,currentcost_steps)
+    \-CURRENTCOST_TIMEOUT (tests.test_utils,currentcost_steps)
+    \-ERROR (currentcost.connector,phase-currentcost,tests.test_utils,currentcost_steps)
+    \-RABBIT_MQ_CONNECTION_PROBLEM (currentcost.messager)
+    \-RABBIT_MQ_CREDENTIAL_PROBLEM (currentcost_steps,currentcost.messager)
+    \-SUCCESS (tests.test_utils,currentcost_steps)
+    \-TTY_CONNECTION_PROBLEM (currentcost.connector,phase-currentcost,currentcost_steps)
+    \-TTY_CONNECTION_SUCCESS (currentcost.connector,phase-currentcost,currentcost_steps)
+    \-TTY_DISCONNECTED (currentcost.connector,phase-currentcost)
+    \-argument_parser (phase-currentcost)
+    \-data_validator (currentcost.connector,phase-currentcost,tests.test_utils)
+    \-init_message (phase-currentcost)
+    \-verbose_mode (phase-currentcost)
+datetime 
+  \-datetime (currentcost.utils,currentcost.messager)
+fabric 
+  \-api 
+    \-local (fabfile)
+os (setup)
+paver 
+  \-easy 
+    \-Bunch (pavement)
+    \-needs (pavement)
+    \-options (pavement)
+    \-path (pavement)
+    \-sh (pavement)
+    \-task (pavement)
+pika (tests.test_messager,currentcost_steps,currentcost.messager)
+serial (currentcost.connector,phase-currentcost,currentcost_steps)
+setuptools 
+  \-command 
+  | \-install 
+  |   \-install (setup)
+  \-setup (setup)
+tests 
+  \-fixtures 
+    \-history 
+      \-HISTORY_1 (currentcost_steps)
+      \-HISTORY_10 (currentcost_steps)
+      \-HISTORY_11 (currentcost_steps)
+      \-HISTORY_12 (currentcost_steps)
+      \-HISTORY_13 (currentcost_steps)
+      \-HISTORY_2 (currentcost_steps)
+      \-HISTORY_3 (currentcost_steps)
+      \-HISTORY_4 (currentcost_steps)
+      \-HISTORY_5 (currentcost_steps)
+      \-HISTORY_6 (currentcost_steps)
+      \-HISTORY_7 (currentcost_steps)
+      \-HISTORY_8 (currentcost_steps)
+      \-HISTORY_9 (currentcost_steps)</pre></div>
 <div>
 <h2>Raw metrics</h2>
 <table>
@@ -130,30 +125,30 @@ Your code has been rated at 9.98/10 (previous run: 9.98/10, +0.00)</div>
 </tr>
 <tr class="even">
 <td>code</td>
-<td>760</td>
-<td>51.88</td>
-<td>760</td>
+<td>823</td>
+<td>53.44</td>
+<td>823</td>
 <td>=</td>
 </tr>
 <tr class="odd">
 <td>docstring</td>
-<td>384</td>
-<td>26.21</td>
-<td>384</td>
+<td>390</td>
+<td>25.32</td>
+<td>390</td>
 <td>=</td>
 </tr>
 <tr class="even">
 <td>comment</td>
 <td>63</td>
-<td>4.30</td>
+<td>4.09</td>
 <td>63</td>
 <td>=</td>
 </tr>
 <tr class="odd">
 <td>empty</td>
-<td>258</td>
-<td>17.61</td>
-<td>258</td>
+<td>264</td>
+<td>17.14</td>
+<td>264</td>
 <td>=</td>
 </tr>
 </table>
@@ -202,16 +197,16 @@ Your code has been rated at 9.98/10 (previous run: 9.98/10, +0.00)</div>
 </tr>
 <tr class="odd">
 <td>class</td>
-<td>4</td>
-<td>4</td>
+<td>5</td>
+<td>5</td>
 <td>=</td>
 <td>100.00</td>
 <td>0.00</td>
 </tr>
 <tr class="even">
 <td>method</td>
-<td>14</td>
-<td>14</td>
+<td>15</td>
+<td>15</td>
 <td>=</td>
 <td>100.00</td>
 <td>0.00</td>
@@ -238,14 +233,22 @@ Your code has been rated at 9.98/10 (previous run: 9.98/10, +0.00)</div>
 <th>message</th>
 </tr>
 <tr class="even">
-<td>convention</td>
-<td>phase-currentcost</td>
+<td>info</td>
+<td>setup</td>
 <td>&#160;</td>
-<td>1</td>
+<td>13</td>
 <td>0</td>
-<td>Invalid module name "phase-currentcost"</td>
+<td>Locally disabling W0232</td>
 </tr>
 <tr class="odd">
+<td>info</td>
+<td>phase-currentcost</td>
+<td>&#160;</td>
+<td>4</td>
+<td>0</td>
+<td>Locally disabling C0103</td>
+</tr>
+<tr class="even">
 <td>info</td>
 <td>tests.test_messager</td>
 <td>&#160;</td>
@@ -253,7 +256,7 @@ Your code has been rated at 9.98/10 (previous run: 9.98/10, +0.00)</div>
 <td>0</td>
 <td>Locally disabling R0904</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>info</td>
 <td>tests.test_utils</td>
 <td>&#160;</td>
@@ -261,21 +264,13 @@ Your code has been rated at 9.98/10 (previous run: 9.98/10, +0.00)</div>
 <td>0</td>
 <td>Locally disabling R0904</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>info</td>
 <td>currentcost_steps</td>
 <td>&#160;</td>
 <td>4</td>
 <td>0</td>
 <td>Locally disabling W0613</td>
-</tr>
-<tr class="even">
-<td>info</td>
-<td>currentcost_steps</td>
-<td>&#160;</td>
-<td>11</td>
-<td>0</td>
-<td>Deprecated pragma "pylint:disable-msg" or "pylint:enable-msg"</td>
 </tr>
 <tr class="odd">
 <td>info</td>
@@ -284,14 +279,6 @@ Your code has been rated at 9.98/10 (previous run: 9.98/10, +0.00)</div>
 <td>11</td>
 <td>0</td>
 <td>Locally disabling E0611</td>
-</tr>
-<tr class="even">
-<td>info</td>
-<td>currentcost_steps</td>
-<td>&#160;</td>
-<td>11</td>
-<td>0</td>
-<td>Deprecated pragma "pylint:disable-msg" or "pylint:enable-msg"</td>
 </tr>
 </table>
 </div>

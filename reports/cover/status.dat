@@ -37,7 +37,7 @@ p19
 I0
 sS'n_statements'
 p20
-I53
+I54
 sS'n_excluded'
 p21
 I0
@@ -46,13 +46,13 @@ p22
 I0
 sS'n_missing'
 p23
-I19
+I20
 sS'n_missing_branches'
 p24
 I0
 sbssS'hash'
 p25
-S'd\xb9\xcd\xfa\xfe\x01\xd5\xa554\x83\x9b\x8b\xfaE.'
+S'\x0e\xad\xf2O\x91:\xa1@\xcbyK\xd3\xceJ\x92v'
 p26
 ssS'currentcost_messager'
 p27
@@ -88,7 +88,7 @@ sg24
 I0
 sbssS'hash'
 p35
-S'\xef\xfc\x94\x19\xfe\x84\xf1\x0b\\\xd9\xe0\xc6#\xfc\x01\x9c'
+S',zT\x89\xfd\x11\x03\xceGv\xd6\x87\xc9=\xd4+'
 p36
 ssS'currentcost'
 p37

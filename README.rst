@@ -44,7 +44,8 @@ Usage
 .. code-block:: bash
 
     $ phase-currentcost -h
-    usage: phase-currentcost [-h] [-t TTY_PORT] [-r RABBITMQ_CREDENTIAL] [-v]
+    usage: phase-currentcost [-h] [-t TTY_PORT] [-r RABBITMQ_CREDENTIAL]
+                             [-l LOG_CONF] [-v]
                              variable_name site_name
 
     positional arguments:
@@ -59,6 +60,8 @@ Usage
                             credential for rabbitMQ. By default, RabbitMQ is
                             deactivated. To activate it you have to give your
                             credential. Format: username:password.
+      -l LOG_CONF, --log-conf LOG_CONF
+                            path to log configuration
       -v, --verbose         activate verbose mode
 
 By default:
@@ -66,6 +69,7 @@ By default:
 * We are looking for default tty port located in /dev/currentcost. You can over-write it if you want using --tty-port argument.
 * RabbitMQ is not activated. To activate it you have to add your credential to phase-currentcost script. To give your credential to currentcost script, use --rabbitMQ-credential argument.
 * If RabbitMQ is not activated, we display currentcost message in stdout. Else we send it over the network. 
+* Log configuration file is located in /opt/phase/phase-currentcost.conf and log file is in /var/logs/phase/phase-currentcost.log. You can set log configuration file using -l option and a path to your log.conf file.
 
 Examples: 
 
