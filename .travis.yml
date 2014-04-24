@@ -15,7 +15,7 @@ before_install:
   - sudo service rabbitmq-server restart
 install:
   - pip install behave nose
-  - python setup.py install
+  - sudo pip install .
 script:
   - python --version
   - nosetests

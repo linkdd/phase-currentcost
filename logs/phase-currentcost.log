@@ -141,3 +141,67 @@ TTY port: tests/tty/currentcost
 "
 "2014-04-24 22:35:13 - phase-currentcost - main - INFO - CurrentCost TEST_electric_meter in TEST_liogen_home: Success connection to tests/tty/currentcost."
 "2014-04-24 22:35:14 - messager.py - send - ERROR - {"variableID": "TEST_electric_meter", "dstTimezone": "CEST", "siteID": "TEST_liogen_home", "date": "2014-04-24T20:35:14.534935", "message": "<msg><src>CC128-v1.29</src><dsb>00786</dsb><time>00:31:36</time><tmpr>19.3</tmpr><sensor>0</sensor><id>00077</id><type>1</type><ch1><watts>00405</watts></ch1></msg>", "nonDstTimezone": "CET"}"
+"2014-04-24 22:56:01 - messager.py - __init__ - ERROR - Problem bad RabbitMQ credential with this configuration: username: EDzadminZE, password: pasZECZCordZE, host: localhost"
+"2014-04-24 22:56:01 - messager.py - send - ERROR - It works!"
+"2014-04-24 22:56:01 - messager.py - send - ERROR - {"variableID": "TEST_VAR", "dstTimezone": "CEST", "siteID": "TEST_SITE", "date": "2014-04-24T20:56:01.527398", "message": "It works!", "nonDstTimezone": "CET"}"
+"2014-04-24 22:56:01 - messager.py - __init__ - ERROR - Problem trying to connect to RabbitMQ with this configuration: username: admin, password: password, host: 192.168.5.56"
+"2014-04-24 22:56:01 - messager.py - send - ERROR - It works!"
+"2014-04-24 22:56:01 - messager.py - send - ERROR - {"variableID": "TEST_VAR", "dstTimezone": "CEST", "siteID": "TEST_SITE", "date": "2014-04-24T20:56:01.780300", "message": "It works!", "nonDstTimezone": "CET"}"
+"2014-04-24 22:56:01 - messager.py - send - ERROR - It works!"
+"2014-04-24 22:56:01 - messager.py - send - ERROR - It works!"
+"2014-04-24 22:56:01 - messager.py - send - ERROR - {"variableID": "TEST_VAR", "dstTimezone": "CEST", "siteID": "TEST_SITE", "date": "2014-04-24T20:56:01.859238", "message": "It works!", "nonDstTimezone": "CET"}"
+"2014-04-24 22:56:03 - utils.py - init_message - INFO - Starting current cost application
+Current time: 2014-04-24 22:56:03.303469
+Variable name: TEST_electric_meter
+Site name: TEST_liogen_home
+TTY port: /dev/currentcost9876
+"
+"2014-04-24 22:56:03 - messager.py - send - ERROR - {"variableID": "TEST_electric_meter", "dstTimezone": "CEST", "siteID": "TEST_liogen_home", "date": "2014-04-24T20:56:03.304198", "message": "CurrentCost TEST_electric_meter in TEST_liogen_home: TTY connection problem: /dev/currentcost9876 is unreachable. Retry connection in 5 seconds.", "nonDstTimezone": "CET"}"
+"2014-04-24 22:56:08 - utils.py - init_message - INFO - Starting current cost application
+Current time: 2014-04-24 22:56:08.341732
+Variable name: TEST_electric_meter
+Site name: TEST_liogen_home
+TTY port: /dev/currentcost9876
+"
+"2014-04-24 22:56:11 - messager.py - __init__ - ERROR - Problem bad RabbitMQ credential with this configuration: username: admzfzein, password: paszeasword, host: localhost"
+"2014-04-24 22:56:11 - messager.py - send - ERROR - {"variableID": "TEST_electric_meter", "dstTimezone": "CEST", "siteID": "TEST_liogen_home", "date": "2014-04-24T20:56:11.346732", "message": "CurrentCost TEST_electric_meter in TEST_liogen_home: TTY connection problem: /dev/currentcost9876 is unreachable. Retry connection in 5 seconds.", "nonDstTimezone": "CET"}"
+"2014-04-24 22:56:13 - utils.py - init_message - INFO - Starting current cost application
+Current time: 2014-04-24 22:56:13.339893
+Variable name: TEST_electric_meter
+Site name: TEST_liogen_home
+TTY port: /dev/currentcost9876
+"
+"2014-04-24 22:56:13 - messager.py - send - ERROR - {"variableID": "TEST_electric_meter", "dstTimezone": "CEST", "siteID": "TEST_liogen_home", "date": "2014-04-24T20:56:13.358955", "message": "CurrentCost TEST_electric_meter in TEST_liogen_home: TTY connection problem: /dev/currentcost9876 is unreachable. Retry connection in 5 seconds.", "nonDstTimezone": "CET"}"
+"2014-04-24 22:56:14 - utils.py - init_message - INFO - Starting current cost application
+Current time: 2014-04-24 22:56:14.410423
+Variable name: TEST_electric_meter
+Site name: TEST_liogen_home
+TTY port: tests/tty/currentcost
+"
+"2014-04-24 22:56:14 - phase-currentcost - main - INFO - CurrentCost TEST_electric_meter in TEST_liogen_home: Success connection to tests/tty/currentcost."
+"2014-04-24 22:56:24 - messager.py - send - ERROR - {"variableID": "TEST_electric_meter", "dstTimezone": "CEST", "siteID": "TEST_liogen_home", "date": "2014-04-24T20:56:24.429608", "message": "CurrentCost TEST_electric_meter in TEST_liogen_home: Reach timeout. Verify CurrentCost wire connection or wave range", "nonDstTimezone": "CET"}"
+"2014-04-24 22:56:24 - utils.py - init_message - INFO - Starting current cost application
+Current time: 2014-04-24 22:56:24.650091
+Variable name: TEST_electric_meter
+Site name: TEST_liogen_home
+TTY port: tests/tty/currentcost
+"
+"2014-04-24 22:56:24 - phase-currentcost - main - INFO - CurrentCost TEST_electric_meter in TEST_liogen_home: Success connection to tests/tty/currentcost."
+"2014-04-24 22:56:27 - phase-currentcost - main - INFO - CurrentCost TEST_electric_meter in TEST_liogen_home: TTY port tests/tty/currentcost disconnected."
+"2014-04-24 22:56:27 - messager.py - send - ERROR - {"variableID": "TEST_electric_meter", "dstTimezone": "CEST", "siteID": "TEST_liogen_home", "date": "2014-04-24T20:56:27.478147", "message": "CurrentCost TEST_electric_meter in TEST_liogen_home: TTY connection problem: tests/tty/currentcost is unreachable. Retry connection in 5 seconds.", "nonDstTimezone": "CET"}"
+"2014-04-24 22:56:28 - utils.py - init_message - INFO - Starting current cost application
+Current time: 2014-04-24 22:56:28.728581
+Variable name: TEST_electric_meter
+Site name: TEST_liogen_home
+TTY port: tests/tty/currentcost
+"
+"2014-04-24 22:56:28 - phase-currentcost - main - INFO - CurrentCost TEST_electric_meter in TEST_liogen_home: Success connection to tests/tty/currentcost."
+"2014-04-24 22:56:29 - messager.py - send - ERROR - {"variableID": "TEST_electric_meter", "dstTimezone": "CEST", "siteID": "TEST_liogen_home", "date": "2014-04-24T20:56:29.557981", "message": "CurrentCost TEST_electric_meter in TEST_liogen_home: Send incorrect message => <msg><src>ensor>0</sensor><id>00077</id><type>1</type><ch1><watts>00405</watts></ch1></msg>.", "nonDstTimezone": "CET"}"
+"2014-04-24 22:56:31 - utils.py - init_message - INFO - Starting current cost application
+Current time: 2014-04-24 22:56:31.810248
+Variable name: TEST_electric_meter
+Site name: TEST_liogen_home
+TTY port: tests/tty/currentcost
+"
+"2014-04-24 22:56:31 - phase-currentcost - main - INFO - CurrentCost TEST_electric_meter in TEST_liogen_home: Success connection to tests/tty/currentcost."
+"2014-04-24 22:56:32 - messager.py - send - ERROR - {"variableID": "TEST_electric_meter", "dstTimezone": "CEST", "siteID": "TEST_liogen_home", "date": "2014-04-24T20:56:32.632534", "message": "<msg><src>CC128-v1.29</src><dsb>00786</dsb><time>00:31:36</time><tmpr>19.3</tmpr><sensor>0</sensor><id>00077</id><type>1</type><ch1><watts>00405</watts></ch1></msg>", "nonDstTimezone": "CET"}"

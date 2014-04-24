@@ -49,3 +49,8 @@ Feature: Current Cost data collection
     Scenario: Nominal case historical consumption
         Given current cost is connected and script is launched
         Then we should receive historical consumption over the network
+
+    @prod
+    Scenario: Problem with current cost connexion without RabbitMQ
+        When we start currentcost with bad port without rabbitmq with log
+        Then we should see currentcost is unreachable in /var/log

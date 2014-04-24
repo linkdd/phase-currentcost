@@ -45,6 +45,7 @@ MQ_HOST = "localhost"
 ARGUMENT_LOG_CONF = "--log-conf"
 LOG_CONF = "logs/log.conf"
 LOG_FILE = "logs/phase-currentcost.log"
+SUDO_LOG_FILE = "/var/log/phase/phase-currentcost.log"
 TTY_ERROR_MESSAGE = "None"
 CREDENTIALS = pika.PlainCredentials("admin", "password")
 SOCAT = "socat"
@@ -86,12 +87,12 @@ def verify_json_message(body, expected_message):
     assert message["nonDstTimezone"] == tzname[0]
 
 
-def extract_from_log(expected_message, line):
+def extract_from_log(expected_message, log_file_path, line):
     """
         Method that extract expecting line from log and compare
         to expected_message
     """
-    log_file = open(LOG_FILE, "r")
+    log_file = open(log_file_path, "r")
     lines = log_file.readlines()
     log_file.close()
     body = lines[line]
@@ -286,7 +287,7 @@ def detect_unreachability_log(context):
     """
     error = TTY_CONNECTION_PROBLEM % (
         VAR_NAME, SITE_NAME, BAD_TTY_PORT)
-    extract_from_log(error, -1)
+    extract_from_log(error, LOG_FILE, -1)
 
 
 @then("we should see rabbitmq error in log")
@@ -298,7 +299,7 @@ def detect_rabbitmqerror_log(context):
         BAD_MQ_CREDENTIAL.split(":")[0],
         BAD_MQ_CREDENTIAL.split(":")[1],
         MQ_HOST)
-    extract_from_log(error, -2)
+    extract_from_log(error, LOG_FILE, -2)
 
 
 @when("we start currentcost with bad port with rabbitmq")
@@ -374,7 +375,7 @@ def log_no_messages(context):
     """
     error = CURRENTCOST_TIMEOUT % (
         VAR_NAME, SITE_NAME)
-    extract_from_log(error, -1)
+    extract_from_log(error, LOG_FILE, -1)
 
 
 @given("current cost is connected and currentcost script is launched")
@@ -402,7 +403,7 @@ def cc_launch_correctly(context):
 
     error = TTY_CONNECTION_SUCCESS % (
         VAR_NAME, SITE_NAME, TTY_PORT)
-    extract_from_log(error, -1)
+    extract_from_log(error, LOG_FILE, -1)
 
 
 @when("we disconnect USB port")
@@ -429,7 +430,7 @@ def detect_disconnected_log(context):
     """
     error = TTY_CONNECTION_PROBLEM % (
         VAR_NAME, SITE_NAME, TTY_PORT)
-    extract_from_log(error, -1)
+    extract_from_log(error, LOG_FILE, -1)
 
 
 @given("current cost is connected and script is launched")
@@ -508,7 +509,7 @@ def log_incorrect_message(context):
     """
     error = CC_INCORRECT_MESSAGE % (
         VAR_NAME, SITE_NAME, WRONG_CURRENTCOST_MESSAGE)
-    extract_from_log(error, -1)
+    extract_from_log(error, LOG_FILE, -1)
 
 
 @then("we should receive historical consumption over the network")
@@ -528,3 +529,30 @@ def receive_historical_consumption(context):
     ser.close()
     context.process.terminate()
     context.socat.terminate()
+
+
+@when("we start currentcost with bad port without rabbitmq with log")
+def sudo_log_badport_message(context):
+    """Start a process in sudo mode with global log.conf.
+
+    """
+    commands = "%s %s %s %s %s %s" % (
+        "sudo",
+        BIN,
+        VAR_NAME,
+        SITE_NAME,
+        ARGUMENT_TTY_PORT,
+        BAD_TTY_PORT)
+    process = subprocess.Popen(shlex.split(commands))
+    sleep(5)
+    process.terminate()
+
+
+@then("we should see currentcost is unreachable in /var/log")
+def sudo_log_cc_unreachable(context):
+    """Verify in /var/log that currentcost is unreachable.
+
+    """
+    error = TTY_CONNECTION_PROBLEM % (
+        VAR_NAME, SITE_NAME, BAD_TTY_PORT)
+    extract_from_log(error, SUDO_LOG_FILE, -1)
