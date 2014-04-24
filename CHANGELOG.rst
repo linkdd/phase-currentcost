@@ -1,3 +1,10 @@
+phase-currentcost (v0.9.14) stable; urgency=low
+-----------------------------------------------
+
+* Correct badge error
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-25 01:10:00
+
 phase-currentcost (v0.9.13) stable; urgency=low
 -----------------------------------------------
 
