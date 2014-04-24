@@ -81,6 +81,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="change.html">CHANGELOG</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-13-stable-urgency-low">phase-currentcost (v0.9.13) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-12-stable-urgency-low">phase-currentcost (v0.9.12) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-11-stable-urgency-low">phase-currentcost (v0.9.11) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-10-stable-urgency-low">phase-currentcost (v0.9.10) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-9-stable-urgency-low">phase-currentcost (v0.9.9) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-8-stable-urgency-low">phase-currentcost (v0.9.8) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-7-stable-urgency-low">phase-currentcost (v0.9.7) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-6-stable-urgency-low">phase-currentcost (v0.9.6) stable; urgency=low</a></li>
@@ -156,11 +161,10 @@
             
   <div class="section" id="phase-currentcost">
 <h1>phase-currentcost<a class="headerlink" href="#phase-currentcost" title="Permalink to this headline">¶</a></h1>
-<a class="reference external image-reference" href="https://travis-ci.org/liogen/phase-currentcost"><img alt="Travis CI Build Status" src="https://api.travis-ci.org/liogen/phase-currentcost.png?branch=master" /></a>
-<a class="reference external image-reference" href="https://travis-ci.org/liogen/phase-currentcost"><img alt="Travis CI Build Status" src="https://api.travis-ci.org/liogen/phase-currentcost.png?branch=develop" /></a>
-<a class="reference external image-reference" href="https://pypi.python.org/pypi/phase-currentcost"><img alt="Latest Version" src="https://pypip.in/v/phase-currentcost/badge.png" /></a>
-<a class="reference external image-reference" href="https://pypi.python.org/pypi/phase-currentcost"><img alt="Downloads" src="https://pypip.in/d/phase-currentcost/badge.png" /></a>
-<a class="reference external image-reference" href="https://pypi.python.org/pypi/phase-currentcost/"><img alt="License" src="https://pypip.in/license/phase-currentcost/badge.png" /></a>
+<a class="reference external image-reference" href="https://travis-ci.org/liogen/phase-currentcost"><img alt="Travis CI Build Status" src="http://img.shields.io/travis/liogen/phase-currentcost.png?branch=master&amp;style=flat" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/phase-currentcost"><img alt="Latest Version" src="http://img.shields.io/pypi/v/phase-currentcost.png?style=flat" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/phase-currentcost"><img alt="Downloads" src="http://img.shields.io/pypi/dm/phase-currentcost.png?style=flat" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/phase-currentcost/"><img alt="License" src="http://img.shields.io/badge/license-MIT-red.png?style=flat" /></a>
 <p>Functional test with fixtures to simulate CurrentCost on port COM and waited for currentCost to send messages.</p>
 <p>TO BE COMPLETED (goals of the project)</p>
 <div class="section" id="features">
@@ -205,7 +209,7 @@
 </div>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>phase-currentcost -h
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo phase-currentcost -h
 usage: phase-currentcost <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-t TTY_PORT<span class="o">]</span> <span class="o">[</span>-r RABBITMQ_CREDENTIAL<span class="o">]</span>
                          <span class="o">[</span>-l LOG_CONF<span class="o">]</span> <span class="o">[</span>-v<span class="o">]</span>
                          variable_name site_name
@@ -236,12 +240,12 @@ optional arguments:
 </ul>
 <p>Examples:</p>
 <p>To see the current consumption on Current cost on stdout use:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>phase-currentcost electric_meter liogen_home --tty-port /dev/currentcost
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo phase-currentcost electric_meter liogen_home --tty-port /dev/currentcost
 </pre></div>
 </div>
 <p><strong>IDEA: PUT CONSOLE OUTPUT AS AN EXAMPLE</strong></p>
 <p>With rabbitMQ message over the network:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>phase-currentcost electric_meter liogen_home --tty-port /dev/currentcost --rabbitmq-credential admin:password -v
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo phase-currentcost electric_meter liogen_home --tty-port /dev/currentcost --rabbitmq-credential admin:password -v
 </pre></div>
 </div>
 <p><strong>IDEA: PUT CONSOLE OUTPUT AS AN EXAMPLE</strong></p>

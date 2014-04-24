@@ -44,7 +44,7 @@ def upload():
 
 @task
 @needs(["html"])
-def develop():
+def development_env():
     """
         Generate docs and source distribution.
     """
@@ -70,7 +70,6 @@ def build():
         Validate implementation.
     """
     validate()
-    sdist()
 
 
 @task

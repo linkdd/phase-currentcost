@@ -1,3 +1,39 @@
+phase-currentcost (v0.9.13) stable; urgency=low
+-----------------------------------------------
+
+* Fix README problem on Pypi.
+* Change usage to add "sudo" command
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-25 00:50:00
+
+phase-currentcost (v0.9.12) stable; urgency=low
+-----------------------------------------------
+
+* Try to fix README problem on Pypi.
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-25 00:45:00
+
+phase-currentcost (v0.9.11) stable; urgency=low
+-----------------------------------------------
+
+* Try to fix README problem on Pypi.
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-25 00:40:00
+
+phase-currentcost (v0.9.10) stable; urgency=low
+-----------------------------------------------
+
+* PYPI installation is working.
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-25 00:30:00
+
+phase-currentcost (v0.9.9) stable; urgency=low
+----------------------------------------------
+
+* Fix installation problem on PYPI.
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-25 00:20:00
+
 phase-currentcost (v0.9.8) stable; urgency=low
 ----------------------------------------------
 
@@ -12,6 +48,8 @@ phase-currentcost (v0.9.8) stable; urgency=low
 * Add production test in behave and launch it only on travis
 * Improve Readme.md
 * Fix travis dependencies problem
+* Improve todo
+* Upload succesfully package on PYPI
 
 Pierre Leray <pierreleray64@gmail.com>  2014-04-24 23:20:00
 

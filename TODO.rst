@@ -10,11 +10,10 @@ Schedule
 --------
 
 * For April, 25th 2014:
-    * Work on deployment (look at pip install, pip freeze, pip bundle, pip wheel)
+    * Fix travis problem
     * List all features
     * Write README.rst
     * Describe usage process
-    * Split README.rst in several file
 
 Pending tasks
 -------------
