@@ -5,7 +5,7 @@
     
     
     <meta http-equiv='X-UA-Compatible' content='IE=emulateIE7' />
-    <title>Coverage for currentcost.rabbitmq_messager: 95%</title>
+    <title>Coverage for currentcost.messager: 95%</title>
     <link rel='stylesheet' href='style.css' type='text/css'>
     
     <script type='text/javascript' src='jquery.min.js'></script>
@@ -20,7 +20,7 @@
 
 <div id='header'>
     <div class='content'>
-        <h1>Coverage for <b>currentcost.rabbitmq_messager</b> :
+        <h1>Coverage for <b>currentcost.messager</b> :
             <span class='pc_cov'>95%</span>
         </h1>
         <img id='keyboard_icon' src='keybd_closed.png'>
@@ -270,7 +270,7 @@
 <p id='t72' class='pln'><span class='str'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :type out: StringIO.</span><span class='strut'>&nbsp;</span></p>
 <p id='t73' class='pln'><span class='str'>&nbsp; &nbsp; &nbsp; &nbsp; &quot;&quot;&quot;</span><span class='strut'>&nbsp;</span></p>
 <p id='t74' class='pln'><span class='com'>#&nbsp; &nbsp; &nbsp;&nbsp; We log message we want to send to keep a trace</span><span class='strut'>&nbsp;</span></p>
-<p id='t75' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>self</span><span class='op'>.</span><span class='nam'>logger</span><span class='op'>.</span><span class='nam'>info</span><span class='op'>(</span><span class='nam'>message</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
+<p id='t75' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>self</span><span class='op'>.</span><span class='nam'>logger</span><span class='op'>.</span><span class='nam'>error</span><span class='op'>(</span><span class='nam'>message</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
 <p id='t76' class='pln'><span class='com'>#&nbsp; &nbsp; &nbsp;&nbsp; If channel is available</span><span class='strut'>&nbsp;</span></p>
 <p id='t77' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='key'>if</span> <span class='nam'>self</span><span class='op'>.</span><span class='nam'>channel</span> <span class='key'>is</span> <span class='key'>not</span> <span class='nam'>None</span><span class='op'>:</span><span class='strut'>&nbsp;</span></p>
 <p id='t78' class='pln'><span class='com'>#&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; We send a message on this channel</span><span class='strut'>&nbsp;</span></p>

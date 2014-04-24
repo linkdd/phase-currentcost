@@ -1,1 +1,1 @@
-""" Test module for pyCurrentCost project """
+""" Test module for phase-currentcost project """

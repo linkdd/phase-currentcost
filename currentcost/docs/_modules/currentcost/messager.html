@@ -1,0 +1,351 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>currentcost.messager &mdash; phase-currentcost 0.9.5 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="phase-currentcost 0.9.5 documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../index.html" class="fa fa-home"> phase-currentcost</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../presentation.html">phase-currentcost</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../presentation.html#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../presentation.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../presentation.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../presentation.html#message-send-through-rabbitmq">Message send through RabbitMQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../presentation.html#contribute">Contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../presentation.html#work-flow">Work flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../presentation.html#test-plan">Test plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../presentation.html#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../code.html">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../code.html#module-currentcost.utils">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../code.html#module-currentcost.messager">RabbitMQ_messager</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../todo.html">TODO v1.0.0</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../todo.html#objectives">Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../todo.html#schedule">Schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../todo.html#pending-tasks">Pending tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../change.html">CHANGELOG</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-9-13-stable-urgency-low">phase-currentcost (v0.9.13) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-9-12-stable-urgency-low">phase-currentcost (v0.9.12) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-9-11-stable-urgency-low">phase-currentcost (v0.9.11) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-9-10-stable-urgency-low">phase-currentcost (v0.9.10) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-9-9-stable-urgency-low">phase-currentcost (v0.9.9) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-9-8-stable-urgency-low">phase-currentcost (v0.9.8) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-9-7-stable-urgency-low">phase-currentcost (v0.9.7) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-9-6-stable-urgency-low">phase-currentcost (v0.9.6) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-9-5-stable-urgency-low">phase-currentcost (v0.9.5) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-9-4-stable-urgency-low">phase-currentcost (v0.9.4) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-9-3-stable-urgency-low">phase-currentcost (v0.9.3) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-9-2-stable-urgency-low">phase-currentcost (v0.9.2) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-9-1-stable-urgency-low">phase-currentcost (v0.9.1) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-9-0-stable-urgency-low">phase-currentcost (v0.9.0) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-8-0-unstable-urgency-low">phase-currentcost (v0.8.0) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-7-0-unstable-urgency-low">phase-currentcost (v0.7.0) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-6-0-unstable-urgency-low">phase-currentcost (v0.6.0) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-5-0-unstable-urgency-low">phase-currentcost (v0.5.0) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-4-1-unstable-urgency-low">phase-currentcost (v0.4.1) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-4-0-unstable-urgency-low">phase-currentcost (v0.4.0) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-3-9-unstable-urgency-low">phase-currentcost (v0.3.9) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-3-8-unstable-urgency-low">phase-currentcost (v0.3.8) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-3-7-unstable-urgency-low">phase-currentcost (v0.3.7) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-3-6-unstable-urgency-low">phase-currentcost (v0.3.6) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-3-5-unstable-urgency-low">phase-currentcost (v0.3.5) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-3-4-unstable-urgency-low">phase-currentcost (v0.3.4) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-3-3-unstable-urgency-low">phase-currentcost (v0.3.3) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-3-2-unstable-urgency-low">phase-currentcost (v0.3.2) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-3-1-unstable-urgency-low">phase-currentcost (v0.3.1) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-3-0-unstable-urgency-low">phase-currentcost (v0.3.0) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-2-3-unstable-urgency-low">phase-currentcost (v0.2.3) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-2-2-unstable-urgency-low">phase-currentcost (v0.2.2) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-2-1-unstable-urgency-low">phase-currentcost (v0.2.1) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-2-0-unstable-urgency-low">phase-currentcost (v0.2.0) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-1-10-unstable-urgency-low">phase-currentcost (v0.1.10) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-1-9-unstable-urgency-low">phase-currentcost (v0.1.9) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-1-8-unstable-urgency-low">phase-currentcost (v0.1.8) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-1-7-unstable-urgency-low">phase-currentcost (v0.1.7) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-1-6-unstable-urgency-low">phase-currentcost (v0.1.6) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-1-5-unstable-urgency-low">phase-currentcost (v0.1.5) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-1-4-unstable-urgency-low">phase-currentcost (v0.1.4) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-1-3-unstable-urgency-low">phase-currentcost (v0.1.3) unstable; urgency=low</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">phase-currentcost</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>currentcost.messager</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <h1>Source code for currentcost.messager</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/python</span>
+<span class="c"># -*- coding: utf8 -*-</span>
+<span class="c"># -*- Mode: Python; py-indent-offset: 4 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;Method that send message on RabbitMQ or display it on stdout.</span>
+
+<span class="sd">.. moduleauthor:: Pierre Leray &lt;pierreleray64@gmail.com&gt;</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">pika</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">currentcost.utils</span> <span class="kn">import</span> <span class="n">RABBIT_MQ_CREDENTIAL_PROBLEM</span>
+<span class="kn">from</span> <span class="nn">currentcost.utils</span> <span class="kn">import</span> <span class="n">RABBIT_MQ_CONNECTION_PROBLEM</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">tzname</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+
+<div class="viewcode-block" id="RabbitMQMessager"><a class="viewcode-back" href="../../code.html#currentcost.messager.RabbitMQMessager">[docs]</a><span class="k">class</span> <span class="nc">RabbitMQMessager</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;This class send message to RabbitMQ or in stdout following user choice.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">host</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor.</span>
+
+<span class="sd">            :param username: Name of the RabbitMQ user.</span>
+<span class="sd">            :type username: str.</span>
+
+<span class="sd">            :param password: Password of the RabbitMQ user.</span>
+<span class="sd">            :type password: str.</span>
+
+<span class="sd">            :param host: Host target for RabbitMQ.</span>
+<span class="sd">            :type host: str.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+<span class="c">#       Logger and channel initialization</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&quot;currentcost.pika&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="c">#       If we have a username and password for RabbitMQ</span>
+        <span class="k">if</span> <span class="n">username</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">password</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+<span class="c">#               We try to connect to RabbitMQ with this credential</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">pika</span><span class="o">.</span><span class="n">BlockingConnection</span><span class="p">(</span>
+                    <span class="n">pika</span><span class="o">.</span><span class="n">ConnectionParameters</span><span class="p">(</span>
+                        <span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">,</span>
+                        <span class="n">credentials</span><span class="o">=</span><span class="n">pika</span><span class="o">.</span><span class="n">PlainCredentials</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)))</span>
+<span class="c">#               If our connection was successful we retrieve a channel</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">channel</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">pika</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionClosed</span><span class="p">:</span>
+<span class="c">#               Else if our credential were wrong, we log according message</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">RABBIT_MQ_CREDENTIAL_PROBLEM</span> <span class="o">%</span> <span class="p">(</span>
+                    <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">host</span><span class="p">))</span>
+            <span class="k">except</span> <span class="n">pika</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">AMQPConnectionError</span><span class="p">:</span>
+<span class="c">#               Else if RabbitMQ is not available in this location,</span>
+<span class="c">#               we log according message</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">RABBIT_MQ_CONNECTION_PROBLEM</span> <span class="o">%</span> <span class="p">(</span>
+                    <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">host</span><span class="p">))</span>
+
+<div class="viewcode-block" id="RabbitMQMessager.send"><a class="viewcode-back" href="../../code.html#currentcost.messager.RabbitMQMessager.send">[docs]</a>    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Method that send a message with a topic.</span>
+
+<span class="sd">            :param topic: Channel where to send message (RabbitMQ filter).</span>
+<span class="sd">            :type topic: str.</span>
+
+<span class="sd">            :param message: Message to send to RabbitMQ.</span>
+<span class="sd">            :type message: str.</span>
+
+<span class="sd">            :param out: Stdout redirection in case of test (default: stdout).</span>
+<span class="sd">            :type out: StringIO.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+<span class="c">#       We log message we want to send to keep a trace</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<span class="c">#       If channel is available</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+<span class="c">#           We send a message on this channel</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">queue_declare</span><span class="p">(</span><span class="n">queue</span><span class="o">=</span><span class="n">topic</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">basic_publish</span><span class="p">(</span>
+                <span class="n">exchange</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">routing_key</span><span class="o">=</span><span class="n">topic</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">message</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+<span class="c">#           Else we print it in stdout</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">unicode</span><span class="p">(</span><span class="n">message</span><span class="p">),</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="RabbitMQMessager.send_message"><a class="viewcode-back" href="../../code.html#currentcost.messager.RabbitMQMessager.send_message">[docs]</a>    <span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">site_name</span><span class="p">,</span> <span class="n">var_name</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Format parameter into json string for phase platform.</span>
+
+<span class="sd">            :param topic: Channel where to send message (RabbitMQ filter).</span>
+<span class="sd">            :type topic: str.</span>
+
+<span class="sd">            :param site_name: Name of the site.</span>
+<span class="sd">            :type site_name: str.</span>
+
+<span class="sd">            :param var_name: Variable name.</span>
+<span class="sd">            :type var_name: str.</span>
+
+<span class="sd">            :param data: Data send to send.</span>
+<span class="sd">            :type data: str.</span>
+
+<span class="sd">            :param out: Stdout redirection in case of test (default: stdout).</span>
+<span class="sd">            :type out: StringIO.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+<span class="c">#       We create our phase message</span>
+        <span class="n">json_message</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">&#39;siteID&#39;</span><span class="p">:</span> <span class="n">site_name</span><span class="p">,</span>
+            <span class="s">&#39;variableID&#39;</span><span class="p">:</span> <span class="n">var_name</span><span class="p">,</span>
+            <span class="s">&#39;message&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span>
+            <span class="s">&#39;date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">),</span>
+            <span class="s">&#39;dstTimezone&#39;</span><span class="p">:</span> <span class="n">tzname</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="s">&#39;nonDstTimezone&#39;</span><span class="p">:</span> <span class="n">tzname</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="p">}</span>
+<span class="c">#       And we send it using our send method defined previously</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_message</span><span class="p">),</span> <span class="n">out</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="RabbitMQMessager.consume"><a class="viewcode-back" href="../../code.html#currentcost.messager.RabbitMQMessager.consume">[docs]</a>    <span class="k">def</span> <span class="nf">consume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Method that wait for a message on RabbitMQ topics channels.</span>
+
+<span class="sd">            :param topic: Channel where to send message (RabbitMQ filter).</span>
+<span class="sd">            :type topic: str.</span>
+
+<span class="sd">            :param callback: Function that compute result of message (async).</span>
+<span class="sd">            :type callback: Function.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+<span class="c">#       We try to connect to our channel and wait for a message</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">queue_declare</span><span class="p">(</span><span class="n">queue</span><span class="o">=</span><span class="n">topic</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">basic_consume</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="n">queue</span><span class="o">=</span><span class="n">topic</span><span class="p">,</span> <span class="n">no_ack</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">start_consuming</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">pika</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionClosed</span><span class="p">:</span>
+<span class="c">#           If something goes wrong we pass silently</span>
+            <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Pierre Leray.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.9.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

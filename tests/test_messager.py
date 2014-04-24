@@ -9,7 +9,7 @@
 
 from __future__ import print_function
 import unittest
-from currentcost.rabbitmq_messager import RabbitMQMessager
+from currentcost.messager import RabbitMQMessager
 from io import StringIO
 import pika
 import logging

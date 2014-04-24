@@ -6,7 +6,7 @@ Feature: Current Cost data collection
     Scenario: Missing argument
         When we launch currentcost script without important argument
         Then we should see an error message on screen
-    
+
     Scenario: Problem with current cost connexion without RabbitMQ
         When we start currentcost with bad port without rabbitmq
         Then we should see currentcost is unreachable in log
@@ -44,7 +44,12 @@ Feature: Current Cost data collection
         When current cost send instant consumption
         Then we should receive instant consumption over the network
 
-    @slow
+    @prod
     Scenario: Nominal case historical consumption
         Given current cost is connected and script is launched
         Then we should receive historical consumption over the network
+
+    @prod
+    Scenario: Problem with current cost connexion without RabbitMQ
+        When we start currentcost with bad port without rabbitmq with log
+        Then we should see currentcost is unreachable in /var/log

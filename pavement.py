@@ -28,14 +28,23 @@ options(
 
     pylint_file=".pylintrc",
 
-    files="*.py %s/*.py bin/%s tests/*.py features/steps/*.py" % (
+    files="*.py %s/*.py bin/phase-%s tests/*.py features/steps/*.py" % (
         PACKAGE, PACKAGE),
 )
 
 
 @task
-@needs(["html", "distutils.command.sdist"])
-def sdist():
+@needs(["html"])
+def upload():
+    """
+        Upload project on PYPI.
+    """
+    sh('python setup.py register sdist upload')
+
+
+@task
+@needs(["html"])
+def development_env():
     """
         Generate docs and source distribution.
     """
@@ -61,7 +70,6 @@ def build():
         Validate implementation.
     """
     validate()
-    sdist()
 
 
 @task
@@ -82,7 +90,7 @@ def test():
     sh("nosetests --cover-erase --with-coverage --cover-html\
         --cover-package=%s --cover-min-percentage=70 --cover-html-dir=%s" % (
         PACKAGE, options.cover_folder))
-    sh("behave")
+    sh("behave --tags=-prod")
 
 
 @task

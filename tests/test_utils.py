@@ -10,7 +10,7 @@
 from __future__ import print_function
 import unittest
 from currentcost.utils import ERROR, CURRENTCOST_TIMEOUT
-from currentcost.utils import SUCCESS, CC_INCORRECT_MESSAGE, data_parser
+from currentcost.utils import SUCCESS, CC_INCORRECT_MESSAGE, data_validator
 #from currentcost.utils import CURRENTCOST_UNICODE_ERROR
 import logging
 import logging.config
@@ -41,12 +41,15 @@ class TestUtils(unittest.TestCase):
             Test add function for generator class.
         """
 #       Data parser for valid XML
-        topic, message = data_parser(CURRENTCOST_MESSAGE, VAR_NAME, SITE_NAME)
+        topic, message = data_validator(
+            CURRENTCOST_MESSAGE,
+            VAR_NAME,
+            SITE_NAME)
         self.assertEqual(topic, SUCCESS)
         self.assertEqual(message, CURRENTCOST_MESSAGE)
 
 #       Data parser for invalid XML
-        topic, message = data_parser(
+        topic, message = data_validator(
             WRONG_CURRENTCOST_MESSAGE,
             VAR_NAME,
             SITE_NAME)
@@ -58,7 +61,7 @@ class TestUtils(unittest.TestCase):
 
 #       Data parser for invalid unicode string
         # (need to find a way to simualte a wrong unicode string)
-        # topic, message = data_parser(WRONG_UNICODE, VAR_NAME, SITE_NAME)
+        # topic, message = data_validator(WRONG_UNICODE, VAR_NAME, SITE_NAME)
         # self.assertEqual(topic, ERROR)
         # self.assertEqual(message, CC_INCORRECT_MESSAGE % (
         #     VAR_NAME,
@@ -66,7 +69,7 @@ class TestUtils(unittest.TestCase):
         #     CURRENTCOST_UNICODE_ERROR))
 
 #       Data parser for CurrentCost timeout
-        topic, message = data_parser(TIMEOUT_DATA, VAR_NAME, SITE_NAME)
+        topic, message = data_validator(TIMEOUT_DATA, VAR_NAME, SITE_NAME)
         self.assertEqual(topic, ERROR)
         self.assertEqual(message, CURRENTCOST_TIMEOUT % (
             VAR_NAME,

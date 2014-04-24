@@ -1,15 +1,29 @@
+=================
 phase-currentcost
 =================
 
-.. image:: https://api.travis-ci.org/liogen/phase-currentcost.png?branch=master
+.. image:: http://img.shields.io/travis/liogen/phase-currentcost.png?branch=master&style=flat
     :target: https://travis-ci.org/liogen/phase-currentcost
     :alt: Travis CI Build Status
+
+.. image:: http://img.shields.io/pypi/v/phase-currentcost.png?style=flat
+    :target: https://pypi.python.org/pypi/phase-currentcost
+    :alt: Latest Version
+
+.. image:: http://img.shields.io/pypi/dm/phase-currentcost.png?style=flat
+    :target: https://pypi.python.org/pypi/phase-currentcost
+    :alt: Downloads
+
+.. image:: http://img.shields.io/badge/license-MIT-red.png?style=flat
+    :target: https://pypi.python.org/pypi/phase-currentcost/
+    :alt: License
 
 Functional test with fixtures to simulate CurrentCost on port COM and waited for currentCost to send messages.
 
 TO BE COMPLETED (goals of the project)
 
-List of features:
+Features
+--------
  
  * support usb disconnexion
  * send instant consumption
@@ -18,26 +32,48 @@ List of features:
  * send bad formated message eroor
  * To be completed
 
-Dependencies
-============
-
-TO BE COMPLETED
-
- * rabbitMQ
-
 Installation
-============
+------------
 
-TO BE COMPLETED
+To install this software you need to install python 2.7 and pip
+
+.. code-block:: bash
+  
+  $ sudo apt-get install python python-pip python-dev build-essential
+  $ sudo pip install --upgrade pip
+
+Then, you have to install and configure RabbitMQ (change "admin" and "password" by your credential)
+
+.. code-block:: bash
+  
+  $ echo "deb http://www.rabbitmq.com/debian/ testing main" > /etc/apt/sources.list.d/rabbitmq.list
+  $ wget http://www.rabbitmq.com/rabbitmq-signing-key-public.asc
+  $ sudo apt-key add rabbitmq-signing-key-public.asc
+  $ apt-get update
+  $ apt-get install rabbitmq-server -y
+  $ service rabbitmq-server start
+  $ rabbitmq-plugins enable rabbitmq_management
+  $ rabbitmqctl add_user admin password
+  $ rabbitmqctl set_user_tags admin administrator
+  $ rabbitmqctl set_permissions -p / admin ".*" ".*" ".*"
+  $ rabbitmqctl delete_user guest
+  $ service rabbitmq-server restart
+
+Then you can install phase-currentcost
+
+.. code-block:: bash
+  
+  $ sudo pip install phase-currentcost
 
 Usage
-=====
+-----
 
 .. code-block:: bash
 
-    $ currentcost -h
-    usage: currentcost [-h] [-t TTY_PORT] [-r RABBITMQ_CREDENTIAL] [-v]
-                       variable_name site_name
+    $ sudo phase-currentcost -h
+    usage: phase-currentcost [-h] [-t TTY_PORT] [-r RABBITMQ_CREDENTIAL]
+                             [-l LOG_CONF] [-v]
+                             variable_name site_name
 
     positional arguments:
       variable_name         name of the variable
@@ -47,17 +83,20 @@ Usage
       -h, --help            show this help message and exit
       -t TTY_PORT, --tty-port TTY_PORT
                             tty port to connect to current cost
-      -r RABBITMQ_CREDENTIAL, --rabbitMQ-credential RABBITMQ_CREDENTIAL
+      -r RABBITMQ_CREDENTIAL, --rabbitmq-credential RABBITMQ_CREDENTIAL
                             credential for rabbitMQ. By default, RabbitMQ is
                             deactivated. To activate it you have to give your
                             credential. Format: username:password.
+      -l LOG_CONF, --log-conf LOG_CONF
+                            path to log configuration
       -v, --verbose         activate verbose mode
 
 By default:
 
 * We are looking for default tty port located in /dev/currentcost. You can over-write it if you want using --tty-port argument.
-* RabbitMQ is not activated. To activate it you have to add your credential to currentcost script. To give your credential to currentcost script, use --rabbitMQ-credential argument.
+* RabbitMQ is not activated. To activate it you have to add your credential to phase-currentcost script. To give your credential to currentcost script, use --rabbitMQ-credential argument.
 * If RabbitMQ is not activated, we display currentcost message in stdout. Else we send it over the network. 
+* Log configuration file is located in /opt/phase/phase-currentcost.conf and log file is in /var/logs/phase/phase-currentcost.log. You can set log configuration file using -l option and a path to your log.conf file.
 
 Examples: 
 
@@ -65,7 +104,7 @@ To see the current consumption on Current cost on stdout use:
 
 .. code-block:: bash
     
-    $ currentcost electric_meter liogen_home --tty-port /dev/currentcost
+    $ sudo phase-currentcost electric_meter liogen_home --tty-port /dev/currentcost
 
 **IDEA: PUT CONSOLE OUTPUT AS AN EXAMPLE**
 
@@ -73,18 +112,44 @@ With rabbitMQ message over the network:
 
 .. code-block:: bash
 
-    $ currentcost electric_meter liogen_home --tty-port /dev/currentcost --rabbitMQ-credential admin:password -v
+    $ sudo phase-currentcost electric_meter liogen_home --tty-port /dev/currentcost --rabbitmq-credential admin:password -v
 
 **IDEA: PUT CONSOLE OUTPUT AS AN EXAMPLE**
 
+Structure of a message send 
 
-Development process
-===================
+Message send through RabbitMQ
+-----------------------------
+
+A message is a JSON containing this properties:
+
+  * **variableID**: name of the variable
+  * **siteID**: Name of the site
+  * **date**: Date in UTC
+  * **dstTimezone**: Timezone with DST
+  * **nonDstTimezone**: Timezone without DST
+  * **message**: Message to deliver through RabbitMQ
+
+Messages list:
+
++-------------+---------------------------------+---------------------------------------------------+ 
+| Channel     | Message                         | Description                                       |
++=============+=================================+===================================================+ 
+| error       | utils.TTY_CONNECTION_PROBLEM    | Send when TTY port is not reachable               |
++-------------+---------------------------------+---------------------------------------------------+
+| error       | utils.CURRENTCOST_TIMEOUT       | Send when TTY port is connected but reach timeout |
++-------------+---------------------------------+---------------------------------------------------+
+| error       | utils.CC_INCORRECT_MESSAGE      | Send when Currentcost send an invalid message     |
++-------------+---------------------------------+---------------------------------------------------+
+| currentcost | CurrentCost XML message         | Send Currentcost XML message                      |
++-------------+---------------------------------+---------------------------------------------------+
+
+Contribute
+----------
 
 Install socat
 
-Philosophy
-----------
+**Philosophy**
 
 In this project, we will try to use the best practices of the development.
 
@@ -106,8 +171,7 @@ In this project, we will try to use the best practices of the development.
     * Refactor code to improve readability, avoid code redundancy, speed compute time
     * Return to BDD part.
 
-Setup environment
------------------
+**Setup environment**
 
 * **IDEA: Explain virtualenv and virtualenvwrapper**
 * **IDEA: Create a init script that ask several question and bootstrap project (plug-in)**
@@ -120,12 +184,11 @@ Setup environment
 **TO BE COMPLETED**
 
 Work flow
-=========
+---------
 
 **TO BE MOVED**
 
-Nominal case
-------------
+**Nominal case**
 
 * N1: Service started
 * N2: Arguments analysis
@@ -142,13 +205,12 @@ Nominal case
     * E6: Problem during message sending. Retry and log this error.
 * N8: Message sent over the network. Return to step N4.
 
-Alternative cases
------------------
+**Alternative cases**
 
 * A1: USB port disconnected. Log this error, send an error message over the network and retry to reconnect to the USB port. If USB port reconnected, return to step N2.
 
 Test plan
-=========
+---------
 
 **TO BE MOVED**
 
@@ -157,7 +219,27 @@ Test plan
 Look at features/currentcost.feature
 
 License
-=======
+-------
 
-.. include:: ../../LICENSE.rst
+The MIT License (MIT)
+
+Copyright (c) 2014 Pierre Leray
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 

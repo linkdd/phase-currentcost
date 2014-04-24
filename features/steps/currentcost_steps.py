@@ -8,7 +8,7 @@
 """
 
 from __future__ import print_function
-from behave import when, then, given  # pylint: disable-msg=E0611
+from behave import when, then, given  # pylint: disable=E0611
 import subprocess
 from subprocess import CalledProcessError
 from currentcost.utils import CC_INCORRECT_MESSAGE, TTY_CONNECTION_PROBLEM
@@ -31,18 +31,21 @@ DEFAULT_LOG_FILE = "logs/log.conf"
 logging.config.fileConfig(DEFAULT_LOG_FILE)
 LOGGER = logging.getLogger("currentcost")
 
-BIN = "currentcost"
+BIN = "phase-currentcost"
 VAR_NAME = "TEST_electric_meter"
 SITE_NAME = "TEST_liogen_home"
 ARGUMENT_TTY_PORT = "--tty-port"
 TTY_PORT = "tests/tty/currentcost"
 BAD_TTY_PORT = "/dev/currentcost9876"
 TTY_WRITER_PORT = "tests/tty/writer"
-ARGUMENT_MQ_CREDENTIAL = "--rabbitMQ-credential"
+ARGUMENT_MQ_CREDENTIAL = "--rabbitmq-credential"
 MQ_CREDENTIAL = "admin:password"
 BAD_MQ_CREDENTIAL = "admzfzein:paszeasword"
 MQ_HOST = "localhost"
-LOG_FILE = "logs/currentcost.log"
+ARGUMENT_LOG_CONF = "--log-conf"
+LOG_CONF = "logs/log.conf"
+LOG_FILE = "logs/phase-currentcost.log"
+SUDO_LOG_FILE = "/var/log/phase/phase-currentcost.log"
 TTY_ERROR_MESSAGE = "None"
 CREDENTIALS = pika.PlainCredentials("admin", "password")
 SOCAT = "socat"
@@ -84,12 +87,12 @@ def verify_json_message(body, expected_message):
     assert message["nonDstTimezone"] == tzname[0]
 
 
-def extract_from_log(expected_message, line):
+def extract_from_log(expected_message, log_file_path, line):
     """
         Method that extract expecting line from log and compare
         to expected_message
     """
-    log_file = open(LOG_FILE, "r")
+    log_file = open(log_file_path, "r")
     lines = log_file.readlines()
     log_file.close()
     body = lines[line]
@@ -244,8 +247,14 @@ def when_launch_with_unreachable(context):
     """
         Launch currentcost script with wrong tty port
     """
-    commands = "%s %s %s %s %s" % (
-        BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, BAD_TTY_PORT)
+    commands = "%s %s %s %s %s %s %s" % (
+        BIN,
+        VAR_NAME,
+        SITE_NAME,
+        ARGUMENT_TTY_PORT,
+        BAD_TTY_PORT,
+        ARGUMENT_LOG_CONF,
+        LOG_CONF)
     process = subprocess.Popen(shlex.split(commands))
     sleep(5)
     process.terminate()
@@ -256,9 +265,16 @@ def launch_ccunreach_badrmq(context):
     """
         Launch unreachable currentcost with bad rabbitmq credential
     """
-    commands = "%s %s %s %s %s %s %s" % (
-        BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, BAD_TTY_PORT,
-        ARGUMENT_MQ_CREDENTIAL, BAD_MQ_CREDENTIAL)
+    commands = "%s %s %s %s %s %s %s %s %s" % (
+        BIN,
+        VAR_NAME,
+        SITE_NAME,
+        ARGUMENT_TTY_PORT,
+        BAD_TTY_PORT,
+        ARGUMENT_MQ_CREDENTIAL,
+        BAD_MQ_CREDENTIAL,
+        ARGUMENT_LOG_CONF,
+        LOG_CONF)
     process = subprocess.Popen(shlex.split(commands))
     sleep(5)
     process.terminate()
@@ -271,7 +287,7 @@ def detect_unreachability_log(context):
     """
     error = TTY_CONNECTION_PROBLEM % (
         VAR_NAME, SITE_NAME, BAD_TTY_PORT)
-    extract_from_log(error, -1)
+    extract_from_log(error, LOG_FILE, -1)
 
 
 @then("we should see rabbitmq error in log")
@@ -283,7 +299,7 @@ def detect_rabbitmqerror_log(context):
         BAD_MQ_CREDENTIAL.split(":")[0],
         BAD_MQ_CREDENTIAL.split(":")[1],
         MQ_HOST)
-    extract_from_log(error, -2)
+    extract_from_log(error, LOG_FILE, -2)
 
 
 @when("we start currentcost with bad port with rabbitmq")
@@ -291,9 +307,16 @@ def launch_ccunreach_withoutrmq(context):
     """
         Launch currentcost script with wrong tty port.
     """
-    commands = "%s %s %s %s %s %s %s" % (
-        BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, BAD_TTY_PORT,
-        ARGUMENT_MQ_CREDENTIAL, MQ_CREDENTIAL)
+    commands = "%s %s %s %s %s %s %s %s %s" % (
+        BIN,
+        VAR_NAME,
+        SITE_NAME,
+        ARGUMENT_TTY_PORT,
+        BAD_TTY_PORT,
+        ARGUMENT_MQ_CREDENTIAL,
+        MQ_CREDENTIAL,
+        ARGUMENT_LOG_CONF,
+        LOG_CONF)
     context.process = subprocess.Popen(shlex.split(commands))
     sleep(1)
 
@@ -321,9 +344,16 @@ def cc_reach_timeout(context):
     """
         Launch currentcost script.
     """
-    commands = "%s %s %s %s %s %s %s" % (
-        BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, TTY_PORT,
-        ARGUMENT_MQ_CREDENTIAL, MQ_CREDENTIAL)
+    commands = "%s %s %s %s %s %s %s %s %s" % (
+        BIN,
+        VAR_NAME,
+        SITE_NAME,
+        ARGUMENT_TTY_PORT,
+        TTY_PORT,
+        ARGUMENT_MQ_CREDENTIAL,
+        MQ_CREDENTIAL,
+        ARGUMENT_LOG_CONF,
+        LOG_CONF)
     context.process = subprocess.Popen(shlex.split(commands))
 
 
@@ -345,7 +375,7 @@ def log_no_messages(context):
     """
     error = CURRENTCOST_TIMEOUT % (
         VAR_NAME, SITE_NAME)
-    extract_from_log(error, -1)
+    extract_from_log(error, LOG_FILE, -1)
 
 
 @given("current cost is connected and currentcost script is launched")
@@ -357,16 +387,23 @@ def cc_launch_correctly(context):
     commands = "%s %s %s" % (SOCAT, SIMULATED_TTY_PORT, SIMULATED_TTY_PORT2)
     context.socat = subprocess.Popen(shlex.split(commands))
 
-    commands = "%s %s %s %s %s %s %s" % (
-        BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, TTY_PORT,
-        ARGUMENT_MQ_CREDENTIAL, MQ_CREDENTIAL)
+    commands = "%s %s %s %s %s %s %s %s %s" % (
+        BIN,
+        VAR_NAME,
+        SITE_NAME,
+        ARGUMENT_TTY_PORT,
+        TTY_PORT,
+        ARGUMENT_MQ_CREDENTIAL,
+        MQ_CREDENTIAL,
+        ARGUMENT_LOG_CONF,
+        LOG_CONF)
     context.process = subprocess.Popen(shlex.split(commands))
 
     sleep(3)
 
     error = TTY_CONNECTION_SUCCESS % (
         VAR_NAME, SITE_NAME, TTY_PORT)
-    extract_from_log(error, -1)
+    extract_from_log(error, LOG_FILE, -1)
 
 
 @when("we disconnect USB port")
@@ -393,7 +430,7 @@ def detect_disconnected_log(context):
     """
     error = TTY_CONNECTION_PROBLEM % (
         VAR_NAME, SITE_NAME, TTY_PORT)
-    extract_from_log(error, -1)
+    extract_from_log(error, LOG_FILE, -1)
 
 
 @given("current cost is connected and script is launched")
@@ -406,9 +443,16 @@ def cc_connected_launched(context):
 
     sleep(1)
 
-    commands = "%s %s %s %s %s %s %s" % (
-        BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, TTY_PORT,
-        ARGUMENT_MQ_CREDENTIAL, MQ_CREDENTIAL)
+    commands = "%s %s %s %s %s %s %s %s %s" % (
+        BIN,
+        VAR_NAME,
+        SITE_NAME,
+        ARGUMENT_TTY_PORT,
+        TTY_PORT,
+        ARGUMENT_MQ_CREDENTIAL,
+        MQ_CREDENTIAL,
+        ARGUMENT_LOG_CONF,
+        LOG_CONF)
     context.process = subprocess.Popen(shlex.split(commands))
 
 
@@ -465,7 +509,7 @@ def log_incorrect_message(context):
     """
     error = CC_INCORRECT_MESSAGE % (
         VAR_NAME, SITE_NAME, WRONG_CURRENTCOST_MESSAGE)
-    extract_from_log(error, -1)
+    extract_from_log(error, LOG_FILE, -1)
 
 
 @then("we should receive historical consumption over the network")
@@ -485,3 +529,30 @@ def receive_historical_consumption(context):
     ser.close()
     context.process.terminate()
     context.socat.terminate()
+
+
+@when("we start currentcost with bad port without rabbitmq with log")
+def sudo_log_badport_message(context):
+    """Start a process in sudo mode with global log.conf.
+
+    """
+    commands = "%s %s %s %s %s %s" % (
+        "sudo",
+        BIN,
+        VAR_NAME,
+        SITE_NAME,
+        ARGUMENT_TTY_PORT,
+        BAD_TTY_PORT)
+    process = subprocess.Popen(shlex.split(commands))
+    sleep(5)
+    process.terminate()
+
+
+@then("we should see currentcost is unreachable in /var/log")
+def sudo_log_cc_unreachable(context):
+    """Verify in /var/log that currentcost is unreachable.
+
+    """
+    error = TTY_CONNECTION_PROBLEM % (
+        VAR_NAME, SITE_NAME, BAD_TTY_PORT)
+    extract_from_log(error, SUDO_LOG_FILE, -1)

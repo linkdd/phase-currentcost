@@ -1,0 +1,522 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>phase-currentcost &mdash; phase-currentcost 0.9.5 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="phase-currentcost 0.9.5 documentation" href="index.html"/>
+        <link rel="next" title="Modules" href="code.html"/>
+        <link rel="prev" title="Indices and tables" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> phase-currentcost</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">phase-currentcost</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#message-send-through-rabbitmq">Message send through RabbitMQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contribute">Contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#work-flow">Work flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-plan">Test plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="code.html">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.utils">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.messager">RabbitMQ_messager</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO v1.0.0</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="todo.html#objectives">Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="todo.html#schedule">Schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="todo.html#pending-tasks">Pending tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="change.html">CHANGELOG</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-13-stable-urgency-low">phase-currentcost (v0.9.13) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-12-stable-urgency-low">phase-currentcost (v0.9.12) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-11-stable-urgency-low">phase-currentcost (v0.9.11) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-10-stable-urgency-low">phase-currentcost (v0.9.10) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-9-stable-urgency-low">phase-currentcost (v0.9.9) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-8-stable-urgency-low">phase-currentcost (v0.9.8) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-7-stable-urgency-low">phase-currentcost (v0.9.7) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-6-stable-urgency-low">phase-currentcost (v0.9.6) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-5-stable-urgency-low">phase-currentcost (v0.9.5) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-4-stable-urgency-low">phase-currentcost (v0.9.4) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-3-stable-urgency-low">phase-currentcost (v0.9.3) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-2-stable-urgency-low">phase-currentcost (v0.9.2) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-1-stable-urgency-low">phase-currentcost (v0.9.1) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-0-stable-urgency-low">phase-currentcost (v0.9.0) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-8-0-unstable-urgency-low">phase-currentcost (v0.8.0) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-7-0-unstable-urgency-low">phase-currentcost (v0.7.0) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-6-0-unstable-urgency-low">phase-currentcost (v0.6.0) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-5-0-unstable-urgency-low">phase-currentcost (v0.5.0) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-4-1-unstable-urgency-low">phase-currentcost (v0.4.1) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-4-0-unstable-urgency-low">phase-currentcost (v0.4.0) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-3-9-unstable-urgency-low">phase-currentcost (v0.3.9) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-3-8-unstable-urgency-low">phase-currentcost (v0.3.8) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-3-7-unstable-urgency-low">phase-currentcost (v0.3.7) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-3-6-unstable-urgency-low">phase-currentcost (v0.3.6) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-3-5-unstable-urgency-low">phase-currentcost (v0.3.5) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-3-4-unstable-urgency-low">phase-currentcost (v0.3.4) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-3-3-unstable-urgency-low">phase-currentcost (v0.3.3) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-3-2-unstable-urgency-low">phase-currentcost (v0.3.2) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-3-1-unstable-urgency-low">phase-currentcost (v0.3.1) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-3-0-unstable-urgency-low">phase-currentcost (v0.3.0) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-2-3-unstable-urgency-low">phase-currentcost (v0.2.3) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-2-2-unstable-urgency-low">phase-currentcost (v0.2.2) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-2-1-unstable-urgency-low">phase-currentcost (v0.2.1) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-2-0-unstable-urgency-low">phase-currentcost (v0.2.0) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-1-10-unstable-urgency-low">phase-currentcost (v0.1.10) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-1-9-unstable-urgency-low">phase-currentcost (v0.1.9) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-1-8-unstable-urgency-low">phase-currentcost (v0.1.8) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-1-7-unstable-urgency-low">phase-currentcost (v0.1.7) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-1-6-unstable-urgency-low">phase-currentcost (v0.1.6) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-1-5-unstable-urgency-low">phase-currentcost (v0.1.5) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-1-4-unstable-urgency-low">phase-currentcost (v0.1.4) unstable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-1-3-unstable-urgency-low">phase-currentcost (v0.1.3) unstable; urgency=low</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">phase-currentcost</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>phase-currentcost</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/presentation.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="phase-currentcost">
+<h1>phase-currentcost<a class="headerlink" href="#phase-currentcost" title="Permalink to this headline">¶</a></h1>
+<a class="reference external image-reference" href="https://travis-ci.org/liogen/phase-currentcost"><img alt="Travis CI Build Status" src="http://img.shields.io/travis/liogen/phase-currentcost.png?branch=master&amp;style=flat" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/phase-currentcost"><img alt="Latest Version" src="http://img.shields.io/pypi/v/phase-currentcost.png?style=flat" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/phase-currentcost"><img alt="Downloads" src="http://img.shields.io/pypi/dm/phase-currentcost.png?style=flat" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/phase-currentcost/"><img alt="License" src="http://img.shields.io/badge/license-MIT-red.png?style=flat" /></a>
+<p>Functional test with fixtures to simulate CurrentCost on port COM and waited for currentCost to send messages.</p>
+<p>TO BE COMPLETED (goals of the project)</p>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>support usb disconnexion</li>
+<li>send instant consumption</li>
+<li>send historical consumption</li>
+<li>send timeout message</li>
+<li>send bad formated message eroor</li>
+<li>To be completed</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>To install this software you need to install python 2.7 and pip</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo apt-get install python python-pip python-dev build-essential
+<span class="nv">$ </span>sudo pip install --upgrade pip
+</pre></div>
+</div>
+<p>Then, you have to install and configure RabbitMQ (change &#8220;admin&#8221; and &#8220;password&#8221; by your credential)</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;deb http://www.rabbitmq.com/debian/ testing main&quot;</span> &gt; /etc/apt/sources.list.d/rabbitmq.list
+<span class="nv">$ </span>wget http://www.rabbitmq.com/rabbitmq-signing-key-public.asc
+<span class="nv">$ </span>sudo apt-key add rabbitmq-signing-key-public.asc
+<span class="nv">$ </span>apt-get update
+<span class="nv">$ </span>apt-get install rabbitmq-server -y
+<span class="nv">$ </span>service rabbitmq-server start
+<span class="nv">$ </span>rabbitmq-plugins <span class="nb">enable </span>rabbitmq_management
+<span class="nv">$ </span>rabbitmqctl add_user admin password
+<span class="nv">$ </span>rabbitmqctl set_user_tags admin administrator
+<span class="nv">$ </span>rabbitmqctl set_permissions -p / admin <span class="s2">&quot;.*&quot;</span> <span class="s2">&quot;.*&quot;</span> <span class="s2">&quot;.*&quot;</span>
+<span class="nv">$ </span>rabbitmqctl delete_user guest
+<span class="nv">$ </span>service rabbitmq-server restart
+</pre></div>
+</div>
+<p>Then you can install phase-currentcost</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo pip install phase-currentcost
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo phase-currentcost -h
+usage: phase-currentcost <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-t TTY_PORT<span class="o">]</span> <span class="o">[</span>-r RABBITMQ_CREDENTIAL<span class="o">]</span>
+                         <span class="o">[</span>-l LOG_CONF<span class="o">]</span> <span class="o">[</span>-v<span class="o">]</span>
+                         variable_name site_name
+
+positional arguments:
+  variable_name         name of the variable
+  site_name             name of the location of the variable
+
+optional arguments:
+  -h, --help            show this <span class="nb">help </span>message and <span class="nb">exit</span>
+  -t TTY_PORT, --tty-port TTY_PORT
+                        tty port to connect to current cost
+  -r RABBITMQ_CREDENTIAL, --rabbitmq-credential RABBITMQ_CREDENTIAL
+                        credential <span class="k">for </span>rabbitMQ. By default, RabbitMQ is
+                        deactivated. To activate it you have to give your
+                        credential. Format: username:password.
+  -l LOG_CONF, --log-conf LOG_CONF
+                        path to log configuration
+  -v, --verbose         activate verbose mode
+</pre></div>
+</div>
+<p>By default:</p>
+<ul class="simple">
+<li>We are looking for default tty port located in /dev/currentcost. You can over-write it if you want using &#8211;tty-port argument.</li>
+<li>RabbitMQ is not activated. To activate it you have to add your credential to phase-currentcost script. To give your credential to currentcost script, use &#8211;rabbitMQ-credential argument.</li>
+<li>If RabbitMQ is not activated, we display currentcost message in stdout. Else we send it over the network.</li>
+<li>Log configuration file is located in /opt/phase/phase-currentcost.conf and log file is in /var/logs/phase/phase-currentcost.log. You can set log configuration file using -l option and a path to your log.conf file.</li>
+</ul>
+<p>Examples:</p>
+<p>To see the current consumption on Current cost on stdout use:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo phase-currentcost electric_meter liogen_home --tty-port /dev/currentcost
+</pre></div>
+</div>
+<p><strong>IDEA: PUT CONSOLE OUTPUT AS AN EXAMPLE</strong></p>
+<p>With rabbitMQ message over the network:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo phase-currentcost electric_meter liogen_home --tty-port /dev/currentcost --rabbitmq-credential admin:password -v
+</pre></div>
+</div>
+<p><strong>IDEA: PUT CONSOLE OUTPUT AS AN EXAMPLE</strong></p>
+<p>Structure of a message send</p>
+</div>
+<div class="section" id="message-send-through-rabbitmq">
+<h2>Message send through RabbitMQ<a class="headerlink" href="#message-send-through-rabbitmq" title="Permalink to this headline">¶</a></h2>
+<p>A message is a JSON containing this properties:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>variableID</strong>: name of the variable</li>
+<li><strong>siteID</strong>: Name of the site</li>
+<li><strong>date</strong>: Date in UTC</li>
+<li><strong>dstTimezone</strong>: Timezone with DST</li>
+<li><strong>nonDstTimezone</strong>: Timezone without DST</li>
+<li><strong>message</strong>: Message to deliver through RabbitMQ</li>
+</ul>
+</div></blockquote>
+<p>Messages list:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="34%" />
+<col width="53%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Channel</th>
+<th class="head">Message</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>error</td>
+<td>utils.TTY_CONNECTION_PROBLEM</td>
+<td>Send when TTY port is not reachable</td>
+</tr>
+<tr class="row-odd"><td>error</td>
+<td>utils.CURRENTCOST_TIMEOUT</td>
+<td>Send when TTY port is connected but reach timeout</td>
+</tr>
+<tr class="row-even"><td>error</td>
+<td>utils.CC_INCORRECT_MESSAGE</td>
+<td>Send when Currentcost send an invalid message</td>
+</tr>
+<tr class="row-odd"><td>currentcost</td>
+<td>CurrentCost XML message</td>
+<td>Send Currentcost XML message</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="contribute">
+<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h2>
+<p>Install socat</p>
+<p><strong>Philosophy</strong></p>
+<p>In this project, we will try to use the best practices of the development.</p>
+<ul>
+<li><dl class="first docutils">
+<dt><strong>Scenario based design</strong></dt>
+<dd><ul class="first last simple">
+<li>Take a paper and write what you code should do and how it should do using a story. (DESCRIBE MORE)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Document driven-design</strong></dt>
+<dd><ul class="first last simple">
+<li>Take a minute and update documentation before coding (global documentation, code comment, test comment).</li>
+<li>Always keep a clear release road map. Update it if needed.</li>
+<li>Update README.md, CHANGELOG.txt, TODO.md as soon as possible.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Behavior driven development</strong></dt>
+<dd><ul class="first last simple">
+<li>Add one functional test.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Test driven development</strong></dt>
+<dd><ul class="first last simple">
+<li>Add one unit test while you don&#8217;t pass this functional test</li>
+<li>Develop function while you don&#8217;t pass this unit test</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Code version</strong></dt>
+<dd><ul class="first last simple">
+<li>Commit after each new implemented function</li>
+<li>Create a release after each validation of functional test</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Refactoring</strong></dt>
+<dd><ul class="first last simple">
+<li>Refactor code to improve readability, avoid code redundancy, speed compute time</li>
+<li>Return to BDD part.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p><strong>Setup environment</strong></p>
+<ul class="simple">
+<li><strong>IDEA: Explain virtualenv and virtualenvwrapper</strong></li>
+<li><strong>IDEA: Create a init script that ask several question and bootstrap project (plug-in)</strong></li>
+<li><strong>IDEA: generate_setup to use sdist command</strong></li>
+<li><strong>IDEA: test new plugin creation on TimeSeriesLogger</strong></li>
+<li><strong>IDEA: move phase-currentcost.py outside of phase</strong></li>
+<li><strong>IDEA: phase in development should provide init script to init and register new plugin</strong></li>
+</ul>
+<p><strong>TO BE COMPLETED</strong></p>
+</div>
+<div class="section" id="work-flow">
+<h2>Work flow<a class="headerlink" href="#work-flow" title="Permalink to this headline">¶</a></h2>
+<p><strong>TO BE MOVED</strong></p>
+<p><strong>Nominal case</strong></p>
+<ul>
+<li><p class="first">N1: Service started</p>
+</li>
+<li><dl class="first docutils">
+<dt>N2: Arguments analysis</dt>
+<dd><ul class="first last simple">
+<li>E1: Missing argument. Return an error and log it</li>
+<li>E2: Bad value for an argument. Return and error and log it</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>N3: Connexion to current cost</dt>
+<dd><ul class="first last simple">
+<li>E3: Unable to connect to current cost. Send a message over the network to inform that it is not possible to connect to current cost and log it. Return to step N3.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>N4: Waited for a message from current cost</dt>
+<dd><ul class="first last simple">
+<li>E4: If no message received after 30 seconds, send a message over the network to inform that there is a problem with current cost and log it. Return to step N4.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>N5: XML message received and analyzed</dt>
+<dd><ul class="first last simple">
+<li>E5: Incorrect message. Log this message and return to step N4. (to be defined)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">N6: Creation of a network message looking like {variableID: ..., date: ..., message: ...}</p>
+</li>
+<li><dl class="first docutils">
+<dt>N7: Send this message over the network.</dt>
+<dd><ul class="first last simple">
+<li>E6: Problem during message sending. Retry and log this error.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">N8: Message sent over the network. Return to step N4.</p>
+</li>
+</ul>
+<p><strong>Alternative cases</strong></p>
+<ul class="simple">
+<li>A1: USB port disconnected. Log this error, send an error message over the network and retry to reconnect to the USB port. If USB port reconnected, return to step N2.</li>
+</ul>
+</div>
+<div class="section" id="test-plan">
+<h2>Test plan<a class="headerlink" href="#test-plan" title="Permalink to this headline">¶</a></h2>
+<p><strong>TO BE MOVED</strong></p>
+<p><strong>IDEA: Link to features/currentcost.feature</strong></p>
+<p>Look at features/currentcost.feature</p>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>The MIT License (MIT)</p>
+<p>Copyright (c) 2014 Pierre Leray</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &#8220;Software&#8221;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED &#8220;AS IS&#8221;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="code.html" class="btn btn-neutral float-right" title="Modules"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Indices and tables"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Pierre Leray.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.9.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
