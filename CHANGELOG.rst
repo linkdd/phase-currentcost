@@ -1,3 +1,10 @@
+phase-currentcost (v0.9.15) stable; urgency=low
+-----------------------------------------------
+
+* Fix travis problem
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-25 02:00:00
+
 phase-currentcost (v0.9.14) stable; urgency=low
 -----------------------------------------------
 
