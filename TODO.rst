@@ -10,7 +10,6 @@ Schedule
 --------
 
 * For April, 25th 2014:
-    * Fix travis problem
     * List all features
     * Write README.rst
     * Describe usage process

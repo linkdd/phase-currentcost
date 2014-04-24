@@ -2,19 +2,19 @@
 phase-currentcost
 =================
 
-.. image:: http://img.shields.io/travis/liogen/phase-currentcost.png?branch=master&style=flat
+.. image:: http://img.shields.io/travis/liogen/phase-currentcost.png?branch=master
     :target: https://travis-ci.org/liogen/phase-currentcost
     :alt: Travis CI Build Status
 
-.. image:: http://img.shields.io/pypi/v/phase-currentcost.png?style=flat
+.. image:: http://img.shields.io/pypi/v/phase-currentcost.png
     :target: https://pypi.python.org/pypi/phase-currentcost
     :alt: Latest Version
 
-.. image:: http://img.shields.io/pypi/dm/phase-currentcost.png?style=flat
+.. image:: http://img.shields.io/pypi/dm/phase-currentcost.png
     :target: https://pypi.python.org/pypi/phase-currentcost
     :alt: Downloads
 
-.. image:: http://img.shields.io/badge/license-MIT-red.png?style=flat
+.. image:: http://img.shields.io/badge/license-MIT-red.png
     :target: https://pypi.python.org/pypi/phase-currentcost/
     :alt: License
 
