@@ -34,6 +34,15 @@ options(
 
 
 @task
+@needs(["distutils.command.register", "sdist", "distutils.command.upload"])
+def upload():
+    """
+        Upload project on PYPI.
+    """
+    pass
+
+
+@task
 @needs(["html", "distutils.command.sdist"])
 def sdist():
     """
