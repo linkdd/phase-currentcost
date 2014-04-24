@@ -16,7 +16,7 @@ before_install:
   - sudo chmod 777 /opt
   - sudo chmod 777 /var/log
 install:
-  - pip install behave nose
+  - pip install behave nose pika pyserial
   - python setup.py install
 script:
   - python --version
