@@ -59,11 +59,11 @@
         
             <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="presentation.html">phase-currentcost</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="presentation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presentation.html#features">Features</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#usage">Usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#message-send-through-rabbitmq">Message send through RabbitMQ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="presentation.html#development-process">Development process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presentation.html#contribute">Contribute</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#work-flow">Work flow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#test-plan">Test plan</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#license">License</a></li>
@@ -71,7 +71,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="code.html">Modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.utils">Utils</a></li>
-<li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.rabbitmq_messager">RabbitMQ_messager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.messager">RabbitMQ_messager</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">TODO v1.0.0</a><ul>
@@ -81,6 +81,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="change.html">CHANGELOG</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-8-stable-urgency-low">phase-currentcost (v0.9.8) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-7-stable-urgency-low">phase-currentcost (v0.9.7) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-6-stable-urgency-low">phase-currentcost (v0.9.6) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-5-stable-urgency-low">phase-currentcost (v0.9.5) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-4-stable-urgency-low">phase-currentcost (v0.9.4) stable; urgency=low</a></li>
@@ -161,31 +163,17 @@
 <div class="section" id="schedule">
 <h2>Schedule<a class="headerlink" href="#schedule" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first">For April, 18th 2014:</p>
-<blockquote>
-<div><ul>
-<li><p class="first">News: add parameter to target log.conf path for test (by default it should be /opt/phase/currentcost/log.conf)</p>
-</li>
-<li><p class="first">News: add parameter to create currentcost.log for test (by default it should be /var/log/phase/currentcost.log)</p>
-</li>
-<li><p class="first">News: Update test file accordingly</p>
-</li>
-<li><p class="first">Modify installation to perform custom installation following this advice <a class="reference external" href="http://stackoverflow.com/questions/15853058/run-custom-task-when-call-pip-install">http://stackoverflow.com/questions/15853058/run-custom-task-when-call-pip-install</a></p>
-</li>
 <li><dl class="first docutils">
-<dt>During currentcost installation:</dt>
+<dt>For April, 25th 2014:</dt>
 <dd><ul class="first last simple">
-<li>Create /opt/phase/currentcost/log.conf and /var/log/phase/currentcost.log files.</li>
-<li>Install RabbitMQ</li>
-<li>Install pip dependencies</li>
+<li>Work on deployment (look at pip install, pip freeze, pip bundle, pip wheel)</li>
+<li>List all features</li>
+<li>Write README.rst</li>
+<li>Describe usage process</li>
+<li>Split README.rst in several file</li>
 </ul>
 </dd>
 </dl>
-</li>
-<li><p class="first">Add production test in behave and launch it only on travis</p>
-</li>
-</ul>
-</div></blockquote>
 </li>
 </ul>
 </div>
@@ -193,8 +181,9 @@
 <h2>Pending tasks<a class="headerlink" href="#pending-tasks" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><dl class="first docutils">
-<dt>Message file:</dt>
+<dt>phase-messager:</dt>
 <dd><ul class="first last simple">
+<li>Extract messager from this project and create a pip to install it for several phase module</li>
 <li>Add func test for: rabbitMQ is not started, rabbitMQ is disconnected during currentcost is running</li>
 <li>This exception is raised when we stop RabbitMQ during currentcost script is running =&gt;AttributeError: &#8216;BlockingConnection&#8217; object has no attribute &#8216;disconnect&#8217;</li>
 <li>This exception is raised when we try to connect to RabbitMQ and RabbitMQ is disconnected =&gt; pika.exceptions.AMQPConnectionError: 1</li>
@@ -203,27 +192,39 @@
 </dd>
 </dl>
 </li>
-<li><p class="first">News:</p>
-<blockquote>
-<div><ul class="simple">
-<li>Work on deployment (look at pip install, pip freeze, pip bundle, pip wheel)</li>
-<li>Fix paver watch problem (stop watch) (try to use with fabric)</li>
-<li>Launch a server web in a subprocess.Popen</li>
-<li>Launch watch task in a subprocess.Popen</li>
-<li>Listen for a terminating command to quit properly two previous subprocesses</li>
-<li>Support of python 3.2, 3.3, pypy</li>
-</ul>
-</div></blockquote>
-</li>
+<li><dl class="first docutils">
+<dt>phase</dt>
+<dd><ul class="first last">
 <li><dl class="first docutils">
 <dt>Documentation:</dt>
 <dd><ul class="first last simple">
 <li>Detail process to start in development mode</li>
 <li>Describe development process (look at paver main page <a class="reference external" href="http://paver.github.io/paver/">http://paver.github.io/paver/</a>)</li>
-<li>Describe usage process</li>
-<li>List all features</li>
-<li>Write README.rst</li>
-<li>Split README.rst in several file</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Functionalities:</dt>
+<dd><ul class="first last simple">
+<li>Fix paver watch problem (stop watch) (try to use with fabric)</li>
+<li>Launch a server web in a subprocess.Popen</li>
+<li>Launch watch task in a subprocess.Popen</li>
+<li>Listen for a terminating command to quit properly two previous subprocesses</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>News:</dt>
+<dd><ul class="first last simple">
+<li>Support of python 3.2, 3.3, pypy</li>
+<li>Integrate improved pavement.py</li>
+<li>Integrate phase-messager instead of messager</li>
 </ul>
 </dd>
 </dl>
@@ -233,7 +234,6 @@
 <dd><ul class="first last simple">
 <li>Split currentcost_steps.py into several test file</li>
 <li>Comment test files</li>
-<li>Extract messager from this project and create a pip to install it for several phase module</li>
 </ul>
 </dd>
 </dl>

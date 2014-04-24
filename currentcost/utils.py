@@ -75,6 +75,7 @@ def init_message(variable_name, site_name, tty_port):
 
     :param tty_port: TTY port path.
     :type tty_port: str.
+
     """
 #   Create init message
     message = "Starting current cost application\n"
@@ -91,6 +92,7 @@ def verbose_mode(verbose):
 
     :param verbose: Boolean if true active verbose mode.
     :type variable_name: bool.
+
     """
 #   If verbose mode is activated
     if verbose:
@@ -114,7 +116,8 @@ def data_validator(data, variable_name, site_name):
     :type site_name: str.
 
     :returns:  str -- Topic of the message (error or success) and
-    Message containing error description or data sent by CC.
+        Message containing error description or data sent by CC.
+
     """
 #   Initialization of variable
     topic = ERROR

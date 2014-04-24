@@ -14,7 +14,7 @@ Utils
 RabbitMQ_messager
 -----------------
 
-.. automodule:: currentcost.rabbitmq_messager
+.. automodule:: currentcost.messager
  
 .. autoclass:: RabbitMQMessager
     :members:

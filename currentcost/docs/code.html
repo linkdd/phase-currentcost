@@ -59,11 +59,11 @@
         
             <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="presentation.html">phase-currentcost</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="presentation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presentation.html#features">Features</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#usage">Usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#message-send-through-rabbitmq">Message send through RabbitMQ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="presentation.html#development-process">Development process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presentation.html#contribute">Contribute</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#work-flow">Work flow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#test-plan">Test plan</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#license">License</a></li>
@@ -71,7 +71,7 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-currentcost.utils">Utils</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-currentcost.rabbitmq_messager">RabbitMQ_messager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-currentcost.messager">RabbitMQ_messager</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO v1.0.0</a><ul>
@@ -81,6 +81,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="change.html">CHANGELOG</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-8-stable-urgency-low">phase-currentcost (v0.9.8) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-7-stable-urgency-low">phase-currentcost (v0.9.7) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-6-stable-urgency-low">phase-currentcost (v0.9.6) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-5-stable-urgency-low">phase-currentcost (v0.9.5) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-4-stable-urgency-low">phase-currentcost (v0.9.4) stable; urgency=low</a></li>
@@ -195,10 +197,8 @@ case of missing parameter or return arguments with their value.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">str &#8211; Topic of the message (error or success).</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">str &#8211; Message containing error description or data sent by CC.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">str &#8211; Topic of the message (error or success) and
+Message containing error description or data sent by CC.</p>
 </td>
 </tr>
 </tbody>
@@ -239,16 +239,16 @@ case of missing parameter or return arguments with their value.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-currentcost.rabbitmq_messager">
-<span id="rabbitmq-messager"></span><h2>RabbitMQ_messager<a class="headerlink" href="#module-currentcost.rabbitmq_messager" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-currentcost.messager">
+<span id="rabbitmq-messager"></span><h2>RabbitMQ_messager<a class="headerlink" href="#module-currentcost.messager" title="Permalink to this headline">¶</a></h2>
 <p>Method that send message on RabbitMQ or display it on stdout.</p>
 <dl class="class">
-<dt id="currentcost.rabbitmq_messager.RabbitMQMessager">
-<em class="property">class </em><tt class="descclassname">currentcost.rabbitmq_messager.</tt><tt class="descname">RabbitMQMessager</tt><big>(</big><em>username</em>, <em>password</em>, <em>host</em><big>)</big><a class="reference internal" href="_modules/currentcost/rabbitmq_messager.html#RabbitMQMessager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.rabbitmq_messager.RabbitMQMessager" title="Permalink to this definition">¶</a></dt>
+<dt id="currentcost.messager.RabbitMQMessager">
+<em class="property">class </em><tt class="descclassname">currentcost.messager.</tt><tt class="descname">RabbitMQMessager</tt><big>(</big><em>username</em>, <em>password</em>, <em>host</em><big>)</big><a class="reference internal" href="_modules/currentcost/messager.html#RabbitMQMessager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.messager.RabbitMQMessager" title="Permalink to this definition">¶</a></dt>
 <dd><p>This class send message to RabbitMQ or in stdout following user choice.</p>
 <dl class="method">
-<dt id="currentcost.rabbitmq_messager.RabbitMQMessager.consume">
-<tt class="descname">consume</tt><big>(</big><em>topic</em>, <em>callback</em><big>)</big><a class="reference internal" href="_modules/currentcost/rabbitmq_messager.html#RabbitMQMessager.consume"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.rabbitmq_messager.RabbitMQMessager.consume" title="Permalink to this definition">¶</a></dt>
+<dt id="currentcost.messager.RabbitMQMessager.consume">
+<tt class="descname">consume</tt><big>(</big><em>topic</em>, <em>callback</em><big>)</big><a class="reference internal" href="_modules/currentcost/messager.html#RabbitMQMessager.consume"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.messager.RabbitMQMessager.consume" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method that wait for a message on RabbitMQ topics channels.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -265,8 +265,8 @@ case of missing parameter or return arguments with their value.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="currentcost.rabbitmq_messager.RabbitMQMessager.send">
-<tt class="descname">send</tt><big>(</big><em>topic</em>, <em>message</em>, <em>out=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7f852bb871e0&gt;</em><big>)</big><a class="reference internal" href="_modules/currentcost/rabbitmq_messager.html#RabbitMQMessager.send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.rabbitmq_messager.RabbitMQMessager.send" title="Permalink to this definition">¶</a></dt>
+<dt id="currentcost.messager.RabbitMQMessager.send">
+<tt class="descname">send</tt><big>(</big><em>topic</em>, <em>message</em>, <em>out=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7faee6da61e0&gt;</em><big>)</big><a class="reference internal" href="_modules/currentcost/messager.html#RabbitMQMessager.send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.messager.RabbitMQMessager.send" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method that send a message with a topic.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -284,8 +284,8 @@ case of missing parameter or return arguments with their value.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="currentcost.rabbitmq_messager.RabbitMQMessager.send_message">
-<tt class="descname">send_message</tt><big>(</big><em>topic</em>, <em>site_name</em>, <em>var_name</em>, <em>data</em>, <em>out=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7f852bb871e0&gt;</em><big>)</big><a class="reference internal" href="_modules/currentcost/rabbitmq_messager.html#RabbitMQMessager.send_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.rabbitmq_messager.RabbitMQMessager.send_message" title="Permalink to this definition">¶</a></dt>
+<dt id="currentcost.messager.RabbitMQMessager.send_message">
+<tt class="descname">send_message</tt><big>(</big><em>topic</em>, <em>site_name</em>, <em>var_name</em>, <em>data</em>, <em>out=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7faee6da61e0&gt;</em><big>)</big><a class="reference internal" href="_modules/currentcost/messager.html#RabbitMQMessager.send_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.messager.RabbitMQMessager.send_message" title="Permalink to this definition">¶</a></dt>
 <dd><p>Format parameter into json string for phase platform.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

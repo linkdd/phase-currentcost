@@ -1,23 +1,32 @@
 phase-currentcost
 =================
 
-Master branch:
-
 .. image:: https://api.travis-ci.org/liogen/phase-currentcost.png?branch=master
     :target: https://travis-ci.org/liogen/phase-currentcost
     :alt: Travis CI Build Status
-
-Develop branch:
 
 .. image:: https://api.travis-ci.org/liogen/phase-currentcost.png?branch=develop
     :target: https://travis-ci.org/liogen/phase-currentcost
     :alt: Travis CI Build Status
 
+.. image:: https://pypip.in/v/phase-currentcost/badge.png
+    :target: https://pypi.python.org/pypi/phase-currentcost
+    :alt: Latest Version
+
+.. image:: https://pypip.in/d/phase-currentcost/badge.png
+    :target: https://pypi.python.org/pypi/phase-currentcost
+    :alt: Downloads
+
+.. image:: https://pypip.in/license/phase-currentcost/badge.png
+    :target: https://pypi.python.org/pypi/phase-currentcost/
+    :alt: License
+
 Functional test with fixtures to simulate CurrentCost on port COM and waited for currentCost to send messages.
 
 TO BE COMPLETED (goals of the project)
 
-List of features:
+Features
+--------
  
  * support usb disconnexion
  * send instant consumption
@@ -26,17 +35,38 @@ List of features:
  * send bad formated message eroor
  * To be completed
 
-Dependencies
-------------
-
-TO BE COMPLETED
-
- * rabbitMQ
-
 Installation
 ------------
 
-TO BE COMPLETED
+To install this software you need to install python 2.7 and pip
+
+.. code-block:: bash
+  
+  $ sudo apt-get install python python-pip python-dev build-essential
+  $ sudo pip install --upgrade pip
+
+Then, you have to install and configure RabbitMQ (change "admin" and "password" by your credential)
+
+.. code-block:: bash
+  
+  $ echo "deb http://www.rabbitmq.com/debian/ testing main" > /etc/apt/sources.list.d/rabbitmq.list
+  $ wget http://www.rabbitmq.com/rabbitmq-signing-key-public.asc
+  $ sudo apt-key add rabbitmq-signing-key-public.asc
+  $ apt-get update
+  $ apt-get install rabbitmq-server -y
+  $ service rabbitmq-server start
+  $ rabbitmq-plugins enable rabbitmq_management
+  $ rabbitmqctl add_user admin password
+  $ rabbitmqctl set_user_tags admin administrator
+  $ rabbitmqctl set_permissions -p / admin ".*" ".*" ".*"
+  $ rabbitmqctl delete_user guest
+  $ service rabbitmq-server restart
+
+Then you can install phase-currentcost
+
+.. code-block:: bash
+  
+  $ sudo pip install phase-currentcost
 
 Usage
 -----
@@ -101,7 +131,7 @@ A message is a JSON containing this properties:
   * **date**: Date in UTC
   * **dstTimezone**: Timezone with DST
   * **nonDstTimezone**: Timezone without DST
-  * **message**: Information message
+  * **message**: Message to deliver through RabbitMQ
 
 Messages list:
 
@@ -117,8 +147,8 @@ Messages list:
 | currentcost | CurrentCost XML message         | Send Currentcost XML message                      |
 +-------------+---------------------------------+---------------------------------------------------+
 
-Development process
--------------------
+Contribute
+----------
 
 Install socat
 

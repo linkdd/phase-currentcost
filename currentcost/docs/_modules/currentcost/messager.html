@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>currentcost.rabbitmq_messager &mdash; phase-currentcost 0.9.5 documentation</title>
+  <title>currentcost.messager &mdash; phase-currentcost 0.9.5 documentation</title>
   
 
   
@@ -144,7 +144,7 @@
       
           <li><a href="../index.html">Module code</a> &raquo;</li>
       
-    <li>currentcost.rabbitmq_messager</li>
+    <li>currentcost.messager</li>
       <li class="wy-breadcrumbs-aside">
         
       </li>
@@ -153,7 +153,7 @@
 </div>
           <div role="main">
             
-  <h1>Source code for currentcost.rabbitmq_messager</h1><div class="highlight"><pre>
+  <h1>Source code for currentcost.messager</h1><div class="highlight"><pre>
 <span class="c">#!/usr/bin/python</span>
 <span class="c"># -*- coding: utf8 -*-</span>
 <span class="c"># -*- Mode: Python; py-indent-offset: 4 -*-</span>
@@ -174,7 +174,7 @@
 <span class="kn">import</span> <span class="nn">json</span>
 
 
-<div class="viewcode-block" id="RabbitMQMessager"><a class="viewcode-back" href="../../code.html#currentcost.rabbitmq_messager.RabbitMQMessager">[docs]</a><span class="k">class</span> <span class="nc">RabbitMQMessager</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="RabbitMQMessager"><a class="viewcode-back" href="../../code.html#currentcost.messager.RabbitMQMessager">[docs]</a><span class="k">class</span> <span class="nc">RabbitMQMessager</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;This class send message to RabbitMQ or in stdout following user choice.</span>
 
@@ -215,7 +215,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">RABBIT_MQ_CONNECTION_PROBLEM</span> <span class="o">%</span> <span class="p">(</span>
                     <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">host</span><span class="p">))</span>
 
-<div class="viewcode-block" id="RabbitMQMessager.send"><a class="viewcode-back" href="../../code.html#currentcost.rabbitmq_messager.RabbitMQMessager.send">[docs]</a>    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+<div class="viewcode-block" id="RabbitMQMessager.send"><a class="viewcode-back" href="../../code.html#currentcost.messager.RabbitMQMessager.send">[docs]</a>    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Method that send a message with a topic.</span>
 
 <span class="sd">            :param topic: Channel where to send message (RabbitMQ filter).</span>
@@ -228,7 +228,7 @@
 <span class="sd">            :type out: StringIO.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 <span class="c">#       We log message we want to send to keep a trace</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 <span class="c">#       If channel is available</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
 <span class="c">#           We send a message on this channel</span>
@@ -239,7 +239,7 @@
 <span class="c">#           Else we print it in stdout</span>
             <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">unicode</span><span class="p">(</span><span class="n">message</span><span class="p">),</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">))</span>
 </div>
-<div class="viewcode-block" id="RabbitMQMessager.send_message"><a class="viewcode-back" href="../../code.html#currentcost.rabbitmq_messager.RabbitMQMessager.send_message">[docs]</a>    <span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">site_name</span><span class="p">,</span> <span class="n">var_name</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+<div class="viewcode-block" id="RabbitMQMessager.send_message"><a class="viewcode-back" href="../../code.html#currentcost.messager.RabbitMQMessager.send_message">[docs]</a>    <span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">site_name</span><span class="p">,</span> <span class="n">var_name</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Format parameter into json string for phase platform.</span>
 
 <span class="sd">            :param topic: Channel where to send message (RabbitMQ filter).</span>
@@ -269,7 +269,7 @@
 <span class="c">#       And we send it using our send method defined previously</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_message</span><span class="p">),</span> <span class="n">out</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="RabbitMQMessager.consume"><a class="viewcode-back" href="../../code.html#currentcost.rabbitmq_messager.RabbitMQMessager.consume">[docs]</a>    <span class="k">def</span> <span class="nf">consume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
+<div class="viewcode-block" id="RabbitMQMessager.consume"><a class="viewcode-back" href="../../code.html#currentcost.messager.RabbitMQMessager.consume">[docs]</a>    <span class="k">def</span> <span class="nf">consume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Method that wait for a message on RabbitMQ topics channels.</span>
 
 <span class="sd">            :param topic: Channel where to send message (RabbitMQ filter).</span>

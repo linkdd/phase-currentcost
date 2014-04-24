@@ -10,7 +10,6 @@ Schedule
 --------
 
 * For April, 25th 2014:
-    * Add production test in behave and launch it only on travis
     * Work on deployment (look at pip install, pip freeze, pip bundle, pip wheel)
     * List all features
     * Write README.rst

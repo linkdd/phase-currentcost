@@ -10,8 +10,10 @@ phase-currentcost (v0.9.8) stable; urgency=low
 * Modify installation to perform custom installation following this advice http://stackoverflow.com/questions/15853058/run-custom-task-when-call-pip-install
 * Fix installation bug
 * Add production test in behave and launch it only on travis
+* Improve Readme.md
+* Fix travis dependencies problem
 
-Pierre Leray <pierreleray64@gmail.com>  2014-04-24 22:20:00
+Pierre Leray <pierreleray64@gmail.com>  2014-04-24 23:20:00
 
 phase-currentcost (v0.9.7) stable; urgency=low
 ----------------------------------------------

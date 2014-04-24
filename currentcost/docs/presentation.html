@@ -59,11 +59,11 @@
         
             <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">phase-currentcost</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#features">Features</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#message-send-through-rabbitmq">Message send through RabbitMQ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#development-process">Development process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contribute">Contribute</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#work-flow">Work flow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#test-plan">Test plan</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
@@ -71,7 +71,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="code.html">Modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.utils">Utils</a></li>
-<li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.rabbitmq_messager">RabbitMQ_messager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.messager">RabbitMQ_messager</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO v1.0.0</a><ul>
@@ -81,6 +81,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="change.html">CHANGELOG</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-8-stable-urgency-low">phase-currentcost (v0.9.8) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-7-stable-urgency-low">phase-currentcost (v0.9.7) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-6-stable-urgency-low">phase-currentcost (v0.9.6) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-5-stable-urgency-low">phase-currentcost (v0.9.5) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-4-stable-urgency-low">phase-currentcost (v0.9.4) stable; urgency=low</a></li>
@@ -154,13 +156,15 @@
             
   <div class="section" id="phase-currentcost">
 <h1>phase-currentcost<a class="headerlink" href="#phase-currentcost" title="Permalink to this headline">¶</a></h1>
-<p>Master branch:</p>
 <a class="reference external image-reference" href="https://travis-ci.org/liogen/phase-currentcost"><img alt="Travis CI Build Status" src="https://api.travis-ci.org/liogen/phase-currentcost.png?branch=master" /></a>
-<p>Develop branch:</p>
 <a class="reference external image-reference" href="https://travis-ci.org/liogen/phase-currentcost"><img alt="Travis CI Build Status" src="https://api.travis-ci.org/liogen/phase-currentcost.png?branch=develop" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/phase-currentcost"><img alt="Latest Version" src="https://pypip.in/v/phase-currentcost/badge.png" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/phase-currentcost"><img alt="Downloads" src="https://pypip.in/d/phase-currentcost/badge.png" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/phase-currentcost/"><img alt="License" src="https://pypip.in/license/phase-currentcost/badge.png" /></a>
 <p>Functional test with fixtures to simulate CurrentCost on port COM and waited for currentCost to send messages.</p>
 <p>TO BE COMPLETED (goals of the project)</p>
-<p>List of features:</p>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li>support usb disconnexion</li>
@@ -171,23 +175,39 @@
 <li>To be completed</li>
 </ul>
 </div></blockquote>
-<div class="section" id="dependencies">
-<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
-<p>TO BE COMPLETED</p>
-<blockquote>
-<div><ul class="simple">
-<li>rabbitMQ</li>
-</ul>
-</div></blockquote>
 </div>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>TO BE COMPLETED</p>
+<p>To install this software you need to install python 2.7 and pip</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo apt-get install python python-pip python-dev build-essential
+<span class="nv">$ </span>sudo pip install --upgrade pip
+</pre></div>
+</div>
+<p>Then, you have to install and configure RabbitMQ (change &#8220;admin&#8221; and &#8220;password&#8221; by your credential)</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;deb http://www.rabbitmq.com/debian/ testing main&quot;</span> &gt; /etc/apt/sources.list.d/rabbitmq.list
+<span class="nv">$ </span>wget http://www.rabbitmq.com/rabbitmq-signing-key-public.asc
+<span class="nv">$ </span>sudo apt-key add rabbitmq-signing-key-public.asc
+<span class="nv">$ </span>apt-get update
+<span class="nv">$ </span>apt-get install rabbitmq-server -y
+<span class="nv">$ </span>service rabbitmq-server start
+<span class="nv">$ </span>rabbitmq-plugins <span class="nb">enable </span>rabbitmq_management
+<span class="nv">$ </span>rabbitmqctl add_user admin password
+<span class="nv">$ </span>rabbitmqctl set_user_tags admin administrator
+<span class="nv">$ </span>rabbitmqctl set_permissions -p / admin <span class="s2">&quot;.*&quot;</span> <span class="s2">&quot;.*&quot;</span> <span class="s2">&quot;.*&quot;</span>
+<span class="nv">$ </span>rabbitmqctl delete_user guest
+<span class="nv">$ </span>service rabbitmq-server restart
+</pre></div>
+</div>
+<p>Then you can install phase-currentcost</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo pip install phase-currentcost
+</pre></div>
+</div>
 </div>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>phase-currentcost -h
-usage: phase-currentcost <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-t TTY_PORT<span class="o">]</span> <span class="o">[</span>-r RABBITMQ_CREDENTIAL<span class="o">]</span> <span class="o">[</span>-v<span class="o">]</span>
+usage: phase-currentcost <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-t TTY_PORT<span class="o">]</span> <span class="o">[</span>-r RABBITMQ_CREDENTIAL<span class="o">]</span>
+                         <span class="o">[</span>-l LOG_CONF<span class="o">]</span> <span class="o">[</span>-v<span class="o">]</span>
                          variable_name site_name
 
 positional arguments:
@@ -202,6 +222,8 @@ optional arguments:
                         credential <span class="k">for </span>rabbitMQ. By default, RabbitMQ is
                         deactivated. To activate it you have to give your
                         credential. Format: username:password.
+  -l LOG_CONF, --log-conf LOG_CONF
+                        path to log configuration
   -v, --verbose         activate verbose mode
 </pre></div>
 </div>
@@ -210,6 +232,7 @@ optional arguments:
 <li>We are looking for default tty port located in /dev/currentcost. You can over-write it if you want using &#8211;tty-port argument.</li>
 <li>RabbitMQ is not activated. To activate it you have to add your credential to phase-currentcost script. To give your credential to currentcost script, use &#8211;rabbitMQ-credential argument.</li>
 <li>If RabbitMQ is not activated, we display currentcost message in stdout. Else we send it over the network.</li>
+<li>Log configuration file is located in /opt/phase/phase-currentcost.conf and log file is in /var/logs/phase/phase-currentcost.log. You can set log configuration file using -l option and a path to your log.conf file.</li>
 </ul>
 <p>Examples:</p>
 <p>To see the current consumption on Current cost on stdout use:</p>
@@ -234,7 +257,7 @@ optional arguments:
 <li><strong>date</strong>: Date in UTC</li>
 <li><strong>dstTimezone</strong>: Timezone with DST</li>
 <li><strong>nonDstTimezone</strong>: Timezone without DST</li>
-<li><strong>message</strong>: Information message</li>
+<li><strong>message</strong>: Message to deliver through RabbitMQ</li>
 </ul>
 </div></blockquote>
 <p>Messages list:</p>
@@ -270,8 +293,8 @@ optional arguments:
 </tbody>
 </table>
 </div>
-<div class="section" id="development-process">
-<h2>Development process<a class="headerlink" href="#development-process" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="contribute">
+<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h2>
 <p>Install socat</p>
 <p><strong>Philosophy</strong></p>
 <p>In this project, we will try to use the best practices of the development.</p>
