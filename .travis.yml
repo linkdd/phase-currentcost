@@ -15,7 +15,7 @@ before_install:
   - sudo service rabbitmq-server restart
 install:
   - pip install behave nose pika pyserial
-  - sudo python setup.py install
+  - sudo pip install phase-currentcost
 script:
   - python --version
   - nosetests
