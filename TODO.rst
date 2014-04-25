@@ -13,6 +13,7 @@ Schedule
     * List all features
     * Write README.rst
     * Describe usage process
+    * Add link to ReadTheDoc
 
 Pending tasks
 -------------
