@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Todo &mdash; phase-currentcost 0.9.16 documentation</title>
+  <title>Todo &mdash; phase-currentcost 0.9.17 documentation</title>
   
 
   
@@ -28,7 +28,7 @@
   
 
   
-    <link rel="top" title="phase-currentcost 0.9.16 documentation" href="index.html"/>
+    <link rel="top" title="phase-currentcost 0.9.17 documentation" href="index.html"/>
         <link rel="next" title="Changelog" href="change.html"/>
         <link rel="prev" title="Modules" href="code.html"/> 
 
@@ -75,12 +75,7 @@
 <li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.messager">RabbitMQ_messager module</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Todo</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#objectives">Objectives</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#schedule">Schedule</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pending-tasks">Pending tasks</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Todo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="change.html">Changelog</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-17-stable-urgency-low">phase-currentcost (v0.9.17) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-16-stable-urgency-low">phase-currentcost (v0.9.16) stable; urgency=low</a></li>
@@ -166,86 +161,7 @@
             
   <div class="section" id="todo">
 <h1>Todo<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="objectives">
-<h2>Objectives<a class="headerlink" href="#objectives" title="Permalink to this headline">¶</a></h2>
-<p>Launch a current cost program on command line, read data from a current cost and send message over the network.</p>
-</div>
-<div class="section" id="schedule">
-<h2>Schedule<a class="headerlink" href="#schedule" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><dl class="first docutils">
-<dt>For April, 25th 2014:</dt>
-<dd><ul class="first last simple">
-<li>Add link to ReadTheDoc</li>
-<li>Ajouter /etc/currentcost.rules during installation</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</div>
-<div class="section" id="pending-tasks">
-<h2>Pending tasks<a class="headerlink" href="#pending-tasks" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><dl class="first docutils">
-<dt>phase-messager:</dt>
-<dd><ul class="first last simple">
-<li>Extract messager from this project and create a pip to install it for several phase module</li>
-<li>Add func test for: rabbitMQ is not started, rabbitMQ is disconnected during currentcost is running</li>
-<li>This exception is raised when we stop RabbitMQ during currentcost script is running =&gt;AttributeError: &#8216;BlockingConnection&#8217; object has no attribute &#8216;disconnect&#8217;</li>
-<li>This exception is raised when we try to connect to RabbitMQ and RabbitMQ is disconnected =&gt; pika.exceptions.AMQPConnectionError: 1</li>
-<li>Test application with RabbitMQ disconnected (find a way to automatize this)</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>phase</dt>
-<dd><ul class="first last">
-<li><dl class="first docutils">
-<dt>Documentation:</dt>
-<dd><ul class="first last simple">
-<li>Detail process to start in development mode</li>
-<li>Describe development process (look at paver main page <a class="reference external" href="http://paver.github.io/paver/">http://paver.github.io/paver/</a>)</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Functionalities:</dt>
-<dd><ul class="first last simple">
-<li>Fix paver watch problem (stop watch) (try to use with fabric)</li>
-<li>Launch a server web in a subprocess.Popen</li>
-<li>Launch watch task in a subprocess.Popen</li>
-<li>Listen for a terminating command to quit properly two previous subprocesses</li>
-<li>Add integration with supervisor</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Release:</dt>
-<dd><ul class="first last simple">
-<li>Develop something on develop branch</li>
-<li>Launch paver commit</li>
-<li>Commit code (git add . &amp;&amp; git ci -a -m &#8220;message&#8221;)</li>
-<li>Add a commit message on Changelog</li>
-<li>Launch paver release</li>
-<li>Increase release number (setup.py, changelog, conf.py)</li>
-<li>Push develop branch (git push origin develop)</li>
-<li>Create Release (git flow release start vX.X.X)</li>
-<li>Finish release (git flow release stop vX.X.X) with Changelog message</li>
-<li>Push master branch (git push origin master)</li>
-<li>Upload package on pypi</li>
-<li>Return on develop branch (git co develop)</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
 <li><dl class="first docutils">
 <dt>News:</dt>
 <dd><ul class="first last simple">
@@ -266,7 +182,6 @@
 </dl>
 </li>
 </ul>
-</div>
 </div>
 
 
@@ -307,7 +222,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.9.16',
+            VERSION:'0.9.17',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

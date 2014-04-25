@@ -2,7 +2,7 @@ phase-currentcost (v0.9.17) stable; urgency=low
 -----------------------------------------------
 
 * Improve documentation
-* Rewrite readme.md
+* Rewrite readme.rst
 * Add readthe docs link
 * Add rules installation
 * Remove useless tasks in TODO
