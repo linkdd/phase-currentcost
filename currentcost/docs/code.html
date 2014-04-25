@@ -29,7 +29,7 @@
 
   
     <link rel="top" title="phase-currentcost 0.9.16 documentation" href="index.html"/>
-        <link rel="next" title="TODO v1.0.0" href="todo.html"/>
+        <link rel="next" title="Todo" href="todo.html"/>
         <link rel="prev" title="phase-currentcost" href="presentation.html"/> 
 
   
@@ -59,30 +59,32 @@
         
             <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="presentation.html">phase-currentcost</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="presentation.html#features">Features</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presentation.html#examples">Examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#message-send-through-rabbitmq">Message send through RabbitMQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presentation.html#issue">Issue</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#contribute">Contribute</a></li>
-<li class="toctree-l2"><a class="reference internal" href="presentation.html#work-flow">Work flow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="presentation.html#test-plan">Test plan</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#license">License</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-currentcost.utils">Utils</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-currentcost.messager">RabbitMQ_messager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#workflow">Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-plan">Test plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#utils-module">Utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-currentcost.messager">RabbitMQ_messager module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO v1.0.0</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">Todo</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="todo.html#objectives">Objectives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="todo.html#schedule">Schedule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="todo.html#pending-tasks">Pending tasks</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="change.html">CHANGELOG</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="change.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-17-stable-urgency-low">phase-currentcost (v0.9.17) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-16-stable-urgency-low">phase-currentcost (v0.9.16) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-15-stable-urgency-low">phase-currentcost (v0.9.15) stable; urgency=low</a></li>
-<li class="toctree-l2"><a class="reference internal" href="change.html#id1">phase-currentcost (v0.9.15) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-14-stable-urgency-low">phase-currentcost (v0.9.14) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-13-stable-urgency-low">phase-currentcost (v0.9.13) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-12-stable-urgency-low">phase-currentcost (v0.9.12) stable; urgency=low</a></li>
@@ -164,6 +166,110 @@
             
   <div class="section" id="modules">
 <h1>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="workflow">
+<h2>Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline">¶</a></h2>
+<p>Here is a description of the main script workflow with error and succes out.</p>
+<p><strong>Nominal case</strong></p>
+<dl class="docutils">
+<dt>N1: Service started and arguments analysis</dt>
+<dd><ul class="first last simple">
+<li><strong>E1</strong>: Missing argument. Return an error and log it</li>
+<li><strong>E2</strong>: Bad value for an argument. Return and error and log it</li>
+</ul>
+</dd>
+<dt>N2: Connexion to current cost</dt>
+<dd><ul class="first last simple">
+<li><strong>E3</strong>: Unable to connect to current cost. Send a message over the network to inform that it is not possible to connect to current cost and log it. Return to step N3.</li>
+</ul>
+</dd>
+<dt>N3: Waited for a message from current cost</dt>
+<dd><ul class="first last simple">
+<li><strong>E4</strong>: If no message received after 30 seconds, send a message over the network to inform that there is a problem with current cost and log it. Return to step N4.</li>
+</ul>
+</dd>
+<dt>N4: XML message received and analyzed</dt>
+<dd><ul class="first last simple">
+<li><strong>E5</strong>: Incorrect message. Log this message and return to step N4. (to be defined)</li>
+</ul>
+</dd>
+<dt>N5: Creation of a network message looking like {variableID: ..., date: ..., message: ...} and send this message over the network. Return to step N4.</dt>
+<dd><ul class="first last simple">
+<li><strong>E6</strong>: Problem during message sending. Retry and log this error.</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Alternative cases</strong></p>
+<dl class="docutils">
+<dt>A1: USB port disconnected.</dt>
+<dd><ul class="first last simple">
+<li><strong>E7</strong>: Log this error, send an error message over the network and retry to reconnect to the USB port. If USB port reconnected, return to step N2.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="test-plan">
+<h2>Test plan<a class="headerlink" href="#test-plan" title="Permalink to this headline">¶</a></h2>
+<p>Here is a description of test made using behave to validate this software.</p>
+<div class="highlight-python"><div class="highlight"><pre>Feature: Current Cost data collection
+    As a end-user,
+    I want to see my current cost information about my consumption,
+    in order to reduce my energy consumption
+
+    Scenario: Missing argument
+        When we launch currentcost script without important argument
+        Then we should see an error message on screen
+
+    Scenario: Problem with current cost connexion without RabbitMQ
+        When we start currentcost with bad port without rabbitmq
+        Then we should see currentcost is unreachable in log
+
+    Scenario: Problem with RabbitMQ credential
+        When we start currentcost with bad port and bad rabbitmq credential
+        Then we should see currentcost is unreachable in log
+        And we should see rabbitmq error in log
+
+    Scenario: Problem with current cost connexion with RabbitMQ activated
+        When we start currentcost with bad port with rabbitmq
+        Then we should see currentcost is unreachable in log
+        And we should receive a message saying that current cost is unreachable
+
+    Scenario: Current cost disconnected
+        Given current cost does not send any message
+        When we launch currentcost script and reach the timeout limit
+        Then we should get informed that current cost does not send messages
+        And we should see current cost does not send any message in log
+
+    Scenario: Problem with USB port
+        Given current cost is connected and currentcost script is launched
+        When we disconnect USB port
+        Then we should receive a message saying that current cost is disconnected
+        And we should see currentcost is disconnected in log
+
+    Scenario: Problem with current cost message
+        Given current cost is connected and script is launched
+        When current cost send incorrect message
+        Then we should get informed that current cost send incorrect message
+        And we should see incorrect message error in log
+
+    Scenario: Nominal case instant consumption
+        Given current cost is connected and script is launched
+        When current cost send instant consumption
+        Then we should receive instant consumption over the network
+    
+    @prod
+    Scenario: Nominal case historical consumption
+        Given current cost is connected and script is launched
+        Then we should receive historical consumption over the network
+    
+    @prod
+    Scenario: Problem with current cost connexion without RabbitMQ
+        When we start currentcost with bad port without rabbitmq with log
+        Then we should see currentcost is unreachable in /var/log
+</pre></div>
+</div>
+</div>
+<div class="section" id="utils-module">
+<h2>Utils module<a class="headerlink" href="#utils-module" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
 <dt>This project contains 2 mains modules:</dt>
 <dd><ul class="first last simple">
@@ -172,9 +278,7 @@
 </ul>
 </dd>
 </dl>
-<div class="section" id="module-currentcost.utils">
-<span id="utils"></span><h2>Utils<a class="headerlink" href="#module-currentcost.utils" title="Permalink to this headline">¶</a></h2>
-<p>Globals and function needs for this project.</p>
+<span class="target" id="module-currentcost.utils"></span><p>Globals and function needs for this project.</p>
 <span class="target" id="module-utils"></span><dl class="function">
 <dt id="currentcost.utils.argument_parser">
 <tt class="descclassname">currentcost.utils.</tt><tt class="descname">argument_parser</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/currentcost/utils.html#argument_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.utils.argument_parser" title="Permalink to this definition">¶</a></dt>
@@ -248,7 +352,7 @@ Message containing error description or data sent by CC.</p>
 
 </div>
 <div class="section" id="module-currentcost.messager">
-<span id="rabbitmq-messager"></span><h2>RabbitMQ_messager<a class="headerlink" href="#module-currentcost.messager" title="Permalink to this headline">¶</a></h2>
+<span id="rabbitmq-messager-module"></span><h2>RabbitMQ_messager module<a class="headerlink" href="#module-currentcost.messager" title="Permalink to this headline">¶</a></h2>
 <p>Method that send message on RabbitMQ or display it on stdout.</p>
 <dl class="class">
 <dt id="currentcost.messager.RabbitMQMessager">
@@ -274,7 +378,7 @@ Message containing error description or data sent by CC.</p>
 
 <dl class="method">
 <dt id="currentcost.messager.RabbitMQMessager.send">
-<tt class="descname">send</tt><big>(</big><em>topic</em>, <em>message</em>, <em>out=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7f672c2af1e0&gt;</em><big>)</big><a class="reference internal" href="_modules/currentcost/messager.html#RabbitMQMessager.send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.messager.RabbitMQMessager.send" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">send</tt><big>(</big><em>topic</em>, <em>message</em>, <em>out=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7f7c832bc1e0&gt;</em><big>)</big><a class="reference internal" href="_modules/currentcost/messager.html#RabbitMQMessager.send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.messager.RabbitMQMessager.send" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method that send a message with a topic.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -293,7 +397,7 @@ Message containing error description or data sent by CC.</p>
 
 <dl class="method">
 <dt id="currentcost.messager.RabbitMQMessager.send_message">
-<tt class="descname">send_message</tt><big>(</big><em>topic</em>, <em>site_name</em>, <em>var_name</em>, <em>data</em>, <em>out=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7f672c2af1e0&gt;</em><big>)</big><a class="reference internal" href="_modules/currentcost/messager.html#RabbitMQMessager.send_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.messager.RabbitMQMessager.send_message" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">send_message</tt><big>(</big><em>topic</em>, <em>site_name</em>, <em>var_name</em>, <em>data</em>, <em>out=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7f7c832bc1e0&gt;</em><big>)</big><a class="reference internal" href="_modules/currentcost/messager.html#RabbitMQMessager.send_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.messager.RabbitMQMessager.send_message" title="Permalink to this definition">¶</a></dt>
 <dd><p>Format parameter into json string for phase platform.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -323,7 +427,7 @@ Message containing error description or data sent by CC.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="todo.html" class="btn btn-neutral float-right" title="TODO v1.0.0"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="todo.html" class="btn btn-neutral float-right" title="Todo"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="presentation.html" class="btn btn-neutral" title="phase-currentcost"><span class="fa fa-arrow-circle-left"></span> Previous</a>

@@ -58,30 +58,32 @@
         
             <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../presentation.html">phase-currentcost</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../presentation.html#features">Features</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../presentation.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../presentation.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../presentation.html#examples">Examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../presentation.html#message-send-through-rabbitmq">Message send through RabbitMQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../presentation.html#issue">Issue</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../presentation.html#contribute">Contribute</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../presentation.html#work-flow">Work flow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../presentation.html#test-plan">Test plan</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../presentation.html#license">License</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../code.html">Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../code.html#module-currentcost.utils">Utils</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../code.html#module-currentcost.messager">RabbitMQ_messager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../code.html#workflow">Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../code.html#test-plan">Test plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../code.html#utils-module">Utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../code.html#module-currentcost.messager">RabbitMQ_messager module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../todo.html">TODO v1.0.0</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../todo.html">Todo</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../todo.html#objectives">Objectives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../todo.html#schedule">Schedule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../todo.html#pending-tasks">Pending tasks</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../change.html">CHANGELOG</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../change.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-9-17-stable-urgency-low">phase-currentcost (v0.9.17) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-9-16-stable-urgency-low">phase-currentcost (v0.9.16) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-9-15-stable-urgency-low">phase-currentcost (v0.9.15) stable; urgency=low</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../change.html#id1">phase-currentcost (v0.9.15) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-9-14-stable-urgency-low">phase-currentcost (v0.9.14) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-9-13-stable-urgency-low">phase-currentcost (v0.9.13) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-9-12-stable-urgency-low">phase-currentcost (v0.9.12) stable; urgency=low</a></li>
@@ -200,28 +202,34 @@
 <span class="sd">            :param host: Host target for RabbitMQ.</span>
 <span class="sd">            :type host: str.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-<span class="c">#       Logger and channel initialization</span>
+        <span class="c"># Logger and channel initialization</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&quot;currentcost.pika&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="c">#       If we have a username and password for RabbitMQ</span>
+        <span class="c"># If we have a username and password for RabbitMQ</span>
         <span class="k">if</span> <span class="n">username</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">password</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-<span class="c">#               We try to connect to RabbitMQ with this credential</span>
+                <span class="c"># We try to connect to RabbitMQ with this credential</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">pika</span><span class="o">.</span><span class="n">BlockingConnection</span><span class="p">(</span>
                     <span class="n">pika</span><span class="o">.</span><span class="n">ConnectionParameters</span><span class="p">(</span>
                         <span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">,</span>
                         <span class="n">credentials</span><span class="o">=</span><span class="n">pika</span><span class="o">.</span><span class="n">PlainCredentials</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)))</span>
-<span class="c">#               If our connection was successful we retrieve a channel</span>
+                <span class="c"># If our connection was successful we retrieve a channel</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">channel</span><span class="p">()</span>
             <span class="k">except</span> <span class="n">pika</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionClosed</span><span class="p">:</span>
-<span class="c">#               Else if our credential were wrong, we log according message</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">RABBIT_MQ_CREDENTIAL_PROBLEM</span> <span class="o">%</span> <span class="p">(</span>
-                    <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">host</span><span class="p">))</span>
+                <span class="c"># Else if our credential were wrong, we log according message</span>
+                <span class="n">error</span> <span class="o">=</span> <span class="n">RABBIT_MQ_CREDENTIAL_PROBLEM</span> <span class="o">%</span> <span class="p">(</span>
+                    <span class="n">username</span><span class="p">,</span>
+                    <span class="n">password</span><span class="p">,</span>
+                    <span class="n">host</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
             <span class="k">except</span> <span class="n">pika</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">AMQPConnectionError</span><span class="p">:</span>
-<span class="c">#               Else if RabbitMQ is not available in this location,</span>
-<span class="c">#               we log according message</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">RABBIT_MQ_CONNECTION_PROBLEM</span> <span class="o">%</span> <span class="p">(</span>
-                    <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">host</span><span class="p">))</span>
+                <span class="c"># Else if RabbitMQ is not available in this location,</span>
+                <span class="c"># we log according message</span>
+                <span class="n">error</span> <span class="o">=</span> <span class="n">RABBIT_MQ_CONNECTION_PROBLEM</span> <span class="o">%</span> <span class="p">(</span>
+                    <span class="n">username</span><span class="p">,</span>
+                    <span class="n">password</span><span class="p">,</span>
+                    <span class="n">host</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 
 <div class="viewcode-block" id="RabbitMQMessager.send"><a class="viewcode-back" href="../../code.html#currentcost.messager.RabbitMQMessager.send">[docs]</a>    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Method that send a message with a topic.</span>
@@ -235,16 +243,16 @@
 <span class="sd">            :param out: Stdout redirection in case of test (default: stdout).</span>
 <span class="sd">            :type out: StringIO.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-<span class="c">#       We log message we want to send to keep a trace</span>
+        <span class="c"># We log message we want to send to keep a trace</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-<span class="c">#       If channel is available</span>
+        <span class="c"># If channel is available</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-<span class="c">#           We send a message on this channel</span>
+            <span class="c"># We send a message on this channel</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">queue_declare</span><span class="p">(</span><span class="n">queue</span><span class="o">=</span><span class="n">topic</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">basic_publish</span><span class="p">(</span>
                 <span class="n">exchange</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">routing_key</span><span class="o">=</span><span class="n">topic</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">message</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-<span class="c">#           Else we print it in stdout</span>
+            <span class="c"># Else we print it in stdout</span>
             <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">unicode</span><span class="p">(</span><span class="n">message</span><span class="p">),</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">))</span>
 </div>
 <div class="viewcode-block" id="RabbitMQMessager.send_message"><a class="viewcode-back" href="../../code.html#currentcost.messager.RabbitMQMessager.send_message">[docs]</a>    <span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">site_name</span><span class="p">,</span> <span class="n">var_name</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
@@ -265,7 +273,7 @@
 <span class="sd">            :param out: Stdout redirection in case of test (default: stdout).</span>
 <span class="sd">            :type out: StringIO.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-<span class="c">#       We create our phase message</span>
+        <span class="c"># We create our phase message</span>
         <span class="n">json_message</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s">&#39;siteID&#39;</span><span class="p">:</span> <span class="n">site_name</span><span class="p">,</span>
             <span class="s">&#39;variableID&#39;</span><span class="p">:</span> <span class="n">var_name</span><span class="p">,</span>
@@ -274,7 +282,7 @@
             <span class="s">&#39;dstTimezone&#39;</span><span class="p">:</span> <span class="n">tzname</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
             <span class="s">&#39;nonDstTimezone&#39;</span><span class="p">:</span> <span class="n">tzname</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="p">}</span>
-<span class="c">#       And we send it using our send method defined previously</span>
+        <span class="c"># And we send it using our send method defined previously</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_message</span><span class="p">),</span> <span class="n">out</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="RabbitMQMessager.consume"><a class="viewcode-back" href="../../code.html#currentcost.messager.RabbitMQMessager.consume">[docs]</a>    <span class="k">def</span> <span class="nf">consume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
@@ -286,13 +294,13 @@
 <span class="sd">            :param callback: Function that compute result of message (async).</span>
 <span class="sd">            :type callback: Function.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-<span class="c">#       We try to connect to our channel and wait for a message</span>
+        <span class="c"># We try to connect to our channel and wait for a message</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">queue_declare</span><span class="p">(</span><span class="n">queue</span><span class="o">=</span><span class="n">topic</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">basic_consume</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="n">queue</span><span class="o">=</span><span class="n">topic</span><span class="p">,</span> <span class="n">no_ack</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">start_consuming</span><span class="p">()</span>
         <span class="k">except</span> <span class="n">pika</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionClosed</span><span class="p">:</span>
-<span class="c">#           If something goes wrong we pass silently</span>
+            <span class="c"># If something goes wrong we pass silently</span>
             <span class="k">pass</span></div></div>
 </pre></div>
 

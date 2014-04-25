@@ -15,49 +15,55 @@ phase-currentcost
     :alt: Downloads
 
 .. image:: http://img.shields.io/badge/license-MIT-red.png
-    :target: https://pypi.python.org/pypi/phase-currentcost/
+    :target: https://github.com/liogen/phase-currentcost
     :alt: License
 
-Functional test with fixtures to simulate CurrentCost on port COM and waited for currentCost to send messages.
+CurrentCost data collector script for phase project.
 
-TO BE COMPLETED (goals of the project)
+`CurrentCost EnviR 128 <http://www.currentcost.com/product-envir.html>`_ is an appliance that monitor your electricity consumption and provide an `API <http://www.currentcost.com/cc128/xml.htm>`_ to retrieve data from USB cable.
 
-Features
---------
- 
- * support usb disconnexion
- * send instant consumption
- * send historical consumption
- * send timeout message
- * send bad formated message eroor
- * To be completed
+phase-currentcost allow use to retrieve data from usb cable using `pyserial <http://pyserial.sourceforge.net/>`_ and transmit information to stdout or to `RabbitMQ <https://www.rabbitmq.com/>`_ using `Pika <http://pika.readthedocs.org/en/latest/>`_ module. 
+
+More precisly, this script collect instantaneous and historical data from Current Cost. It also take care of usb disconnection, Current Cost bad message format, timeout and power disconnection and send an error on stdout or on RabbitMQ each time for later anlysis. Also it create an udev rule to transform /dev/ttyUSB* to /dev/currentcost for serial port connection.
+
+For more information, full documentation is available on `readthedocs.org <http://phase-currentcost.readthedocs.org/en/latest/>`_
 
 Installation
 ------------
 
-To install this software you need to install python 2.7 and pip
+Requirements:
+
+  * Platform: Unix (only tested on Ubuntu 12.04)
+  * Python 2.7
+  * Pip (last version)
+  * RabbitMQ (last version)
+
+To install this software, you need to install python 2.7 and pip
 
 .. code-block:: bash
   
-  $ sudo apt-get install python python-pip python-dev build-essential
+  $ sudo apt-get install python python-pip
   $ sudo pip install --upgrade pip
 
 Then, you have to install and configure RabbitMQ (change "admin" and "password" by your credential)
 
 .. code-block:: bash
   
-  $ echo "deb http://www.rabbitmq.com/debian/ testing main" > /etc/apt/sources.list.d/rabbitmq.list
+  $ USERNAME="admin"
+  $ PASSWORD="password" 
+  $ echo "deb http://www.rabbitmq.com/debian/ testing main" > sudo /etc/apt/sources.list.d/rabbitmq.list
   $ wget http://www.rabbitmq.com/rabbitmq-signing-key-public.asc
   $ sudo apt-key add rabbitmq-signing-key-public.asc
-  $ apt-get update
-  $ apt-get install rabbitmq-server -y
-  $ service rabbitmq-server start
-  $ rabbitmq-plugins enable rabbitmq_management
-  $ rabbitmqctl add_user admin password
-  $ rabbitmqctl set_user_tags admin administrator
-  $ rabbitmqctl set_permissions -p / admin ".*" ".*" ".*"
-  $ rabbitmqctl delete_user guest
-  $ service rabbitmq-server restart
+  $ sudo apt-get update
+  $ sudo apt-get install rabbitmq-server -y
+  $ sudo service rabbitmq-server start
+  # If you get a 'command not found' error for this line, use /usr/lib/rabbitmq/bin/rabbitmq-plugins instead
+  $ sudo rabbitmq-plugins enable rabbitmq_management
+  $ sudo rabbitmqctl add_user $USERNAME $PASSWORD
+  $ sudo rabbitmqctl set_user_tags $USERNAME administrator
+  $ sudo rabbitmqctl set_permissions -p / $USERNAME ".*" ".*" ".*"
+  $ sudo rabbitmqctl delete_user guest
+  $ sudo service rabbitmq-server restart
 
 Then you can install phase-currentcost
 
@@ -93,42 +99,47 @@ Usage
 
 By default:
 
-* We are looking for default tty port located in /dev/currentcost. You can over-write it if you want using --tty-port argument.
-* RabbitMQ is not activated. To activate it you have to add your credential to phase-currentcost script. To give your credential to currentcost script, use --rabbitMQ-credential argument.
-* If RabbitMQ is not activated, we display currentcost message in stdout. Else we send it over the network. 
-* Log configuration file is located in /opt/phase/phase-currentcost.conf and log file is in /var/logs/phase/phase-currentcost.log. You can set log configuration file using -l option and a path to your log.conf file.
+* We targetting /dev/currentcost as tty port. You can over-write it using --tty-port argument.
+* RabbitMQ is not activated. We send message to stdout so you can collect it on file. If you want to share your message over the network using RabbitMQ, you can activate this function using --rabbitMQ-credential argument and giving your credential followinf this format: username:password.
+* Log configuration file is located in /opt/phase/phase-currentcost.conf and log file is in /var/logs/phase/phase-currentcost.log. You can set log configuration file using -l option with a path to your log.conf file.
 
-Examples: 
+Examples
+--------
 
 To see the current consumption on Current cost on stdout use:
 
 .. code-block:: bash
     
     $ sudo phase-currentcost electric_meter liogen_home --tty-port /dev/currentcost
+    {"variableID": "electric_meter", "dstTimezone": "UTC", "siteID": "liogen_home", "date": "2014-04-25T12:00:17.754959", "message": "CurrentCost electric_meter in liogen_home: TTY connection problem: /dev/currentcost is unreachable. Retry connection in 5 seconds.", "nonDstTimezone": "UTC"} 
+    {"variableID": "electric_meter", "dstTimezone": "UTC", "siteID": "liogen_home", "date": "2014-04-25T12:00:22.769256", "message": "CurrentCost electric_meter in liogen_home: TTY connection problem: /dev/currentcost is unreachable. Retry connection in 5 seconds.", "nonDstTimezone": "UTC"}
+    {"variableID": "electric_meter", "dstTimezone": "UTC", "siteID": "liogen_home", "date": "2014-04-25T12:00:22.769256", "message": "<msg><src>CC128-v1.29</src><dsb>00786</dsb><time>00:31:36</time><tmpr>19.3</tmpr><sensor>0</sensor><id>00077</id><type>1</type><ch1><watts>00405</watts></ch1></msg>", "nonDstTimezone": "UTC"}
 
-**IDEA: PUT CONSOLE OUTPUT AS AN EXAMPLE**
-
-With rabbitMQ message over the network:
+With rabbitMQ message over the network with verbose mode activated:
 
 .. code-block:: bash
 
     $ sudo phase-currentcost electric_meter liogen_home --tty-port /dev/currentcost --rabbitmq-credential admin:password -v
+    Starting current cost application
+    Current time: 2014-04-25 12:01:34.350781
+    Variable name: electric_meter
+    Site name: liogen_home
+    TTY port: /dev/currentcost
 
-**IDEA: PUT CONSOLE OUTPUT AS AN EXAMPLE**
-
-Structure of a message send 
+    {"variableID": "electric_meter", "dstTimezone": "UTC", "siteID": "liogen_home", "date": "2014-04-25T12:00:22.769256", "message": "<msg><src>CC128-v1.29</src><dsb>00786</dsb><time>00:31:36</time><tmpr>19.3</tmpr><sensor>0</sensor><id>00077</id><type>1</type><ch1><watts>00405</watts></ch1></msg>", "nonDstTimezone": "UTC"}
+    {"variableID": "electric_meter", "dstTimezone": "UTC", "siteID": "liogen_home", "date": "2014-04-25T12:00:22.769256", "message": "<msg><src>CC128-v1.29</src><dsb>00786</dsb><time>00:31:36</time><tmpr>19.3</tmpr><sensor>0</sensor><id>00077</id><type>1</type><ch1><watts>00405</watts></ch1></msg>", "nonDstTimezone": "UTC"}
 
 Message send through RabbitMQ
 -----------------------------
 
 A message is a JSON containing this properties:
 
-  * **variableID**: name of the variable
-  * **siteID**: Name of the site
-  * **date**: Date in UTC
-  * **dstTimezone**: Timezone with DST
-  * **nonDstTimezone**: Timezone without DST
-  * **message**: Message to deliver through RabbitMQ
+:variableID: name of the variable
+:siteID: Name of the site
+:date: Date in UTC
+:dstTimezone: Timezone with DST
+:nonDstTimezone: Timezone without DST
+:message: Message to deliver through RabbitMQ
 
 Messages list:
 
@@ -144,79 +155,72 @@ Messages list:
 | currentcost | CurrentCost XML message         | Send Currentcost XML message                      |
 +-------------+---------------------------------+---------------------------------------------------+
 
+Issue
+-----
+
+Do not hesitate to post an `issue <https://github.com/liogen/phase-currentcost/issues>`_ if you have any problem to install or to use this software.
+
+You can also use this way to ask for a Feature request. I am also available to answer you on `Stack Overflow <http://stackoverflow.com/questions/tagged/phase-currentcost>`_
+
 Contribute
 ----------
 
-Install socat
+I will be really happy if you want to contribute to this project. Ther are several ways to help me improving this software. Here is the development process to test and validate your features.
 
-**Philosophy**
+1. Prepare your development environment:
 
-In this project, we will try to use the best practices of the development.
+    .. code-block:: bash
 
-* **Scenario based design** 
-    * Take a paper and write what you code should do and how it should do using a story. (DESCRIBE MORE)
-* **Document driven-design**
-    * Take a minute and update documentation before coding (global documentation, code comment, test comment).
-    * Always keep a clear release road map. Update it if needed. 
-    * Update README.md, CHANGELOG.txt, TODO.md as soon as possible.
-* **Behavior driven development**
-    * Add one functional test.
-* **Test driven development**
-    * Add one unit test while you don't pass this functional test
-    * Develop function while you don't pass this unit test
-* **Code version**
-    * Commit after each new implemented function
-    * Create a release after each validation of functional test
-* **Refactoring**
-    * Refactor code to improve readability, avoid code redundancy, speed compute time
-    * Return to BDD part.
+        # `Socat <http://www.dest-unreach.org/socat/>`_ is usefull to create socket connection between 2 files.
+        $ sudo apt-get install socat vim git-core
+        # Install virtualenv and virtualenvwrapper if it's not done.
+        $ sudo pip install virtualenvwrapper
+        $ mkdir ~/.virtualenvs
+        $ vim ~/.bashrc
+        # Modify your ~/.bashrc and add this 2 lines:
+        # export WORKON_HOME=~/.virtualenvs
+        # source /usr/local/bin/virtualenvwrapper.sh
+        $ bash
 
-**Setup environment**
+2. Go on `github <https://github.com/liogen/phase-currentcost>`_ and fork this project.
 
-* **IDEA: Explain virtualenv and virtualenvwrapper**
-* **IDEA: Create a init script that ask several question and bootstrap project (plug-in)**
-* **IDEA: generate_setup to use sdist command**
-* **IDEA: test new plugin creation on TimeSeriesLogger**
-* **IDEA: move phase-currentcost.py outside of phase**
-* **IDEA: phase in development should provide init script to init and register new plugin**
+3. Clone it on your conputer:
 
+    .. code-block:: bash
 
-**TO BE COMPLETED**
+        $ cd <your_workspace>
+        $ git clone git@github.com:<username>/phase-currentcost.git
+        $ git checkout develop
 
-Work flow
----------
+4. Prepare your virtualenv
 
-**TO BE MOVED**
+    .. code-block:: bash
 
-**Nominal case**
+        $ mkvirtualenv phase
+        (phase)$ pip install paver
+        (phase)$ paver prepare
 
-* N1: Service started
-* N2: Arguments analysis
-    * E1: Missing argument. Return an error and log it
-    * E2: Bad value for an argument. Return and error and log it
-* N3: Connexion to current cost
-    * E3: Unable to connect to current cost. Send a message over the network to inform that it is not possible to connect to current cost and log it. Return to step N3.
-* N4: Waited for a message from current cost
-    * E4: If no message received after 30 seconds, send a message over the network to inform that there is a problem with current cost and log it. Return to step N4.
-* N5: XML message received and analyzed
-    * E5: Incorrect message. Log this message and return to step N4. (to be defined)
-* N6: Creation of a network message looking like {variableID: ..., date: ..., message: ...}
-* N7: Send this message over the network.
-    * E6: Problem during message sending. Retry and log this error.
-* N8: Message sent over the network. Return to step N4.
+5. Add functional or unit tests
 
-**Alternative cases**
+6. Code your features
 
-* A1: USB port disconnected. Log this error, send an error message over the network and retry to reconnect to the USB port. If USB port reconnected, return to step N2.
+7. To validate your implementation, launch:
 
-Test plan
----------
+    .. code-block:: bash
 
-**TO BE MOVED**
+        (phase)$ paver validate
 
-**IDEA: Link to features/currentcost.feature**
+8. Modify Todo, Changelog and update documentation
 
-Look at features/currentcost.feature
+9. Commit and push on github:
+
+    .. code-block:: bash
+
+        (phase)$ git add .
+        (phase)$ git commit -a -m "<your commit message>"
+        (phase)$ git push origin develop  
+
+10. Propose a pull request on github
 
 License
 -------

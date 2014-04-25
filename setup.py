@@ -5,7 +5,7 @@ from setuptools.command.install import install
 from shutil import copy
 import os
 
-VERSION = "0.9.16"
+VERSION = "0.9.17"
 
 INSTALL_REQS = ["pyserial >= 2.5", "pika"]
 
@@ -20,15 +20,18 @@ class CustomInstall(install):  # pylint: disable=W0232
 
         """
         install.run(self)
-#       Custom installation steps here
+        # Custom installation steps here
         folder_path = os.path.join('/opt', 'phase')
         log_folder_path = os.path.join('/var', 'log', 'phase')
         log_conf_path = os.path.join('logs', 'phase-currentcost.conf')
+        udev_folder = os.path.join('/etc', 'udev', 'rules.d')
+        udev_file = os.path.join('udev', '70-currentcost.rules') 
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
         if not os.path.exists(log_folder_path):
             os.makedirs(log_folder_path)
         copy(log_conf_path, folder_path)
+        copy(udev_file, udev_folder)
 
 
 setup(

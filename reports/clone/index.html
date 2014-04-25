@@ -44,10 +44,10 @@
     <BODY>
     
     
-    <P>Source files: 12</P>
-        <a href = "javascript:unhide('files');">Click here to show/hide file names</a><div id="files" class="hidden"><P><B>Source files:</B><BR>fabfile.py, <BR>pavement.py, <BR>setup.py, <BR>currentcost/__init__.py, <BR>currentcost/connector.py, <BR>currentcost/messager.py, <BR>currentcost/utils.py, <BR>bin/phase-currentcost, <BR>tests/__init__.py, <BR>tests/test_messager.py, <BR>tests/test_utils.py, <BR>features/steps/currentcost_steps.py</P></div>
-        <P>Clones detected: 16</P>
-        <P>107 of 715 lines are duplicates (14.97%) </P>
+    <P>Source files: 11</P>
+        <a href = "javascript:unhide('files');">Click here to show/hide file names</a><div id="files" class="hidden"><P><B>Source files:</B><BR>pavement.py, <BR>setup.py, <BR>currentcost/__init__.py, <BR>currentcost/connector.py, <BR>currentcost/messager.py, <BR>currentcost/utils.py, <BR>bin/phase-currentcost, <BR>tests/__init__.py, <BR>tests/test_messager.py, <BR>tests/test_utils.py, <BR>features/steps/currentcost_steps.py</P></div>
+        <P>Clones detected: 17</P>
+        <P>117 of 693 lines are duplicates (16.88%) </P>
 <P>
 <B>Parameters<BR> </B>
 clustering_threshold = 10<BR>
@@ -58,15 +58,15 @@ clusterize_using_hash = False<BR>
 clusterize_using_dcup = False<BR>
 </P> 
         
-    <B>Time elapsed</B><BR>Construction of AST : 0.35 seconds<BR>
+    <B>Time elapsed</B><BR>Construction of AST : 0.33 seconds<BR>
 Building statement hash : 0.00 seconds<BR>
-Building patterns : 0.53 seconds<BR>
-Marking similar statements : 0.49 seconds<BR>
+Building patterns : 0.49 seconds<BR>
+Marking similar statements : 0.46 seconds<BR>
 Finding similar sequences of statements : 0.12 seconds<BR>
-Refining candidates : 1.22 seconds<BR>
- Total time: 2.71<BR>
- Started at: Fri Apr 25 00:40:06 2014<BR>
- Finished at: Fri Apr 25 00:40:08 2014
+Refining candidates : 1.23 seconds<BR>
+ Total time: 2.63<BR>
+ Started at: Fri Apr 25 16:11:16 2014<BR>
+ Finished at: Fri Apr 25 16:11:18 2014
     <P><B>Clone # 1</B><BR>Distance between two fragments = 2 <BR>Clone size = 12<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 310</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 390</TD></TR><TR>
 <TD>
 commands = ('%s %s %s %s %s %s %s %s %s') % ((BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, <span style="color: rgb(255, 0, 0);">BAD_TTY_PORT</span>, ARGUMENT_MQ_CREDENTIAL, MQ_CREDENTIAL, ARGUMENT_LOG_CONF, LOG_CONF))</TD>
@@ -151,69 +151,69 @@ context.process = subprocess.Popen(shlex.split(commands))</TD>
 context.process = subprocess.Popen(shlex.split(commands))</TD>
 </TR>
 </TABLE> </P> <HR><BR>
-<P><B>Clone # 7</B><BR>Distance between two fragments = 2 <BR>Clone size = 10<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 268</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 446</TD></TR><TR>
+<P><B>Clone # 7</B><BR>Distance between two fragments = 2 <BR>Clone size = 10<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 446</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 268</TD></TR><TR>
 <TD>
+commands = ('%s %s %s %s %s %s %s %s %s') % ((BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">TTY_PORT</span></span>, ARGUMENT_MQ_CREDENTIAL, <span style="color: rgb(255, 0, 0);">MQ_CREDENTIAL</span>, ARGUMENT_LOG_CONF, LOG_CONF))</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
 commands = ('%s %s %s %s %s %s %s %s %s') % ((BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, <span style="color: rgb(255, 0, 0);">BAD_TTY_PORT</span>, ARGUMENT_MQ_CREDENTIAL, <span style="color: rgb(255, 0, 0);">BAD_MQ_CREDENTIAL</span>, ARGUMENT_LOG_CONF, LOG_CONF))</TD>
-<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
-commands = ('%s %s %s %s %s %s %s %s %s') % ((BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">TTY_PORT</span></span>, ARGUMENT_MQ_CREDENTIAL, <span style="color: rgb(255, 0, 0);">MQ_CREDENTIAL</span>, ARGUMENT_LOG_CONF, LOG_CONF))</TD>
 </TR>
 </TABLE> </P> <HR><BR>
-<P><B>Clone # 8</B><BR>Distance between two fragments = 2 <BR>Clone size = 10<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 268</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 347</TD></TR><TR>
+<P><B>Clone # 8</B><BR>Distance between two fragments = 2 <BR>Clone size = 10<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 347</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 268</TD></TR><TR>
 <TD>
+commands = ('%s %s %s %s %s %s %s %s %s') % ((BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">TTY_PORT</span></span>, ARGUMENT_MQ_CREDENTIAL, <span style="color: rgb(255, 0, 0);">MQ_CREDENTIAL</span>, ARGUMENT_LOG_CONF, LOG_CONF))</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
 commands = ('%s %s %s %s %s %s %s %s %s') % ((BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">BAD_TTY_PORT</span></span>, ARGUMENT_MQ_CREDENTIAL, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">BAD_MQ_CREDENTIAL</span></span>, ARGUMENT_LOG_CONF, LOG_CONF))</TD>
-<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
-commands = ('%s %s %s %s %s %s %s %s %s') % ((BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">TTY_PORT</span></span>, ARGUMENT_MQ_CREDENTIAL, <span style="color: rgb(255, 0, 0);">MQ_CREDENTIAL</span>, ARGUMENT_LOG_CONF, LOG_CONF))</TD>
 </TR>
 </TABLE> </P> <HR><BR>
-<P><B>Clone # 9</B><BR>Distance between two fragments = 2 <BR>Clone size = 10<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 268</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 390</TD></TR><TR>
+<P><B>Clone # 9</B><BR>Distance between two fragments = 2 <BR>Clone size = 10<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 390</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 268</TD></TR><TR>
 <TD>
+commands = ('%s %s %s %s %s %s %s %s %s') % ((BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">TTY_PORT</span></span>, ARGUMENT_MQ_CREDENTIAL, <span style="color: rgb(255, 0, 0);">MQ_CREDENTIAL</span>, ARGUMENT_LOG_CONF, LOG_CONF))</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
 commands = ('%s %s %s %s %s %s %s %s %s') % ((BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">BAD_TTY_PORT</span></span></span>, ARGUMENT_MQ_CREDENTIAL, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">BAD_MQ_CREDENTIAL</span></span></span>, ARGUMENT_LOG_CONF, LOG_CONF))</TD>
-<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
-commands = ('%s %s %s %s %s %s %s %s %s') % ((BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">TTY_PORT</span></span>, ARGUMENT_MQ_CREDENTIAL, <span style="color: rgb(255, 0, 0);">MQ_CREDENTIAL</span>, ARGUMENT_LOG_CONF, LOG_CONF))</TD>
 </TR>
 </TABLE> </P> <HR><BR>
-<P><B>Clone # 10</B><BR>Distance between two fragments = 1 <BR>Clone size = 10<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 268</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 310</TD></TR><TR>
+<P><B>Clone # 10</B><BR>Distance between two fragments = 1 <BR>Clone size = 10<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 310</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 268</TD></TR><TR>
 <TD>
-commands = ('%s %s %s %s %s %s %s %s %s') % ((BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">BAD_TTY_PORT</span></span></span>, ARGUMENT_MQ_CREDENTIAL, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">BAD_MQ_CREDENTIAL</span></span></span></span>, ARGUMENT_LOG_CONF, LOG_CONF))</TD>
-<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
 commands = ('%s %s %s %s %s %s %s %s %s') % ((BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">BAD_TTY_PORT</span></span></span>, ARGUMENT_MQ_CREDENTIAL, <span style="color: rgb(255, 0, 0);">MQ_CREDENTIAL</span>, ARGUMENT_LOG_CONF, LOG_CONF))</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+commands = ('%s %s %s %s %s %s %s %s %s') % ((BIN, VAR_NAME, SITE_NAME, ARGUMENT_TTY_PORT, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">BAD_TTY_PORT</span></span></span>, ARGUMENT_MQ_CREDENTIAL, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">BAD_MQ_CREDENTIAL</span></span></span></span>, ARGUMENT_LOG_CONF, LOG_CONF))</TD>
 </TR>
 </TABLE> </P> <HR><BR>
-<P><B>Clone # 11</B><BR>Distance between two fragments = 3 <BR>Clone size = 7<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 149</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 161</TD></TR><TR>
+<P><B>Clone # 11</B><BR>Distance between two fragments = 3 <BR>Clone size = 7<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 161</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 149</TD></TR><TR>
 <TD>
-def <span style="color: rgb(255, 0, 0);">check_cc_incorrect</span>(channel, method, properties, body):<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;expected_message = (<span style="color: rgb(255, 0, 0);">CC_INCORRECT_MESSAGE</span>) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);">WRONG_CURRENTCOST_MESSAGE</span>))<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;verify_json_message(body, expected_message)<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;channel.close()</TD>
-<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
 def <span style="color: rgb(255, 0, 0);">check_cc_unreachable</span>(channel, method, properties, body):<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;expected_message = (<span style="color: rgb(255, 0, 0);">TTY_CONNECTION_PROBLEM</span>) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);">BAD_TTY_PORT</span>))<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;verify_json_message(body, expected_message)<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;channel.close()</TD>
-</TR>
-</TABLE> </P> <HR><BR>
-<P><B>Clone # 12</B><BR>Distance between two fragments = 2 <BR>Clone size = 7<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 161</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 173</TD></TR><TR>
-<TD>
-def <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">check_cc_unreachable</span></span>(channel, method, properties, body):<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;expected_message = (<span style="color: rgb(255, 0, 0);">TTY_CONNECTION_PROBLEM</span>) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">BAD_TTY_PORT</span></span>))<BR>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+def <span style="color: rgb(255, 0, 0);">check_cc_incorrect</span>(channel, method, properties, body):<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;expected_message = (<span style="color: rgb(255, 0, 0);">CC_INCORRECT_MESSAGE</span>) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);">WRONG_CURRENTCOST_MESSAGE</span>))<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;verify_json_message(body, expected_message)<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;channel.close()</TD>
-<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 12</B><BR>Distance between two fragments = 2 <BR>Clone size = 7<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 173</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 161</TD></TR><TR>
+<TD>
 def <span style="color: rgb(255, 0, 0);">check_cc_disconnected</span>(channel, method, properties, body):<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;expected_message = (TTY_CONNECTION_PROBLEM) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);">TTY_PORT</span>))<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;verify_json_message(body, expected_message)<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;channel.close()</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+def <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">check_cc_unreachable</span></span>(channel, method, properties, body):<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;expected_message = (<span style="color: rgb(255, 0, 0);">TTY_CONNECTION_PROBLEM</span>) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">BAD_TTY_PORT</span></span>))<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;verify_json_message(body, expected_message)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;channel.close()</TD>
 </TR>
 </TABLE> </P> <HR><BR>
-<P><B>Clone # 13</B><BR>Distance between two fragments = 3 <BR>Clone size = 7<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 149</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 173</TD></TR><TR>
+<P><B>Clone # 13</B><BR>Distance between two fragments = 3 <BR>Clone size = 7<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 173</TD><TD></TD><TD>Source file "features/steps/currentcost_steps.py"<BR>The first line is 149</TD></TR><TR>
 <TD>
-def <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">check_cc_incorrect</span></span>(channel, method, properties, body):<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;expected_message = (<span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">CC_INCORRECT_MESSAGE</span></span>) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">WRONG_CURRENTCOST_MESSAGE</span></span>))<BR>
+def <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">check_cc_disconnected</span></span>(channel, method, properties, body):<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;expected_message = (<span style="color: rgb(255, 0, 0);">TTY_CONNECTION_PROBLEM</span>) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">TTY_PORT</span></span>))<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;verify_json_message(body, expected_message)<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;channel.close()</TD>
 <TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
-def <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">check_cc_disconnected</span></span>(channel, method, properties, body):<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;expected_message = (<span style="color: rgb(255, 0, 0);">TTY_CONNECTION_PROBLEM</span>) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">TTY_PORT</span></span>))<BR>
+def <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">check_cc_incorrect</span></span>(channel, method, properties, body):<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;expected_message = (<span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">CC_INCORRECT_MESSAGE</span></span>) % ((VAR_NAME, SITE_NAME, <span style="color: rgb(255, 0, 0);"><span style="color: rgb(255, 0, 0);">WRONG_CURRENTCOST_MESSAGE</span></span>))<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;verify_json_message(body, expected_message)<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;channel.close()</TD>
 </TR>
@@ -231,17 +231,17 @@ LOGGER.info(error)</TD>
 LOGGER.info(error)</TD>
 </TR>
 </TABLE> </P> <HR><BR>
-<P><B>Clone # 15</B><BR>Distance between two fragments = 2 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "tests/test_utils.py"<BR>The first line is 52</TD><TD></TD><TD>Source file "tests/test_utils.py"<BR>The first line is 44</TD></TR><TR>
+<P><B>Clone # 15</B><BR>Distance between two fragments = 1 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "currentcost/messager.py"<BR>The first line is 62</TD><TD></TD><TD>Source file "currentcost/messager.py"<BR>The first line is 54</TD></TR><TR>
 <TD>
-topic, message = data_validator(<span style="color: rgb(255, 0, 0);">WRONG_CURRENTCOST_MESSAGE</span>, VAR_NAME, SITE_NAME)</TD>
+error = (<span style="color: rgb(255, 0, 0);">RABBIT_MQ_CONNECTION_PROBLEM</span>) % ((username, password, host))</TD>
 <TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
-topic, message = data_validator(<span style="color: rgb(255, 0, 0);">CURRENTCOST_MESSAGE</span>, VAR_NAME, SITE_NAME)</TD>
+error = (<span style="color: rgb(255, 0, 0);">RABBIT_MQ_CREDENTIAL_PROBLEM</span>) % ((username, password, host))</TD>
 </TR>
 <TR>
 <TD>
-self.assertEqual(topic, <span style="color: rgb(255, 0, 0);">ERROR</span>)</TD>
-<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
-self.assertEqual(topic, <span style="color: rgb(255, 0, 0);">SUCCESS</span>)</TD>
+self.logger.error(error)</TD>
+<TD style="width: 10px;" BGCOLOR=AQUA> </TD><TD>
+self.logger.error(error)</TD>
 </TR>
 </TABLE> </P> <HR><BR>
 <P><B>Clone # 16</B><BR>Distance between two fragments = 2 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "currentcost/connector.py"<BR>The first line is 99</TD><TD></TD><TD>Source file "currentcost/connector.py"<BR>The first line is 113</TD></TR><TR>
@@ -255,6 +255,19 @@ self.assertEqual(topic, <span style="color: rgb(255, 0, 0);">SUCCESS</span>)</TD
 LOGGER.<span style="color: rgb(255, 0, 0);">info</span>(<span style="color: rgb(255, 0, 0);">info</span>)</TD>
 <TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
 LOGGER.<span style="color: rgb(255, 0, 0);">info</span>(<span style="color: rgb(255, 0, 0);">error</span>)</TD>
+</TR>
+</TABLE> </P> <HR><BR>
+<P><B>Clone # 17</B><BR>Distance between two fragments = 2 <BR>Clone size = 5<TABLE NOWRAP WIDTH=100% BORDER=1><TD>Source file "tests/test_utils.py"<BR>The first line is 52</TD><TD></TD><TD>Source file "tests/test_utils.py"<BR>The first line is 44</TD></TR><TR>
+<TD>
+topic, message = data_validator(<span style="color: rgb(255, 0, 0);">WRONG_CURRENTCOST_MESSAGE</span>, VAR_NAME, SITE_NAME)</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+topic, message = data_validator(<span style="color: rgb(255, 0, 0);">CURRENTCOST_MESSAGE</span>, VAR_NAME, SITE_NAME)</TD>
+</TR>
+<TR>
+<TD>
+self.assertEqual(topic, <span style="color: rgb(255, 0, 0);">ERROR</span>)</TD>
+<TD style="width: 10px;" BGCOLOR=RED> </TD><TD>
+self.assertEqual(topic, <span style="color: rgb(255, 0, 0);">SUCCESS</span>)</TD>
 </TR>
 </TABLE> </P> <HR>
     

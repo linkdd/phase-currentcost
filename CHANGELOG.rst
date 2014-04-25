@@ -1,4 +1,15 @@
-phase-currentcost (v0.9.15) stable; urgency=low
+phase-currentcost (v0.9.17) stable; urgency=low
+-----------------------------------------------
+
+* Improve documentation
+* Rewrite readme.md
+* Add readthe docs link
+* Add rules installation
+* Remove useless tasks in TODO
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-25 17:45:00
+
+phase-currentcost (v0.9.16) stable; urgency=low
 -----------------------------------------------
 
 * Fix bug in ReadTheDocs

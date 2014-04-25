@@ -11,7 +11,7 @@ from __future__ import print_function
 import unittest
 from currentcost.utils import ERROR, CURRENTCOST_TIMEOUT
 from currentcost.utils import SUCCESS, CC_INCORRECT_MESSAGE, data_validator
-#from currentcost.utils import CURRENTCOST_UNICODE_ERROR
+# from currentcost.utils import CURRENTCOST_UNICODE_ERROR
 import logging
 import logging.config
 

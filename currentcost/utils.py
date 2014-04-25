@@ -45,9 +45,9 @@ def argument_parser():
     :returns:  dict -- Dict containing arguments.
 
     """
-#   Get command line arguments
+    # Get command line arguments
     parser = argparse.ArgumentParser()
-#   Define expected arguments
+    # Define expected arguments
     parser.add_argument("variable_name", help="name of the variable")
     parser.add_argument("site_name",
                         help="name of the location of the variable")
@@ -60,7 +60,7 @@ def argument_parser():
     parser.add_argument("-l", "--log-conf", help="path to log configuration")
     parser.add_argument("-v", "--verbose", help="activate verbose mode",
                         action="store_true")
-#   Return list of argument passed in command line
+    # Return list of argument passed in command line
     return parser.parse_args()
 
 
@@ -77,13 +77,13 @@ def init_message(variable_name, site_name, tty_port):
     :type tty_port: str.
 
     """
-#   Create init message
+    # Create init message
     message = "Starting current cost application\n"
     message += "Current time: %s\n" % datetime.now()
     message += "Variable name: %s\n" % variable_name
     message += "Site name: %s\n" % site_name
     message += "TTY port: %s\n" % tty_port
-#   We log this message
+    # We log this message
     LOGGER.info(message)
 
 
@@ -94,12 +94,12 @@ def verbose_mode(verbose):
     :type variable_name: bool.
 
     """
-#   If verbose mode is activated
+    # If verbose mode is activated
     if verbose:
-#       Create an handler to console and display log message
+        # Create an handler to console and display log message
         sth = logging.StreamHandler()
         sth.setLevel(logging.INFO)
-#       Add this handler to current logger
+        # Add this handler to current logger
         LOGGER.addHandler(sth)
 
 
@@ -119,35 +119,35 @@ def data_validator(data, variable_name, site_name):
         Message containing error description or data sent by CC.
 
     """
-#   Initialization of variable
+    # Initialization of variable
     topic = ERROR
     message = None
-#   If data is empty, that means we reach a Timeout
+    # If data is empty, that means we reach a Timeout
     if data == "":
         message = CURRENTCOST_TIMEOUT % (variable_name, site_name)
-#   Else we retrieve a string
+    # Else we retrieve a string
     else:
-#       We remove useless end-line and new-line caracteres
+        # We remove useless end-line and new-line caracteres
         data = data.replace("\n", "").replace("\r", "")
         try:
-#           We expect a valid XML
+            # We expect a valid XML
             ElementTree.fromstring(data)
         except ElementTree.ParseError:
             try:
-#               If it's not a valid XML, we expected it's a good string
-#               and return an error
+                # If it's not a valid XML, we expected it's a good string
+                # and return an error
                 message = CC_INCORRECT_MESSAGE % (
                     variable_name,
                     site_name,
                     data)
             except UnicodeDecodeError:
-#               If it's not a good string, we send according message
+                # If it's not a good string, we send according message
                 message = CC_INCORRECT_MESSAGE % (
                     variable_name,
                     site_name,
                     CURRENTCOST_UNICODE_ERROR)
         else:
-#           Else, we return our message with according topic
+            # Else, we return our message with according topic
             topic = SUCCESS
             message = data
 

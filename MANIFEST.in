@@ -1,2 +1,3 @@
 include README.rst
 include logs/phase-currentcost.conf
+include udev/70-currentcost.rules

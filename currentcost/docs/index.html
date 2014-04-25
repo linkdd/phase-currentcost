@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Indices and tables &mdash; phase-currentcost 0.9.16 documentation</title>
+  <title>phase-currentcost &mdash; phase-currentcost 0.9.16 documentation</title>
   
 
   
@@ -58,30 +58,32 @@
         
             <ul>
 <li class="toctree-l1"><a class="reference internal" href="presentation.html">phase-currentcost</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="presentation.html#features">Features</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presentation.html#examples">Examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#message-send-through-rabbitmq">Message send through RabbitMQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presentation.html#issue">Issue</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#contribute">Contribute</a></li>
-<li class="toctree-l2"><a class="reference internal" href="presentation.html#work-flow">Work flow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="presentation.html#test-plan">Test plan</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#license">License</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="code.html">Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.utils">Utils</a></li>
-<li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.messager">RabbitMQ_messager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#workflow">Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#test-plan">Test plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#utils-module">Utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.messager">RabbitMQ_messager module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO v1.0.0</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">Todo</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="todo.html#objectives">Objectives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="todo.html#schedule">Schedule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="todo.html#pending-tasks">Pending tasks</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="change.html">CHANGELOG</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="change.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-17-stable-urgency-low">phase-currentcost (v0.9.17) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-16-stable-urgency-low">phase-currentcost (v0.9.16) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-15-stable-urgency-low">phase-currentcost (v0.9.15) stable; urgency=low</a></li>
-<li class="toctree-l2"><a class="reference internal" href="change.html#id1">phase-currentcost (v0.9.15) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-14-stable-urgency-low">phase-currentcost (v0.9.14) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-13-stable-urgency-low">phase-currentcost (v0.9.13) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-12-stable-urgency-low">phase-currentcost (v0.9.12) stable; urgency=low</a></li>
@@ -150,7 +152,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="#">Docs</a> &raquo;</li>
       
-    <li>Indices and tables</li>
+    <li>phase-currentcost</li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="_sources/index.txt" rel="nofollow"> View page source</a>
@@ -161,33 +163,41 @@
 </div>
           <div role="main">
             
-  <div class="toctree-wrapper compound">
+  <div class="section" id="phase-currentcost">
+<h1>phase-currentcost<a class="headerlink" href="#phase-currentcost" title="Permalink to this headline">¶</a></h1>
+<p>CurrentCost data collector script for phase project.</p>
+<p><a class="reference external" href="http://www.currentcost.com/product-envir.html">CurrentCost EnviR 128</a> is an appliance that monitor your electricity consumption and provide an <a class="reference external" href="http://www.currentcost.com/cc128/xml.htm">API</a> to retrieve data from USB cable.</p>
+<p>phase-currentcost allow use to retrieve data from usb cable using <a class="reference external" href="http://pyserial.sourceforge.net/">pyserial</a> and transmit information to stdout or to <a class="reference external" href="https://www.rabbitmq.com/">RabbitMQ</a> using <a class="reference external" href="http://pika.readthedocs.org/en/latest/">Pika</a> module.</p>
+<p>More precisly, this script collect instantaneous and historical data from Current Cost. It also take care of usb disconnection, Current Cost bad message format, timeout and power disconnection and send an error on stdout or on RabbitMQ each time for later anlysis. Also it create an udev rule to transform /dev/ttyUSB* to /dev/currentcost for serial port connection.</p>
+<div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="presentation.html">phase-currentcost</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="presentation.html#features">Features</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presentation.html#examples">Examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#message-send-through-rabbitmq">Message send through RabbitMQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presentation.html#issue">Issue</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#contribute">Contribute</a></li>
-<li class="toctree-l2"><a class="reference internal" href="presentation.html#work-flow">Work flow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="presentation.html#test-plan">Test plan</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#license">License</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="code.html">Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.utils">Utils</a></li>
-<li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.messager">RabbitMQ_messager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#workflow">Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#test-plan">Test plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#utils-module">Utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.messager">RabbitMQ_messager module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO v1.0.0</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">Todo</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="todo.html#objectives">Objectives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="todo.html#schedule">Schedule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="todo.html#pending-tasks">Pending tasks</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="change.html">CHANGELOG</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="change.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-17-stable-urgency-low">phase-currentcost (v0.9.17) stable; urgency=low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-16-stable-urgency-low">phase-currentcost (v0.9.16) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-15-stable-urgency-low">phase-currentcost (v0.9.15) stable; urgency=low</a></li>
-<li class="toctree-l2"><a class="reference internal" href="change.html#id1">phase-currentcost (v0.9.15) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-14-stable-urgency-low">phase-currentcost (v0.9.14) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-13-stable-urgency-low">phase-currentcost (v0.9.13) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-12-stable-urgency-low">phase-currentcost (v0.9.12) stable; urgency=low</a></li>
@@ -236,12 +246,13 @@
 </ul>
 </div>
 <div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
 <li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
 <li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
 </ul>
+</div>
 </div>
 
 
