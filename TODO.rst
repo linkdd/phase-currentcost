@@ -10,12 +10,7 @@ Schedule
 --------
 
 * For April, 25th 2014:
-    * List all features
-    * Write README.rst
-    * Describe usage process
-    * Add link to ReadTheDoc
     * Ajouter /etc/currentcost.rules during installation
-    * Add integration with supervisor
 
 Pending tasks
 -------------
@@ -36,6 +31,7 @@ Pending tasks
         * Launch a server web in a subprocess.Popen
         * Launch watch task in a subprocess.Popen
         * Listen for a terminating command to quit properly two previous subprocesses
+        * Add integration with supervisor
     * Release:
         * Develop something on develop branch
         * Launch paver commit

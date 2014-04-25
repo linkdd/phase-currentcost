@@ -82,6 +82,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="change.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-17-stable-urgency-low">phase-currentcost (v0.9.17) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-16-stable-urgency-low">phase-currentcost (v0.9.16) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-15-stable-urgency-low">phase-currentcost (v0.9.15) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-14-stable-urgency-low">phase-currentcost (v0.9.14) stable; urgency=low</a></li>
@@ -173,6 +174,7 @@
 <p><a class="reference external" href="http://www.currentcost.com/product-envir.html">CurrentCost EnviR 128</a> is an appliance that monitor your electricity consumption and provide an <a class="reference external" href="http://www.currentcost.com/cc128/xml.htm">API</a> to retrieve data from USB cable.</p>
 <p>phase-currentcost allow use to retrieve data from usb cable using <a class="reference external" href="http://pyserial.sourceforge.net/">pyserial</a> and transmit information to stdout or to <a class="reference external" href="https://www.rabbitmq.com/">RabbitMQ</a> using <a class="reference external" href="http://pika.readthedocs.org/en/latest/">Pika</a> module.</p>
 <p>More precisly, this script collect instantaneous and historical data from Current Cost. It also take care of usb disconnection, Current Cost bad message format, timeout and power disconnection and send an error on stdout or on RabbitMQ each time for later anlysis. Also it create an udev rule to transform /dev/ttyUSB* to /dev/currentcost for serial port connection.</p>
+<p>For more information, full documentation is available on <a class="reference external" href="http://phase-currentcost.readthedocs.org/en/latest/">readthedocs.org</a></p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>Requirements:</p>
@@ -358,9 +360,8 @@ TTY port: /dev/currentcost
 <li><p class="first">Prepare your virtualenv</p>
 <blockquote>
 <div><div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkvirtualenv phase
-<span class="o">(</span>phase<span class="o">)</span><span class="nv">$ </span>pip install --upgrade pip
 <span class="o">(</span>phase<span class="o">)</span><span class="nv">$ </span>pip install paver
-<span class="o">(</span>phase<span class="o">)</span><span class="nv">$ </span>paver installation
+<span class="o">(</span>phase<span class="o">)</span><span class="nv">$ </span>paver prepare
 </pre></div>
 </div>
 </div></blockquote>

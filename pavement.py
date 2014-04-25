@@ -39,7 +39,7 @@ def prepare():
 
     """
     sh('pip install pylint pyflakes behave nose clonedigger pep8 sphinx')
-    sh('pip install watchdog coverage ipython')
+    sh('pip install watchdog coverage ipython sphinx_rtd_theme')
     develop()
 
 

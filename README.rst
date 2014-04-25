@@ -26,6 +26,8 @@ phase-currentcost allow use to retrieve data from usb cable using `pyserial <htt
 
 More precisly, this script collect instantaneous and historical data from Current Cost. It also take care of usb disconnection, Current Cost bad message format, timeout and power disconnection and send an error on stdout or on RabbitMQ each time for later anlysis. Also it create an udev rule to transform /dev/ttyUSB* to /dev/currentcost for serial port connection.
 
+For more information, full documentation is available on `readthedocs.org <http://phase-currentcost.readthedocs.org/en/latest/>`_
+
 Installation
 ------------
 
@@ -195,7 +197,6 @@ I will be really happy if you want to contribute to this project. Ther are sever
     .. code-block:: bash
 
         $ mkvirtualenv phase
-        (phase)$ pip install --upgrade pip
         (phase)$ pip install paver
         (phase)$ paver prepare
 

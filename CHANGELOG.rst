@@ -1,3 +1,12 @@
+phase-currentcost (v0.9.17) stable; urgency=low
+-----------------------------------------------
+
+* Improve documentation
+* Rewrite readme.md
+* Add readthe docs link
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-25 16:20:00
+
 phase-currentcost (v0.9.16) stable; urgency=low
 -----------------------------------------------
 
