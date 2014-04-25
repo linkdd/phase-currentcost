@@ -5,7 +5,7 @@ from setuptools.command.install import install
 from shutil import copy
 import os
 
-VERSION = "0.9.17"
+VERSION = "1.0.0"
 
 INSTALL_REQS = ["pyserial >= 2.5", "pika"]
 

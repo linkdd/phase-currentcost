@@ -1,3 +1,11 @@
+phase-currentcost (v1.0.0) stable; urgency=low
+-----------------------------------------------
+
+* Change func test order
+* Reach version 1.0
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-25 18:15:00
+
 phase-currentcost (v0.9.17) stable; urgency=low
 -----------------------------------------------
 
