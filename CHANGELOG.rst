@@ -1,3 +1,11 @@
+phase-currentcost (v1.0.1) stable; urgency=low
+-----------------------------------------------
+
+* Add issue in TODO
+* Rewrite little section of README.md
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-25 18:50:00
+
 phase-currentcost (v1.0.0) stable; urgency=low
 -----------------------------------------------
 
