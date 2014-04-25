@@ -155,17 +155,16 @@ Messages list:
 | currentcost | CurrentCost XML message         | Send Currentcost XML message                      |
 +-------------+---------------------------------+---------------------------------------------------+
 
-Issue
------
+Contribute
+----------
+
+I am more than happy to accept external contributions like feedback, bug reports and pull requests. 
 
 Do not hesitate to post an `issue <https://github.com/liogen/phase-currentcost/issues>`_ if you have any problem to install or to use this software.
 
 You can also use this way to ask for a Feature request. I am also available to answer you on `Stack Overflow <http://stackoverflow.com/questions/tagged/phase-currentcost>`_
 
-Contribute
-----------
-
-I will be really happy if you want to contribute to this project. Ther are several ways to help me improving this software. Here is the development process to test and validate your features.
+Here is the development process to test and validate your features.
 
 1. Prepare your development environment:
 
@@ -246,4 +245,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-

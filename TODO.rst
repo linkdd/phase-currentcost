@@ -1,7 +1,10 @@
 Todo
 ====
 
-* News:
+* Issues:
+    * Fix ReadTheDoc module import error
+
+* Features:
     * Support of python 3.2, 3.3, pypy
     * Integrate improved pavement.py
     * Integrate phase-messager instead of messager
