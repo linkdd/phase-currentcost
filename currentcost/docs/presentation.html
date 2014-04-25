@@ -30,7 +30,7 @@
   
     <link rel="top" title="phase-currentcost 0.9.16 documentation" href="index.html"/>
         <link rel="next" title="Modules" href="code.html"/>
-        <link rel="prev" title="Indices and tables" href="index.html"/> 
+        <link rel="prev" title="phase-currentcost" href="index.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -59,30 +59,31 @@
         
             <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">phase-currentcost</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#features">Features</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#message-send-through-rabbitmq">Message send through RabbitMQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#issue">Issue</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#contribute">Contribute</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#work-flow">Work flow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#test-plan">Test plan</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="code.html">Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.utils">Utils</a></li>
-<li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.messager">RabbitMQ_messager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#workflow">Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#test-plan">Test plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#utils-module">Utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.messager">RabbitMQ_messager module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO v1.0.0</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">Todo</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="todo.html#objectives">Objectives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="todo.html#schedule">Schedule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="todo.html#pending-tasks">Pending tasks</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="change.html">CHANGELOG</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="change.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-16-stable-urgency-low">phase-currentcost (v0.9.16) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-15-stable-urgency-low">phase-currentcost (v0.9.15) stable; urgency=low</a></li>
-<li class="toctree-l2"><a class="reference internal" href="change.html#id1">phase-currentcost (v0.9.15) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-14-stable-urgency-low">phase-currentcost (v0.9.14) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-13-stable-urgency-low">phase-currentcost (v0.9.13) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-12-stable-urgency-low">phase-currentcost (v0.9.12) stable; urgency=low</a></li>
@@ -167,42 +168,43 @@
 <a class="reference external image-reference" href="https://travis-ci.org/liogen/phase-currentcost"><img alt="Travis CI Build Status" src="http://img.shields.io/travis/liogen/phase-currentcost.png?branch=master" /></a>
 <a class="reference external image-reference" href="https://pypi.python.org/pypi/phase-currentcost"><img alt="Latest Version" src="http://img.shields.io/pypi/v/phase-currentcost.png" /></a>
 <a class="reference external image-reference" href="https://pypi.python.org/pypi/phase-currentcost"><img alt="Downloads" src="http://img.shields.io/pypi/dm/phase-currentcost.png" /></a>
-<a class="reference external image-reference" href="https://pypi.python.org/pypi/phase-currentcost/"><img alt="License" src="http://img.shields.io/badge/license-MIT-red.png" /></a>
-<p>Functional test with fixtures to simulate CurrentCost on port COM and waited for currentCost to send messages.</p>
-<p>TO BE COMPLETED (goals of the project)</p>
-<div class="section" id="features">
-<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><ul class="simple">
-<li>support usb disconnexion</li>
-<li>send instant consumption</li>
-<li>send historical consumption</li>
-<li>send timeout message</li>
-<li>send bad formated message eroor</li>
-<li>To be completed</li>
-</ul>
-</div></blockquote>
-</div>
+<a class="reference external image-reference" href="https://github.com/liogen/phase-currentcost"><img alt="License" src="http://img.shields.io/badge/license-MIT-red.png" /></a>
+<p>CurrentCost data collector script for phase project.</p>
+<p><a class="reference external" href="http://www.currentcost.com/product-envir.html">CurrentCost EnviR 128</a> is an appliance that monitor your electricity consumption and provide an <a class="reference external" href="http://www.currentcost.com/cc128/xml.htm">API</a> to retrieve data from USB cable.</p>
+<p>phase-currentcost allow use to retrieve data from usb cable using <a class="reference external" href="http://pyserial.sourceforge.net/">pyserial</a> and transmit information to stdout or to <a class="reference external" href="https://www.rabbitmq.com/">RabbitMQ</a> using <a class="reference external" href="http://pika.readthedocs.org/en/latest/">Pika</a> module.</p>
+<p>More precisly, this script collect instantaneous and historical data from Current Cost. It also take care of usb disconnection, Current Cost bad message format, timeout and power disconnection and send an error on stdout or on RabbitMQ each time for later anlysis. Also it create an udev rule to transform /dev/ttyUSB* to /dev/currentcost for serial port connection.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>To install this software you need to install python 2.7 and pip</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo apt-get install python python-pip python-dev build-essential
+<p>Requirements:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Platform: Unix (only tested on Ubuntu 12.04)</li>
+<li>Python 2.7</li>
+<li>Pip (last version)</li>
+<li>RabbitMQ (last version)</li>
+</ul>
+</div></blockquote>
+<p>To install this software, you need to install python 2.7 and pip</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo apt-get install python python-pip
 <span class="nv">$ </span>sudo pip install --upgrade pip
 </pre></div>
 </div>
 <p>Then, you have to install and configure RabbitMQ (change &#8220;admin&#8221; and &#8220;password&#8221; by your credential)</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;deb http://www.rabbitmq.com/debian/ testing main&quot;</span> &gt; /etc/apt/sources.list.d/rabbitmq.list
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ USERNAME</span><span class="o">=</span><span class="s2">&quot;admin&quot;</span>
+<span class="nv">$ PASSWORD</span><span class="o">=</span><span class="s2">&quot;password&quot;</span>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;deb http://www.rabbitmq.com/debian/ testing main&quot;</span> &gt; sudo /etc/apt/sources.list.d/rabbitmq.list
 <span class="nv">$ </span>wget http://www.rabbitmq.com/rabbitmq-signing-key-public.asc
 <span class="nv">$ </span>sudo apt-key add rabbitmq-signing-key-public.asc
-<span class="nv">$ </span>apt-get update
-<span class="nv">$ </span>apt-get install rabbitmq-server -y
-<span class="nv">$ </span>service rabbitmq-server start
-<span class="nv">$ </span>rabbitmq-plugins <span class="nb">enable </span>rabbitmq_management
-<span class="nv">$ </span>rabbitmqctl add_user admin password
-<span class="nv">$ </span>rabbitmqctl set_user_tags admin administrator
-<span class="nv">$ </span>rabbitmqctl set_permissions -p / admin <span class="s2">&quot;.*&quot;</span> <span class="s2">&quot;.*&quot;</span> <span class="s2">&quot;.*&quot;</span>
-<span class="nv">$ </span>rabbitmqctl delete_user guest
-<span class="nv">$ </span>service rabbitmq-server restart
+<span class="nv">$ </span>sudo apt-get update
+<span class="nv">$ </span>sudo apt-get install rabbitmq-server -y
+<span class="nv">$ </span>sudo service rabbitmq-server start
+<span class="c"># If you get a &#39;command not found&#39; error for this line, use /usr/lib/rabbitmq/bin/rabbitmq-plugins instead</span>
+<span class="nv">$ </span>sudo rabbitmq-plugins <span class="nb">enable </span>rabbitmq_management
+<span class="nv">$ </span>sudo rabbitmqctl add_user <span class="nv">$USERNAME</span> <span class="nv">$PASSWORD</span>
+<span class="nv">$ </span>sudo rabbitmqctl set_user_tags <span class="nv">$USERNAME</span> administrator
+<span class="nv">$ </span>sudo rabbitmqctl set_permissions -p / <span class="nv">$USERNAME</span> <span class="s2">&quot;.*&quot;</span> <span class="s2">&quot;.*&quot;</span> <span class="s2">&quot;.*&quot;</span>
+<span class="nv">$ </span>sudo rabbitmqctl delete_user guest
+<span class="nv">$ </span>sudo service rabbitmq-server restart
 </pre></div>
 </div>
 <p>Then you can install phase-currentcost</p>
@@ -236,37 +238,54 @@ optional arguments:
 </div>
 <p>By default:</p>
 <ul class="simple">
-<li>We are looking for default tty port located in /dev/currentcost. You can over-write it if you want using &#8211;tty-port argument.</li>
-<li>RabbitMQ is not activated. To activate it you have to add your credential to phase-currentcost script. To give your credential to currentcost script, use &#8211;rabbitMQ-credential argument.</li>
-<li>If RabbitMQ is not activated, we display currentcost message in stdout. Else we send it over the network.</li>
-<li>Log configuration file is located in /opt/phase/phase-currentcost.conf and log file is in /var/logs/phase/phase-currentcost.log. You can set log configuration file using -l option and a path to your log.conf file.</li>
+<li>We targetting /dev/currentcost as tty port. You can over-write it using &#8211;tty-port argument.</li>
+<li>RabbitMQ is not activated. We send message to stdout so you can collect it on file. If you want to share your message over the network using RabbitMQ, you can activate this function using &#8211;rabbitMQ-credential argument and giving your credential followinf this format: username:password.</li>
+<li>Log configuration file is located in /opt/phase/phase-currentcost.conf and log file is in /var/logs/phase/phase-currentcost.log. You can set log configuration file using -l option with a path to your log.conf file.</li>
 </ul>
-<p>Examples:</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>To see the current consumption on Current cost on stdout use:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo phase-currentcost electric_meter liogen_home --tty-port /dev/currentcost
+<span class="o">{</span><span class="s2">&quot;variableID&quot;</span>: <span class="s2">&quot;electric_meter&quot;</span>, <span class="s2">&quot;dstTimezone&quot;</span>: <span class="s2">&quot;UTC&quot;</span>, <span class="s2">&quot;siteID&quot;</span>: <span class="s2">&quot;liogen_home&quot;</span>, <span class="s2">&quot;date&quot;</span>: <span class="s2">&quot;2014-04-25T12:00:17.754959&quot;</span>, <span class="s2">&quot;message&quot;</span>: <span class="s2">&quot;CurrentCost electric_meter in liogen_home: TTY connection problem: /dev/currentcost is unreachable. Retry connection in 5 seconds.&quot;</span>, <span class="s2">&quot;nonDstTimezone&quot;</span>: <span class="s2">&quot;UTC&quot;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&quot;variableID&quot;</span>: <span class="s2">&quot;electric_meter&quot;</span>, <span class="s2">&quot;dstTimezone&quot;</span>: <span class="s2">&quot;UTC&quot;</span>, <span class="s2">&quot;siteID&quot;</span>: <span class="s2">&quot;liogen_home&quot;</span>, <span class="s2">&quot;date&quot;</span>: <span class="s2">&quot;2014-04-25T12:00:22.769256&quot;</span>, <span class="s2">&quot;message&quot;</span>: <span class="s2">&quot;CurrentCost electric_meter in liogen_home: TTY connection problem: /dev/currentcost is unreachable. Retry connection in 5 seconds.&quot;</span>, <span class="s2">&quot;nonDstTimezone&quot;</span>: <span class="s2">&quot;UTC&quot;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&quot;variableID&quot;</span>: <span class="s2">&quot;electric_meter&quot;</span>, <span class="s2">&quot;dstTimezone&quot;</span>: <span class="s2">&quot;UTC&quot;</span>, <span class="s2">&quot;siteID&quot;</span>: <span class="s2">&quot;liogen_home&quot;</span>, <span class="s2">&quot;date&quot;</span>: <span class="s2">&quot;2014-04-25T12:00:22.769256&quot;</span>, <span class="s2">&quot;message&quot;</span>: <span class="s2">&quot;&lt;msg&gt;&lt;src&gt;CC128-v1.29&lt;/src&gt;&lt;dsb&gt;00786&lt;/dsb&gt;&lt;time&gt;00:31:36&lt;/time&gt;&lt;tmpr&gt;19.3&lt;/tmpr&gt;&lt;sensor&gt;0&lt;/sensor&gt;&lt;id&gt;00077&lt;/id&gt;&lt;type&gt;1&lt;/type&gt;&lt;ch1&gt;&lt;watts&gt;00405&lt;/watts&gt;&lt;/ch1&gt;&lt;/msg&gt;&quot;</span>, <span class="s2">&quot;nonDstTimezone&quot;</span>: <span class="s2">&quot;UTC&quot;</span><span class="o">}</span>
 </pre></div>
 </div>
-<p><strong>IDEA: PUT CONSOLE OUTPUT AS AN EXAMPLE</strong></p>
-<p>With rabbitMQ message over the network:</p>
+<p>With rabbitMQ message over the network with verbose mode activated:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo phase-currentcost electric_meter liogen_home --tty-port /dev/currentcost --rabbitmq-credential admin:password -v
+Starting current cost application
+Current <span class="nb">time</span>: 2014-04-25 12:01:34.350781
+Variable name: electric_meter
+Site name: liogen_home
+TTY port: /dev/currentcost
+
+<span class="o">{</span><span class="s2">&quot;variableID&quot;</span>: <span class="s2">&quot;electric_meter&quot;</span>, <span class="s2">&quot;dstTimezone&quot;</span>: <span class="s2">&quot;UTC&quot;</span>, <span class="s2">&quot;siteID&quot;</span>: <span class="s2">&quot;liogen_home&quot;</span>, <span class="s2">&quot;date&quot;</span>: <span class="s2">&quot;2014-04-25T12:00:22.769256&quot;</span>, <span class="s2">&quot;message&quot;</span>: <span class="s2">&quot;&lt;msg&gt;&lt;src&gt;CC128-v1.29&lt;/src&gt;&lt;dsb&gt;00786&lt;/dsb&gt;&lt;time&gt;00:31:36&lt;/time&gt;&lt;tmpr&gt;19.3&lt;/tmpr&gt;&lt;sensor&gt;0&lt;/sensor&gt;&lt;id&gt;00077&lt;/id&gt;&lt;type&gt;1&lt;/type&gt;&lt;ch1&gt;&lt;watts&gt;00405&lt;/watts&gt;&lt;/ch1&gt;&lt;/msg&gt;&quot;</span>, <span class="s2">&quot;nonDstTimezone&quot;</span>: <span class="s2">&quot;UTC&quot;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&quot;variableID&quot;</span>: <span class="s2">&quot;electric_meter&quot;</span>, <span class="s2">&quot;dstTimezone&quot;</span>: <span class="s2">&quot;UTC&quot;</span>, <span class="s2">&quot;siteID&quot;</span>: <span class="s2">&quot;liogen_home&quot;</span>, <span class="s2">&quot;date&quot;</span>: <span class="s2">&quot;2014-04-25T12:00:22.769256&quot;</span>, <span class="s2">&quot;message&quot;</span>: <span class="s2">&quot;&lt;msg&gt;&lt;src&gt;CC128-v1.29&lt;/src&gt;&lt;dsb&gt;00786&lt;/dsb&gt;&lt;time&gt;00:31:36&lt;/time&gt;&lt;tmpr&gt;19.3&lt;/tmpr&gt;&lt;sensor&gt;0&lt;/sensor&gt;&lt;id&gt;00077&lt;/id&gt;&lt;type&gt;1&lt;/type&gt;&lt;ch1&gt;&lt;watts&gt;00405&lt;/watts&gt;&lt;/ch1&gt;&lt;/msg&gt;&quot;</span>, <span class="s2">&quot;nonDstTimezone&quot;</span>: <span class="s2">&quot;UTC&quot;</span><span class="o">}</span>
 </pre></div>
 </div>
-<p><strong>IDEA: PUT CONSOLE OUTPUT AS AN EXAMPLE</strong></p>
-<p>Structure of a message send</p>
 </div>
 <div class="section" id="message-send-through-rabbitmq">
 <h2>Message send through RabbitMQ<a class="headerlink" href="#message-send-through-rabbitmq" title="Permalink to this headline">¶</a></h2>
 <p>A message is a JSON containing this properties:</p>
-<blockquote>
-<div><ul class="simple">
-<li><strong>variableID</strong>: name of the variable</li>
-<li><strong>siteID</strong>: Name of the site</li>
-<li><strong>date</strong>: Date in UTC</li>
-<li><strong>dstTimezone</strong>: Timezone with DST</li>
-<li><strong>nonDstTimezone</strong>: Timezone without DST</li>
-<li><strong>message</strong>: Message to deliver through RabbitMQ</li>
-</ul>
-</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">variableID:</th><td class="field-body">name of the variable</td>
+</tr>
+<tr class="field-even field"><th class="field-name">siteID:</th><td class="field-body">Name of the site</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">date:</th><td class="field-body">Date in UTC</td>
+</tr>
+<tr class="field-even field"><th class="field-name">dstTimezone:</th><td class="field-body">Timezone with DST</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">nonDstTimezone:</th><td class="field-body">Timezone without DST</td>
+</tr>
+<tr class="field-even field"><th class="field-name">message:</th><td class="field-body">Message to deliver through RabbitMQ</td>
+</tr>
+</tbody>
+</table>
 <p>Messages list:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -300,140 +319,77 @@ optional arguments:
 </tbody>
 </table>
 </div>
+<div class="section" id="issue">
+<h2>Issue<a class="headerlink" href="#issue" title="Permalink to this headline">¶</a></h2>
+<p>Do not hesitate to post an <a class="reference external" href="https://github.com/liogen/phase-currentcost/issues">issue</a> if you have any problem to install or to use this software.</p>
+<p>You can also use this way to ask for a Feature request. I am also available to answer you on <a class="reference external" href="http://stackoverflow.com/questions/tagged/phase-currentcost">Stack Overflow</a></p>
+</div>
 <div class="section" id="contribute">
 <h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h2>
-<p>Install socat</p>
-<p><strong>Philosophy</strong></p>
-<p>In this project, we will try to use the best practices of the development.</p>
-<ul>
-<li><dl class="first docutils">
-<dt><strong>Scenario based design</strong></dt>
-<dd><ul class="first last simple">
-<li>Take a paper and write what you code should do and how it should do using a story. (DESCRIBE MORE)</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><strong>Document driven-design</strong></dt>
-<dd><ul class="first last simple">
-<li>Take a minute and update documentation before coding (global documentation, code comment, test comment).</li>
-<li>Always keep a clear release road map. Update it if needed.</li>
-<li>Update README.md, CHANGELOG.txt, TODO.md as soon as possible.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><strong>Behavior driven development</strong></dt>
-<dd><ul class="first last simple">
-<li>Add one functional test.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><strong>Test driven development</strong></dt>
-<dd><ul class="first last simple">
-<li>Add one unit test while you don&#8217;t pass this functional test</li>
-<li>Develop function while you don&#8217;t pass this unit test</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><strong>Code version</strong></dt>
-<dd><ul class="first last simple">
-<li>Commit after each new implemented function</li>
-<li>Create a release after each validation of functional test</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><strong>Refactoring</strong></dt>
-<dd><ul class="first last simple">
-<li>Refactor code to improve readability, avoid code redundancy, speed compute time</li>
-<li>Return to BDD part.</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<p><strong>Setup environment</strong></p>
-<ul class="simple">
-<li><strong>IDEA: Explain virtualenv and virtualenvwrapper</strong></li>
-<li><strong>IDEA: Create a init script that ask several question and bootstrap project (plug-in)</strong></li>
-<li><strong>IDEA: generate_setup to use sdist command</strong></li>
-<li><strong>IDEA: test new plugin creation on TimeSeriesLogger</strong></li>
-<li><strong>IDEA: move phase-currentcost.py outside of phase</strong></li>
-<li><strong>IDEA: phase in development should provide init script to init and register new plugin</strong></li>
-</ul>
-<p><strong>TO BE COMPLETED</strong></p>
+<p>I will be really happy if you want to contribute to this project. Ther are several ways to help me improving this software. Here is the development process to test and validate your features.</p>
+<ol class="arabic">
+<li><p class="first">Prepare your development environment:</p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre><span class="c"># `Socat &lt;http://www.dest-unreach.org/socat/&gt;`_ is usefull to create socket connection between 2 files.</span>
+<span class="nv">$ </span>sudo apt-get install socat vim git-core
+<span class="c"># Install virtualenv and virtualenvwrapper if it&#39;s not done.</span>
+<span class="nv">$ </span>sudo pip install virtualenvwrapper
+<span class="nv">$ </span>mkdir ~/.virtualenvs
+<span class="nv">$ </span>vim ~/.bashrc
+<span class="c"># Modify your ~/.bashrc and add this 2 lines:</span>
+<span class="c"># export WORKON_HOME=~/.virtualenvs</span>
+<span class="c"># source /usr/local/bin/virtualenvwrapper.sh</span>
+<span class="nv">$ </span>bash
+</pre></div>
 </div>
-<div class="section" id="work-flow">
-<h2>Work flow<a class="headerlink" href="#work-flow" title="Permalink to this headline">¶</a></h2>
-<p><strong>TO BE MOVED</strong></p>
-<p><strong>Nominal case</strong></p>
-<ul>
-<li><p class="first">N1: Service started</p>
+</div></blockquote>
 </li>
-<li><dl class="first docutils">
-<dt>N2: Arguments analysis</dt>
-<dd><ul class="first last simple">
-<li>E1: Missing argument. Return an error and log it</li>
-<li>E2: Bad value for an argument. Return and error and log it</li>
-</ul>
-</dd>
-</dl>
+<li><p class="first">Go on <a class="reference external" href="https://github.com/liogen/phase-currentcost">github</a> and fork this project.</p>
 </li>
-<li><dl class="first docutils">
-<dt>N3: Connexion to current cost</dt>
-<dd><ul class="first last simple">
-<li>E3: Unable to connect to current cost. Send a message over the network to inform that it is not possible to connect to current cost and log it. Return to step N3.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>N4: Waited for a message from current cost</dt>
-<dd><ul class="first last simple">
-<li>E4: If no message received after 30 seconds, send a message over the network to inform that there is a problem with current cost and log it. Return to step N4.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>N5: XML message received and analyzed</dt>
-<dd><ul class="first last simple">
-<li>E5: Incorrect message. Log this message and return to step N4. (to be defined)</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><p class="first">N6: Creation of a network message looking like {variableID: ..., date: ..., message: ...}</p>
-</li>
-<li><dl class="first docutils">
-<dt>N7: Send this message over the network.</dt>
-<dd><ul class="first last simple">
-<li>E6: Problem during message sending. Retry and log this error.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><p class="first">N8: Message sent over the network. Return to step N4.</p>
-</li>
-</ul>
-<p><strong>Alternative cases</strong></p>
-<ul class="simple">
-<li>A1: USB port disconnected. Log this error, send an error message over the network and retry to reconnect to the USB port. If USB port reconnected, return to step N2.</li>
-</ul>
+<li><p class="first">Clone it on your conputer:</p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> &lt;your_workspace&gt;
+<span class="nv">$ </span>git clone git@github.com:&lt;username&gt;/phase-currentcost.git
+<span class="nv">$ </span>git checkout develop
+</pre></div>
 </div>
-<div class="section" id="test-plan">
-<h2>Test plan<a class="headerlink" href="#test-plan" title="Permalink to this headline">¶</a></h2>
-<p><strong>TO BE MOVED</strong></p>
-<p><strong>IDEA: Link to features/currentcost.feature</strong></p>
-<p>Look at features/currentcost.feature</p>
+</div></blockquote>
+</li>
+<li><p class="first">Prepare your virtualenv</p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkvirtualenv phase
+<span class="o">(</span>phase<span class="o">)</span><span class="nv">$ </span>pip install --upgrade pip
+<span class="o">(</span>phase<span class="o">)</span><span class="nv">$ </span>pip install paver
+<span class="o">(</span>phase<span class="o">)</span><span class="nv">$ </span>paver installation
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Add functional or unit tests</p>
+</li>
+<li><p class="first">Code your features</p>
+</li>
+<li><p class="first">To validate your implementation, launch:</p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>phase<span class="o">)</span><span class="nv">$ </span>paver validate
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Modify Todo, Changelog and update documentation</p>
+</li>
+<li><p class="first">Commit and push on github:</p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>phase<span class="o">)</span><span class="nv">$ </span>git add .
+<span class="o">(</span>phase<span class="o">)</span><span class="nv">$ </span>git commit -a -m <span class="s2">&quot;&lt;your commit message&gt;&quot;</span>
+<span class="o">(</span>phase<span class="o">)</span><span class="nv">$ </span>git push origin develop
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Propose a pull request on github</p>
+</li>
+</ol>
 </div>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
@@ -466,7 +422,7 @@ SOFTWARE.</p>
         <a href="code.html" class="btn btn-neutral float-right" title="Modules"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Indices and tables"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="phase-currentcost"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

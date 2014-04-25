@@ -34,6 +34,16 @@ options(
 
 
 @task
+def prepare():
+    """Install dependencies in this virtualenv
+
+    """
+    sh('pip install pylint pyflakes behave nose clonedigger pep8 sphinx')
+    sh('pip install watchdog coverage ipython')
+    develop()
+
+
+@task
 @needs(["html"])
 def upload():
     """
@@ -43,13 +53,12 @@ def upload():
 
 
 @task
-@needs(["html"])
-def development_env():
+def develop():
     """
         Generate docs and source distribution.
     """
 #   Install package in development mode
-    sh('paver develop')
+    sh('python setup.py develop')
 
 
 @task
@@ -65,14 +74,7 @@ def html():
 
 
 @task
-def build():
-    """
-        Validate implementation.
-    """
-    validate()
-
-
-@task
+@needs(["develop"])
 def validate():
     """
         Validate implementation.
@@ -143,15 +145,6 @@ def stat():
     """
     clonedigger()
     pylint()
-
-
-@task
-def bundle():
-    """
-        Freeze dependencies for deployment
-    """
-    sh("pip freeze > REQUIREMENTS.txt")
-    sh("pip bundle data-generator.pybundle -r REQUIREMENTS.txt")
 
 
 @task

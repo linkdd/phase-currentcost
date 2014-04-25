@@ -1,4 +1,4 @@
-phase-currentcost (v0.9.15) stable; urgency=low
+phase-currentcost (v0.9.16) stable; urgency=low
 -----------------------------------------------
 
 * Fix bug in ReadTheDocs

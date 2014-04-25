@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TODO v1.0.0 &mdash; phase-currentcost 0.9.16 documentation</title>
+  <title>Todo &mdash; phase-currentcost 0.9.16 documentation</title>
   
 
   
@@ -29,7 +29,7 @@
 
   
     <link rel="top" title="phase-currentcost 0.9.16 documentation" href="index.html"/>
-        <link rel="next" title="CHANGELOG" href="change.html"/>
+        <link rel="next" title="Changelog" href="change.html"/>
         <link rel="prev" title="Modules" href="code.html"/> 
 
   
@@ -59,30 +59,31 @@
         
             <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="presentation.html">phase-currentcost</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="presentation.html#features">Features</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presentation.html#examples">Examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#message-send-through-rabbitmq">Message send through RabbitMQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presentation.html#issue">Issue</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#contribute">Contribute</a></li>
-<li class="toctree-l2"><a class="reference internal" href="presentation.html#work-flow">Work flow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="presentation.html#test-plan">Test plan</a></li>
 <li class="toctree-l2"><a class="reference internal" href="presentation.html#license">License</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="code.html">Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.utils">Utils</a></li>
-<li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.messager">RabbitMQ_messager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#workflow">Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#test-plan">Test plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#utils-module">Utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html#module-currentcost.messager">RabbitMQ_messager module</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">TODO v1.0.0</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Todo</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#objectives">Objectives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#schedule">Schedule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pending-tasks">Pending tasks</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="change.html">CHANGELOG</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="change.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-16-stable-urgency-low">phase-currentcost (v0.9.16) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-15-stable-urgency-low">phase-currentcost (v0.9.15) stable; urgency=low</a></li>
-<li class="toctree-l2"><a class="reference internal" href="change.html#id1">phase-currentcost (v0.9.15) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-14-stable-urgency-low">phase-currentcost (v0.9.14) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-13-stable-urgency-low">phase-currentcost (v0.9.13) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-12-stable-urgency-low">phase-currentcost (v0.9.12) stable; urgency=low</a></li>
@@ -151,7 +152,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>TODO v1.0.0</li>
+    <li>Todo</li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="_sources/todo.txt" rel="nofollow"> View page source</a>
@@ -162,8 +163,8 @@
 </div>
           <div role="main">
             
-  <div class="section" id="todo-v1-0-0">
-<h1>TODO v1.0.0<a class="headerlink" href="#todo-v1-0-0" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="todo">
+<h1>Todo<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="objectives">
 <h2>Objectives<a class="headerlink" href="#objectives" title="Permalink to this headline">¶</a></h2>
 <p>Launch a current cost program on command line, read data from a current cost and send message over the network.</p>
@@ -178,6 +179,8 @@
 <li>Write README.rst</li>
 <li>Describe usage process</li>
 <li>Add link to ReadTheDoc</li>
+<li>Ajouter /etc/currentcost.rules during installation</li>
+<li>Add integration with supervisor</li>
 </ul>
 </dd>
 </dl>
@@ -222,6 +225,25 @@
 </dd>
 </dl>
 </li>
+<li><dl class="first docutils">
+<dt>Release:</dt>
+<dd><ul class="first last simple">
+<li>Develop something on develop branch</li>
+<li>Launch paver commit</li>
+<li>Commit code (git add . &amp;&amp; git ci -a -m &#8220;message&#8221;)</li>
+<li>Add a commit message on Changelog</li>
+<li>Launch paver release</li>
+<li>Increase release number (setup.py, changelog, conf.py)</li>
+<li>Push develop branch (git push origin develop)</li>
+<li>Create Release (git flow release start vX.X.X)</li>
+<li>Finish release (git flow release stop vX.X.X) with Changelog message</li>
+<li>Push master branch (git push origin master)</li>
+<li>Upload package on pypi</li>
+<li>Return on develop branch (git co develop)</li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 </dd>
 </dl>
@@ -255,7 +277,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="change.html" class="btn btn-neutral float-right" title="CHANGELOG"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="change.html" class="btn btn-neutral float-right" title="Changelog"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="code.html" class="btn btn-neutral" title="Modules"><span class="fa fa-arrow-circle-left"></span> Previous</a>

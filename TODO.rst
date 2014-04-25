@@ -1,5 +1,5 @@
-TODO v1.0.0
-===========
+Todo
+====
 
 Objectives
 ----------
@@ -14,6 +14,8 @@ Schedule
     * Write README.rst
     * Describe usage process
     * Add link to ReadTheDoc
+    * Ajouter /etc/currentcost.rules during installation
+    * Add integration with supervisor
 
 Pending tasks
 -------------
@@ -34,6 +36,19 @@ Pending tasks
         * Launch a server web in a subprocess.Popen
         * Launch watch task in a subprocess.Popen
         * Listen for a terminating command to quit properly two previous subprocesses
+    * Release:
+        * Develop something on develop branch
+        * Launch paver commit
+        * Commit code (git add . && git ci -a -m "message")
+        * Add a commit message on Changelog
+        * Launch paver release
+        * Increase release number (setup.py, changelog, conf.py)
+        * Push develop branch (git push origin develop)
+        * Create Release (git flow release start vX.X.X)
+        * Finish release (git flow release stop vX.X.X) with Changelog message
+        * Push master branch (git push origin master)
+        * Upload package on pypi
+        * Return on develop branch (git co develop)
 
 * News:
     * Support of python 3.2, 3.3, pypy
