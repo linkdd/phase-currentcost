@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>currentcost.utils &mdash; phase-currentcost 1.0.1 documentation</title>
+  <title>currentcost.utils &mdash; phase-currentcost 1.0.2 documentation</title>
   
 
   
@@ -28,7 +28,7 @@
   
 
   
-    <link rel="top" title="phase-currentcost 1.0.1 documentation" href="../../index.html"/>
+    <link rel="top" title="phase-currentcost 1.0.2 documentation" href="../../index.html"/>
         <link rel="up" title="Module code" href="../index.html"/> 
 
   
@@ -75,6 +75,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../todo.html">Todo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../change.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v1-0-2-stable-urgency-low">phase-currentcost (v1.0.2) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v1-0-1-stable-urgency-low">phase-currentcost (v1.0.1) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v1-0-0-stable-urgency-low">phase-currentcost (v1.0.0) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../change.html#phase-currentcost-v0-9-17-stable-urgency-low">phase-currentcost (v0.9.17) stable; urgency=low</a></li>
@@ -226,7 +227,7 @@
     <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 
 </div>
-<div class="viewcode-block" id="init_message"><a class="viewcode-back" href="../../code.html#currentcost.utils.init_message">[docs]</a><span class="k">def</span> <span class="nf">init_message</span><span class="p">(</span><span class="n">variable_name</span><span class="p">,</span> <span class="n">site_name</span><span class="p">,</span> <span class="n">tty_port</span><span class="p">):</span>
+<div class="viewcode-block" id="init_message"><a class="viewcode-back" href="../../code.html#currentcost.utils.init_message">[docs]</a><span class="k">def</span> <span class="nf">init_message</span><span class="p">(</span><span class="n">variable_name</span><span class="p">,</span> <span class="n">site_name</span><span class="p">,</span> <span class="n">tty_port</span><span class="p">,</span> <span class="n">log_conf</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create log message starting current cost.</span>
 
 <span class="sd">    :param variable_name: Name of the Variable.</span>
@@ -238,6 +239,8 @@
 <span class="sd">    :param tty_port: TTY port path.</span>
 <span class="sd">    :type tty_port: str.</span>
 
+<span class="sd">    :param log_conf: Path to log configuration.</span>
+<span class="sd">    :type log_conf: str.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c"># Create init message</span>
     <span class="n">message</span> <span class="o">=</span> <span class="s">&quot;Starting current cost application</span><span class="se">\n</span><span class="s">&quot;</span>
@@ -245,6 +248,7 @@
     <span class="n">message</span> <span class="o">+=</span> <span class="s">&quot;Variable name: </span><span class="si">%s</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">variable_name</span>
     <span class="n">message</span> <span class="o">+=</span> <span class="s">&quot;Site name: </span><span class="si">%s</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">site_name</span>
     <span class="n">message</span> <span class="o">+=</span> <span class="s">&quot;TTY port: </span><span class="si">%s</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">tty_port</span>
+    <span class="n">message</span> <span class="o">+=</span> <span class="s">&quot;Log configuration: </span><span class="si">%s</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">log_conf</span>
     <span class="c"># We log this message</span>
     <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
@@ -344,7 +348,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'1.0.1',
+            VERSION:'1.0.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
