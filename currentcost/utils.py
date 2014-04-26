@@ -64,7 +64,7 @@ def argument_parser():
     return parser.parse_args()
 
 
-def init_message(variable_name, site_name, tty_port):
+def init_message(variable_name, site_name, tty_port, log_conf):
     """Create log message starting current cost.
 
     :param variable_name: Name of the Variable.
@@ -76,6 +76,8 @@ def init_message(variable_name, site_name, tty_port):
     :param tty_port: TTY port path.
     :type tty_port: str.
 
+    :param log_conf: Path to log configuration.
+    :type log_conf: str.
     """
     # Create init message
     message = "Starting current cost application\n"
@@ -83,6 +85,7 @@ def init_message(variable_name, site_name, tty_port):
     message += "Variable name: %s\n" % variable_name
     message += "Site name: %s\n" % site_name
     message += "TTY port: %s\n" % tty_port
+    message += "Log configuration: %s\n" % log_conf
     # We log this message
     LOGGER.info(message)
 

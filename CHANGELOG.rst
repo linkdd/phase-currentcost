@@ -1,3 +1,11 @@
+phase-currentcost (v1.0.2) stable; urgency=low
+-----------------------------------------------
+
+* Modify setup.py
+* Little typo fix in README
+
+Pierre Leray <pierreleray64@gmail.com>  2014-04-26 19:30:00
+
 phase-currentcost (v1.0.1) stable; urgency=low
 -----------------------------------------------
 

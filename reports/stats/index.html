@@ -2,7 +2,104 @@
 <body>
 <div>
 <h1>Report</h1>
-<p>488 statements analysed.</p><div>
+<p>554 statements analysed.</p><div>
+<h2>Raw metrics</h2>
+<table>
+<tr class="header">
+<th>type</th>
+<th>number</th>
+<th>%</th>
+<th>previous</th>
+<th>difference</th>
+</tr>
+<tr class="even">
+<td>code</td>
+<td>827</td>
+<td>54.66</td>
+<td>737</td>
+<td>+90.00</td>
+</tr>
+<tr class="odd">
+<td>docstring</td>
+<td>380</td>
+<td>25.12</td>
+<td>369</td>
+<td>+11.00</td>
+</tr>
+<tr class="even">
+<td>comment</td>
+<td>59</td>
+<td>3.90</td>
+<td>49</td>
+<td>+10.00</td>
+</tr>
+<tr class="odd">
+<td>empty</td>
+<td>247</td>
+<td>16.33</td>
+<td>218</td>
+<td>+29.00</td>
+</tr>
+</table>
+</div>
+<div>
+<h2>External dependencies</h2>
+<pre>behave 
+  \-given (currentcost_steps)
+  \-then (currentcost_steps)
+  \-when (currentcost_steps)
+currentcost 
+  \-messager 
+  | \-RabbitMQMessager (tests.test_messager,phase-currentcost)
+  \-utils 
+    \-CC_INCORRECT_MESSAGE (tests.test_utils,currentcost_steps)
+    \-CURRENTCOST_TIMEOUT (tests.test_utils,currentcost_steps)
+    \-ERROR (currentcost.connector,phase-currentcost,tests.test_utils,currentcost_steps)
+    \-RABBIT_MQ_CONNECTION_PROBLEM (currentcost.messager)
+    \-RABBIT_MQ_CREDENTIAL_PROBLEM (currentcost_steps,currentcost.messager)
+    \-SUCCESS (tests.test_utils,currentcost_steps)
+    \-TTY_CONNECTION_PROBLEM (currentcost.connector,phase-currentcost,currentcost_steps)
+    \-TTY_CONNECTION_SUCCESS (currentcost.connector,phase-currentcost,currentcost_steps)
+    \-TTY_DISCONNECTED (currentcost.connector,phase-currentcost)
+    \-argument_parser (phase-currentcost)
+    \-data_validator (currentcost.connector,phase-currentcost,tests.test_utils)
+    \-init_message (phase-currentcost)
+    \-verbose_mode (phase-currentcost)
+datetime 
+  \-datetime (currentcost.utils,currentcost.messager)
+os (setup)
+paver 
+  \-easy 
+    \-Bunch (pavement)
+    \-needs (pavement)
+    \-options (pavement)
+    \-path (pavement)
+    \-sh (pavement)
+    \-task (pavement)
+pika (tests.test_messager,currentcost_steps,currentcost.messager)
+serial (currentcost.connector,phase-currentcost,currentcost_steps)
+setuptools 
+  \-command 
+  | \-install 
+  |   \-install (setup)
+  \-setup (setup)
+tests 
+  \-fixtures 
+    \-history 
+      \-HISTORY_1 (currentcost_steps)
+      \-HISTORY_10 (currentcost_steps)
+      \-HISTORY_11 (currentcost_steps)
+      \-HISTORY_12 (currentcost_steps)
+      \-HISTORY_13 (currentcost_steps)
+      \-HISTORY_2 (currentcost_steps)
+      \-HISTORY_3 (currentcost_steps)
+      \-HISTORY_4 (currentcost_steps)
+      \-HISTORY_5 (currentcost_steps)
+      \-HISTORY_6 (currentcost_steps)
+      \-HISTORY_7 (currentcost_steps)
+      \-HISTORY_8 (currentcost_steps)
+      \-HISTORY_9 (currentcost_steps)</pre></div>
+<div>
 <h2>Messages by category</h2>
 <table>
 <tr class="header">
@@ -46,7 +143,7 @@
 </tr>
 <tr class="even">
 <td>locally-disabled</td>
-<td>5</td>
+<td>6</td>
 </tr>
 </table>
 </div>
@@ -77,24 +174,6 @@ Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)</div>
 </table>
 </div>
 <div>
-<h2>External dependencies</h2>
-<pre>behave (currentcost_steps)
-currentcost 
-  \-messager (tests.test_messager)
-  \-utils (currentcost.connector,currentcost_steps,tests.test_utils,currentcost.messager)
-datetime (currentcost.utils,currentcost.messager)
-os (setup)
-paver 
-  \-easy (pavement)
-pika (tests.test_messager,currentcost_steps,currentcost.messager)
-serial (currentcost.connector,currentcost_steps)
-setuptools (setup)
-  \-command 
-    \-install (setup)
-tests 
-  \-fixtures 
-    \-history (currentcost_steps)</pre></div>
-<div>
 <h2>Statistics by type</h2>
 <table>
 <tr class="header">
@@ -107,11 +186,11 @@ tests
 </tr>
 <tr class="even">
 <td>module</td>
+<td>11</td>
 <td>10</td>
-<td>10</td>
-<td>=</td>
+<td>+1.00</td>
 <td>100.00</td>
-<td>0.00</td>
+<td>9.09</td>
 </tr>
 <tr class="odd">
 <td>class</td>
@@ -131,51 +210,11 @@ tests
 </tr>
 <tr class="odd">
 <td>function</td>
+<td>55</td>
 <td>54</td>
-<td>54</td>
-<td>=</td>
+<td>+1.00</td>
 <td>100.00</td>
 <td>0.00</td>
-</tr>
-</table>
-</div>
-<div>
-<h2>Raw metrics</h2>
-<table>
-<tr class="header">
-<th>type</th>
-<th>number</th>
-<th>%</th>
-<th>previous</th>
-<th>difference</th>
-</tr>
-<tr class="even">
-<td>code</td>
-<td>737</td>
-<td>53.68</td>
-<td>737</td>
-<td>=</td>
-</tr>
-<tr class="odd">
-<td>docstring</td>
-<td>369</td>
-<td>26.88</td>
-<td>369</td>
-<td>=</td>
-</tr>
-<tr class="even">
-<td>comment</td>
-<td>49</td>
-<td>3.57</td>
-<td>49</td>
-<td>=</td>
-</tr>
-<tr class="odd">
-<td>empty</td>
-<td>218</td>
-<td>15.88</td>
-<td>218</td>
-<td>=</td>
 </tr>
 </table>
 </div>
@@ -194,41 +233,49 @@ tests
 <td>info</td>
 <td>setup</td>
 <td>&#160;</td>
-<td>13</td>
+<td>21</td>
 <td>0</td>
-<td>Locally disabling no-init (W0232)</td>
+<td>Locally disabling W0232</td>
 </tr>
 <tr class="odd">
+<td>info</td>
+<td>phase-currentcost</td>
+<td>&#160;</td>
+<td>4</td>
+<td>0</td>
+<td>Locally disabling C0103</td>
+</tr>
+<tr class="even">
 <td>info</td>
 <td>tests.test_messager</td>
 <td>&#160;</td>
 <td>4</td>
 <td>0</td>
-<td>Locally disabling too-many-public-methods (R0904)</td>
+<td>Locally disabling R0904</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>info</td>
 <td>tests.test_utils</td>
 <td>&#160;</td>
 <td>4</td>
 <td>0</td>
-<td>Locally disabling too-many-public-methods (R0904)</td>
-</tr>
-<tr class="odd">
-<td>info</td>
-<td>currentcost_steps</td>
-<td>&#160;</td>
-<td>4</td>
-<td>0</td>
-<td>Locally disabling unused-argument (W0613)</td>
+<td>Locally disabling R0904</td>
 </tr>
 <tr class="even">
 <td>info</td>
 <td>currentcost_steps</td>
 <td>&#160;</td>
+<td>4</td>
+<td>0</td>
+<td>Locally disabling W0613</td>
+</tr>
+<tr class="odd">
+<td>info</td>
+<td>currentcost_steps</td>
+<td>&#160;</td>
 <td>11</td>
 <td>0</td>
-<td>Locally disabling no-name-in-module (E0611)</td>
+<td>Locally disabling E0611</td>
 </tr>
 </table>
 </div>

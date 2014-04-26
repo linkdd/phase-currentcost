@@ -4,7 +4,7 @@
 # pylint: disable=W0613
 
 """
-    Functionnal test for SMEPI test cases.
+    Functionnal test for this project.
 """
 
 from __future__ import print_function

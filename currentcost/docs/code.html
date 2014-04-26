@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Modules &mdash; phase-currentcost 1.0.1 documentation</title>
+  <title>Modules &mdash; phase-currentcost 1.0.2 documentation</title>
   
 
   
@@ -28,7 +28,7 @@
   
 
   
-    <link rel="top" title="phase-currentcost 1.0.1 documentation" href="index.html"/>
+    <link rel="top" title="phase-currentcost 1.0.2 documentation" href="index.html"/>
         <link rel="next" title="Todo" href="todo.html"/>
         <link rel="prev" title="phase-currentcost" href="presentation.html"/> 
 
@@ -76,6 +76,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">Todo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="change.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v1-0-2-stable-urgency-low">phase-currentcost (v1.0.2) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v1-0-1-stable-urgency-low">phase-currentcost (v1.0.1) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v1-0-0-stable-urgency-low">phase-currentcost (v1.0.0) stable; urgency=low</a></li>
 <li class="toctree-l2"><a class="reference internal" href="change.html#phase-currentcost-v0-9-17-stable-urgency-low">phase-currentcost (v0.9.17) stable; urgency=low</a></li>
@@ -315,7 +316,7 @@ Message containing error description or data sent by CC.</p>
 
 <dl class="function">
 <dt id="currentcost.utils.init_message">
-<tt class="descclassname">currentcost.utils.</tt><tt class="descname">init_message</tt><big>(</big><em>variable_name</em>, <em>site_name</em>, <em>tty_port</em><big>)</big><a class="reference internal" href="_modules/currentcost/utils.html#init_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.utils.init_message" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">currentcost.utils.</tt><tt class="descname">init_message</tt><big>(</big><em>variable_name</em>, <em>site_name</em>, <em>tty_port</em>, <em>log_conf</em><big>)</big><a class="reference internal" href="_modules/currentcost/utils.html#init_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.utils.init_message" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create log message starting current cost.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -325,6 +326,7 @@ Message containing error description or data sent by CC.</p>
 <li><strong>variable_name</strong> (<em>str.</em>) &#8211; Name of the Variable.</li>
 <li><strong>site_name</strong> (<em>str.</em>) &#8211; Name of the Site.</li>
 <li><strong>tty_port</strong> (<em>str.</em>) &#8211; TTY port path.</li>
+<li><strong>log_conf</strong> (<em>str.</em>) &#8211; Path to log configuration.</li>
 </ul>
 </td>
 </tr>
@@ -374,7 +376,7 @@ Message containing error description or data sent by CC.</p>
 
 <dl class="method">
 <dt id="currentcost.messager.RabbitMQMessager.send">
-<tt class="descname">send</tt><big>(</big><em>topic</em>, <em>message</em>, <em>out=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7fb4fb1011e0&gt;</em><big>)</big><a class="reference internal" href="_modules/currentcost/messager.html#RabbitMQMessager.send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.messager.RabbitMQMessager.send" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">send</tt><big>(</big><em>topic</em>, <em>message</em>, <em>out=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7fae9d0ce1e0&gt;</em><big>)</big><a class="reference internal" href="_modules/currentcost/messager.html#RabbitMQMessager.send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.messager.RabbitMQMessager.send" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method that send a message with a topic.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -393,7 +395,7 @@ Message containing error description or data sent by CC.</p>
 
 <dl class="method">
 <dt id="currentcost.messager.RabbitMQMessager.send_message">
-<tt class="descname">send_message</tt><big>(</big><em>topic</em>, <em>site_name</em>, <em>var_name</em>, <em>data</em>, <em>out=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7fb4fb1011e0&gt;</em><big>)</big><a class="reference internal" href="_modules/currentcost/messager.html#RabbitMQMessager.send_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.messager.RabbitMQMessager.send_message" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">send_message</tt><big>(</big><em>topic</em>, <em>site_name</em>, <em>var_name</em>, <em>data</em>, <em>out=&lt;open file '&lt;stdout&gt;'</em>, <em>mode 'w' at 0x7fae9d0ce1e0&gt;</em><big>)</big><a class="reference internal" href="_modules/currentcost/messager.html#RabbitMQMessager.send_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#currentcost.messager.RabbitMQMessager.send_message" title="Permalink to this definition">¶</a></dt>
 <dd><p>Format parameter into json string for phase platform.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -455,7 +457,7 @@ Message containing error description or data sent by CC.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0.1',
+            VERSION:'1.0.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

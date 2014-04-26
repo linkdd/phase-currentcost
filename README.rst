@@ -134,7 +134,7 @@ Message send through RabbitMQ
 
 A message is a JSON containing this properties:
 
-:variableID: name of the variable
+:variableID: Name of the variable
 :siteID: Name of the site
 :date: Date in UTC
 :dstTimezone: Timezone with DST
