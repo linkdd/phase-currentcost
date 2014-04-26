@@ -61,7 +61,7 @@ def main():
         username = rabbitmq_credential.split(":")[0]
         password = rabbitmq_credential.split(":")[1]
     # Init log message
-    init_message(variable_name, site_name, tty_port)
+    init_message(variable_name, site_name, tty_port, log_conf)
     # Initialize messager
     messager = RabbitMQMessager(
         username,
