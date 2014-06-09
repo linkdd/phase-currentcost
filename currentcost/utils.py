@@ -29,10 +29,8 @@ CURRENTCOST_TIMEOUT = "CurrentCost %s in %s: Reach timeout. Verify \
 CurrentCost wire connection or wave range"
 CC_INCORRECT_MESSAGE = "CurrentCost %s in %s: Send incorrect \
 message => %s."
-RABBIT_MQ_CONNECTION_PROBLEM = "Problem trying to connect to RabbitMQ with \
-this configuration: username: %s, password: %s, host: %s"
-RABBIT_MQ_CREDENTIAL_PROBLEM = "Problem bad RabbitMQ credential with \
-this configuration: username: %s, password: %s, host: %s"
+RABBIT_MQ_CONNECTION_PROBLEM = "Problem trying to connect to RabbitMQ: %s"
+RABBIT_MQ_CREDENTIAL_PROBLEM = "Problem bad RabbitMQ credential: %s"
 CURRENTCOST_UNICODE_ERROR = "Bad message sent from currentcost, invalid ASCII"
 
 # Logger initialization

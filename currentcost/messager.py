@@ -54,18 +54,12 @@ class RabbitMQMessager(object):
                 self.channel = self.connection.channel()
             except pika.exceptions.ConnectionClosed:
                 # Else if our credential were wrong, we log according message
-                error = RABBIT_MQ_CREDENTIAL_PROBLEM % (
-                    username,
-                    password,
-                    host)
+                error = RABBIT_MQ_CREDENTIAL_PROBLEM % rabbitmq_url
                 self.logger.error(error)
             except pika.exceptions.AMQPConnectionError:
                 # Else if RabbitMQ is not available in this location,
                 # we log according message
-                error = RABBIT_MQ_CONNECTION_PROBLEM % (
-                    username,
-                    password,
-                    host)
+                error = RABBIT_MQ_CONNECTION_PROBLEM % rabbitmq_url
                 self.logger.error(error)
 
     def build_canopsis_events(self, message):
@@ -78,10 +72,10 @@ class RabbitMQMessager(object):
         """
 
         event = {
-            'connector': config.get('canopsis', 'connector'),
-            'connector_name': config.get('canopsis', 'connector_name'),
-            'component': config.get('canopsis', 'component'),
-            'resource': config.get('canopsis', 'resource')
+            'connector': self.config.get('canopsis', 'connector'),
+            'connector_name': self.config.get('canopsis', 'connector_name'),
+            'component': self.config.get('canopsis', 'component'),
+            'resource': self.config.get('canopsis', 'resource')
         }
 
         for key,value in event.iteritems():
