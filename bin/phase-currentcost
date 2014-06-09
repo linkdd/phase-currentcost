@@ -10,6 +10,7 @@
 """
 
 from __future__ import print_function
+from ConfigParser import ConfigParser
 import logging
 import logging.config
 from currentcost.utils import argument_parser, init_message, verbose_mode
@@ -18,12 +19,13 @@ from currentcost.utils import TTY_CONNECTION_SUCCESS, TTY_DISCONNECTED
 from time import sleep
 from currentcost.messager import RabbitMQMessager
 import serial
+import os
 
 # Globals for this file
 DEFAULT_LOG_FILE = "/opt/phase/phase-currentcost.conf"
 # DEFAULT_LOG_FILE = "logs/log.conf"
 DEFAULT_TTY_PORT = "/dev/currentcost"
-HOST = "localhost"
+AMQP_URL = 'amqp://guest:guest@127.0.0.1:5672/'
 TIMEOUT_CURRENTCOST = 10
 USB_RETRY = 5
 BAUDS = 57600
@@ -37,36 +39,42 @@ def main():
     """
     # Parse command line argument and format it into according variable
     args = argument_parser()
-    variable_name = args.variable_name
-    site_name = args.site_name
-    tty_port = args.tty_port
-    rabbitmq_credential = args.rabbitmq_credential
+
     verbose = args.verbose
-    log_conf = args.log_conf
+    log_conf = os.path.expanduser(args.log_conf or DEFAULT_LOG_FILE)
+
     # Init logging file
-    if log_conf is None:
-        log_conf = DEFAULT_LOG_FILE
     logging.config.fileConfig(log_conf)
+
     # Active verbose mode
     verbose_mode(verbose)
+
+    # Parse configuration
+    config = ConfigParser()
+    config.read(os.path.expanduser(args.confpath))
+
+    variable_name = config.get('currentcost', 'variable_name')
+    site_name = config.get('currentcost', 'site_name')
+
+    if config.has_option('currentcost', 'tty_port'):
+        tty_port = config.get('currentcost', 'tty_port')
+
+    else:
+        tty_port = DEFAULT_TTY_PORT
+
+    have_rabbitmq = config.has_section('rabbitmq') and config.getboolean('rabbitmq', 'enabled')
+    rabbitmq_url = None if not have_rabbitmq else config.get('rabbitmq', 'url')
+
     # Initialize ser_connection
     ser_connection = None
-    # Initialiez tty port if not given in argument
-    if tty_port is None:
-        tty_port = DEFAULT_TTY_PORT
-    # Initialize RabbitMQ credential
-    username = None
-    password = None
-    if rabbitmq_credential:
-        username = rabbitmq_credential.split(":")[0]
-        password = rabbitmq_credential.split(":")[1]
+
     # Init log message
     init_message(variable_name, site_name, tty_port, log_conf)
+
     # Initialize messager
     messager = RabbitMQMessager(
-        username,
-        password,
-        HOST)
+        rabbitmq_url,
+        config)
     # Start the main loop
     while True:
         try:

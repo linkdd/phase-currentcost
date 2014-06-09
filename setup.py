@@ -11,7 +11,7 @@ import os
 
 VERSION = "1.0.2"
 
-INSTALL_REQS = ["pyserial >= 2.5", "pika"]
+INSTALL_REQS = ["pyserial >= 2.5", "pika", "dateutil"]
 
 PROJECT = "phase"
 

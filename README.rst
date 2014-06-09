@@ -77,49 +77,93 @@ Usage
 .. code-block:: bash
 
     $ sudo phase-currentcost -h
-    usage: phase-currentcost [-h] [-t TTY_PORT] [-r RABBITMQ_CREDENTIAL]
-                             [-l LOG_CONF] [-v]
-                             variable_name site_name
-
-    positional arguments:
-      variable_name         name of the variable
-      site_name             name of the location of the variable
+    usage: phase-currentcost [-h] [-c /path/to/config.ini]
 
     optional arguments:
-      -h, --help            show this help message and exit
-      -t TTY_PORT, --tty-port TTY_PORT
-                            tty port to connect to current cost
-      -r RABBITMQ_CREDENTIAL, --rabbitmq-credential RABBITMQ_CREDENTIAL
-                            credential for rabbitMQ. By default, RabbitMQ is
-                            deactivated. To activate it you have to give your
-                            credential. Format: username:password.
       -l LOG_CONF, --log-conf LOG_CONF
                             path to log configuration
       -v, --verbose         activate verbose mode
 
+Configuration
+-------------
+
+.. code-block:: ini
+
+    # Configure current cost plugin
+    [currentcost]
+
+    ## Variable's name
+    # variable_name = 
+
+    ## Name of the variable's location
+    # site_name =
+
+    ## TTY port to connect to current cost
+    # tty_port = 
+
+
+    # Configure how data are sent to RabbitMQ
+    [rabbitmq]
+
+    enabled = true
+    url = amqp://guest:guest@127.0.0.1:5672/
+
+    # Configure Canopsis compatibility mode
+    [canopsis]
+
+    enabled = false
+
+    connector = phase
+    connector_name = currentcost
+    component = $siteID
+    resource = $variableID
+
+
 By default:
 
-* We targetting /dev/currentcost as tty port. You can over-write it using --tty-port argument.
-* RabbitMQ is not activated. We send message to stdout so you can collect it on file. If you want to share your message over the network using RabbitMQ, you can activate this function using --rabbitMQ-credential argument and giving your credential followinf this format: username:password.
+* We targetting /dev/currentcost as tty port.
+* RabbitMQ is not activated. We send message to stdout so you can collect it on file. If you want to share your message over the network using RabbitMQ, you can activate this function by enabling it in the configuration file.
 * Log configuration file is located in /opt/phase/phase-currentcost.conf and log file is in /var/logs/phase/phase-currentcost.log. You can set log configuration file using -l option with a path to your log.conf file.
 
 Examples
 --------
 
-To see the current consumption on Current cost on stdout use:
+To see the current consumption on Current cost on stdout use this config file:
+
+.. code-block:: ini
+
+    [currentcost]
+
+    variable_name = electric_meter
+    site_name = liogen_home
+    tty_port = /dev/currentcost
+
 
 .. code-block:: bash
     
-    $ sudo phase-currentcost electric_meter liogen_home --tty-port /dev/currentcost
+    $ sudo phase-currentcost -c currentcost.ini
     {"variableID": "electric_meter", "dstTimezone": "UTC", "siteID": "liogen_home", "date": "2014-04-25T12:00:17.754959", "message": "CurrentCost electric_meter in liogen_home: TTY connection problem: /dev/currentcost is unreachable. Retry connection in 5 seconds.", "nonDstTimezone": "UTC"} 
     {"variableID": "electric_meter", "dstTimezone": "UTC", "siteID": "liogen_home", "date": "2014-04-25T12:00:22.769256", "message": "CurrentCost electric_meter in liogen_home: TTY connection problem: /dev/currentcost is unreachable. Retry connection in 5 seconds.", "nonDstTimezone": "UTC"}
     {"variableID": "electric_meter", "dstTimezone": "UTC", "siteID": "liogen_home", "date": "2014-04-25T12:00:22.769256", "message": "<msg><src>CC128-v1.29</src><dsb>00786</dsb><time>00:31:36</time><tmpr>19.3</tmpr><sensor>0</sensor><id>00077</id><type>1</type><ch1><watts>00405</watts></ch1></msg>", "nonDstTimezone": "UTC"}
 
 With rabbitMQ message over the network with verbose mode activated:
 
+.. code-block:: ini
+
+    [currentcost]
+
+    variable_name = electric_meter
+    site_name = liogen_home
+    tty_port = /dev/currentcost
+
+    [rabbitmq]
+
+    enabled = true
+    url = amqp://admin:password@127.0.0.1:5672/
+
 .. code-block:: bash
 
-    $ sudo phase-currentcost electric_meter liogen_home --tty-port /dev/currentcost --rabbitmq-credential admin:password -v
+    $ sudo phase-currentcost -c currentcost.ini -v
     Starting current cost application
     Current time: 2014-04-25 12:01:34.350781
     Variable name: electric_meter
@@ -154,6 +198,8 @@ Messages list:
 +-------------+---------------------------------+---------------------------------------------------+
 | currentcost | CurrentCost XML message         | Send Currentcost XML message                      |
 +-------------+---------------------------------+---------------------------------------------------+
+
+When Canopsis mode is enabled, message sent through RabbitMQ respect the event specification of Canopsis.
 
 Contribute
 ----------

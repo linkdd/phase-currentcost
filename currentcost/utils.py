@@ -34,6 +34,7 @@ this configuration: username: %s, password: %s, host: %s"
 RABBIT_MQ_CREDENTIAL_PROBLEM = "Problem bad RabbitMQ credential with \
 this configuration: username: %s, password: %s, host: %s"
 CURRENTCOST_UNICODE_ERROR = "Bad message sent from currentcost, invalid ASCII"
+
 # Logger initialization
 LOGGER = logging.getLogger("currentcost")
 
@@ -47,19 +48,13 @@ def argument_parser():
     """
     # Get command line arguments
     parser = argparse.ArgumentParser()
+
     # Define expected arguments
-    parser.add_argument("variable_name", help="name of the variable")
-    parser.add_argument("site_name",
-                        help="name of the location of the variable")
-    parser.add_argument("-t", "--tty-port",
-                        help="tty port to connect to current cost")
-    parser.add_argument("-r", "--rabbitmq-credential",
-                        help="credential for rabbitMQ. By default, RabbitMQ is\
-                        deactivated. To activate it you have to give your \
-                        credential. Format: username:password.")
+    parser.add_argument('-c', '--confpath', help='Path to configuration file')
     parser.add_argument("-l", "--log-conf", help="path to log configuration")
     parser.add_argument("-v", "--verbose", help="activate verbose mode",
                         action="store_true")
+
     # Return list of argument passed in command line
     return parser.parse_args()
 

@@ -8,6 +8,9 @@
 
 """
 
+from dateutil.parser import parse as parse_date
+from xml.etree import ElementTree
+
 import logging
 import pika
 import sys
@@ -24,29 +27,29 @@ class RabbitMQMessager(object):
 
     """
 
-    def __init__(self, username, password, host):
+    def __init__(self, rabbitmq_url, config):
         """Constructor.
 
-            :param username: Name of the RabbitMQ user.
-            :type username: str.
+            :param rabbitmq_url: RabbitMQ address.
+            :type rabbitmq_url: basestring
 
-            :param password: Password of the RabbitMQ user.
-            :type password: str.
-
-            :param host: Host target for RabbitMQ.
-            :type host: str.
+            :param config: Plugin configuration.
+            :type config: ConfigParser
         """
         # Logger and channel initialization
         self.logger = logging.getLogger("currentcost.pika")
         self.channel = None
+
+        self.canopsis_mode = config.has_section('canopsis') and config.getboolean('canopsis', 'enabled')
+        self.config = config
+
         # If we have a username and password for RabbitMQ
-        if username is not None and password is not None:
+        if rabbitmq_url is not None:
+
             try:
                 # We try to connect to RabbitMQ with this credential
                 self.connection = pika.BlockingConnection(
-                    pika.ConnectionParameters(
-                        host=host,
-                        credentials=pika.PlainCredentials(username, password)))
+                    pika.URLParameters(rabbitmq_url))
                 # If our connection was successful we retrieve a channel
                 self.channel = self.connection.channel()
             except pika.exceptions.ConnectionClosed:
@@ -65,6 +68,76 @@ class RabbitMQMessager(object):
                     host)
                 self.logger.error(error)
 
+    def build_canopsis_events(self, message):
+        """Method that transform message into a Canopsis event.
+
+            :param message: Message to send to RabbitMQ.
+            :type message: dict.
+
+            :returns: routing key, body
+        """
+
+        event = {
+            'connector': config.get('canopsis', 'connector'),
+            'connector_name': config.get('canopsis', 'connector_name'),
+            'component': config.get('canopsis', 'component'),
+            'resource': config.get('canopsis', 'resource')
+        }
+
+        for key,value in event.iteritems():
+            if value.startswith('$'):
+                mkey = value[1:]
+                event[key] = message[mkey]
+
+        event.update({
+            'event_type': 'check',
+            'source_type': 'resource',
+            'timestamp': int(parse_date(message['date']).strftime('%s')),
+            'state': 0,
+            'state_type': 1
+        })
+
+        # Parse perfdata
+        try:
+            root = ElementTree.fromstring(message['message'])
+
+        except ElementTree.ParseError:
+            event['output'] = message['message']
+            event['state'] = 2
+
+        else:
+            strtime = root.find('./time').text
+            hours, mins, seconds = strtime.split(':')
+            seconds = seconds + mins * 60 + hours * 60 * 60
+
+            dsb = int(root.find('./dsb').text)
+
+            event['perf_data_array'] = [{
+                'metric': 'uptime',
+                'value': datetime.timedelta(days=dsb, seconds=seconds).total_seconds,
+                'unit': 's',
+                'type': 'GAUGE'
+            },{
+                'metric': 'temp',
+                'value': root.find('./tmpr').text,
+                'type': 'GAUGE'
+            },{
+                'metric': 'watts',
+                'value': root.find('./ch1/watts').text,
+                'type': 'GAUGE'
+            }]
+
+        rk = '{0}.{1}.{2}.{3}.{4}.{5}'.format(
+            event['connector'],
+            event['connector_name'],
+            event['event_type'],
+            event['source_type'],
+            event['component'],
+            event['resource']
+        )
+
+        return rk, json.dumps(event)
+
     def send(self, topic, message, out=sys.stdout):
         """Method that send a message with a topic.
 
@@ -79,12 +152,27 @@ class RabbitMQMessager(object):
         """
         # We log message we want to send to keep a trace
         self.logger.error(message)
+
         # If channel is available
         if self.channel is not None:
-            # We send a message on this channel
-            self.channel.queue_declare(queue=topic)
-            self.channel.basic_publish(
-                exchange='', routing_key=topic, body=message)
+            if self.canopsis_mode:
+                try:
+                    msg = json.loads(message)
+                    rk, body = self.build_canopsis_event(msg)
+
+                    self.channel.basic_publish(
+                        exchange='canopsis.events',
+                        routing_key=rk,
+                        body=body)
+
+                except ValueError as err:
+                    self.logger.error('Impossible to decode message: %s', err)
+
+            else:
+                # We send a message on this channel
+                self.channel.queue_declare(queue=topic)
+                self.channel.basic_publish(
+                    exchange='', routing_key=topic, body=message)
         else:
             # Else we print it in stdout
             out.write("%s %s" % (unicode(message), "\n"))
