@@ -119,11 +119,11 @@ class RabbitMQMessager(object):
                 'type': 'GAUGE'
             },{
                 'metric': 'temp',
-                'value': root.find('./tmpr').text,
+                'value': float(root.find('./tmpr').text),
                 'type': 'GAUGE'
             },{
                 'metric': 'watts',
-                'value': root.find('./ch1/watts').text,
+                'value': float(root.find('./ch1/watts').text),
                 'type': 'GAUGE'
             }]
 
