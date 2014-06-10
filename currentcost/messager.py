@@ -102,7 +102,7 @@ class RabbitMQMessager(object):
         else:
             strtime = root.find('./time').text
             hours, mins, seconds = strtime.split(':')
-            seconds = seconds + mins * 60 + hours * 60 * 60
+            seconds = int(seconds) + int(mins) * 60 + int(hours) * 60 * 60
 
             dsb = int(root.find('./dsb').text)
 
