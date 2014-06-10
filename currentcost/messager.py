@@ -17,7 +17,7 @@ import sys
 from currentcost.utils import RABBIT_MQ_CREDENTIAL_PROBLEM
 from currentcost.utils import RABBIT_MQ_CONNECTION_PROBLEM
 from time import tzname
-from datetime import datetime
+import datetime
 import json
 
 
@@ -62,7 +62,7 @@ class RabbitMQMessager(object):
                 error = RABBIT_MQ_CONNECTION_PROBLEM % rabbitmq_url
                 self.logger.error(error)
 
-    def build_canopsis_events(self, message):
+    def build_canopsis_event(self, message):
         """Method that transform message into a Canopsis event.
 
             :param message: Message to send to RabbitMQ.
@@ -194,7 +194,7 @@ class RabbitMQMessager(object):
             'siteID': site_name,
             'variableID': var_name,
             'message': data,
-            'date': datetime.utcnow().isoformat('T'),
+            'date': datetime.datetime.utcnow().isoformat('T'),
             'dstTimezone': tzname[1],
             'nonDstTimezone': tzname[0]
         }
