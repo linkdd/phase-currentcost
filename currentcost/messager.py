@@ -106,9 +106,12 @@ class RabbitMQMessager(object):
 
             dsb = int(root.find('./dsb').text)
 
+            td_uptime = datetime.timedelta(days=dsb, seconds=seconds)
+            uptime = (td_uptime.seconds + td_uptime.days * 24 * 3600)
+
             event['perf_data_array'] = [{
                 'metric': 'uptime',
-                'value': datetime.timedelta(days=dsb, seconds=seconds).total_seconds,
+                'value': uptime,
                 'unit': 's',
                 'type': 'GAUGE'
             },{
